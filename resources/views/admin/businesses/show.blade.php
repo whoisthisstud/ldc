@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex">
                     <div class="pt-2">
@@ -11,7 +11,7 @@
                             <a href="{{ route('businesses.index') }}">Businesses</a>
                             &nbsp; &raquo; &nbsp;
                         </span>
-                        <h5 class="d-inline-block">{{ $business->name }}</h5>
+                        <h5 class="d-inline-block"><img src="{{ $business->logo }}" width="25px" height="25px" class="rounded-circle mr-2">{{ $business->name }}</h5>
                     </div>
                     <div class="pt-1 ml-auto">
                         <a href="" class="btn btn-sm btn-primary">Add Discount</a>

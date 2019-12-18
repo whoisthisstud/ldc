@@ -19,7 +19,7 @@
 					<ul class="list-unstyled">
 						@if (Route::has('login'))
 			                    @auth
-			                        <a href="{{ url('/home') }}">Home</a>
+			                        <a href="{{ route('home') }}">Home</a>
 			                    @else
 			                        <li><a href="{{ route('login') }}">Login</a></li>
 
@@ -43,7 +43,7 @@
 			</a> -->
 			<a href="#" class="navbar-brand d-flex align-items-center text-light">
 				@include('_partials.icons.logo2')
-				<strong>Local Discount Club</strong>
+				<strong>{{ config('app.name', 'Local Discount Club') }}</strong>
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>

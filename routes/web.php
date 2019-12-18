@@ -19,23 +19,23 @@ Route::get('/', 'PagesController@index')->name('public.index');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::group(['prefix' => 'admin'], function () {
+// })->middleware('auth');
 
-Route::get('/states', 'StateController@index')->name('states.index');
-Route::get('/states/add', 'StateController@create')->name('states.create');
-Route::post('/states/store', 'StateController@store')->name('states.store');
-Route::get('/states/{state}', 'StateController@show')->name('view.state');
+Route::middleware('auth')->group(function () {
+    Route::get('/admin/dashboard', 'HomeController@index')->name('home');
 
-Route::get('/city/{city}', 'CityController@index')->name('view.city');
-Route::get('/states/{state}/add-city', 'CityController@create')->name('cities.create');
-Route::post('/states/{state}/store-city', 'CityController@store')->name('cities.store');
+    Route::get('/admin/states', 'StateController@index')->name('states.index');
+    Route::get('/admin/states/add', 'StateController@create')->name('states.create');
+    Route::post('/admin/states/store', 'StateController@store')->name('states.store');
+    Route::get('/admin/states/{state}', 'StateController@show')->name('view.state');
 
-Route::get('/businesses', 'BusinessController@index')->name('businesses.index');
-Route::get('/businesses/add', 'BusinessController@create')->name('businesses.create');
-Route::post('/businesses/store', 'BusinessController@store')->name('businesses.store');
-Route::get('/businesses/{business}', 'BusinessController@show')->name('view.business');
+    Route::get('/admin/city/{city}', 'CityController@index')->name('view.city');
+    Route::get('/admin/states/{state}/add-city', 'CityController@create')->name('cities.create');
+    Route::post('/admin/states/{state}/store-city', 'CityController@store')->name('cities.store');
 
-
-
-
-
+    Route::get('/admin/businesses', 'BusinessController@index')->name('businesses.index');
+    Route::get('/admin/businesses/add', 'BusinessController@create')->name('businesses.create');
+    Route::post('/admin/businesses/store', 'BusinessController@store')->name('businesses.store');
+    Route::get('/admin/businesses/{business}', 'BusinessController@show')->name('view.business');
+});
