@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Business;
+use App\Traits\UploadTrait;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Requests\BusinessStoreRequest;
 
 class BusinessController extends Controller
 {
+    use UploadTrait;
+
     /**
      * Display a listing of the resource.
      *
@@ -35,9 +40,31 @@ class BusinessController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BusinessStoreRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        $biz = new Business();
+        $biz->name = $request->name;
+
+        if ($request->hasFile('logo')) {
+            // Get image file
+            $image = $request->file('logo');
+            // Make a image name based on user name and current timestamp
+            $name = Str::slug($request->input('name')).'_'.time();
+            // Define folder path
+            $folder = '/business-logos/';
+            // Make a file path where image will be stored [ folder path + file name + file extension]
+            $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+            // Upload image
+            $this->uploadOne($image, $folder, 'public', $name);
+            // Set user profile image path in database to filePath
+            $biz->logo = $filePath;
+        }
+
+        $biz->save();
+
+        return redirect()->route('view.business', ['business' => $biz->id ])->with('success', 'Business added');
     }
 
     /**
@@ -48,7 +75,7 @@ class BusinessController extends Controller
      */
     public function show(Business $business)
     {
-        //
+        return view('admin.businesses.show', compact('business'));
     }
 
     /**

@@ -2,16 +2,33 @@
 	<div class="collapse bg-dark" id="navbarHeader">
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-8 col-md-7 py-4">
+				<div class="col-sm-12 col-md-6 py-4">
 					<h4 class="text-white">About</h4>
 					<p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
 				</div>
-				<div class="col-sm-4 offset-md-1 py-4">
-					<h4 class="text-white">Contact</h4>
+				<div class="col-sm-12 col-md-3 py-4">
+					<h4 class="text-white">Menu</h4>
 					<ul class="list-unstyled">
-					<li><a href="#" class="text-white">Follow on Twitter</a></li>
-					<li><a href="#" class="text-white">Like on Facebook</a></li>
-					<li><a href="#" class="text-white">Email me</a></li>
+					<li><a href="#" class="text-white">View All Cities</a></li>
+					<li><a href="#" class="text-white">View All Discounts</a></li>
+					<li><a href="#" class="text-white">Contact Us</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-12 col-md-3 py-4">
+					<h4 class="text-white">Admin Menu</h4>
+					<ul class="list-unstyled">
+						@if (Route::has('login'))
+			                    @auth
+			                        <a href="{{ url('/home') }}">Home</a>
+			                    @else
+			                        <li><a href="{{ route('login') }}">Login</a></li>
+
+			                        @if (Route::has('register'))
+			                            <li><a href="{{ route('register') }}">Register</a></li>
+			                        @endif
+			                    @endauth
+			                </div>
+			            @endif
 					</ul>
 				</div>
 			</div>
