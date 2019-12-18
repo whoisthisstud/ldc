@@ -10,11 +10,7 @@ class City extends Model
     protected $guarded = [];
 
     public function getState() {
-    	return $this->belongsTo(State::class);
-    }
-
-    public function getStateAbbr() {
-    	return $this->getState()->abbr;
+    	return $this->belongsTo(State::class, 'state_id');
     }
 
     public function getDiscounts() {

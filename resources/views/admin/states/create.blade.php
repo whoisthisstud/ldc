@@ -11,7 +11,8 @@
 
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="{{ route('states.store') }}" class="needs-validation" novalidate="" method="POST">
+            <form action="{{ route('states.store') }}" class="needs-validation" novalidate="" method="POST">                        
+                @csrf
                 <div class="card">
                     <div class="card-header d-flex">
                         <div class="pt-2">
@@ -19,8 +20,7 @@
                         </div>
                     </div>
 
-                    <div class="card-body">                        
-                        @csrf
+                    <div class="card-body">
                         <div class="row">
                             <div class="col-md-9 mb-3">
                                 <label for="name">State</label>
@@ -41,7 +41,7 @@
                     <div class="card-footer">
                         <div class="d-flex">
                             <div class="form-buttons ml-auto">
-                            <a type="cancel" href="{{ route('states.index') }}" class="btn btn-default">Cancel</a>
+                            <a type="cancel" href="{{ url()->previous() }}" class="btn btn-default">Cancel</a>
                             <button type="submit" class="btn btn-primary">Add State</button>
                             </div>
                         </div>                  

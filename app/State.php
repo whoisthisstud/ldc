@@ -9,7 +9,7 @@ class State extends Model
 {
     protected $guarded = [];
 
-    public function getStateCities() {
+    public function getCities() {
     	return $this->hasMany(City::class);
     }
 }

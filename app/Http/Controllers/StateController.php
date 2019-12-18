@@ -37,7 +37,7 @@ class StateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreStateRequest $request) // StoreStateRequest
+    public function store(StoreStateRequest $request)
     {
         $validated = $request->validated();
 

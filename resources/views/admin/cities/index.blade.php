@@ -8,15 +8,14 @@
                 <div class="card-header d-flex">
                     <div class="pt-2">
                         <span class="d-inline-block align-text-bottom mt-n2">
-                            <a href="{{ route('states.index') }}">States</a>
+                            <a href="{{ route('view.state', [ 'state' => $city->getState->id ]) }}">{{ $city->getState->name }}</a>
                             &nbsp; &raquo; &nbsp;
                         </span>
-                        <h5 class="d-inline-block">{{ $state->name }}</h5>
+                        <h5 class="d-inline-block">{{ $city->name }}</h5>
                     </div>
                     <div class="pt-1 ml-auto">
-                        <a href="{{ route('cities.create', [ 'state' => $state->id ]) }}" class="btn btn-sm btn-primary">Add City</a>
+                        <a href="" class="btn btn-sm btn-primary">Add Discount</a>
                     </div>
-                    
                 </div>
 
                 <div class="card-body">
@@ -25,12 +24,6 @@
                             {{ session('status') }}
                         </div>
                     @endif
-
-                    <ul>
-                        @foreach($state->getCities as $city)
-                            <li><a href="{{ route('view.city', [ 'city' => $city->id ]) }}">{{ $city->name }}</a></li>
-                        @endforeach
-                    </ul>
                     
                 </div>
             </div>

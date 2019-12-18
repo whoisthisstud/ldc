@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\City;
+use App\State;
+use App\Http\Requests\StoreCityRequest;
 use Illuminate\Http\Request;
 
 class CityController extends Controller
@@ -12,9 +14,10 @@ class CityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(City $city)
     {
-        //
+        //$state = $city->getState();
+        return view('admin.cities.index', compact('city'));
     }
 
     /**
@@ -33,9 +36,13 @@ class CityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(State $state, StoreCityRequest $request)
     {
-        //
+        $validated = $request->validated();
+
+        City::create($validated + ['state_id' => $state->id]);
+
+        return redirect()->route('view.state', [ $state->id ])->with('success','State added');
     }
 
     /**

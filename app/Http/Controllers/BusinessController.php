@@ -14,7 +14,9 @@ class BusinessController extends Controller
      */
     public function index()
     {
-        //
+        $businesses = Business::all();
+
+        return view('admin.businesses.index', compact('businesses'));
     }
 
     /**
@@ -24,7 +26,7 @@ class BusinessController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.businesses.create');
     }
 
     /**

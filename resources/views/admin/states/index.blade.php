@@ -23,7 +23,7 @@
 
                     <ul>
                         @foreach($states as $state)
-                            <li><a href="/states/{{ $state->id }}">{{ $state->name }}</a></li>
+                            <li><a href="{{ route('view.state', [ 'state' => $state->id ]) }}">{{ $state->name }}</a></li>
                         @endforeach
                     </ul>
                     
