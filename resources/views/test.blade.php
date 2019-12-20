@@ -18,7 +18,7 @@
                     <div class="row">
                         <div class="col-6 d-flex">
                             <div class="pt-1">
-                                <span class="d-inline-block align-text-bottom mt-n2">
+                                <span class="d-inline-block align-text-middle mt-n2 pt-1">
                                     <a href="{{ route('home') }}" class="text-decoration-none">
                                         <i class="fas fa-home"></i>
                                     </a>
