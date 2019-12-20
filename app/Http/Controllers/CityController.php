@@ -25,9 +25,9 @@ class CityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(State $state)
     {
-        return view('admin.cities.create');
+        return view('admin.cities.create', compact('state'));
     }
 
     /**

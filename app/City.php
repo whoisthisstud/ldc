@@ -9,11 +9,11 @@ class City extends Model
 {
     protected $guarded = [];
 
-    public function getState() {
+    public function state() {
     	return $this->belongsTo(State::class, 'state_id');
     }
 
-    public function getDiscounts() {
+    public function discounts() {
     	return $this->hasMany(Discount::class);
     }
 }

@@ -1,4 +1,4 @@
-<svg class="bd-placeholder-img mr-1 mt-1" version="1.1" id="logo" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="28" height="28" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" aria-hidden="true" focusable="false" style="fill:{{ Request::segment(1) == 'admin' ? '#000' : '#fff' }};">
+<svg class="bd-placeholder-img mr-1 mt-1" version="1.1" id="logo" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" x="0px" y="0px" width="28" height="28" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve" aria-hidden="true" focusable="false" style="fill: #fff;">
 <circle cx="15.233" cy="2.663" r="0.31"/>
 <circle cx="13.993" cy="2.663" r="0.31"/>
 <circle cx="12.756" cy="2.663" r="0.31"/>

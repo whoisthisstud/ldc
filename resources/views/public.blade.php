@@ -84,7 +84,7 @@
 									<a href="#">
 										<div class="card-body" style="min-height: 200px;">
 											<div class="center-within">
-												<h4 class="text-center text-light">{{ $city->name }}, {{ $city->getState->abbreviation }}</h4>
+												<h4 class="text-center text-light">{{ $city->name }}, {{ $city->state->abbreviation }}</h4>
 												<p class="text-center m-0">
 													<small class="text-light">@php echo rand(0,28) @endphp Discounts</small>	
 												</p>

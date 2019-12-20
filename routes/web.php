@@ -24,6 +24,8 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', 'HomeController@index')->name('home');
+    Route::get('/admin/test', 'TestController')->name('test');
+    // Route::get('/admin/test', function(){ return view('test'); })->name('test');
 
     Route::get('/admin/states', 'StateController@index')->name('states.index');
     Route::get('/admin/states/add', 'StateController@create')->name('states.create');

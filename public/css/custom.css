@@ -58,6 +58,15 @@ header {
   z-index: 100;
 }
 
+label {
+  font-size: 70%;
+  opacity: .6;
+}
+
+#admin-header {
+  background-color: #227dc7 !important;
+}
+
 .navbar-opacity {
   background-color: rgba(52, 58, 64, 0.8) !important;
 }
@@ -90,6 +99,73 @@ body.nav-open .open-nav-cover {
   border-color: rgba(255, 255, 255, 0.25);
 }
 
+.h-separator {
+  position: relative;
+  display: block;
+  height: 1px;
+  width: 97%;
+  background: #f1f2f2;
+  margin: 1.25rem auto 1.75rem;
+}
+
+.v-separator {
+  position: relative;
+  display: inline-block;
+  height: 80%;
+  width: 1px;
+  background: #d4d6d6;
+  margin: 1px 1.5rem 0;
+}
+
+/* Menus
+-------------------------------------------------- */
+.user-menu {
+  width: 250px;
+  padding: 20px;
+}
+
+.user-menu .profile-img {
+  display: block;
+  width: 50px;
+  height: 50px;
+}
+
+.user-menu .profile-img .profile-letter {
+  display: block;
+  font-size: 2em;
+  text-align: center;
+  width: 100%;
+  color: #fff;
+}
+
+.user-menu .profile-name {
+  margin-left: -15px;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.user-menu .profile-email {
+  margin-left: -15px;
+  font-size: .75rem;
+  font-weight: 400;
+  letter-spacing: .25px;
+  color: #999;
+}
+
+
+/* Submenu
+-------------------------------------------------- */
+.submenu {
+  display: block;
+  /*text-align: right;*/
+}
+
+.submenu li.nav-item {
+  margin-left: .15rem;
+  vertical-align: middle;
+}
+
+
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 
@@ -106,6 +182,7 @@ body.nav-open .open-nav-cover {
 /* Declare heights because of positioning of img element */
 .carousel-item {
   height: 60vh;
+  min-height: 450px;
 }
 .carousel-item > img {
   position: absolute;
@@ -123,9 +200,347 @@ body.nav-open .open-nav-cover {
   background-color: rgba(0, 0, 0, 0.7);
 }
 
+
+
+/* City Cards
+-------------------------------------------------- */
+/* Cards for admin section  */
+.city-card-card-flip {
+  perspective: 1000px;
+  &:hover .flip,
+  &.hover .flip {
+    transform: rotateY(180deg);
+  }
+}
+
+.city-card-card-flip,
+.city-card-front,
+.city-card-back {
+  width: 100%;
+  height: 480px;
+}
+
+.city-card-flip {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.city-card-front,
+.city-card-back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.city-card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+.city-card-back {
+  transform: rotateY(180deg);
+}
+
+.business-logo {
+  width: 100%;
+  height: 134px;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.city-card-tile {
+  width: 100%;
+  background:#fff;
+  border-radius:5px;
+  box-shadow:0px 2px 3px -1px rgba(151, 171, 187, 0.7);
+  float:left;
+  transform-style: preserve-3d;
+  margin: 0 0 .75rem;
+}
+
+.city-card-header {
+  border-bottom:1px solid #ebeff2;
+  padding:19px 0;
+  text-align:center;
+  color:#59687f;
+  font-size:600;
+  font-size:19px; 
+  position:relative;
+  min-height: 150px;
+}
+
+.city-card-header .display-1 {
+  line-height: 0.9;
+}
+
+.city-card-header .display-2 {
+  font-size: 4rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.city-card-dates strong,
+.city-card-stats strong {
+  display:block;
+  color:#adb8c2;
+  font-size:11px;
+  font-weight:700;
+}
+
+.city-card-stats {
+  background:#f7f8fa;
+  overflow:auto;
+  padding:15px 0;
+  font-size:16px;
+  color:#59687f;
+  font-weight:600;
+  border-radius: 0 0 5px 5px;
+}
+
+.city-card-stats div {
+  border-right:1px solid #ebeff2;
+  width: 33.33333%;
+  float:left;
+  text-align:center;
+  text-transform: uppercase;
+}
+
+.city-card-stats.halfed div {
+  border-right:1px solid #ebeff2;
+  width: 50%;
+}
+
+.city-card-stats.quad div {
+  border-right:1px solid #ebeff2;
+  width: 25%;
+}
+
+.city-card-stats.quad div:nth-of-type(4),
+.city-card-stats div:nth-of-type(3),
+.city-card-stats.halfed div:nth-of-type(2) {
+  border:none;
+}
+
+.hover-card {
+  position: relative;
+  display: block;
+}
+
+.card-hover:hover .hover-card .card-top {
+  margin-top: -65px;
+  transition: all .25s ease-in;
+}
+
+.card-hover:hover .hover-card .card-top .city-card-tile {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.11), 0 6px 6px rgba(0,0,0,0.07);
+  transition: all .25s ease-in;
+}
+
+.card-top {
+  z-index: 10;
+  position: relative;
+  /*top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;*/
+  margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  transition: all .25s ease-out;
+}
+
+.card-bottom {
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-top: 0;
+  margin-left: 30px;
+  margin-right: 30px;
+  display: block;
+}
+
+.card-bottom ul.card-bottom-nav {
+  position: absolute;
+  display: flex;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0;
+  /*margin-bottom: 25px;*/
+  height: 45px;
+}
+
+.card-bottom ul.card-bottom-nav li {
+  display: inline-block;
+  text-decoration: none;
+  width: 30%;
+  height: 40px;
+  text-align: center;
+}
+
+.card-bottom .card-bottom-link {
+  display: block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #c9c9c9;
+  transition: all .15s ease-out;
+}
+
+.card-bottom .card-bottom-link:hover {
+  background-color: #e3e7eb;
+  text-decoration: none;
+  color: #3490dc;
+  margin: 0 5px;
+  transition: all .15s ease-in;
+}
+
+.card-bottom .card-bottom-link.card-bottom-link-danger:hover {
+  text-decoration: none;
+  color: #e3342f;
+  background-color: #fde7e6;
+  margin: 0 5px;
+  transition: all .15s ease-in;
+}
+
+.card-bottom .card-bottom-icon {
+  display: block;
+  font-size: 1.2rem;
+  height: auto;
+  border-radius: 5px;
+}
+
+.card-bottom .card-bottom-desc {
+  line-height: 1.1;
+  font-size: .8rem;
+  display: block;
+}
+
+
+/* PAGINATION
+-------------------------------------------------- */
+/* Styles associated with pagination */
+
+.pagination .page-item .page-link {
+  border-radius: 5px;
+  border: none;
+}
+
+.pagination .page-item:not(::last-of-type) {
+  margin-right: .5rem;
+}
+
+.pagination .page-item.active {
+  margin: 0 .75rem;
+}
+
+.pagination .page-item.break {
+  margin-right: 0;
+  margin-left: -0.5rem;
+}
+
+.pagination .page-item.page-nav {
+
+}
+
+.pagination .page-item.page-nav .page-link {
+  padding: 0 1rem .3rem;
+  font-size: 1.45rem;
+}
+
+.pagination .page-item:not(.active) .page-link {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  transition: all .1s ease-out;
+}
+
+.pagination .page-item:not(.active):not(.break) .page-link:hover {
+  z-index: 3;
+  color: #fff;
+  background-color: #3490dc;
+  border-color: #3490dc;  
+  transition: all .2s ease-in;
+}
+
+.pagination .page-item.active .page-link {
+  box-shadow: 0 10px 20px rgba(33, 121, 193, 0.19), 0 6px 6px rgba(33, 121, 193, 0.23);
+  transform: scale(1.15);
+  cursor: default;
+}
+
+.pagination .page-item.disabled .page-link:hover {
+  cursor: not-allowed;
+}
+
+
+/* BUTTONS
+-------------------------------------------------- */
+.btn-sm:not(.nav-link), 
+.btn-group-sm > .btn {
+  padding: 0.25rem 0.75rem;
+}
+
+.btn-primary.btn-badge {
+  color: #3490dc;
+  background-color: #d9e2e9;
+  border-color: #d9e2e9;
+}
+
+.btn-primary.btn-badge:hover {
+  color: #fff;
+  background-color: #227dc7;
+  border-color: #2176bd;
+  box-shadow: 0 10px 20px rgba(33, 121, 193, 0.19), 0 6px 6px rgba(33, 121, 193, 0.23);
+}
+
+.btn-secondary.btn-badge {
+  color: #6c757d;
+  background-color: #d2d5d8;
+  border-color: #d2d5d8;
+}
+.btn-secondary.btn-badge:hover {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+  box-shadow: 0 10px 20px rgba(108, 117, 125, 0.19), 0 6px 6px rgba(108, 117, 125, 0.23);
+}
+.btn-secondary.btn-badge.no-hover-change:hover {
+  color: #6c757d;
+  background-color: #d2d5d8;
+  border-color: #d2d5d8;
+  box-shadow: none;
+}
+
+.btn-danger.btn-badge {
+  color: #e3342f;
+  background-color: #fde7e6;
+  border-color: #fde7e6;
+}
+
+.btn-danger.btn-badge:hover {
+  color: #fff;
+  background-color: #d0211c;
+  border-color: #c51f1a;
+  box-shadow: 0 10px 20px rgba(227, 55, 50, 0.19), 0 6px 6px rgba(227, 55, 50, 0.23);
+}
+
+
+/* Shadows
+-------------------------------------------------- */
+.shadow-5,
+.shadow-5-on-hover {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.09), 0 15px 12px rgba(0,0,0,0.03);
+}
+
+
 /* MARKETING CONTENT
 -------------------------------------------------- */
-
 /* Center align the text within the three columns below the carousel */
 .marketing .col-lg-4 {
   margin-bottom: 1.5rem;
@@ -188,6 +603,27 @@ body.nav-open .open-nav-cover {
   }
   .carousel-item {
     height: 100vh;
+  }
+  .city-card-tile {
+    margin: 0;
+  }
+  .pagination {
+    padding-left: .75rem;
+  }
+  .pagination .page-item {
+    margin-right: .25rem;
+  }
+
+  .pagination .page-item.active {
+    margin: 0 .4rem;
+  }
+
+  .pagination .page-item.break {
+    margin-right: 0;
+    margin-left: -0.35rem;
+  }
+  .pagination .page-item.page-nav .page-link {
+    padding: 0 .75rem .3rem;
   }
 }
 
