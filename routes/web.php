@@ -35,9 +35,20 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/city/{city}', 'CityController@index')->name('view.city');
     Route::get('/admin/states/{state}/add-city', 'CityController@create')->name('cities.create');
     Route::post('/admin/states/{state}/store-city', 'CityController@store')->name('cities.store');
+    Route::get('/admin/city/{city}/add-discount', 'DiscountController@createCityDiscount')->name('city.discount');
 
     Route::get('/admin/businesses', 'BusinessController@index')->name('businesses.index');
     Route::get('/admin/businesses/add', 'BusinessController@create')->name('businesses.create');
     Route::post('/admin/businesses/store', 'BusinessController@store')->name('businesses.store');
     Route::get('/admin/businesses/{business}', 'BusinessController@show')->name('view.business');
+
+    Route::get('/admin/discounts', 'DiscountController@index')->name('discounts.index');
+    Route::get('/admin/discounts/add', 'DiscountController@create')->name('discounts.create');
+
+    Route::get('/admin/business/{business}/add-discount', 'DiscountController@createBusinessDiscount')
+        ->name('business.discount');
+
+    Route::post('/admin/discounts/store', 'DiscountController@store')->name('discounts.store');
+    Route::get('/admin/discounts/{discount}', 'DiscountController@show')->name('view.discount');
+
 });

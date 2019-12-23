@@ -1,9 +1,8 @@
-<nav id="admin-header" class="navbar navbar-expand-md navbar-dark shadow-sm">
+<nav id="admin-header" class="navbar navbar-expand-md navbar-dark shadow-sm sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">
-            @include('_partials.icons.logo2')
+        <a class="navbar-brand" href="{{ route('home') }}">
+            @include('_partials.icons.ldc_card_light')
             <span class="pt-1"><strong>{{ config('app.name', 'Local Discount Club') }}</strong></span>
-
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -55,15 +54,44 @@
                                 </div>
                                 
                             </div>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                               onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
+                            <div class="user-links pt-3">
+                                <a class="dropdown-item user-menu-link" href="{{ url('/') }}">
+                                    <i class="fas fa-desktop mr-2"></i>
+                                    View Public Website
+                                </a>
+                                <a class="dropdown-item user-menu-link" href="#">
+                                    <i class="fas fa-chart-line mr-2"></i>
+                                    Reporting
+                                </a>
+                                <a class="dropdown-item user-menu-link" href="#">
+                                    <i class="fas fa-clipboard-list mr-2"></i>
+                                    Activity Logs
+                                </a>
+                            </div>
+                            
+                            <hr class="h-separator my-3">
+                            <div class="option-menu px-1">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <a href="#" class="dropdown-item settings-btn">
+                                            <i class="fas fa-cog"></i>
+                                        </a>
+                                    </div>
+                                    <div class="col-8">
+                                        <!-- Logout button -->                                      
+                                        <a class="dropdown-item logout-btn" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            <i class="fas fa-power-off mr-1"></i>
+                                            {{ __('Logout') }}
+                                        </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </li>
                 @endguest

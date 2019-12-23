@@ -1,4 +1,4 @@
-<svg class="bd-placeholder-img card-img-top" width="20" height="20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false" xml:space="preserve" alt="Discount by I Putu Kharismayadi from the Noun Project">
+<svg class="d-inline-block mr-2 align-middle" width="48" height="48" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" viewBox="0 0 65 65" focusable="false" xml:space="preserve">
 	<style type="text/css">
 		.st0{display:none;}
 		.st1{display:inline;}

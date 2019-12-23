@@ -11,9 +11,12 @@ class TestController extends Controller
 {
     public function __invoke()
     {
-    	$businesses = Business::all(); // Fayetteville
+    	$businesses = Business::all();
+    	$business = Business::find(4);
+    	$states = State::all();
+    	$state = State::find(1);
     	// $cities = City::with('discounts')->where('state_id','1')->get();
 
-    	return view('test', compact('businesses'));
+    	return view('test', compact('businesses', 'business', 'states', 'state'));
     }
 }

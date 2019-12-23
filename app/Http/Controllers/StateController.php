@@ -43,7 +43,7 @@ class StateController extends Controller
 
         State::create($validated);
 
-        return redirect('/states')->with('success','State added');
+        return redirect()->route('states.index')->with('success','State added');
     }
 
     /**

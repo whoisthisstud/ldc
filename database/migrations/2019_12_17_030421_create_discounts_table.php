@@ -21,7 +21,8 @@ class CreateDiscountsTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->text('terms')->nullable();
-            $table->timestamp('expires')->nullable();
+            $table->timestamp('begins_at')->nullable();
+            $table->timestamp('expires_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

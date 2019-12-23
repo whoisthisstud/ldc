@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\City;
+use App\Business;
 use App\Discount;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,7 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.discounts.index');
     }
 
     /**
@@ -24,7 +26,19 @@ class DiscountController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.discounts.create');
+    }
+
+    public function createBusinessDiscount(Business $business)
+    {
+        $businesses = Business::all();
+        return view('admin.discounts.create', compact('business', 'businesses'));
+    }
+
+    public function createCityDiscount(City $city)
+    {
+        $businesses = Business::all();
+        return view('admin.discounts.create', compact('city', 'businesses'));
     }
 
     /**
@@ -46,7 +60,7 @@ class DiscountController extends Controller
      */
     public function show(Discount $discount)
     {
-        //
+        return view('admin.discounts.show');
     }
 
     /**
@@ -57,7 +71,7 @@ class DiscountController extends Controller
      */
     public function edit(Discount $discount)
     {
-        //
+        return view('admin.discounts.edit');
     }
 
     /**

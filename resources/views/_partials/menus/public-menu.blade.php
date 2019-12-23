@@ -42,7 +42,8 @@
 				<strong>Album</strong>
 			</a> -->
 			<a href="#" class="navbar-brand d-flex align-items-center text-light">
-				@include('_partials.icons.logo2')
+				{{-- @include('_partials.icons.logo2') --}}
+				@include('_partials.icons.ldc_card_dark')
 				<strong>{{ config('app.name', 'Local Discount Club') }}</strong>
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">

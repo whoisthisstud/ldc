@@ -19,7 +19,7 @@ class BusinessController extends Controller
      */
     public function index()
     {
-        $businesses = Business::all();
+        $businesses = Business::paginate(6);
 
         return view('admin.businesses.index', compact('businesses'));
     }
@@ -40,7 +40,7 @@ class BusinessController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(BusinessStoreRequest $request)
+    public function store(BusinessStoreRequest $request)  // BusinessStoreRequest
     {
         $validated = $request->validated();
 
@@ -64,7 +64,7 @@ class BusinessController extends Controller
 
         $biz->save();
 
-        return redirect()->route('view.business', ['business' => $biz->id ])->with('success', 'Business added');
+        return redirect()->route('businesses.index')->with('success', 'Business added');
     }
 
     /**

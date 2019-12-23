@@ -23,7 +23,7 @@
                             </div>
                             <span class="v-separator"></span>
                             <div class="flex-fill">
-                                <a href="#" class="btn btn-sm btn-primary btn-badge">
+                                <a href="{{ route('city.discount', [ 'city' => $city->id ]) }}" class="btn btn-sm btn-primary btn-badge">
                                     <i class="fas fa-plus mr-1"></i> Add Discount
                                 </a>
                             </div>  
@@ -75,7 +75,7 @@
                     <div class="row">
 
                         
-
+                        @foreach($city->discounts as $discount)
                             <div class="col-md-4 col-sm-12 mb-3">
                                 <div class="city-card-tile">
                                     <div class="city-card-wrapper">
@@ -83,7 +83,7 @@
                                         <a href="#" class="text-decoration-none">
                                             <div class="city-card-header">
                                                 <div class="text-center">
-                                                    <h4 class="mt-2 mb-0">TGIF50OFF</h4>
+                                                    <h4 class="mt-2 mb-0">{{ $discount->code }}</h4>
                                                 </div>
                                             </div>
                                         </a>                                       
@@ -106,6 +106,7 @@
                                     </div>
                                 </div> 
                             </div>
+                        @endforeach
 
                     </div>
                 </div>
