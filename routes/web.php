@@ -42,8 +42,14 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/admin/discounts/store', 'DiscountController@store')->name('discounts.store');
     Route::get('/admin/discounts/{discount}', 'DiscountController@show')->name('view.discount');
+
+    Route::get('/admin/faqs', 'FaqController@index')->name('faqs.index');
+    Route::get('/admin/faqs/add', 'FaqController@create')->name('faqs.create');
+    Route::post('/admin/faqs/store', 'FaqController@store')->name('faqs.store');
+    
 });
 
 
 Route::get('/{state}/{city}', 'PagesController@city')->name('public.city');
+Route::get('/{state}/{city}/signup', 'PagesController@signup')->name('public.signup');
 Route::get('/{state}/{city}/{business}/{discount}', 'PagesController@discount')->name('public.discount');

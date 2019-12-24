@@ -6,14 +6,18 @@
     <div class="container">
         <div class="col-12 text-center">
             <div class="d-block">
-                <p class="section-title">{{ $city->name }}</p>
+                <p class="section-title">{{ $city->name }}, <a href="#" class="section-title-state-link">{{ $city->state->abbreviation }}</a></p>
             </div>
             <div class="d-block mb-5">
-                <a href="#" class="btn btn-large btn-primary">Signup Today!</a>
+                <a href="{{ route('public.signup', [ 'state' => $city->state->name, 'city' => $city->name ]) }}" class="btn btn-lg btn-primary">Subscribe to Local Discount Club in {{ $city->name }}</a>
             </div>
 
         </div>
         <div class="row pb-5">
+            <div class="col-12 pb-3">
+                <h3 class="text-center">Businesses w/ Exclusive Discounts in {{ $city->name }}</h3>
+            </div>
+            
 
             @foreach($city->discounts as $discount)
                 <div class="col-12 col-md-4 mb-3 card-hover"><!-- col-lg-3  -->
@@ -33,9 +37,23 @@
 
         </div>
 
-        <div class="col-12 text-center">
-            <div class="d-block mb-3">
-                <a href="#" class="btn btn-large btn-primary">Signup Today!</a>
+        <div class="col-12 text-center">          
+            <div class="d-block mb-5">
+                <a href="{{ route('public.signup', [ 'state' => $city->state->name, 'city' => $city->name ]) }}" class="btn btn-lg btn-primary">Subscribe to Local Discount Club in {{ $city->name }}</a>
+            </div>
+        </div>
+
+        <div id="city-faq" class="col-12 py-5">
+            <h3 class="text-center pb-3">Frequently Asked Questions</h3>
+            <div class="faq">
+                <div class="container">
+                    @foreach($faqs as $faq)
+                        <div class="col-12 col-md-4">
+                            <h4>{{ $faq->question }}</h4>
+                            <p class="">{{ $faq->answer }}</p>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>

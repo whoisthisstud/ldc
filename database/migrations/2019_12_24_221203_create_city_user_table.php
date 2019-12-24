@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCityBusinessesTable extends Migration
+class CreateCityUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateCityBusinessesTable extends Migration
      */
     public function up()
     {
-        Schema::create('city_businesses', function (Blueprint $table) {
+        Schema::create('city_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('city_id');
-            $table->unsignedBigInteger('business_id');
-            $table->timestamps();
+            $table->unsignedBigInteger('user_id');
             $table->softDeletes();
+            $table->timestamps();
         });
     }
 
@@ -29,6 +29,6 @@ class CreateCityBusinessesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('city_businesses');
+        Schema::dropIfExists('city_user');
     }
 }

@@ -1,51 +1,3 @@
-.center-within {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translateX(-50%) translateY(-50%);
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
-}
-
-/*.jumbotron {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  margin-bottom: 0;
-  background-color: #fff;
-}
-@media (min-width: 768px) {
-  .jumbotron {
-    padding-top: 6rem;
-    padding-bottom: 6rem;
-  }
-}
-
-.jumbotron p:last-child {
-  margin-bottom: 0;
-}
-
-.jumbotron h1 {
-  font-weight: 300;
-}
-
-.jumbotron .container {
-  max-width: 40rem;
-}
-
-footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 9;
-}
-
-footer p {
-  margin-bottom: .25rem;
-}*/
-
 /* GLOBAL STYLES
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
@@ -68,6 +20,7 @@ main {
   position: relative;
   /*height: 100vh;*/
   background-color: #eff1f3;
+  padding-bottom: 2rem;
 
 }
 
@@ -167,7 +120,7 @@ body.nav-open .open-nav-cover {
   position: relative;
   display: inline-block;
   margin: 0 auto 2.5rem;
-  padding: 0 0 .5rem;
+  padding: .75rem 0 2rem;
   line-height: 1.2;
   font-weight: 400;
   font-size: 2.5rem;
@@ -176,6 +129,34 @@ body.nav-open .open-nav-cover {
   text-transform: uppercase;
   border-bottom: 1px solid;
 }
+
+.section-title-state-link {
+  color: #3490dc;
+  background-color: #d9e2e9;
+  border-color: #d9e2e9;
+  padding: 0 .125em;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.section-title-state-link:hover {
+  text-decoration: none;
+  color: #fff;
+  background-color: #227dc7;
+  border-color: #2176bd;
+  box-shadow: 0 10px 20px rgba(33, 121, 193, 0.19), 0 6px 6px rgba(33, 121, 193, 0.23);
+}
+
+.center-within {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+
 
 /* Menus
 -------------------------------------------------- */
@@ -226,13 +207,36 @@ body.nav-open .open-nav-cover {
 }
 
 
-/* CUSTOMIZE THE CAROUSEL
+/* CAROUSEL
 -------------------------------------------------- */
 
 /* Carousel base class */
 .carousel {
   /*margin-bottom: 3rem;*/
 }
+
+.carousel-item > .container {
+  position:relative;
+  height: 100%;
+  margin-top: 3.25rem;
+  padding: 2.5rem;
+  color: #ffffff;
+}
+
+.carousel-item .carouse-graphic-wrapper.large {
+  border-radius: 1.5rem;
+  box-shadow: 0 0px 24px -6px rgba(0,0,0,.6);
+}
+
+.carousel-item .carousel-graphic-wrapper.large .brand-logo-svg {
+  border: 6px solid rgba(255,255,255,0.4);
+  border-radius: 1.5rem;
+}
+
+.z-10 {
+  z-index: 10 !important;
+}
+
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
   bottom: 4rem;
@@ -240,7 +244,14 @@ body.nav-open .open-nav-cover {
   left: unset;
   right: 9%;
 }
-.carousel-graphic-wrapper .flipInY {
+
+.carousel-item p.display-4
+.carousel-item p.lead {
+  text-shadow: 0 0 12px #000000;
+}
+
+.carousel-graphic-wrapper .flipInY,
+.discount-card-wrapper .flipInY {
   animation-name: unset;
   -webkit-animation-name: unset;
 }
@@ -252,7 +263,7 @@ body.nav-open .open-nav-cover {
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 60vh;
+  height: 40vh;
   min-height: 450px;
 }
 .carousel-item > img {
@@ -268,9 +279,20 @@ body.nav-open .open-nav-cover {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
+
+/* Signup
+-------------------------------------------------- */
+.signup-container {
+  padding-top: 3rem;
+}
+
+.signup-container .discount-card-wrapper.sticky-top {
+  top: 3.75rem;
+  margin-bottom: 3rem;
+}
 
 
 /* City Cards
@@ -853,8 +875,22 @@ body.nav-open .open-nav-cover {
     padding: .125em .25em;
     font-size: 1rem;
   }
+  .carousel-inner {
+    /*padding-bottom: 2rem;*/
+  }
   .carousel-item {
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
+  }
+  .carousel-item p.display-4 {
+    font-size: 2rem;
+  }
+  .carousel-item p.display-4,
+  .carousel-item p.lead {
+    text-align: center;
+  }
+  .signup-container {
+    padding-top: 1rem;
   }
   .city-card-tile {
     margin: 0;

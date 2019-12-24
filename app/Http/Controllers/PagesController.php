@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Faq;
 use App\City;
 use App\State;
 use App\Discount;
@@ -24,8 +25,9 @@ class PagesController extends Controller
         $state = State::where('name', $state)->first();
         $city = City::where('state_id', $state->id)->where('name', $city)->first();
         $discounts = Discount::where('city_id', $city->id)->get();
+        $faqs = Faq::all();
 
-        return view('public.city', compact('city', 'discounts'));
+        return view('public.city', compact('city', 'discounts', 'faqs'));
     }
 
     public function discount($state, $city, $business, $discount)
@@ -35,5 +37,13 @@ class PagesController extends Controller
         $discount = Discount::where('business_id', $business)->where('city_id', $city->id)->where('code', $discount)->first();
 
         return view('public.discount', compact('state', 'city', 'discount'));
+    }
+
+    public function signup($state, $city)
+    {
+        $state = State::where('name', $state)->first();
+        $city = City::where('state_id', $state->id)->where('name', $city)->first();
+        
+        return view('public.signup', compact('city'));
     }
 }

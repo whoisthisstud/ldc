@@ -23,6 +23,9 @@
                     <a class="nav-link" href="{{ route('businesses.index') }}">Businesses</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('faqs.index') }}">FAQs</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link mr-4" href="{{ route('test') }}">Test</a>
                 </li>
                 <!-- Authentication Links -->

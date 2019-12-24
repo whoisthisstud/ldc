@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCityRequest extends FormRequest
+class FaqStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,8 @@ class StoreCityRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'zip_code' => 'sometimes|unique:cities|integer'
+            'question' => 'required|max:255',
+            'answer' => 'required'
         ];
     }
 }
