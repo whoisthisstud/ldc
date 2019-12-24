@@ -63,9 +63,12 @@ header {
   z-index: 100;
 }
 
-main {  
+main {
   z-index: 10;
   position: relative;
+  /*height: 100vh;*/
+  background-color: #eff1f3;
+
 }
 
 main.hidden-footer {
@@ -136,6 +139,10 @@ body.nav-open .open-nav-cover {
   width: 45px;
   height: 25px;
   margin-right: .75rem;
+}
+
+.menu-padding {
+  padding-top: 75px;
 }
 
 .h-separator {
@@ -331,7 +338,7 @@ body.nav-open .open-nav-cover {
   text-align:center;
   color:#59687f;
   font-size:600;
-  font-size:19px; 
+  font-size:19px;
   position:relative;
   min-height: 150px;
 }
@@ -515,7 +522,7 @@ body.nav-open .open-nav-cover {
   z-index: 3;
   color: #fff;
   background-color: #3490dc;
-  border-color: #3490dc;  
+  border-color: #3490dc;
   transition: all .2s ease-in;
 }
 
@@ -532,7 +539,7 @@ body.nav-open .open-nav-cover {
 
 /* BUTTONS
 -------------------------------------------------- */
-.btn-sm:not(.nav-link), 
+.btn-sm:not(.nav-link),
 .btn-group-sm > .btn {
   padding: 0.25rem 0.75rem;
 }
@@ -615,7 +622,7 @@ body.nav-open .open-nav-cover {
 -------------------------------------------------- */
 .business-details {
   position: sticky;
-  
+
 }
 
 .business-details.sticky-top {
@@ -626,13 +633,14 @@ body.nav-open .open-nav-cover {
   height: 250px;
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.05);
-   padding: .5rem; 
+  padding: .5rem;
   text-align: center;
   margin: 0 0 1.5rem;
   background-color: rgba(0, 0, 0, 0.02);
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
 
 .business-details .logo-block img {
@@ -642,9 +650,10 @@ body.nav-open .open-nav-cover {
   height: auto;
   position: absolute;
   left: 50%;
-  top: 50%; 
+  top: 50%;
   margin-left: -150px;
   margin-top: -150px;*/
+  max-width: 100%;
 }
 
 .discounts-callout {
@@ -743,7 +752,7 @@ body.nav-open .open-nav-cover {
 }
 
 .discount-preview-window .call_to_action .discount-call_to_action-preview {
-  
+
 }
 
 .discount-preview-window .discount-terms-preview {

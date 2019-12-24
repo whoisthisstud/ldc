@@ -11,21 +11,13 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('public');
-// });
-
 Route::get('/', 'PagesController@index')->name('public.index');
 
 Auth::routes();
 
-// Route::group(['prefix' => 'admin'], function () {
-// })->middleware('auth');
-
 Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', 'HomeController@index')->name('home');
     Route::get('/admin/test', 'TestController')->name('test');
-    // Route::get('/admin/test', function(){ return view('test'); })->name('test');
 
     Route::get('/admin/states', 'StateController@index')->name('states.index');
     Route::get('/admin/states/add', 'StateController@create')->name('states.create');
@@ -50,5 +42,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/admin/discounts/store', 'DiscountController@store')->name('discounts.store');
     Route::get('/admin/discounts/{discount}', 'DiscountController@show')->name('view.discount');
-
 });
+
+
+Route::get('/{state}/{city}', 'PagesController@city')->name('public.city');
+Route::get('/{state}/{city}/{business}/{discount}', 'PagesController@discount')->name('public.discount');
