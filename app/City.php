@@ -9,11 +9,18 @@ class City extends Model
 {
     protected $guarded = [];
 
-    public function state() {
-    	return $this->belongsTo(State::class, 'state_id');
+    public function state()
+    {
+        return $this->belongsTo(State::class, 'state_id');
     }
 
-    public function discounts() {
-    	return $this->hasMany(Discount::class);
+    public function discounts()
+    {
+        return $this->hasMany(Discount::class);
     }
+
+    // protected static function viewed()
+    // {
+    //     return $this->views++;
+    // }
 }

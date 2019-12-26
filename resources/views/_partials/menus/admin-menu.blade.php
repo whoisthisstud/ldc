@@ -16,18 +16,6 @@
 
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('states.index') }}">States</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('businesses.index') }}">Businesses</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('faqs.index') }}">FAQs</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link mr-4" href="{{ route('test') }}">Test</a>
-                </li>
                 <!-- Authentication Links -->
                 @guest
                     <li class="nav-item">
@@ -39,6 +27,18 @@
                         </li>
                     @endif
                 @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('states.index') }}">States</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('businesses.index') }}">Businesses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('faqs.index') }}">FAQs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mr-4" href="{{ route('test') }}">Test</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -49,13 +49,13 @@
                                 <div class="col-4">
                                     <div class="rounded-circle bg-primary profile-img">
                                         <span class="profile-letter">{{ substr(Auth::user()->name,0,1) }}</span>
-                                    </div>                                  
+                                    </div>
                                 </div>
                                 <div class="col-8">
                                     <div class="profile-name">{{ Auth::user()->name }}</div>
                                     <div class="profile-email">{{ Auth::user()->email }}</div>
                                 </div>
-                                
+
                             </div>
                             <div class="user-links pt-3">
                                 <a class="dropdown-item user-menu-link" href="{{ url('/') }}">
@@ -71,7 +71,7 @@
                                     Activity Logs
                                 </a>
                             </div>
-                            
+
                             <hr class="h-separator my-3">
                             <div class="option-menu px-1">
                                 <div class="row">
@@ -81,7 +81,7 @@
                                         </a>
                                     </div>
                                     <div class="col-8">
-                                        <!-- Logout button -->                                      
+                                        <!-- Logout button -->
                                         <a class="dropdown-item logout-btn" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">

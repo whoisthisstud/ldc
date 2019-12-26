@@ -3,8 +3,6 @@
 /* Padding below the footer and lighter body text */
 
 body {
-  /*margin-top: -3rem;*/
-  /*padding-bottom: 3rem;*/
   color: #5a5a5a;
 }
 
@@ -18,19 +16,60 @@ header {
 main {
   z-index: 10;
   position: relative;
-  /*height: 100vh;*/
   background-color: #eff1f3;
   padding-bottom: 2rem;
-
 }
 
 main.hidden-footer {
   margin-bottom: 300px;
 }
 
+a,
+.btn,
+.dropdown-item {
+  font-weight: 500;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #2176bd;
+}
+
+.dropdown-item.text-danger:hover,
+.dropdown-item.text-danger:focus {
+    color: #ffffff !important;
+    text-decoration: none;
+    background-color: #e3342f !important;
+}
+
+.dropdown-item.text-primary:hover {
+  color: #ffffff !important;
+}
+
 label {
   font-size: 70%;
   opacity: .6;
+}
+
+.custom-switch label {
+  font-size: 100%;
+  font-weight: 600;
+  opacity: 1;
+}
+
+.accordion .card-header {
+  cursor: pointer;
+}
+
+.accordion .card-header[aria-expanded=true] {
+  color: #fff;
+  background-color: #227dc7;
+}
+
+.accordion .card-header[aria-expanded=false] {
+  background-color: #e2e6e9;
 }
 
 footer {
@@ -297,7 +336,11 @@ body.nav-open .open-nav-cover {
 
 /* City Cards
 -------------------------------------------------- */
-/* Cards for admin section  */
+
+.card {
+  border: none;
+}
+
 .city-card-card-flip {
   perspective: 1000px;
   &:hover .flip,

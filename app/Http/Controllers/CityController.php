@@ -9,82 +9,70 @@ use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(City $city)
+    public function index()
     {
-        //$state = $city->getState();
-        return view('admin.cities.index', compact('city'));
+        //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create(State $state)
     {
         return view('admin.cities.create', compact('state'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(State $state, StoreCityRequest $request)
     {
         $validated = $request->validated();
 
-        City::create($validated + ['state_id' => $state->id]);
+        $city = City::create($validated + ['state_id' => $state->id]);
 
-        return redirect()->route('view.state', [ $state->id ])->with('success','State added');
+        notify()->success($city->name . ', ' . $city->state->abbreviation . ' has been added', 'City Added');
+        return redirect()->route('view.state', [ $state->id ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\City  $city
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(City $city)
     {
-        //
+        return view('admin.cities.index', compact('city'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\City  $city
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(City $city)
     {
-        //
+        return view('admin.cities.create', compact('city'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\City  $city
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, City $city)
+
+    public function update(StoreCityRequest $request, City $city)
     {
-        //
+        $validated = $request->validated();
+
+        City::where('id', $city->id)->update($validated);
+
+        notify()->success($city->name . ', ' . $city->state->abbreviation . ' has been updated', 'City Updated');
+        return redirect()->route('view.city', [ $city->id ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\City  $city
-     * @return \Illuminate\Http\Response
-     */
+    public function activate(City $city)
+    {
+        $city->is_active = true;
+        $city->save();
+
+        notify()->success($city->name . ', ' . $city->state->abbreviation . ' has been activated', 'City Activated');
+        return redirect()->route('view.city', [ $city->id ]);
+    }
+
+    public function deactivate(City $city)
+    {
+        $city->is_active = false;
+        $city->save();
+
+        notify()->warning($city->name . ', ' . $city->state->abbreviation . ' has been deactivated', 'City Dectivated');
+        return redirect()->route('view.city', [ $city->id ]);
+    }
+
+
     public function destroy(City $city)
     {
         //

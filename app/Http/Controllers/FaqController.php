@@ -41,7 +41,8 @@ class FaqController extends Controller
 
         Faq::create($validated);
 
-        return redirect()->route('faqs.index')->with('success','Faq added');
+        notify()->success('Your Frequently Asked Question has been added', 'FAQ Added');
+        return redirect()->route('faqs.index');
     }
 
     /**

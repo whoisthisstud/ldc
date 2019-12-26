@@ -41,9 +41,10 @@ class StateController extends Controller
     {
         $validated = $request->validated();
 
-        State::create($validated);
+        $state = State::create($validated);
 
-        return redirect()->route('states.index')->with('success','State added');
+        notify()->success($state->name . ' has been added', 'State Added');
+        return redirect()->route('states.index');
     }
 
     /**

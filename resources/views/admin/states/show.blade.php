@@ -8,61 +8,55 @@
 
             <section class="sub-header">
                 <div class="container">
-                    
+
                     <div class="row">
                         <div class="col-12 col-md-6 d-flex">
                             <div class="pt-1">
-                                <span class="d-inline-block align-text-bottom mt-n2">
+                                <span class="d-inline-block align-middle mt-n2">
                                     <a href="{{ route('states.index') }}" class="text-decoration-none">
                                         <!-- <i class="fas fa-home"></i> -->
                                         States
                                     </a>
                                     &nbsp; &raquo; &nbsp;
                                 </span>
-                                <h5 class="d-inline-block">{{ $state->name }}</h5>               
+                                <h5 class="d-inline-block">{{ $state->name }}</h5>
                             </div>
                             <span class="v-separator"></span>
                             <div class="flex-fill">
                                 <a href="{{ route('cities.create', [ 'state' => $state->id ]) }}" class="btn btn-sm btn-primary btn-badge">
                                     <i class="fas fa-plus mr-1"></i> Add City
                                 </a>
-                            </div>  
+                            </div>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <ul class="submenu ml-md-auto pl-0 mb-0 text-md-right text-sm-center">
                                 <li class="nav-item d-inline-block">
-                                    <a class="btn btn-sm btn-danger btn-badge" href="#" tabindex="-1" aria-disabled="true">
-                                        <i class="fas fa-trash mr-1"></i>
-                                        Delete State
-                                    </a>
-                                </li>
-                                <li class="nav-item d-inline-block">
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-sm btn-secondary btn-badge dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-file-download mr-1"></i> 
+                                            <i class="fas fa-file-download mr-1"></i>
                                             Export
                                         </button>
-                                       
+
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportBtn">
                                             <a class="dropdown-item" href="#">XLS</a>
                                             <a class="dropdown-item" href="#">CSV</a>
                                             <a class="dropdown-item" href="#">PDF</a>
                                         </div>
                                     </div>
-                                    
+
                                 </li>
-                                <li class="nav-item d-inline-block">
+                                <!-- <li class="nav-item d-inline-block">
                                     <a class="btn btn-sm btn-primary btn-badge" href="#" tabindex="-1" aria-disabled="true">
                                         <i class="fas fa-ellipsis-v"></i>
                                     </a>
-                                </li>
+                                </li> -->
                             </ul>
                         </div>
 
                     </div>
                 </div>
-            </section>  
+            </section>
             <!-- <hr class="h-separator"> -->
         </div>
     </div>
@@ -86,7 +80,7 @@
                                                     <h1 class="display-2">{{ $city->zip_code }}</h1>
                                                 </div>
                                             </div>
-                                        </a>                                       
+                                        </a>
 
                                         <div class="city-card-stats">
                                             <div><strong><small>Businesses</small></strong> 0</div>
@@ -95,7 +89,7 @@
                                         </div>
 
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         @endforeach
 

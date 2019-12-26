@@ -25,7 +25,7 @@ class StoreCityRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'zip_code' => 'sometimes|unique:cities|integer'
+            'zip_code' => 'integer|unique:cities,zip_code,id'.optional($this->city)->id
         ];
     }
 }

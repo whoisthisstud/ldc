@@ -64,6 +64,7 @@ class BusinessController extends Controller
 
         $biz->save();
 
+        notify()->success($business->name . ' has been added', 'Business Added');
         return redirect()->route('businesses.index')->with('success', 'Business added');
     }
 

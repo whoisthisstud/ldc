@@ -5,16 +5,10 @@
 
     <div class="row">
         <div class="col-12">
-            
-            @if (session('status'))
-                <div class="alert alert-success" role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
 
             <section class="sub-header">
                 <div class="container">
-                    
+
                     <div class="row">
                         <div class="col-6 d-flex">
                             <div class="pt-1">
@@ -24,14 +18,14 @@
                                     </a>
                                     &nbsp; &raquo; &nbsp;
                                 </span>
-                                <h5 class="d-inline-block">States</h5>               
+                                <h5 class="d-inline-block">States</h5>
                             </div>
                             <span class="v-separator"></span>
                             <div class="flex-fill">
                                 <a href="{{ route('states.create') }}" class="btn btn-sm btn-primary btn-badge">
                                     <i class="fas fa-plus mr-1"></i> Add State
                                 </a>
-                            </div>  
+                            </div>
                         </div>
 
                         <div class="col-6">
@@ -39,17 +33,17 @@
                                 <li class="nav-item d-inline-block">
                                     <div class="btn-group" role="group">
                                         <button type="button" class="btn btn-sm btn-secondary btn-badge  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-file-download mr-1"></i> 
+                                            <i class="fas fa-file-download mr-1"></i>
                                             Export
                                         </button>
-                                       
+
                                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportBtn">
                                             <a class="dropdown-item" href="#">XLS</a>
                                             <a class="dropdown-item" href="#">CSV</a>
                                             <a class="dropdown-item" href="#">PDF</a>
                                         </div>
                                     </div>
-                                    
+
                                 </li>
                                 <li class="nav-item d-inline-block">
                                     <a class="btn btn-sm btn-primary btn-badge" href="#" tabindex="-1" aria-disabled="true">
@@ -61,7 +55,7 @@
 
                     </div>
                 </div>
-            </section>  
+            </section>
             <!-- <hr class="h-separator"> -->
         </div>
     </div>
@@ -85,11 +79,11 @@
                                                     <h1 class="display-1">{{ $state->abbreviation }}</h1>
                                                 </div>
                                             </div>
-                                        </a>                                       
+                                        </a>
 
                                         <div class="city-card-stats quad">
                                             <div>
-                                                <strong><small>Cities</small></strong> 
+                                                <strong><small>Cities</small></strong>
                                                 {{ $state->cities->count() }}
                                             </div>
                                             <div><strong><small>Businesses</small></strong> 0</div>
@@ -98,10 +92,10 @@
                                         </div>
 
                                     </div>
-                                </div> 
+                                </div>
                             </div>
                         @endforeach
-                        
+
 
                     </div>
                 </div>

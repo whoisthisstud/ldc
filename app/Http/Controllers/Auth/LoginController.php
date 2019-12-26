@@ -41,24 +41,14 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
+        if (Auth::user()->is_admin === 1) {
+            return route('home');
+        }
 
-        // Temporary until roles added, then use code below this
-        return '/admin/dashboard';
+        if (Auth::user()->is_manager === 1) {
+            return '/manager';
+        }
 
-        // User role
-        // $role = Auth::user()->role->name;
-
-        // // Check user role
-        // switch ($role) {
-        //     case 'Manager':
-        //             return '/dashboard';
-        //         break;
-        //     case 'Employee':
-        //             return '/projects';
-        //         break;
-        //     default:
-        //             return '/login';
-        //         break;
-        // }
+        return '/';
     }
 }

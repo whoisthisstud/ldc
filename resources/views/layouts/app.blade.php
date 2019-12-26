@@ -18,11 +18,12 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @notify_css
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
-        
+
         @include('_partials.menus.admin-menu')
 
         <main class="py-4">
@@ -34,5 +35,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
     @yield('scripts')
+    @notify_js
+    @notify_render
 </body>
 </html>

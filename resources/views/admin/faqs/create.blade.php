@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-            
-    <form action="{{ route('faqs.store') }}" class="needs-validation" novalidate="" method="POST">                        
+
+    <form action="{{ route('faqs.store') }}" class="needs-validation" novalidate="" method="POST">
         @csrf
 
         <div class="row">
@@ -11,18 +11,18 @@
 
                 <section class="sub-header">
                     <div class="container">
-                        
+
                         <div class="row">
                             <div class="col-12 col-md-6 d-flex">
                                 <div class="pt-1">
-                                    <span class="d-inline-block align-text-bottom mt-n2">
+                                    <span class="d-inline-block">
                                         <a href="{{ route('faqs.index') }}" class="text-decoration-none">
                                             <!-- <i class="fas fa-home"></i> -->
                                             FAQs
                                         </a>
                                         &nbsp; &raquo; &nbsp;
                                     </span>
-                                    <h5 class="d-inline-block">Add FAQ</h5>               
+                                    <h5 class="d-inline-block">Add FAQ</h5>
                                 </div>
                             </div>
 
@@ -43,38 +43,57 @@
 
                         </div>
                     </div>
-                </section>  
+                </section>
                 <!-- <hr class="h-separator"> -->
             </div>
         </div>
 
         <div class="row justify-content-between mt-5 mb-4">
 
-            <div class="col-md-5 col-sm-12 pr-5 ml-3">
-                <!-- <h5 class="">A New State</h5>
+            <!-- <div class="col-md-5 col-sm-12 pr-5 ml-3">
+                <h5 class="">A New FAQ</h5>
                 <p><small>Adding a new state is a pretty big deal!</small></p>
-                <p><small>Don't worry about whether this will negatively affect your users. You can add a state and nothing will show until you add cities. <em>Go get 'em, tiger!</em></small></p> -->
-            </div>
+                <p><small>Don't worry about whether this will negatively affect your users. You can add a state and nothing will show until you add cities. <em>Go get 'em, tiger!</em></small></p>
+            </div> -->
 
-            <div class="col-md-6 col-sm-12 mr-3">
+            <div class="col-12 mr-3">
 
                 <section class="card shadow-5">
 
                     <div class="card-body row">
-                        <div class="col-md-12 mb-3">
+                        <div class="col-12 col-md-9 mb-3">
                             <label for="question">Question</label>
                             <input type="text" class="form-control" id="question" placeholder="Question" value="{{ old('question') }}" required="" name="question">
                             <div class="invalid-feedback" style="{{ $errors->has('question') ? 'display:block;' : '' }}">
                                 {{ $errors->first('question') }}
                             </div>
                         </div>
-                        <div class="col-md-12 mb-3">
+                        <div class="col-12 col-md-3">
+                            <label for="type">Question Type</label>
+                            <select class="form-control" id="type" name="type">
+                                <option value="state">City</option>
+                                <option value="state">State</option>
+                                <option value="state">Discount</option>
+                                <option value="state">Business</option>
+                                <option disabled>──────────</option>
+                                <<option value="general">General FAQ</option>}
+                                option
+                            </select>
+                        </div>
+                        <div class="col-12 col-md-9 mb-3">
                             <label for="answer">Answer</label>
                             <input type="text" class="form-control" id="answer" placeholder="Answer" value="{{ old('answer') }}" required="" name="answer">
                             <div class="invalid-feedback" style="{{ $errors->has('answer') ? 'display:block;' : '' }}">
                                 {{ $errors->first('answer') }}
                             </div>
                         </div>
+                        <div class="col-12 col-md-3 pt-4 mb-3">
+                            <div class="custom-control custom-switch pt-2">
+                                <input type="checkbox" checked class="custom-control-input" id="is_active">
+                                <label class="custom-control-label" for="is_active">Active</label>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="card-footer d-sm-block d-md-none">
                         <ul class="submenu ml-auto mb-0 text-right">

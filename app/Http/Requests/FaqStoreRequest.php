@@ -25,7 +25,9 @@ class FaqStoreRequest extends FormRequest
     {
         return [
             'question' => 'required|max:255',
-            'answer' => 'required'
+            'answer' => 'required',
+            'type' => 'sometimes|nullable',
+            'is_active' => 'sometimes'
         ];
     }
 }
