@@ -22,23 +22,35 @@
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
                     @if (Route::has('register'))
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
+                        </li> -->
                     @endif
                 @else
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('states.index') }}">States</a>
                     </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('businesses.index') }}">Businesses</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('discounts.index') }}">Discounts</a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('faqs.index') }}">FAQs</a>
                     </li>
+                    @can('manage-users')
                     <li class="nav-item">
-                        <a class="nav-link mr-4" href="{{ route('test') }}">Test</a>
+                        <a class="nav-link" href="{{ route('users.index') }}">Users</a>
                     </li>
+                    @endcan
+                    <li class="nav-item">
+                        <a class="nav-link mr-4 bg-inverse" href="{{ route('test') }}">Testing</a>
+                    </li>
+
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>
@@ -62,6 +74,7 @@
                                     <i class="fas fa-desktop mr-2"></i>
                                     View Public Website
                                 </a>
+
                                 <a class="dropdown-item user-menu-link" href="#">
                                     <i class="fas fa-chart-line mr-2"></i>
                                     Reporting
@@ -70,16 +83,19 @@
                                     <i class="fas fa-clipboard-list mr-2"></i>
                                     Activity Logs
                                 </a>
+
                             </div>
 
                             <hr class="h-separator my-3">
                             <div class="option-menu px-1">
                                 <div class="row">
+
                                     <div class="col-4">
                                         <a href="#" class="dropdown-item settings-btn">
                                             <i class="fas fa-cog"></i>
                                         </a>
                                     </div>
+
                                     <div class="col-8">
                                         <!-- Logout button -->
                                         <a class="dropdown-item logout-btn" href="{{ route('logout') }}"

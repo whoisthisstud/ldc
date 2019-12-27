@@ -22,16 +22,21 @@
 					<h4 class="text-white">Admin Menu</h4>
 					<ul class="list-unstyled">
 						@if (Route::has('login'))
-			                    @auth
-			                        <a href="{{ route('home') }}">Home</a>
-			                    @else
-			                        <li><a href="{{ route('login') }}">Login</a></li>
+		                    @auth
 
-			                        @if (Route::has('register'))
-			                            <li><a href="{{ route('register') }}">Register</a></li>
-			                        @endif
-			                    @endauth
-			                </div>
+									<li><a href="{{ route('home') }}">Home</a></li>
+
+									<!-- <li><a href="{{-- route('manager.home') --}}">Home</a></li> -->
+
+		                    @else
+		                        <li><a href="{{ route('login') }}">Login</a></li>
+
+		                        @if (Route::has('register'))
+		                            <li><a href="{{ route('register') }}">Register</a></li>
+		                        @endif
+
+		                        <li><a href="#">Add Your Business</a></li>
+		                    @endauth
 			            @endif
 					</ul>
 				</div>

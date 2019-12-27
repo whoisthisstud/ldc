@@ -13,13 +13,19 @@
 
 Route::get('/', 'PagesController@index')->name('public.index');
 
+// Auth::routes(['verify' => true]);
 Auth::routes();
 
-Route::middleware('manager')->group(function () {
-    Route::get('/manager', function () {
-        return view('manager');
-    })->name('manager.home');
-});
+// Route::get('profile', function () {
+//     // Only verified users may enter...
+// })->middleware('verified');
+
+// Route::prefix('business-manager')->middleware('manager')->group(function () {
+//     Route::get('/home', function () {
+//         return view('manager');
+//     })->name('manager.home');
+//     Route::get('/businesses', 'BusinessController@index')->name('businesses.index');
+// });
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/dashboard', 'HomeController@index')->name('home');
@@ -46,16 +52,17 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('/discounts', 'DiscountController@index')->name('discounts.index');
     Route::get('/discounts/add', 'DiscountController@create')->name('discounts.create');
-
-    Route::get('/business/{business}/add-discount', 'DiscountController@createBusinessDiscount')
-        ->name('business.discount');
-
     Route::post('/discounts/store', 'DiscountController@store')->name('discounts.store');
     Route::get('/discounts/{discount}', 'DiscountController@show')->name('view.discount');
+
+    Route::post('/business/{business}/add-discount', 'DiscountController@createBusinessDiscount')
+        ->name('business.discount');
 
     Route::get('/faqs', 'FaqController@index')->name('faqs.index');
     Route::get('/faqs/add', 'FaqController@create')->name('faqs.create');
     Route::post('/faqs/store', 'FaqController@store')->name('faqs.store');
+
+    Route::get('/users', 'Admin\UserController@index')->name('users.index');
 });
 
 

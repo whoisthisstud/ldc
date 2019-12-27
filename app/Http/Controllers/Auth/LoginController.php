@@ -41,14 +41,18 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-        if (Auth::user()->is_admin === 1) {
+        // return route('home');
+
+        if (Auth::user()->hasAnyRoles(['superadmin', 'admin', 'business-manager', 'business-user'])) {
             return route('home');
         }
 
-        if (Auth::user()->is_manager === 1) {
-            return '/manager';
-        }
+        return route('public.index');
 
-        return '/';
+        // if (Auth::user()->is_manager === 1) {
+        //     return '/manager';
+        // }
+
+        // return '/';
     }
 }
