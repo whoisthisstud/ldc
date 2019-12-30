@@ -64,6 +64,20 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'cityImages' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/public/images/city'),
+            'url'        => env('APP_URL') . '/images/city',
+            'visibility' => 'public'
+        ],
+
+        'stateImages' => [
+            'driver' => 'local',
+            'root'   => storage_path('app/public/images/state'),
+            'url'        => env('APP_URL') . '/images/state',
+            'visibility' => 'public'
+        ],
+
     ],
 
 ];

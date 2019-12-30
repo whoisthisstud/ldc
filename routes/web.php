@@ -13,22 +13,23 @@
 
 Route::get('/', 'PagesController@index')->name('public.index');
 
-// Auth::routes(['verify' => true]);
-Auth::routes();
+Auth::routes(['verify' => true]);
+// Auth::routes();
 
 // Route::get('profile', function () {
 //     // Only verified users may enter...
 // })->middleware('verified');
 
-// Route::prefix('business-manager')->middleware('manager')->group(function () {
-//     Route::get('/home', function () {
-//         return view('manager');
-//     })->name('manager.home');
-//     Route::get('/businesses', 'BusinessController@index')->name('businesses.index');
-// });
+Route::prefix('business-manager')->middleware('can:manage-businesses')->group(function () {
+    Route::get('/home', function () {
+        return view('manager');
+    })->name('manager.home');
+    Route::get('/businesses', 'BusinessController@index')->name('businesses.index');
+});
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/dashboard', 'HomeController@index')->name('home');
+    Route::post('/store-media', 'StoreMediaController')->name('store.media');
     Route::get('/test', 'TestController')->name('test');
 
     Route::get('/states', 'StateController@index')->name('states.index');
@@ -66,7 +67,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 });
 
 
-Route::get('/{state}/{city}', 'PagesController@city')->name('public.city');
-Route::get('/{state}/{city}/signup', 'PagesController@signup')->name('public.signup');
-Route::post('/{state}/{city}/register', 'SignupController@signupUser')->name('signup.user');
-Route::get('/{state}/{city}/{business}/{discount}', 'PagesController@discount')->name('public.discount');
+Route::get('/club/{state}/{city}', 'PagesController@city')->name('public.city');
+Route::get('/club/{state}/{city}/signup', 'PagesController@signup')->name('public.signup');
+Route::post('/club/{state}/{city}/register', 'ClubSignupController@signupUser')->name('signup.user');
+Route::get('/club/{state}/{city}/thank-you', 'ClubSignupController@thanks')->name('signup.complete');
+Route::get('/club/{state}/{city}/{business}/{discount}', 'PagesController@discount')->name('public.discount');

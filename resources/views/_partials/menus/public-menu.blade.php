@@ -23,10 +23,32 @@
 					<ul class="list-unstyled">
 						@if (Route::has('login'))
 		                    @auth
-
+		                    	@can('manage-dashboard')
 									<li><a href="{{ route('home') }}">Home</a></li>
+									<li><a href="{{ route('states.index') }}">States</a></li>
+									<li><a href="{{ route('faqs.index') }}">FAQs</a></li>
+								@endcan
 
-									<!-- <li><a href="{{-- route('manager.home') --}}">Home</a></li> -->
+								@can('manage-businesses')
+									@cannot('manage-dashboard')
+										<li><a href="{{ route('manager.home') }}">Dashboard</a></li>
+									@endcannot
+									<li><a href="{{ route('businesses.index') }}">Businesses</a></li>
+									<li><a href="{{ route('discounts.index') }}">Discounts</a></li>
+								@endcan
+								<div class="dropdown-divider"></div>
+								<li>
+									<!-- Logout button -->
+                                    <a class="" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+								</li>
 
 		                    @else
 		                        <li><a href="{{ route('login') }}">Login</a></li>

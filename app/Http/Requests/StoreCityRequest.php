@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Gate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCityRequest extends FormRequest
@@ -13,7 +14,8 @@ class StoreCityRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        // return true;
+        return Gate::allows('manage-cities');
     }
 
     /**
@@ -25,7 +27,8 @@ class StoreCityRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'zip_code' => 'integer|unique:cities,zip_code,id'.optional($this->city)->id
+            // 'zip_code' => 'integer|unique:cities,zip_code,id'.$this->city->id ?? null
+            'zip_code' => 'integer|unique:cities,zip_code,'.optional($this->city)->id
         ];
     }
 }

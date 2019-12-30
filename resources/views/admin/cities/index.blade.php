@@ -83,50 +83,76 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-12">
+    <div class="row mt-5 mb-4">
 
-            <section class="mt-5 mb-4">
-                <div class="container">
-                    <div class="row">
+        <div class="col-2">
+            <div class="nav flex-column nav-pills" id="tablist" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="city-discounts-tab" data-toggle="pill" href="#city-discounts" role="tab" aria-controls="city-discounts" aria-selected="true">Discounts</a>
+                <!-- <a class="nav-link" id="city-businesses-tab" data-toggle="pill" href="#city-businesses" role="tab" aria-controls="city-businesses" aria-selected="false">Business</a> -->
+                <a class="nav-link" id="city-signups-tab" data-toggle="pill" href="#city-signups" role="tab" aria-controls="city-signups" aria-selected="false">Signups</a>
+            </div>
+        </div>
+        <div class="col-10">
+            <div class="tab-content" id="tablistContent">
+                <div class="tab-pane fade show active" id="city-discounts" role="tabpanel" aria-labelledby="city-discounts-tab">
+                    <section class="">
+                        <div class="container">
+                            <div class="row">
 
 
-                        @foreach($city->discounts as $discount)
-                            <div class="col-md-4 col-sm-12 mb-3">
-                                <div class="city-card-tile">
-                                    <div class="city-card-wrapper">
+                                @foreach($city->discounts as $discount)
+                                    <div class="col-md-4 col-sm-12 mb-3">
+                                        <div class="city-card-tile">
+                                            <div class="city-card-wrapper">
 
-                                        <a href="#" class="text-decoration-none">
-                                            <div class="city-card-header">
-                                                <div class="text-center">
-                                                    <h4 class="mt-2 mb-0">{{ $discount->code }}</h4>
+                                                <a href="#" class="text-decoration-none">
+                                                    <div class="city-card-header">
+                                                        <div class="text-center">
+                                                            <h4 class="mt-2 mb-0">{{ $discount->code }}</h4>
+                                                        </div>
+                                                    </div>
+                                                </a>
+
+                                                <div class="city-card-stats">
+                                                    <div>
+                                                        <strong><small>Subscribers</small></strong>
+                                                        1,802
+                                                    </div>
+                                                    <div>
+                                                        <strong><small>Opens</small></strong>
+                                                        10,386
+                                                    </div>
+                                                    <div>
+                                                        <strong><small>Open %</small></strong>
+                                                        576%
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </a>
 
-                                        <div class="city-card-stats">
-                                            <div>
-                                                <strong><small>Subscribers</small></strong>
-                                                1,802
-                                            </div>
-                                            <div>
-                                                <strong><small>Opens</small></strong>
-                                                10,386
-                                            </div>
-                                            <div>
-                                                <strong><small>Open %</small></strong>
-                                                576%
                                             </div>
                                         </div>
-
                                     </div>
-                                </div>
-                            </div>
-                        @endforeach
+                                @endforeach
 
-                    </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-            </section>
+                <!-- <div class="tab-pane fade" id="city-businesses" role="tabpanel" aria-labelledby="city-businesses-tab">
+                    Businesses - Pending
+                </div> -->
+                <div class="tab-pane fade" id="city-signups" role="tabpanel" aria-labelledby="city-signups-tab">
+                    @forelse($city->users as $user)
+                        {{ $user->name }} <br>
+                    @empty
+                        None
+                    @endforelse
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+
+            
 
         </div>
     </div>

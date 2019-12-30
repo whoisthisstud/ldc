@@ -13,7 +13,7 @@
 			<div class="col-12 col-md-7">
 				<form action="{{ route('signup.user', [ 'state' => $city->state->id, 'city' => $city->id ]) }}" method="POST">
 					@csrf
-					<div class="card">
+					<div class="card shadow">
 						<div class="card-body">
 							<!-- <input type="hidden" value="{{ $city->id }}"> -->
 							<div class="form-group row">
@@ -66,11 +66,22 @@
 								</div>
 							</div>
 
+							<div class="form-group row">
+								<div class="col-12">
+									<div class="form-check pt-2">
+										<input class="form-check-input" type="checkbox" required value="true" id="terms" name="terms">
+										<label class="form-check-label" for="terms" style="font-size: .8rem;">
+											I have read and accept the <a href="#">Terms of Use</a>.
+										</label>
+									</div>
+								</div>
+							</div>
+
 						</div>
 						<div class="card-footer">
 							<div class="d-block text-right">
 								<button type="cancel" class="btn btn-default">Cancel</button>
-								<button type="submit" class="btn btn-primary btn-badge">Signup</button>
+								<button type="submit" class="btn btn-primary btn-badge" onclick="ga('send', 'event', 'Signup', 'Registered', 'User Signup Form', '1');">Signup</button>
 							</div>
 
 						</div>

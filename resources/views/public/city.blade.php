@@ -18,21 +18,33 @@
             </div>
 
 
-            @foreach($city->discounts as $discount)
+            @forelse($city->discounts as $discount)
                 <div class="col-12 col-md-4 mb-3 card-hover"><!-- col-lg-3  -->
                     <div class="card">
                         <div class="card-body">
 
                             <!-- <a href="{{ route('public.discount', [ 'state' => $city->state->name, 'city' => $city->name, 'business' => $discount->business->id, 'discount' => $discount->code ]) }}" class="text-decoration-none"> -->
                                 <div class="py-2 px-4">
+                                    @if( ! empty( $discount->business->logo ) )
                                     <div class="business-logo" style="background-image: url({{ $discount->business->logo }});"></div>
+                                    @else
+                                    
+                                    <div class="business-logo" style="">
+                                        <h3 class="h3 text-center">{{ $discount->business->name }}</h3>
+                                    </div>
+                                    @endif
+
                                 </div>
                             <!-- </a> -->
 
                         </div>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <div class="col-12 text-center">
+                    <h5 class="my-5">No businesses signed up!</h5>
+                </div>
+            @endforelse
 
         </div>
 

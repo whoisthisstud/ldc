@@ -27,30 +27,42 @@
                         </li> -->
                     @endif
                 @else
-
+                    @can('manage-states')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('states.index') }}">States</a>
                     </li>
+                    @endcan
 
+                    @can('manage-businesses')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('businesses.index') }}">Businesses</a>
                     </li>
+                    @endcan
+
+                    @can('manage-discounts')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('discounts.index') }}">Discounts</a>
                     </li>
+                    @endcan
 
+                    @can('manage-faqs')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('faqs.index') }}">FAQs</a>
                     </li>
+                    @endcan
+
                     @can('manage-users')
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('users.index') }}">Users</a>
                     </li>
                     @endcan
+
+                    @can('access-testing')
                     <li class="nav-item">
                         <a class="nav-link mr-4 bg-inverse" href="{{ route('test') }}">Testing</a>
                     </li>
-
+                    @endcan
+                    
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }} <span class="caret"></span>

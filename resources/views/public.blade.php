@@ -60,26 +60,39 @@
 				</div>
 
 
-				@foreach($cities as $city)
+				@forelse($cities as $city)
 					<div class="col-12 col-sm-6 col-md-4">
-						<div class="card mb-4 pb-4 p-2 shadow-sm bg-secondary">
+						<div class="card popular-city-card mb-4 pb-4 p-2 shadow-sm" style="">
+							<img class="card-bg-img" src="{{ !empty($city->media->first()) ? asset($city->media->first()->getUrl('thumb')) : asset('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg') }}">
 							<a href="{{ route('public.city', [ 'state' => $city->state->name, 'city' => $city->name ]) }}">
 								<div class="card-body" style="min-height: 200px;">
 									<div class="center-within">
-										<h4 class="text-center text-light">{{ $city->name }}, {{ $city->state->abbreviation }}</h4>
-										<p class="text-center m-0">
-											<small class="text-light">@php echo rand(0,28) @endphp Discounts</small>
+										<h1 class="city-name text-center">{{ $city->name }}</h1>
+										<p class="city-state-name text-center">{{ $city->state->name }}</p>
+										<p class="city-discount-count text-center m-0">
+											<small class="text-light">{{ $city->discounts_count }} Discounts</small>
 										</p>
 									</div>
 								</div>
 							</a>
 						</div>
 					</div>
-				@endforeach
+				@empty
+	                <div class="col-12 text-center">
+	                    <h2>Coming February 2020!</h2>
+	                </div>
+				@endforelse
 
-				<div class="col-12 mt-3 text-center">
-					<a class="btn btn-lg btn-primary text-light text-center">View More Cities</a>
-				</div>
+				@if( $cities->count() > 9 )
+					<div class="col-12 mt-3 text-center">
+						<a class="btn btn-lg btn-primary text-light text-center">View More Cities</a>
+					</div>
+				@endif
+				@if( $cities->count() > 0 && $cities->count() < 10 )
+					<div class="col-12 mt-3 text-center">
+						<h3>More cities coming through 2020.</h3>
+					</div>
+				@endif
 
 			</div> <!-- end: row -->
 		</div>

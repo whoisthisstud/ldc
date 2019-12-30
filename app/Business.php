@@ -13,8 +13,14 @@ class Business extends Model
 
     protected $guarded = [];
 
-    public function discounts() {
+    public function discounts() 
+    {
     	return $this->hasMany(Discount::class);
+    }
+
+    public function cities() 
+    {
+
     }
 
     

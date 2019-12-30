@@ -27,6 +27,10 @@ class CityController extends Controller
 
         $city = City::create($validated + ['state_id' => $state->id]);
 
+        $media = $city->addMedia(storage_path('tmp/uploads/' . $request['image.0'] ))
+            //->usingFileName('otherFileName.txt') $city->name . '-' . $city->state->abbreviation . '.' . getClientOriginalExtension()
+            ->toMediaCollection('city-images', 'cityImages');
+
         notify()->success($city->name . ', ' . $city->state->abbreviation . ' has been added', 'City Added');
         return redirect()->route('view.state', [ $state->id ]);
     }
@@ -49,6 +53,11 @@ class CityController extends Controller
         $validated = $request->validated();
 
         City::where('id', $city->id)->update($validated);
+
+        if( ! empty( $request['image.0'] ) ) {
+            $media = $city->addMedia(storage_path('tmp/uploads/' . $request['image.0'] ))
+                ->toMediaCollection('city-images', 'cityImages');
+        }
 
         notify()->success($city->name . ', ' . $city->state->abbreviation . ' has been updated', 'City Updated');
         return redirect()->route('view.city', [ $city->id ]);

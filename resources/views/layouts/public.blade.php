@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="en">
     <head>
+        @include('_partials.scripts.gtm-head')
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
@@ -10,7 +12,7 @@
 
         <!-- Bootstrap core CSS -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+        @notify_css
         @yield('styles')
 
         <!-- Custom styles for this template -->
@@ -21,6 +23,7 @@
     </head>
 
     <body>
+        @include('_partials.scripts.gtm-body')
 
         @include('_partials.menus.public-menu')
 
@@ -37,7 +40,8 @@
         <script src="{{ asset('js/app.js') }}"></script>
 
         @yield('scripts')
-
+        @notify_js
+        @notify_render
         <script>
             var i = 0;
             $('.navbar-toggler').on('click', function() {

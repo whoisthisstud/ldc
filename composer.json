@@ -10,8 +10,10 @@
     "require": {
         "php": "^7.2",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.5",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.2",
+        "laravel/telescope": "^2.1",
         "laravel/tinker": "^2.0",
         "spatie/laravel-medialibrary": "^7.0.0",
         "yoeunes/notify": "^1.0"

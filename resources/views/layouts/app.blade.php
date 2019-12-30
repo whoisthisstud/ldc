@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     @notify_css
+    @yield('styles')
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 </head>
 <body>

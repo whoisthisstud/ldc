@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
+use Auth;
 use App\User;
 use App\Role;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -86,8 +87,12 @@ class RegisterController extends Controller
 
     protected function redirectTo()
     {
-        if (Auth::user()->hasAnyRoles(['superadmin', 'admin', 'business-manager', 'business-user'])) {
+        if (Auth::user()->hasAnyRoles(['superadmin', 'admin'])) {
             return route('home');
+        }
+
+        if (Auth::user()->hasRole('business-manager')) {
+            return route('manager.home');
         }
 
         return route('public.index');

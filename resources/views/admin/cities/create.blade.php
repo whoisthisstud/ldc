@@ -1,9 +1,14 @@
 @extends('layouts.app')
 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('vendors/dropzone/basic.css') }}">
+<link rel="stylesheet" href="{{ asset('vendors/dropzone/dropzone.css') }}">
+@endsection
+
 @section('content')
 <div class="container">
 
-    <form action="{{ Route::is('cities.create') ? route('cities.store', [ 'state' => $state->id ]) : route('cities.update', [ 'city' => $city->id ]) }}" class="needs-validation" novalidate="" method="POST">
+    <form action="{{ Route::is('cities.create') ? route('cities.store', [ 'state' => $state->id ]) : route('cities.update', [ 'city' => $city->id ]) }}" class="needs-validation" novalidate="" method="POST" class="">
         @csrf
 
         <div class="row">
@@ -77,6 +82,17 @@
                                 {{ $errors->first('zip_code') }}
                             </div>
                         </div>
+
+                        <div class="col-12">                                   
+                            <div class="form-group">
+                                <div class="needsclick dropzone" id="document-dropzone">
+                                    <div class="fallback">
+                                        <input name="file" type="file" multiple />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <div class="card-footer d-sm-block d-md-none">
                         <ul class="submenu ml-auto mb-0 text-right">
@@ -101,4 +117,8 @@
     </form>
 
 </div>
+@endsection
+
+@section('scripts')
+    @include('_partials.scripts.dropzone')
 @endsection

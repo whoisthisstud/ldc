@@ -30,6 +30,58 @@ a,
   font-weight: 500;
 }
 
+:disabled {
+  cursor: default;
+}
+
+#popular .card.popular-city-card {
+  background-size: cover !important; 
+  background-position: center center; 
+  background-color: rgba(0, 59, 121,0.65);
+  overflow: hidden;
+  transition: all .25s ease-in;
+}
+
+#popular .card.popular-city-card img.card-bg-img {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  z-index: -1;
+  max-width: 100%;
+  border-radius: 5px;
+  transform: scale(1) rotate(0);
+  transition: all .25s ease-out;
+}
+
+#popular .card.popular-city-card .card-body {
+color: #ffffff;
+}
+
+#popular .card.popular-city-card:hover {
+  background: rgba(0,0,0,.75) !important;
+  transition: all .25s ease-in;
+}
+
+#popular .card.popular-city-card:hover img.card-bg-img {
+  transform: scale(1.2) rotate(-5deg);
+  transition: all .25s ease-in;
+}
+
+#popular .card.popular-city-card:hover .card-body {
+  color: #87beea;
+}
+
+#popular .city-state-name {
+  font-size: .9rem;
+  font-weight: 500;
+  line-height: .7rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: #fff;
+}
+
 .dropdown-item:hover,
 .dropdown-item:focus {
     color: #ffffff;
@@ -128,6 +180,12 @@ body.nav-open .open-nav-cover {
 }
 
 .navbar-brand .brand-logo-svg {
+  width: 45px;
+  height: 25px;
+  margin-right: .75rem;
+}
+
+.footer-logo-wrapper .brand-logo-svg {
   width: 45px;
   height: 25px;
   margin-right: .75rem;
@@ -333,6 +391,10 @@ body.nav-open .open-nav-cover {
   margin-bottom: 3rem;
 }
 
+.card-footer {
+  border-top: 1px solid rgba(0, 0, 0, 0.075);
+}
+
 
 /* City Cards
 -------------------------------------------------- */
@@ -385,6 +447,12 @@ body.nav-open .open-nav-cover {
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
+}
+
+.business-logo h3 {
+  top: 40%;
+  display: block;
+  position: relative;
 }
 
 .city-card-tile {
@@ -649,7 +717,7 @@ body.nav-open .open-nav-cover {
   border-color: #fde7e6;
 }
 
-.btn-danger.btn-badge:hover {
+.btn-danger.btn-badge:hover:not(:disabled) {
   color: #fff;
   background-color: #d0211c;
   border-color: #c51f1a;

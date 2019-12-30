@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Support\Facades\Auth;
+use Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -41,18 +41,16 @@ class LoginController extends Controller
 
     protected function redirectTo()
     {
-        // return route('home');
 
-        if (Auth::user()->hasAnyRoles(['superadmin', 'admin', 'business-manager', 'business-user'])) {
+        if (Auth::user()->hasAnyRoles(['superadmin', 'admin'])) {
             return route('home');
+        }
+
+        if (Auth::user()->hasRole('business-manager')) {
+            return route('manager.home');
         }
 
         return route('public.index');
 
-        // if (Auth::user()->is_manager === 1) {
-        //     return '/manager';
-        // }
-
-        // return '/';
     }
 }

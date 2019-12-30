@@ -25,7 +25,35 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        Gate::define('access-testing', function ($user) {
+            return $user->hasRole('superadmin');
+        });
+
+        Gate::define('manage-dashboard', function ($user) {
+            return $user->hasAnyRoles(['superadmin','admin']);
+        });
+
+        Gate::define('manage-states', function ($user) {
+            return $user->hasAnyRoles(['superadmin','admin']);
+        });
+
+        Gate::define('manage-cities', function($user) {
+            return $user->hasAnyRoles(['superadmin', 'admin']);
+        });
+
+        Gate::define('manage-businesses', function ($user) {
+            return $user->hasAnyRoles(['superadmin','admin','business-manager']);
+        });
+
+        Gate::define('manage-discounts', function ($user) {
+            return $user->hasAnyRoles(['superadmin','admin','business-manager','business-user']);
+        });
+
         Gate::define('manage-users', function ($user) {
+            return $user->hasAnyRoles(['superadmin','admin']);
+        });
+
+        Gate::define('manage-faqs', function ($user) {
             return $user->hasAnyRoles(['superadmin','admin']);
         });
     }

@@ -18,6 +18,8 @@ class PagesController extends Controller
             ->take(9)
             ->get();
 
+            // dd($cities);
+
         return view('public', compact('cities'));
     }
 

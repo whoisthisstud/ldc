@@ -85,7 +85,7 @@
                                         <div class="city-card-stats">
                                             <div><strong><small>Businesses</small></strong> 0</div>
                                             <div><strong><small>Discounts</small></strong> {{ $city->discounts->count() }}</div>
-                                            <div><strong><small>Signups</small></strong> 0</div>
+                                            <div><strong><small>Signups</small></strong> {{ $city->users->count() }}</div>
                                         </div>
 
                                     </div>

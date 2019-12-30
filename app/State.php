@@ -12,4 +12,8 @@ class State extends Model
     public function cities() {
     	return $this->hasMany(City::class);
     }
+
+    public function users() {
+    	return $this->hasManyThrough(User::class, City::class);
+    }
 }
