@@ -63,7 +63,7 @@
 				@forelse($cities as $city)
 					<div class="col-12 col-sm-6 col-md-4">
 						<div class="card popular-city-card mb-4 pb-4 p-2 shadow-sm" style="">
-							<img class="card-bg-img" src="{{ !empty($city->media->first()) ? asset($city->media->first()->getUrl('thumb')) : asset('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg') }}">
+
 							<a href="{{ route('public.city', [ 'state' => $city->state->name, 'city' => $city->name ]) }}">
 								<div class="card-body" style="min-height: 200px;">
 									<div class="center-within">

@@ -25,10 +25,21 @@ class CityController extends Controller
     {
         $validated = $request->validated();
 
+        // validate the uploaded file
+        // $validation = $request->validate([
+        //     'image' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+        //     // for multiple file uploads
+        //     // 'image.*' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+        // ]);
+
         $city = City::create($validated + ['state_id' => $state->id]);
 
-        $media = $city->addMedia(storage_path('tmp/uploads/' . $request['image.0'] ))
-            //->usingFileName('otherFileName.txt') $city->name . '-' . $city->state->abbreviation . '.' . getClientOriginalExtension()
+        // $file      = $validation['image']; // get the validated file
+        // $extension = $file->getClientOriginalExtension();
+        // $filename  = $city->name . '-' . $city->state->abbreviation . '_' . time() . '.' . $extension;
+
+        $media = $city->addMedia(storage_path('tmp/uploads/' . $request['image.0']))
+            //->usingFileName($filename)
             ->toMediaCollection('city-images', 'cityImages');
 
         notify()->success($city->name . ', ' . $city->state->abbreviation . ' has been added', 'City Added');
@@ -54,8 +65,8 @@ class CityController extends Controller
 
         City::where('id', $city->id)->update($validated);
 
-        if( ! empty( $request['image.0'] ) ) {
-            $media = $city->addMedia(storage_path('tmp/uploads/' . $request['image.0'] ))
+        if (! empty($request['image.0'])) {
+            $media = $city->addMedia(storage_path('tmp/uploads/' . $request['image.0']))
                 ->toMediaCollection('city-images', 'cityImages');
         }
 
