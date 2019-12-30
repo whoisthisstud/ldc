@@ -48,6 +48,9 @@
         <div class="row">
             <div class="col-12">
                 <small>&copy;{{ now()->year }} {{ config('app_name', 'Local Discount Club') }}. All rights reserved.</small>
+                <div class="float-right">
+                    <a class="" href="{{ route('public.privacy') }}">Privacy Policy</a>
+                </div>
             </div>
         </div>
 

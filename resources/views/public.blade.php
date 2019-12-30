@@ -54,7 +54,7 @@
 
 	<div id="popular" class="album py-5">
 		<div class="container">
-			<div class="row pb-5">
+			<div class="row justify-content-center pb-5">
 				<div class="col-12 text-center">
 					<p class="section-title">Pick your city</p>
 				</div>

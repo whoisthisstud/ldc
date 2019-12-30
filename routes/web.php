@@ -12,6 +12,9 @@
 */
 
 Route::get('/', 'PagesController@index')->name('public.index');
+Route::get('/privacy-policy', function() {
+    return view('public.privacy');
+})->name('public.privacy');
 
 Auth::routes(['verify' => true]);
 // Auth::routes();
