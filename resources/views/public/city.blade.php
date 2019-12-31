@@ -58,7 +58,7 @@
                         @foreach($faqs as $faq)
                             <div class="col-12 col-md-4 text-left py-2 px-4">
                                 <h5><strong>{{ $faq->question }}</strong></h5>
-                                <p class="">{{ $faq->answer }}</p>
+                                <p class="">{!! $faq->answer !!}</p>
                             </div>
                         @endforeach
                     </div>

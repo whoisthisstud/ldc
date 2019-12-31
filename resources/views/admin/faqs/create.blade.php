@@ -71,10 +71,10 @@
                         <div class="col-12 col-md-3">
                             <label for="type">Question Type</label>
                             <select class="form-control" id="type" name="type">
-                                <option value="state">City</option>
+                                <option value="city">City</option>
                                 <option value="state">State</option>
-                                <option value="state">Discount</option>
-                                <option value="state">Business</option>
+                                <option value="discount">Discount</option>
+                                <option value="business">Business</option>
                                 <option disabled>──────────</option>
                                 <<option value="general">General FAQ</option>}
                                 option
@@ -82,7 +82,8 @@
                         </div>
                         <div class="col-12 col-md-9 mb-3">
                             <label for="answer">Answer</label>
-                            <input type="text" class="form-control" id="answer" placeholder="Answer" value="{{ old('answer') }}" required="" name="answer">
+                            <!-- <input type="text" class="form-control" id="answer" placeholder="Answer" value="" required="" name="answer"> -->
+                            <textarea class="form-control" id="answer" name="answer" required="">{{ old('answer') }}</textarea>
                             <div class="invalid-feedback" style="{{ $errors->has('answer') ? 'display:block;' : '' }}">
                                 {{ $errors->first('answer') }}
                             </div>
@@ -118,4 +119,11 @@
     </form>
 
 </div>
+@endsection
+
+@section('scripts')
+<script src="//cdn.ckeditor.com/4.13.1/basic/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace( 'answer' );
+</script>
 @endsection

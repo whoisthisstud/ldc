@@ -90,7 +90,7 @@
 										</div>
 
 										<div id="a{{ $faq->id }}" class="collapse {{ $loop->first ? 'show' : '' }}" aria-labelledby="q{{ $faq->id }}" data-parent="#faqs">
-											<div class="card-body">{{ $faq->answer }}</div>
+											<div class="card-body">{!! $faq->answer !!}</div>
 										</div>
 									</div>
 									@endforeach

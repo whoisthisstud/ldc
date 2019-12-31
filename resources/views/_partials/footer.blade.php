@@ -1,7 +1,7 @@
 <footer class="text-muted bg-dark">
     <div class="container">
         <div class="row">
-            <div class="col-12 col-md-9">
+            <div class="col-12 col-md-8">
                 <a href="#" class="display-4 d-flex align-items-center text-light" style="font-size: 2rem;">
                     <div class="footer-logo-wrapper">
                         @include('_partials.icons.ldc_card_light')
@@ -38,9 +38,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-md-3">
-                <div class="d-block bg-light py-5 px-1 text-center" style="min-height:180px;">
-                    Maybe most recent tweet?
+            <div class="col-12 col-md-4 mt-n5">
+                <div class="d-block bg-light text-center" style="min-height:180px;">
+                    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness. I say to myself, “The Lord is my portion; therefore I will wait for him. Lamentations 3: 22-24</p>&mdash; God’s Motivations 📖 (@GodsMotivations) <a href="https://twitter.com/GodsMotivations/status/1211799376789532672?ref_src=twsrc%5Etfw">December 31, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ class PagesController extends Controller
         $city = City::where('state_id', $state->id)->where('name', $city)->first();
         $city->increment('views');
         $discounts = Discount::where('city_id', $city->id)->get();
-        $faqs = Faq::where('is_active', true)->get();
+        $faqs = Faq::where('is_active', true)->orderBy('id','DESC')->get();
 
         return view('public.city', compact('city', 'discounts', 'faqs'));
     }
