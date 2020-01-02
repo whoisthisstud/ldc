@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\City;
 use App\State;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,9 +14,9 @@ class Discount extends Model
         'expires' => 'datetime',
     ];
 
-    public function state()
+    public function city()
     {
-        return $this->belongsTo(State::class, 'state_id');
+        return $this->belongsTo(City::class, 'city_id');
     }
 
     public function business()

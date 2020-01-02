@@ -11,12 +11,24 @@ class TestController extends Controller
 {
     public function __invoke()
     {
-    	$businesses = Business::all();
-    	$business = Business::find(4);
-    	$states = State::all();
-    	$state = State::find(1);
-    	// $cities = City::with('discounts')->where('state_id','1')->get();
+    	// $businesses = Business::all();
+    	// $business = Business::find(4);
+    	// $states = State::with('cities')->orderBy('name', 'ASC')->get();
+    	// $state = State::find(1);
 
-    	return view('test', compact('businesses', 'business', 'states', 'state'));
+    	// foreach( $states as $state ) {
+    	// 	$signups = 0;
+    	// 	$discounts = 0;
+    	// 	foreach( $state->cities as $city ){
+	    // 		$signups += $city->users()->count();
+	    // 		$discounts += $city->discounts()->count();
+	    // 	}
+	    // 	$state->signups = $signups;
+	    // 	$state->discounts = $discounts;
+    	// }
+
+    	$city = City::find(1);
+
+    	return view('test', compact('city'));
     }
 }

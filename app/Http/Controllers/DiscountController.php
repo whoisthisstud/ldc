@@ -49,7 +49,7 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Max 40 characters on the title
     }
 
     /**

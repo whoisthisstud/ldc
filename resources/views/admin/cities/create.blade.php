@@ -54,19 +54,34 @@
         </div>
 
         <div class="row justify-content-between mt-5 mb-4">
-
-            <div class="col-md-5 col-sm-12 pr-5 ml-3">
-                @if( Route::is('cities.create') )
+            
+            @if( Route::is('cities.create') )
+                <div class="col-md-5 col-sm-12 pr-5 ml-3">
                     <h5 class="">A New City</h5>
                     <p><small>Adding a new city represents adding a new market to this site.</small></p>
                     <p><small>By adding a city, you will make this market available for businesses and discounters, alike. <em>Get 'em, tiger!</em></small></p>
-                @endif
-            </div>
+                </div>
+            @else
+                <div id="popular" class="col-md-4 col-sm-12">    
+                    <div class="card popular-city-card mb-4 pb-4 shadow-sm" style="">
+                        <img class="card-bg-img" src="{{ !empty($city->media->first()) ? asset($city->media->first()->getUrl('thumb')) : asset('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg') }}">
+                        <a href="{{ route('public.city', [ 'state' => $city->state->name, 'city' => $city->name ]) }}">
+                            <div class="card-body" style="min-height: 200px;">
+                                <div class="center-within">
+                                    <h1 class="city-name text-center">{{ $city->name }}</h1>
+                                    <p class="city-state-name text-center">{{ $city->state->name }}</p>
+                                    <p class="city-discount-count text-center m-0">
+                                        <small class="text-light">{{ $city->discounts()->count() }} Discounts</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            @endif
 
-            <div class="col-md-6 col-sm-12 mr-3">
-
+            <div class="col-md-7 col-sm-12 mr-3">
                 <section class="card shadow-5">
-
                     <div class="card-body row">
                         <div class="col-md-9 mb-3">
                             <label for="name">City Name</label>
@@ -85,6 +100,7 @@
 
                         <div class="col-12">                                   
                             <div class="form-group">
+                                <label for="file">City Image</label>
                                 <div class="needsclick dropzone" id="document-dropzone">
                                     <div class="fallback">
                                         <input name="file" type="file" multiple />

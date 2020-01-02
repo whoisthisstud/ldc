@@ -81,14 +81,13 @@
                                             </div>
                                         </a>
 
-                                        <div class="city-card-stats quad">
+                                        <div class="city-card-stats">
                                             <div>
                                                 <strong><small>Cities</small></strong>
                                                 {{ $state->cities->count() }}
                                             </div>
-                                            <div><strong><small>Businesses</small></strong> 0</div>
-                                            <div><strong><small>Discounts</small></strong> 0</div>
-                                            <div><strong><small>Signups</small></strong> 0</div>
+                                            <div><strong><small>Discounts</small></strong>{{ $state->discounts }}</div>
+                                            <div><strong><small>Signups</small></strong>{{ $state->signups }}</div>
                                         </div>
 
                                     </div>

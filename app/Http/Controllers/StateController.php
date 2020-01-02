@@ -18,6 +18,19 @@ class StateController extends Controller
     {
         $states = State::with('cities')->orderBy('name', 'ASC')->get();
 
+        foreach( $states as $state ) {
+            $signups = 0;
+            $discounts = 0;
+
+            foreach( $state->cities as $city ){
+                $signups += $city->users()->count();
+                $discounts += $city->discounts()->count();
+            }
+            
+            $state->signups = $signups;
+            $state->discounts = $discounts;
+        }
+
         return view('admin.states.index', compact('states'));
     }
 

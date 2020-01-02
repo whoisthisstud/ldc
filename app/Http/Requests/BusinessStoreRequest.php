@@ -24,7 +24,7 @@ class BusinessStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
+            'name' => 'required|max:20',
             'logo' => 'sometimes|nullable|image|mimes:jpeg,png,jpg|max:2048'
         ];
     }

@@ -25,6 +25,18 @@ class City extends Model implements HasMedia
         return $this->hasMany(Discount::class);
     }
 
+    public function businesses()
+    {
+        return $this->hasManyThrough(
+            Business::class,
+            Discount::class,
+            'city_id',
+            'id',
+            'id',
+            'business_id'
+        );
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class);

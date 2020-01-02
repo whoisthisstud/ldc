@@ -20,7 +20,7 @@ class Business extends Model
 
     public function cities() 
     {
-
+    	return $this->hasManyThrough(City::class,Discount::class);
     }
 
     
