@@ -17,7 +17,7 @@ class CreateDiscountsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('business_id');
             $table->unsignedBigInteger('city_id');
-            $table->string('code');
+            $table->string('code')->nullable();
             $table->string('title');
             $table->text('description')->nullable();
             $table->text('terms')->nullable();

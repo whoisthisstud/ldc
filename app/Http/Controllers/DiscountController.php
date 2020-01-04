@@ -31,8 +31,8 @@ class DiscountController extends Controller
 
     public function createBusinessDiscount(Business $business)
     {
-        $businesses = Business::all();
-        return view('admin.discounts.create', compact('business', 'businesses'));
+        $cities = City::all();
+        return view('admin.discounts.create', compact('business', 'cities'));
     }
 
     public function createCityDiscount(City $city)
@@ -49,7 +49,9 @@ class DiscountController extends Controller
      */
     public function store(Request $request)
     {
-        // Max 40 characters on the title
+        // Max 35 characters on the title
+        dd($request);
+
     }
 
     /**
@@ -94,6 +96,7 @@ class DiscountController extends Controller
      */
     public function destroy(Discount $discount)
     {
-        //
+        // check how many discounts are within the date range of this discount.
+        // If below 15, then mark the city_season table row as $filled = false;
     }
 }

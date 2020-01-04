@@ -1,0 +1,108 @@
+Seasons:
+ ✔ @critical Seasons @done (20-01-04 00:52)
+   ✔ php artisan make:model Season -m @done (20-01-04 00:52)
+      Fields
+       id (bigInteger | unique | primary) 
+       season_num (int)
+
+   ✔ php artisan make:seed SeasonsTableSeeder @done (20-01-04 00:52)
+     Seed 10 records with season_num being 1-10
+
+ ✔ @critical Create city_season table @done (20-01-04 00:52)
+   Fields
+     id (bigInteger | unique | primary)
+     city_id (bigInteger)
+     season_num (int)
+     begins_on (timestamp)
+     ends_on (timestamp)
+     created_at (timestamp)
+     updated_at (timestamp)
+     deleted_at (timestamp | softDelete())
+
+   CITY ACTIVATION:
+   Initial city activation will be manual.
+     Administrator will select the "Activate City" option from the *Actions Menu*, which will accomplish the following.
+       ✔ Set the __Active__ flag on the City   // $city->isActive(); @done (20-01-04 00:53)
+         This will make the city "accessible" from the public view.
+       ✔ Create the first ten (10) Seasons @done (20-01-04 00:53)
+         This will give us a selectable range of seasons to use when creating Discounts
+         -> Since we are creating the first 10 seasons, we will set the city's first 15 discounts 
+         Code:
+           $city = City::find($id); // Get the city we are activating
+           $seasons = Season::all(); // Get all of the seasons (simple 1-10)
+           $counter = 0; // Set the $counter to zero
+
+           // Loop through each of the 1-10 seasons and create related city_season records
+           foreach( $seasons as $seasons ) {
+             // if it's **not** the first season
+             if( $counter != 0 ) {
+               // add years equal to $counter to today's date
+               $beginsOn = date( "y-m-d h:i:s", mktime(23, 59, 59, date("m"), date("d")-1, date("Y")+$counter) );
+               // add years equal to $counter to today's date, plus one
+               $endsOn = date( "y-m-d h:i:s", mktime(23, 59, 59, date("m"), date("d")-1, date("Y")+$counter+1) );
+             } else {
+               // if it's the first season
+               // set $beginsOn to now and $endsOn a year from now
+               $beginsOn = now();
+               $endsOn = date( "y-m-d h:i:s", mktime(23, 59, 59, date("m"), date("d")-1, date("Y")+1) );
+
+               // Since this is the first season, we need to
+               // set the expiration date of all current active discounts for this city
+               foreach( $city->discount()->where('is_active', true) as $discount ) {
+                 $discount->expires_on = $endsOn;
+                 $discount->save();
+               }
+             }           
+             $city->season()->attach([
+               'city_id' => $city->id,
+               'season_num' => $season->season_num,
+               'begins_on' => $beginsOn,
+               'ends_on' => $endsOn
+             ]);
+             $counter++;
+           }
+       ✔ Set the expires_on timestamp on active discounts @done (20-01-04 00:53)
+         This is done when creating the seasons, while creating the first season.
+    ☐ 
+    CRON JOB:
+       ☐ Create CRON job to run script daily  
+         Script will check all active *city_seasons* to see if expires_on = today. 
+         If it does, then ¬
+           ☐ __soft delete__ the ended season record | $citySeason->deleted_at = now(); $citySeason->save();
+           ☐ regenerate city's "Club Card" | $city::generateClubCard();
+
+    Generate Club Card:
+      Static Function on City model
+        __private static function generateClubCard()__{
+            $card = new ClubCard($this);
+            $card->createCardPdf();
+        }
+      Service to generate PDF?
+        // finds city->discounts();
+        // Checks $city->discounts()->count() = 15;
+        // creates PDF of card view
+        // attaches it to $city->media('club-card');  // set collection to single() - new will override old.
+
+        public $city;
+
+        public function __construct(City $city) {
+          $this->city = $city;
+        }
+
+        public function createCardPdf() {
+          $discounts = $this->city->discounts()->where('expires_on','>=',now());
+          if( $discounts->count() != 15 ) {
+            throw new Exception('You don\'t have enough discounts added');
+          }
+          // Need to define views to PDF
+          // Will need further info from PDF library to complete
+        }
+
+
+
+
+
+
+  ☐ Put expiration date on public city page
+  ☐ Find PDF library to use
+  ☐ Create front view of Card

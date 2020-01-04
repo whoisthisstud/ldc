@@ -100,7 +100,7 @@ color: #ffffff;
   color: #ffffff !important;
 }
 
-label {
+label:not(.btn) {
   font-size: 70%;
   opacity: .6;
 }
@@ -814,6 +814,9 @@ body.nav-open .open-nav-cover {
   color: #fff;
   background-color: #227dc7;
   border-color: #2176bd;
+}
+
+.btn-primary.btn-badge:not(label):(disabled):hover {
   box-shadow: 0 10px 20px rgba(33, 121, 193, 0.19), 0 6px 6px rgba(33, 121, 193, 0.23);
 }
 
@@ -835,6 +838,18 @@ body.nav-open .open-nav-cover {
   box-shadow: none;
 }
 
+.btn-info.btn-badge {
+  color: #3e9be5;
+  background-color: #d4e9f9;
+  border-color: #cbe4f8;
+}
+
+.btn-info.btn-badge:hover:not(:disabled):not(.active) {
+  color: #fff;
+  background-color: #6cb2eb;
+  border-color: #6cb2eb;
+}
+
 .btn-danger.btn-badge {
   color: #e3342f;
   background-color: #fde7e6;
@@ -845,6 +860,9 @@ body.nav-open .open-nav-cover {
   color: #fff;
   background-color: #d0211c;
   border-color: #c51f1a;
+}
+
+.btn-danger.btn-badge:hover:not(:disabled):not(label) {
   box-shadow: 0 10px 20px rgba(227, 55, 50, 0.19), 0 6px 6px rgba(227, 55, 50, 0.23);
 }
 
@@ -873,6 +891,79 @@ body.nav-open .open-nav-cover {
 .settings-btn:hover {
 
 }
+
+
+
+/* Radio Block
+-------------------------------------------------- */
+
+.radio-block {
+  width: 100%;
+  text-align: center;
+}
+.radio-block input[type="radio"] {
+  display: none;
+}
+.radio-block label {
+  opacity: 1;
+}
+.radio-block label:not(:last-of-type) {
+  margin-right: 20px;
+}
+.radio-block input[type="radio"]:checked + .radio-block-box {
+  background-color: #3490dc;
+}
+.radio-block input[type="radio"]:checked + .radio-block-box span {
+  color: #ffffff;
+  transform: translateY(20px);
+  font-weight: 600;
+}
+.radio-block input[type="radio"]:checked + .radio-block-box span:before {
+  transform: translateY(0px);
+  opacity: 1;
+}
+.radio-block .radio-block-box {
+  width: 220px;
+  height: 100px;
+  background-color: #e7edf1;
+  transition: all 250ms ease;
+  will-change: transition;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+.radio-block .radio-block-box:active {
+  transform: translateY(10px);
+}
+.radio-block .radio-block-box span {
+  position: absolute;
+  transform: translate(0, 5px);
+  left: 0;
+  right: 0;
+  transition: all 300ms ease;
+  font-size: 1.65em;
+  user-select: none;
+  color: #77b5e8;
+}
+.radio-block .radio-block-box span:before {
+  font-size: 1.2em;
+  font-family: FontAwesome;
+  display: block;
+  transform: translateY(-80px);
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+  font-weight: normal;
+  color: #d9e2e9;
+}
+.radio-block .link span:before {
+  content: '\f0c1';  /*Link Icon*/
+}
+.radio-block .remove span:before {
+  content: '\f127';  /*Unlink Icon*/
+}
+
+
 
 
 /* Business Details
@@ -938,6 +1029,10 @@ body.nav-open .open-nav-cover {
   color: #0c732d;
 }
 
+
+/* Discount Preview
+-------------------------------------------------- */
+
 .discount-preview-wrapper {
   display: block;
   min-height: 600px;
@@ -976,7 +1071,7 @@ body.nav-open .open-nav-cover {
 }
 
 .discount-preview-window .discount-title-preview {
-  margin: 0.75rem 3rem .5rem;
+  margin: 1rem 3rem;
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1;
@@ -1036,6 +1131,19 @@ body.nav-open .open-nav-cover {
 
 .discount-preview-window .business-logo-wrapper .business-logo img {
   max-height: 100px;
+  max-width: 90%;
+}
+
+.discount-preview-window .business-logo-wrapper .business-logo span.business-logo-name {
+  display: block;
+  font-size: 3rem;
+  line-height: 2.75rem;
+  padding-bottom: 1rem;
+}
+
+#disc_cta {
+  background: #e9ebec;
+  border-radius: 5px;
 }
 
 

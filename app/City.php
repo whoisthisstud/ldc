@@ -4,6 +4,7 @@ namespace App;
 
 use App\User;
 use App\State;
+use App\Season;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -14,6 +15,7 @@ class City extends Model implements HasMedia
     use HasMediaTrait;
 
     protected $guarded = [];
+    
 
     public function state()
     {
@@ -23,6 +25,18 @@ class City extends Model implements HasMedia
     public function discounts()
     {
         return $this->hasMany(Discount::class);
+    }
+
+    public function newDiscounts() {
+        return $this->discounts()
+            ->where('begins_at','=', null)
+            ->where('expires_at','=',null);
+    }
+
+    public function availableDiscounts() {
+        return $this->discounts()
+            ->where('begins_at','<=',now())
+            ->where('expires_at','>=', now());
     }
 
     public function businesses()
@@ -37,6 +51,16 @@ class City extends Model implements HasMedia
         );
     }
 
+    public function seasons()
+    {
+        return $this->belongsToMany(Season::class)
+            ->withPivot(
+                'begins_on',
+                'ends_on',
+                'filled'
+            );
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class);
@@ -48,6 +72,11 @@ class City extends Model implements HasMedia
         $this->addMediaCollection('city-images')
             ->singleFile()
             ->useFallbackUrl('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg')
+            ->useDisk('cityImages');
+
+        // Define Collection and limit to a single image
+        $this->addMediaCollection('city-cards')
+            ->singleFile()
             ->useDisk('cityImages');
 
         // Add a thumbnail conversion

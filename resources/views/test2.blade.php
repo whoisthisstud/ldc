@@ -49,7 +49,7 @@
                                             * Production code should include checking 
                                             * if 15 discounts exists or not
                                         -->
-                                        @foreach( $city->discounts as $discount )
+                                        @foreach( $city->availableDiscounts as $discount )
                                             <div class="discount-block">
                                                 <div class="discount-logo">
                                                     @if( !empty($discount->business->logo) )
@@ -67,7 +67,7 @@
                                         @endforeach
 
                                         <!-- This is for testing purposes -->
-                                        {{-- @foreach( $city->discounts as $discount )
+                                        @foreach( $city->availableDiscounts as $discount )
                                             @if( ! $loop->last )
                                                 <div class="discount-block">
                                                     <div class="discount-logo">
@@ -84,7 +84,7 @@
                                                     </div>
                                                 </div>   
                                             @endif                                      
-                                        @endforeach --}}
+                                        @endforeach
 
                                     </div>
                                 </div>

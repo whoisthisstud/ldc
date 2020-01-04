@@ -80,6 +80,21 @@ class BusinessController extends Controller
     }
 
     /**
+     * Return the specified resource.
+     *
+     * @param  \App\Business  $business
+     * @return \Illuminate\Http\Response
+     */
+    public function getLogo(Business $business)
+    {
+        if($business->logo == null) {
+            return response()->json(['success'=>'Logo not found', 'logo' => null, 'name' => $business->name]);
+        }
+
+        return response()->json(['success'=>'Logo found', 'logo' => $business->logo, 'name' => null]);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Business  $business

@@ -1,5 +1,7 @@
 <?php
 
+use App\City;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +36,10 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/dashboard', 'HomeController@index')->name('home');
     Route::post('/store-media', 'StoreMediaController')->name('store.media');
     Route::get('/test', 'TestController')->name('test');
+    // Route::get('/test2', function() {
+    //     $city = City::find(1);
+    //     return view('test2', compact('city'));
+    // })->name('test2');
 
     Route::get('/states', 'StateController@index')->name('states.index');
     Route::get('/states/add', 'StateController@create')->name('states.create');
@@ -53,13 +59,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/businesses/add', 'BusinessController@create')->name('businesses.create');
     Route::post('/businesses/store', 'BusinessController@store')->name('businesses.store');
     Route::get('/businesses/{business}', 'BusinessController@show')->name('view.business');
+    Route::get('/businesses/{business}/get-logo', 'BusinessController@getLogo')->name('business.logo');
 
     Route::get('/discounts', 'DiscountController@index')->name('discounts.index');
     Route::get('/discounts/add', 'DiscountController@create')->name('discounts.create');
     Route::post('/discounts/store', 'DiscountController@store')->name('discounts.store');
     Route::get('/discounts/{discount}', 'DiscountController@show')->name('view.discount');
 
-    Route::post('/business/{business}/add-discount', 'DiscountController@createBusinessDiscount')
+    Route::get('/business/{business}/add-discount', 'DiscountController@createBusinessDiscount')
         ->name('business.discount');
 
     Route::get('/faqs', 'FaqController@index')->name('faqs.index');
