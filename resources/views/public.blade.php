@@ -69,9 +69,9 @@
 									<div class="center-within">
 										<h1 class="city-name text-center">{{ $city->name }}</h1>
 										<p class="city-state-name text-center">{{ $city->state->name }}</p>
-										<p class="city-discount-count text-center m-0">
+										<!-- <p class="city-discount-count text-center m-0">
 											<small class="text-light">{{ $city->discounts_count }} Discounts</small>
-										</p>
+										</p> -->
 									</div>
 								</div>
 							</a>
@@ -85,7 +85,7 @@
 
 				@if( $cities->count() > 9 )
 					<div class="col-12 mt-3 text-center">
-						<a class="btn btn-lg btn-primary text-light text-center">View More Cities</a>
+						<a href="#" class="btn btn-lg btn-primary text-light text-center">View More Cities</a>
 					</div>
 				@endif
 				@if( $cities->count() > 0 && $cities->count() < 10 )

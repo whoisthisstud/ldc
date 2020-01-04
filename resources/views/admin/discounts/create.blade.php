@@ -362,7 +362,7 @@
 
         // Toggle the Call to Action fields
         $('#linked').click( function() {
-            var btn = '<div class="call_to_action"><a href="#" class="btn btn-lg btn-block btn-primary btn-badge cta-link"><span class="discount-call_to_action-preview">Order Online Now</span></a></div>'
+            var btn = '<div class="call_to_action"><a href="#" target="_blank" class="btn btn-lg btn-block btn-primary btn-badge cta-link"><span class="discount-call_to_action-preview">Order Online Now</span></a></div>'
             $('#disc_cta').removeClass('d-none');
             $('.cta-wrapper').html(btn);
         });

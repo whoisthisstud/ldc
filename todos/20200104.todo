@@ -1,0 +1,6 @@
+Homepage:
+  Show all cities
+    If active:
+      Show city page with busineses logos & registration link
+    If not active:
+      Show "coming soon" page

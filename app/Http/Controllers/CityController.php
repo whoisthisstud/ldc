@@ -98,33 +98,33 @@ class CityController extends Controller
                 return redirect()->route('view.city', [ $city->id ]);
             }
 
-            $newCitySeasons = array();
+            // $newCitySeasons = array();
 
-            foreach( $seasons as $season ) {
-                if( $counter != 0 ) {
-                    $filled = false;
-                } else {
-                    $filled = true;
-                }
-                // add years equal to $counter to today's date
-                $beginsAt = date( "y-m-d h:i:s", mktime(0, 0, 0, date("m"), date("d"), date("Y")+$counter) );
-                // add years equal to $counter to today's date, plus one
-                $expiresAt = date( "y-m-d h:i:s", mktime(23, 59, 59, date("m"), date("d")-1, date("Y")+$counter+1) );
+            // foreach( $seasons as $season ) {
+            //     if( $counter != 0 ) {
+            //         $filled = false;
+            //     } else {
+            //         $filled = true;
+            //     }
+            //     // add years equal to $counter to today's date
+            //     $beginsAt = date( "y-m-d h:i:s", mktime(0, 0, 0, date("m"), date("d"), date("Y")+$counter) );
+            //     // add years equal to $counter to today's date, plus one
+            //     $expiresAt = date( "y-m-d h:i:s", mktime(23, 59, 59, date("m"), date("d")-1, date("Y")+$counter+1) );
 
-                $newCitySeasons[$season->season_num] = [
-                    'begins_on' => $beginsAt,
-                    'ends_on' => $expiresAt,
-                    'filled' => $filled
-                ];
+            //     $newCitySeasons[$season->season_num] = [
+            //         'begins_on' => $beginsAt,
+            //         'ends_on' => $expiresAt,
+            //         'filled' => $filled
+            //     ];
 
-                $counter++;
-            }
+            //     $counter++;
+            // }
 
-            $city->seasons()->sync($newCitySeasons);
+            // $city->seasons()->sync($newCitySeasons);
 
         } else { // City Seasons are being created the first time
             if( $city->newDiscounts->count() != 15 ) {
-                notify()->warning($city->name . ', ' . $city->state->abbreviation . ' does not have 15 available discounts available to activate city', 'Not Enough Discounts');
+                notify()->error($city->name . ', ' . $city->state->abbreviation . ' does not have 15 available discounts to activate city', 'Not Enough Discounts');
                 return redirect()->route('view.city', [ $city->id ]);
             }
             //Loop through each of the seasons and create related city_season records
@@ -139,7 +139,8 @@ class CityController extends Controller
                 } else {
                     // if it's the first season
                     // set $beginsAt to now and $expiresAt a year from now
-                    $beginsAt = now();
+                    $beginsAt = now();// Replace with $request->activation_date;
+
                     $expiresAt = date( "y-m-d h:i:s", mktime(23, 59, 59, date("m"), date("d")-1, date("Y")+1) );
                     $filled = true;
 

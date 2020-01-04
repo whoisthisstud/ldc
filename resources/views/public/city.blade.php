@@ -1,6 +1,8 @@
 @extends('layouts.public')
 
-@section('page-title', '{{ $city->name }}')
+@section('page-title')
+{{ $city->name }}, {{ $city->state->abbreviation }}
+@endsection
 
 @section('content')
     <div class="container">

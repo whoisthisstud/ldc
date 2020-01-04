@@ -13,7 +13,7 @@ class PagesController extends Controller
     public function index()
     {
         $cities = City::withCount('discounts')
-            ->where('is_active', true)
+            // ->where('is_active', true)
             ->orderBy('discounts_count', 'desc')
             ->take(9)
             ->get();
