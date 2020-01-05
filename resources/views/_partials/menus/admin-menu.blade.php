@@ -1,6 +1,6 @@
 <nav id="admin-header" class="navbar navbar-expand-md navbar-dark shadow-sm sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('home') }}">
+        <a class="navbar-brand" href="{{ Auth() && Auth()->user() ? route('home') : '/' }}">
             @include('_partials.icons.ldc_card_light')
             <span class="pt-1"><strong>{{ config('app.name', 'Local Discount Club') }}</strong></span>
         </a>
@@ -18,9 +18,9 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                    </li>
+                    </li> -->
                     @if (Route::has('register'))
                         <!-- <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>

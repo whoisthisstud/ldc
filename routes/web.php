@@ -14,6 +14,7 @@ use App\City;
 */
 
 Route::get('/', 'PagesController@index')->name('public.index');
+
 Route::get('/privacy-policy', function() {
     return view('public.privacy');
 })->name('public.privacy');

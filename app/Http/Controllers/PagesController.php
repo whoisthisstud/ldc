@@ -7,20 +7,26 @@ use App\City;
 use App\State;
 use App\Discount;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class PagesController extends Controller
 {
-    public function index()
+
+    public function __construct(Request $request) 
     {
+        $this->middleware('auth');
+    }
+
+    public function index(Request $request)
+    {
+
         $cities = City::withCount('discounts')
             // ->where('is_active', true)
             ->orderBy('discounts_count', 'desc')
             ->take(9)
             ->get();
 
-            // dd($cities);
-
-        return view('public', compact('cities'));
+        return view('public', compact('cities'));// ->cookie($cookie);
     }
 
     public function city($state, $city)
