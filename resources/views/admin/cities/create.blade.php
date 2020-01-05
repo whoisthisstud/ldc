@@ -80,7 +80,7 @@
                 </div>
             @endif
 
-            <div class="col-md-7 col-sm-12 mr-3">
+            <div class="col-md-6 col-sm-12 mr-3">
                 <section class="card shadow-5">
                     <div class="card-body row">
                         <div class="col-md-9 mb-3">
