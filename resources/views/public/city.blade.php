@@ -105,6 +105,7 @@
         @include('_partials.buttons.signup-button-lg')
     @endif
 
+    @if( $faqs->count() > 0 )
     <div id="city-faq" class="col-12 py-5 text-center">
         <h3 class="text-center pb-3 mb-3 border-bottom d-inline-block">Frequently Asked Questions</h3>
         <div class="faq">
@@ -120,6 +121,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     @if( $city->is_active == true )
         @include('_partials.buttons.signup-button-lg')
