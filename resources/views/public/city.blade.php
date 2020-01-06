@@ -56,17 +56,11 @@
         </div>
     @else
         <div class="container pt-5">
-            <!-- <div class="col-12 text-center">
-                <div class="d-block">
-                    <p class="section-title">{{ $city->name }}, <a href="#" class="section-title-state-link">{{ $city->state->abbreviation }}</a></p>
-                </div>
-            </div> -->
-
             <div class="row pb-5">
+
                 <div class="col-12 pb-3">
                     <h3 class="text-center">Businesses w/ Exclusive Discounts in {{ $city->name }}</h3>
                 </div>
-
 
                 @forelse($city->discounts as $discount)
                     <div class="col-12 col-sm-4 col-md-4 mb-3 card-hover"><!-- col-lg-3  -->
