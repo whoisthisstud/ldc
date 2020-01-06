@@ -16,6 +16,7 @@
         "laravel/telescope": "^2.1",
         "laravel/tinker": "^2.0",
         "spatie/laravel-medialibrary": "^7.0.0",
+        "spatie/laravel-newsletter": "^4.7",
         "yoeunes/notify": "^1.0"
     },
     "require-dev": {

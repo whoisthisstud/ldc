@@ -41,13 +41,12 @@
                     <div class="jumbotron notify-jumbotron bg-primary text-light shadow">
                         <h5>Notify Me!</h5>
                         <p class="">We promise not to spam your email.</p>
-                        <form id="cityNotifyForm" action="" method="POST">
-                            <input hidden="" name="city_id" value="{{ $city->id }}">
-                            <!-- <input type="email" required="" class="form-control" name="email"> -->
+                        <form id="cityNotifyForm" action="{{ route('mc.notify.city', ['state' => $city->state->id, $city ]) }}" method="POST">
+                            @csrf
                             <div class="input-group mb-1">
                                 <input type="email" name="email" required="" class="form-control" placeholder="you@youremail.com" aria-label="Email Address" aria-describedby="submitNotifyForm">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary btn-badge" type="button" id="submitNotifyForm">Notify Me!</button>
+                                    <button class="btn btn-primary btn-badge" type="submit" id="submitNotifyForm">Notify Me!</button>
                                 </div>
                             </div>
                         </form>

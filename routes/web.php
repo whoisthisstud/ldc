@@ -79,6 +79,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 
 Route::get('/club/{state}/{city}', 'PagesController@city')->name('public.city');
+Route::post('/club/{state}/{city}/city-notify-request', 'MailchimpNotifyCityController')->name('mc.notify.city');
 Route::get('/club/{state}/{city}/request-card', 'PagesController@signup')->name('public.signup');
 Route::post('/club/{state}/{city}/register', 'ClubSignupController@signupUser')->name('signup.user');
 Route::get('/club/{state}/{city}/thank-you', 'ClubSignupController@thanks')->name('signup.complete');
