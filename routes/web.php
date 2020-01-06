@@ -83,3 +83,11 @@ Route::get('/club/{state}/{city}/request-card', 'PagesController@signup')->name(
 Route::post('/club/{state}/{city}/register', 'ClubSignupController@signupUser')->name('signup.user');
 Route::get('/club/{state}/{city}/thank-you', 'ClubSignupController@thanks')->name('signup.complete');
 Route::get('/club/{state}/{city}/{business}/{discount}', 'PagesController@discount')->name('public.discount');
+Route::get('/clubs/all-cities', 'PagesController@allCities')->name('public.cities.list');
+Route::get('/states/{state}', 'PagesController@state')->name('public.state');
+
+
+
+
+
+

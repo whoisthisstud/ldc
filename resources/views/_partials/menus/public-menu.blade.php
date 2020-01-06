@@ -66,11 +66,11 @@
 		</div>
 	</div>
 
-	<div class="navbar navbar-dark bg-dark {{ Route::is('public.index') ? 'navbar-transparent' : '' }}">
+	<div class="navbar navbar-dark bg-dark {{ Route::is('public.index') || Route::is('public.city') ? 'navbar-transparent' : '' }}">
 		<div class="container d-flex justify-content-between">
 			<a href="/" class="navbar-brand d-flex align-items-center text-light">
 				{{-- @include('_partials.icons.logo2') --}}
-				@include('_partials.icons.ldc_card_dark')
+				@include('_partials.icons.ldc_card_light')
 				<strong>{{ config('app.name', 'Local Discount Club') }}</strong>
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">

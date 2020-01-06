@@ -13,15 +13,19 @@
 			<div class="carousel-item active" style="background-image: url(https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80); background-size: cover; background-position: center;">
 				<div class="container">
 					<div class="row justify-content-between">
-						<div class="col-12 col-md-5 z-10 animated slideInUp">
+						<div class="col-12 col-sm-5 col-md-5 z-10 animated slideInUp">
 							<div class="carousel-graphic-wrapper large">
 								@include('_partials.icons.ldc_card_dark')
 							</div>
 						</div>
-						<div class="col-12 col-md-6 z-10 text-xs-center text-right">
+						<div class="col-12 col-sm-7 col-md-6 z-10 text-xs-center text-right">
 							<p class="display-4"><strong>Exclusive Local Discounts</strong></p>
-							<p class="lead">Members receive exclusive discounts to local establishments. These discounts are not available anywhere else. <br><strong class="text-uppercase">Membership is free!</strong> </p>
-							<a class="btn btn-lg btn-primary" href="#popular" role="button">Pick your city</a>
+							<p class="lead">
+								Members enjoy unique discounts to establishments in their local areas. These discounts are not available anywhere else.
+								<br>
+								<strong class="text-uppercase">Membership is free!</strong>
+							</p>
+							<a class="btn btn-primary" href="#popular" role="button">Pick your city</a>
 							<!-- <a class="btn btn-lg btn-primary" href="#" role="button">Sign me up for this free membership!</a> -->
 						</div>
 					</div>
@@ -52,7 +56,7 @@
 		</div>
 	</div>
 
-	<div id="popular" class="album py-5">
+	<div id="popular" class="album pt-5">
 		<div class="container">
 			<div class="row justify-content-center pb-5">
 				<div class="col-12 text-center">
@@ -61,11 +65,11 @@
 
 
 				@forelse($cities as $city)
-					<div class="col-12 col-sm-6 col-md-4">
+					<div class="col-12 col-sm-4 col-md-4">
 						<div class="card popular-city-card mb-4 pb-4 p-2 shadow-sm" style="">
 							<img class="card-bg-img" src="{{ !empty($city->media->first()) ? Storage::url($city->media->first()->getUrl('thumb')) : Storage::url('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg') }}">
 							<a href="{{ route('public.city', [ 'state' => $city->state->name, 'city' => $city->name ]) }}">
-								<div class="card-body" style="min-height: 200px;">
+								<div class="card-body">
 									<div class="center-within">
 										<h1 class="city-name text-center">{{ $city->name }}</h1>
 										<p class="city-state-name text-center">{{ $city->state->name }}</p>
@@ -83,14 +87,14 @@
 	                </div>
 				@endforelse
 
-				@if( $cities->count() > 9 )
-					<div class="col-12 mt-3 text-center">
-						<a href="#" class="btn btn-lg btn-primary text-light text-center">View More Cities</a>
+				@if( $cities->count() > 8 )
+					<div class="col-12 mt-3 text-center all-cities-btn">
+						<a href="{{ route('public.cities.list') }}" class="btn btn-lg btn-primary text-light text-center">View All Cities</a>
 					</div>
 				@endif
-				@if( $cities->count() > 0 && $cities->count() < 10 )
+				@if( $cities->count() > 0 && $cities->count() < 8 )
 					<div class="col-12 mt-3 text-center">
-						<h3>More cities coming through 2020.</h3>
+						<h3>More cities coming throughout 2020.</h3>
 					</div>
 				@endif
 

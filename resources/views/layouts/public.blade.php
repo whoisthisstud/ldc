@@ -27,7 +27,7 @@
 
         @include('_partials.menus.public-menu')
 
-        <main class="{{ Route::is('public.index') ? '' : 'menu-padding' }} hidden-footer" role="main">
+        <main class="{{ Route::is('public.index') || Route::is('public.city') ? '' : 'menu-padding' }} hidden-footer" role="main">
 
             @yield('content')
 

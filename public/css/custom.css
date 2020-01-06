@@ -21,7 +21,8 @@ main {
 }
 
 main.hidden-footer {
-  margin-bottom: 360px;
+  /*margin-bottom: 360px;*/
+  margin-bottom: 55px;
 }
 
 a,
@@ -50,9 +51,10 @@ a,
   top: 0;
   z-index: -1;
   height: 100%;
-  width: auto;
+  /*width: auto;*/
+  width: 100%;
   border-radius: 5px;
-  transform: scale(1) rotate(0);
+  transform: scale(1.1) rotate(0);
   transition: all .25s ease-out;
 }
 
@@ -66,13 +68,17 @@ color: #ffffff;
 }
 
 #popular .card.popular-city-card:hover img.card-bg-img {
-  transform: scale(1.2) rotate(-5deg);
+  transform: scale(1.25) rotate(-5deg);
   transition: all .25s ease-in;
 }
 
 #popular .card.popular-city-card:hover .card-body {
   color: #87beea;
 }
+
+.popular-city-card .card-body {
+    min-height: 200px;
+  }
 
 #popular .city-state-name {
   font-size: .9rem;
@@ -81,6 +87,7 @@ color: #ffffff;
   text-transform: uppercase;
   letter-spacing: .5px;
   color: #fff;
+  margin-bottom: 0;
 }
 
 .dropdown-item:hover,
@@ -126,8 +133,9 @@ label:not(.btn) {
 }
 
 footer {
-  padding-top: 5rem;
-  padding-bottom: 3rem;
+  /*padding-top: 5rem;
+  padding-bottom: 3rem;*/
+  padding: 1rem 0;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -136,7 +144,8 @@ footer {
 }
 
 footer .container {
-  height: calc(300px - 6rem);
+  /*height: calc(300px - 6rem);*/
+  height: auto;
 }
 
 .footer-logo {
@@ -254,6 +263,30 @@ body.nav-open .open-nav-cover {
   transform: translate(-50%,-50%);
 }
 
+.coming-soon-text-wrapper {
+  border-left: 4px solid #3490dc;
+  padding-left: 1rem;
+  margin: 2rem auto;
+  max-width:800px;
+}
+.coming-soon-text-wrapper p:first-of-type {
+  font-size: 1.125rem;
+  font-weight: 400;
+  margin-bottom: .25rem;
+}
+.coming-soon-text-wrapper p {
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.notify-jumbotron {
+  padding: 2rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+
+
 /* DROPZONE
 -------------------------------------------------- */
 .dropzone {
@@ -266,6 +299,70 @@ body.nav-open .open-nav-cover {
   text-align: center;
   margin: 2.85em 0;
 }
+
+
+/* DISCOUNT CARD
+-------------------------------------------------- */
+#stateBlock {
+
+}
+
+#stateBlock ul.city-list {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#stateBlock ul.city-list .wrapper {
+  border-radius: 5px;
+}
+
+#stateBlock ul.city-list li {
+  list-style: none;
+}
+
+#stateBlock ul.city-list li a {
+  background: transparent;
+  padding: 0.35rem 1rem;
+  border: none;
+  border-radius: 5px;
+  position: relative;
+  display: block;
+  width: 130%;
+}
+
+#stateBlock ul.city-list li a:hover {
+  text-decoration: none;
+  background: #e6e9ec;
+}
+
+#stateBlock ul.city-list a.city-link .name {
+  display: inline-block;
+  position: relative;
+  /*transform: translateX(-25px);*/
+  transition: all .25s ease-out;
+}
+
+/*#stateBlock ul.city-list a.city-link:before {
+  display: inline-block;
+  font-size: .85rem;
+  font-family: FontAwesome;
+  content: '\f0a9';  
+  transform: translateX(-30px);
+  transition: all .125s ease-out;
+}
+
+#stateBlock ul.city-list a.city-link:hover .name {
+  transform: translateX(7px);
+  transition: all .25s ease-out;
+}
+
+#stateBlock ul.city-list a.city-link:hover:before {
+  transform: translateX(0);
+  transition: all .125s ease-in;
+  animation: rollIn;
+  animation-duration: infinite;
+}*/
 
 
 
@@ -445,6 +542,10 @@ body.nav-open .open-nav-cover {
   color: #ffffff;
 }
 
+#cityCarousel .carousel-item > .container {
+  padding: 0.75rem;
+}
+
 .carousel-item .carouse-graphic-wrapper.large {
   border-radius: 1.5rem;
   box-shadow: 0 0px 24px -6px rgba(0,0,0,.6);
@@ -465,6 +566,10 @@ body.nav-open .open-nav-cover {
   z-index: 10;
   left: unset;
   right: 9%;
+}
+
+.carousel-item p.city-header-text {
+  font-size: 3rem;
 }
 
 .carousel-item p.display-4
@@ -488,6 +593,12 @@ body.nav-open .open-nav-cover {
   height: 40vh;
   min-height: 450px;
 }
+
+#cityCarousel .carousel-item {
+  height: 224px;
+  min-height: 224px;
+}
+
 .carousel-item > img {
   position: absolute;
   top: 0;
@@ -1210,6 +1321,96 @@ body.nav-open .open-nav-cover {
   }
 }
 
+@media (min-width: 767px) and (max-width: 1024px) {
+  main > .container {
+    max-width: 88%;
+  }
+  .carousel-item {
+    min-height: 412px;
+  }
+  .carousel-item > .container {
+    padding: 2rem .5rem;
+  }
+  .carousel-item p.display-4 {
+    font-size: 2.5rem;
+    font-weight: 400;
+  }
+  .carousel-item p.lead {
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+  .carousel-item p.lead strong {
+    display: block;
+    padding: 1rem 0;
+    font-weight: 600;
+  }
+  #cityCarousel .city-header-text {
+    padding-top: .5rem;
+  }
+  #popular > .container {
+    max-width: 88%;
+  }
+  #popular .card.popular-city-card .card-body {
+    min-height: 100px;
+  }
+  .popular-city-card h1.city-name {
+    font-size: 1.75rem;
+  }
+  .coming-soon-container {
+    padding-top: 2rem;
+  }
+  .coming-soon-text-wrapper {
+    margin: 0 auto 2rem;
+  }
+  .notify-jumbotron {
+    padding: 2rem;
+  }
+  #city-faq .faq > .container {
+    max-width: 88%;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 766px) {
+  .carousel-item {
+    height: 35vh;
+    min-height: 400px;
+  }
+  .carousel-item > .container {
+    padding: 2.5rem .5rem;
+  }
+  .carousel-item p.display-4 {
+    font-size: 1.85rem;
+    font-weight: 400;
+  }
+  .carousel-item p.lead {
+    font-size: .85rem;
+    line-height: 1.25rem;
+  }
+  .carousel-item p.lead strong {
+    display: block;
+    padding: 1rem 0;
+    font-weight: 600;
+  }
+  #popular > .container {
+    max-width: 90%;
+  }
+  .popular-city-card .card-body {
+    height: 100px;
+    min-height: 100px;
+    /*min-height: 200px;*/
+  }
+  .popular-city-card .card-body h1.city-name {
+    font-size: 1.5rem;
+  }
+  .business-logo {
+    height: 60px;
+  }
+  .business-logo h3 {
+    font-size: 1rem;
+    top: 22%;
+  }
+}
+
 @media (max-width: 576px) {
   .navbar > .container {
     padding-left: 0;
@@ -1226,18 +1427,83 @@ body.nav-open .open-nav-cover {
     min-height: 100vh;
     height: auto;
   }
+  #cityCarousel .carousel-item {
+    height: auto;
+    min-height: 185px;
+  }
+  .carousel-graphic-wrapper {
+    margin-bottom: 1rem;
+  }
+  .carousel-item a.btn {
+    display: block;
+  }
+  .carousel-item .display-4 {
+  }
+  .carousel-item p.city-header-text {
+     font-size: 2rem;
+     padding-top: 1rem;
+  }
   .carousel-item p.display-4 {
-    font-size: 2rem;
+    font-size: 2.125rem;
+    font-weight: 500;
+  }
+  .carousel-item p.lead {
+    font-size: 1rem;
+    line-height: 1.25rem;
+  }
+  .carousel-item p.lead br {
+    padding-top: 15px;
   }
   .carousel-item p.display-4,
   .carousel-item p.lead {
     text-align: center;
+    text-shadow: 0 0 24px rgba(0,0,0,1);
+  }
+  .carousel-item p.lead strong {
+    display: block;
+    padding: 1rem;
+    font-weight: 600;
+  }
+  #popular .all-cities-btn a.btn {
+    display: block;
   }
   .signup-container {
     padding-top: 1rem;
   }
+  .coming-soon-container {
+    padding: 1.5rem;
+  }
+  .coming-soon-text-wrapper {
+    border-left: 4px solid #3490dc;
+    padding-left: 1rem;
+    margin: .75rem 0 3rem;
+  }
+  .coming-soon-text-wrapper p {
+    font-size: 1rem;
+    font-style: italic;
+  }
+  .coming-soon-text-wrapper p:first-of-type {
+    font-size: 1.125rem;
+    font-weight: 400;
+    margin-bottom: .25rem;
+  }
+  .notify-jumbotron {
+    padding: 1rem;
+  }
+  .notify-jumbotron h5 {
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .notify-jumbotron p {
+    font-style: italic;
+    font-weight: 200;
+  }
   .city-card-tile {
     margin: 0;
+  }
+  #city-faq h3 {
+    font-size: 95%;
+    text-transform: uppercase;
   }
   .pagination {
     padding-left: .75rem;
@@ -1257,12 +1523,46 @@ body.nav-open .open-nav-cover {
   .pagination .page-item.page-nav .page-link {
     padding: 0 .75rem .3rem;
   }
+  .more-coming {
+    padding-top: 2rem;
+  }
+  .more-coming h3 {
+    padding-bottom: 2rem !important;
+  }
+  .more-coming a.btn {
+    display: block;
+    max-width: 88%;
+    margin: 0 auto;
+  }
   main.hidden-footer {
-    margin-bottom: 100vh;
+    /*margin-bottom: 100vh;*/
+    margin-bottom:15vh;
   }
 
   footer .container {
-    height: calc(100vh - 6rem);
+    /*height: calc(100vh - 6rem);*/
+    height:auto;
   }
 }
 
+@media (min-width: 500px) and (max-width: 520px) {
+  .carousel-item p.display-4 {
+    font-size: 3.75rem;
+    font-weight: 500;
+  }
+  .carousel-item p.lead {
+    font-size: 1.35rem;
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 420px) {
+  .carousel-item p.display-4 {
+    font-size: 3rem;
+    font-weight: 500;
+  }
+  .carousel-item p.lead {
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+}

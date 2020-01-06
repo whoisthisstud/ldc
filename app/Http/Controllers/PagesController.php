@@ -20,13 +20,18 @@ class PagesController extends Controller
     public function index(Request $request)
     {
 
-        $cities = City::withCount('discounts')
+        $cities = City::with('state')
             // ->where('is_active', true)
-            ->orderBy('discounts_count', 'desc')
+            ->orderBy('views', 'desc')
             ->take(9)
             ->get();
 
-        return view('public', compact('cities'));// ->cookie($cookie);
+        return view('public', compact('cities'));
+    }
+
+    public function allCities() {
+        $states = State::with('cities')->get();
+        return view('public.all-cities', compact('states'));
     }
 
     public function city($state, $city)
@@ -38,6 +43,11 @@ class PagesController extends Controller
         $faqs = Faq::where('is_active', true)->orderBy('id','DESC')->get();
 
         return view('public.city', compact('city', 'discounts', 'faqs'));
+    }
+
+    public function state(State $state) 
+    {
+        return view('public.state');
     }
 
     public function discount($state, $city, $business, $discount)
