@@ -1277,6 +1277,31 @@ border-radius: 7px;
   background-position: center;
 }
 
+#cityRequestFormModal .close {
+  color: #ffffff;
+  opacity: .5;
+  transition: all .25s ease-out;
+}
+
+#cityRequestFormModal .close:hover {
+  opacity: 1;
+  transition: all .25s ease-in;
+}
+
+#cityRequestFormModal .request-form-modal-title {
+  padding: .5rem .0125rem;
+  line-height: .8;
+  font-weight: 600;
+  text-shadow: 0px 0 16px #000000;
+}
+
+#cityRequestFormModal .request-form-modal-subtitle {
+  padding: 0 .0125rem;
+/*  line-height: .8;
+  font-weight: 600;
+  text-shadow: 0px 0 16px #000000;*/
+}
+
 
 
 /* RESPONSIVE CSS

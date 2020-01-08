@@ -36,26 +36,7 @@
 
         @include('_partials.footer')
 
-        <div id="cityRequestFormModal" class="modal cityRequestFormModal fade" tabindex="-1" role="dialog" aria-labelledby="cityRequestFormModal" aria-hidden="true">
-              <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="row">
-                        <div class="city-request-bg-img"></div>
-                        <div class="col-12 col-md-6">
-                            <div class="city-request-bg-img-wrapper">
-                            </div>
-
-                        </div>
-
-                        <div class="col-12 col-md-6">
-                            
-                            Form Here
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('_partials.modals.city-request-form-modal')
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 

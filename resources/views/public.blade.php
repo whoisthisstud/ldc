@@ -10,7 +10,7 @@
 			<li data-target="#myCarousel" data-slide-to="2" class=""></li>
 		</ol> -->
 		<div class="carousel-inner">
-			<div class="carousel-item active" style="background-image: url(https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80); background-size: cover; background-position: center;">
+			<div class="carousel-item active" style="background-image: url({{ asset('i/restaurant-bg.jpg') }}); background-size: cover; background-position: center;" alt="Photo by Kenny Luo on Unsplash">
 				<div class="container">
 					<div class="row justify-content-between">
 						<div class="col-12 col-sm-5 col-md-5 z-10 animated slideInUp">
