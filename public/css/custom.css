@@ -304,65 +304,17 @@ body.nav-open .open-nav-cover {
 /* DISCOUNT CARD
 -------------------------------------------------- */
 #stateBlock {
-
+  display:block;
+  position:relative;
+  padding-bottom: 2rem;
 }
 
 #stateBlock ul.city-list {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+  padding: 0 20px;
+  column-count:5; 
+  column-gap:7.5%; 
+  column-width:14%;
 }
-
-#stateBlock ul.city-list .wrapper {
-  border-radius: 5px;
-}
-
-#stateBlock ul.city-list li {
-  list-style: none;
-}
-
-#stateBlock ul.city-list li a {
-  background: transparent;
-  padding: 0.35rem 1rem;
-  border: none;
-  border-radius: 5px;
-  position: relative;
-  display: block;
-  width: 130%;
-}
-
-#stateBlock ul.city-list li a:hover {
-  text-decoration: none;
-  background: #e6e9ec;
-}
-
-#stateBlock ul.city-list a.city-link .name {
-  display: inline-block;
-  position: relative;
-  /*transform: translateX(-25px);*/
-  transition: all .25s ease-out;
-}
-
-/*#stateBlock ul.city-list a.city-link:before {
-  display: inline-block;
-  font-size: .85rem;
-  font-family: FontAwesome;
-  content: '\f0a9';  
-  transform: translateX(-30px);
-  transition: all .125s ease-out;
-}
-
-#stateBlock ul.city-list a.city-link:hover .name {
-  transform: translateX(7px);
-  transition: all .25s ease-out;
-}
-
-#stateBlock ul.city-list a.city-link:hover:before {
-  transform: translateX(0);
-  transition: all .125s ease-in;
-  animation: rollIn;
-  animation-duration: infinite;
-}*/
 
 
 
@@ -1299,6 +1251,34 @@ body.nav-open .open-nav-cover {
 }
 
 
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+#cityRequestFormModal .modal-content {
+overflow: hidden;
+border-radius: 7px;
+}
+
+#cityRequestFormModal .city-request-bg-img-wrapper {
+  display: block;
+  position: relative;
+  min-height: 400px;
+  width: 100%;
+}
+
+#cityRequestFormModal .city-request-bg-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url(/storage//images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg);
+  background-size: cover; 
+  background-position: center;
+}
+
+
+
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 
@@ -1320,6 +1300,14 @@ body.nav-open .open-nav-cover {
     margin-top: 7rem;
   }
 }
+
+/*@media (max-width: 767px) {
+  #stateBlock ul.city-list {
+    padding: 0 20px;
+    column-count:1; 
+    column-width:90%;
+  }
+}*/
 
 @media (min-width: 767px) and (max-width: 1024px) {
   main > .container {
@@ -1409,6 +1397,12 @@ body.nav-open .open-nav-cover {
     font-size: 1rem;
     top: 22%;
   }
+  #stateBlock ul.city-list {
+    padding: 0 20px;
+    column-count:3; 
+    column-gap: 5%;
+    column-width:30%;
+  }
 }
 
 @media (max-width: 576px) {
@@ -1466,6 +1460,12 @@ body.nav-open .open-nav-cover {
   }
   #popular .all-cities-btn a.btn {
     display: block;
+  }
+  #stateBlock ul.city-list {
+    padding: 0 20px;
+    column-count:2;
+    column-gap: 10% 
+    column-width:45%;
   }
   .signup-container {
     padding-top: 1rem;

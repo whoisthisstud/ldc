@@ -103,8 +103,11 @@
                                 <label for="file">City Image</label>
                                 <div class="needsclick dropzone" id="document-dropzone">
                                     <div class="fallback">
-                                        <input name="file" type="file" multiple />
+                                        <input name="file" type="file" />
                                     </div>
+                                </div>
+                                <div class="invalid-feedback" style="{{ $errors->has('file') ? 'display:block;' : '' }}">
+                                    {{ $errors->first('file') }}
                                 </div>
                             </div>
                         </div>

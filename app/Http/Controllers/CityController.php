@@ -24,27 +24,31 @@ class CityController extends Controller
 
     public function store(State $state, StoreCityRequest $request)
     {
+
         $validated = $request->validated();
 
-        // validate the uploaded file
-        // $validation = $request->validate([
-        //     'image' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
-        //     // for multiple file uploads
-        //     // 'image.*' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
-        // ]);
+        if ( $request->image ) {
 
-        $city = City::create($validated + ['state_id' => $state->id]);
+            $file = $request->image[0]; 
+            $extension = substr($file, strpos($file, ".") + 1);    
 
-        // $file      = $validation['image']; // get the validated file
-        // $extension = $file->getClientOriginalExtension();
-        // $filename  = $city->name . '-' . $city->state->abbreviation . '_' . time() . '.' . $extension;
+        }
 
-        $media = $city->addMedia(storage_path('tmp/uploads/' . $request['image.0']))
-            //->usingFileName($filename)
-            ->toMediaCollection('city-images', 'cityImages');
+        $city = City::create( $validated + ['state_id' => $state->id] );
+
+        if ( isset($extension) ) {
+            $filename  = $city->name . '-' . $city->state->abbreviation 
+                . '_' . time() . '.' . $extension;
+
+            $media = $city->addMedia(storage_path('tmp/uploads/' . $file))
+                ->usingFileName($filename)
+                ->toMediaCollection('city-images', 'cityImages');
+        }
 
         notify()->success($city->name . ', ' . $city->state->abbreviation . ' has been added', 'City Added');
+
         return redirect()->route('view.state', [ $state->id ]);
+
     }
 
 
@@ -78,8 +82,6 @@ class CityController extends Controller
 
     public function activate(City $city)
     {
-        $seasons = Season::all();
-        $counter = 0;
 
         if( $city->is_active === true ) {
             notify()->error($city->name . ', ' . $city->state->abbreviation . ' is already active', 'Activation Error');
@@ -98,35 +100,15 @@ class CityController extends Controller
                 return redirect()->route('view.city', [ $city->id ]);
             }
 
-            // $newCitySeasons = array();
-
-            // foreach( $seasons as $season ) {
-            //     if( $counter != 0 ) {
-            //         $filled = false;
-            //     } else {
-            //         $filled = true;
-            //     }
-            //     // add years equal to $counter to today's date
-            //     $beginsAt = date( "y-m-d h:i:s", mktime(0, 0, 0, date("m"), date("d"), date("Y")+$counter) );
-            //     // add years equal to $counter to today's date, plus one
-            //     $expiresAt = date( "y-m-d h:i:s", mktime(23, 59, 59, date("m"), date("d")-1, date("Y")+$counter+1) );
-
-            //     $newCitySeasons[$season->season_num] = [
-            //         'begins_on' => $beginsAt,
-            //         'ends_on' => $expiresAt,
-            //         'filled' => $filled
-            //     ];
-
-            //     $counter++;
-            // }
-
-            // $city->seasons()->sync($newCitySeasons);
-
         } else { // City Seasons are being created the first time
             if( $city->newDiscounts->count() != 15 ) {
                 notify()->error($city->name . ', ' . $city->state->abbreviation . ' does not have 15 available discounts to activate city', 'Not Enough Discounts');
                 return redirect()->route('view.city', [ $city->id ]);
             }
+
+            $seasons = Season::all();
+            $counter = 0;
+
             //Loop through each of the seasons and create related city_season records
             foreach( $seasons as $season ) {
                 // if it's **not** the first season

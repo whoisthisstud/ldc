@@ -14,8 +14,8 @@ class StoreCityRequest extends FormRequest
      */
     public function authorize()
     {
-        // return true;
         return Gate::allows('manage-cities');
+        // return true;
     }
 
     /**
@@ -27,7 +27,9 @@ class StoreCityRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'zip_code' => 'integer|unique:cities,zip_code,'.optional($this->city)->id
+            'zip_code' => 'integer|unique:cities,zip_code,'.optional($this->city)->id,
+            'file' => 'nullable',
+            'file.*' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048'
         ];
     }
 }

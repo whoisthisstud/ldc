@@ -3,7 +3,7 @@
   var uploadedDocumentMap = {}
   Dropzone.options.documentDropzone = {
     url: '{{ route('store.media') }}',
-    maxFilesize: 10, // MB
+    maxFilesize: 2, // MB
     addRemoveLinks: true,
     // previewsContainer: '#review_samples',
     headers: {

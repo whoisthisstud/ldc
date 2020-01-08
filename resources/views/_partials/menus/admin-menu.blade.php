@@ -87,7 +87,8 @@
                                     View Public Website
                                 </a>
 
-                                <a class="dropdown-item user-menu-link" href="#">
+                                @can('access-testing')
+                                <a class="dropdown-item user-menu-link" href="/telescope">
                                     <i class="fas fa-chart-line mr-2"></i>
                                     Reporting
                                 </a>
@@ -95,6 +96,7 @@
                                     <i class="fas fa-clipboard-list mr-2"></i>
                                     Activity Logs
                                 </a>
+                                @endcan
 
                             </div>
 

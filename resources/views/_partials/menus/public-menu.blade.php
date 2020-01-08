@@ -9,13 +9,10 @@
 				<div class="col-sm-12 col-md-3 py-4">
 					<h4 class="text-white">Menu</h4>
 					<ul class="list-unstyled">
-						<li><a href="#" class="text-white">View All Cities</a></li>
-						<li><a href="#" class="text-white">View All Discounts</a></li>
-						<li><a href="#" class="text-white">Contact Us</a></li>
-						<li><a href="#" class="text-white">View All Cities</a></li>
-						<li><a href="#" class="text-white">View All Discounts</a></li>
-						<li><a href="#" class="text-white">Contact Us</a></li>
+						<li><a href="{{ route('public.cities.list') }}" class="text-white">View All Cities</a></li>
 						<li><a href="#" class="text-white">Request A City</a></li>
+						<li><a href="#" class="text-white">Request A Business</a></li>
+						<li><a href="#" class="text-white">Contact Us</a></li>
 					</ul>
 				</div>
 				<div class="col-sm-12 col-md-3 py-4">
