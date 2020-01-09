@@ -33,6 +33,13 @@
 									<li><a href="{{ route('businesses.index') }}">Businesses</a></li>
 									<li><a href="{{ route('discounts.index') }}">Discounts</a></li>
 								@endcan
+
+								@can('access-testing')
+									@if( isset($city) && $city->count() > 0 )
+										<li><a href="{{ route('public.signup', ['state' => $city->state->name, 'city' => $city->name]) }}">Request Club Card</a></li>
+									@endif
+								@endcan
+
 								<div class="dropdown-divider"></div>
 								<li>
 									<!-- Logout button -->

@@ -31,13 +31,16 @@
     @if( $city->is_active != true )
         <div class="container coming-soon-container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 col-sm-6">
                     <div class="coming-soon-text-wrapper">
                         <!-- <h5 class="text-left text-center-md">Coming Soon!</h5> -->
                         <p class=""><strong>Coming Soon!</strong></p>
-                        <p class="">{{ $city->name }}, {{ $city->state->name }} is not currently available for membership. Signup below to get notified when you can download this city's Club Card.</p>
-                    </div>
-                        
+                        <p class="">{{ $city->name }}, {{ $city->state->name }} is not currently available for membership. Signup to get notified when you can download this city's Club Card.</p>
+                    </div> 
+                    
+                </div>
+                <div class="col-12 col-sm-6">
+
                     <div class="jumbotron notify-jumbotron bg-primary text-light shadow">
                         <h5>Notify Me!</h5>
                         <p class="">We promise not to spam your email.</p>
@@ -51,6 +54,7 @@
                             </div>
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>
