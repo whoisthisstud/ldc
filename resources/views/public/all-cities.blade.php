@@ -33,7 +33,7 @@ All Cities
 									@foreach($state->cities as $city)
 									<li>
 										<div class="wrapper">
-											<a class="city-link2" href="{{ route('public.city', [ 'state' => $city->state->name, 'city' => $city->name ]) }}" class="text-decoration-none">
+											<a class="city-link" href="{{ route('public.city', [ 'state' => $city->state->name, 'city' => $city->name ]) }}" class="text-decoration-none">
 
 												<span class="name">{{ $city->name }}</span>
 
