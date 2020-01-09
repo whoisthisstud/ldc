@@ -81,7 +81,7 @@
             @endif
 
             <div class="col-md-6 col-sm-12 mr-3">
-                <section class="card shadow-5">
+                <section class="card shadow-5 mb-5">
                     <div class="card-body row">
                         <div class="col-md-9 mb-3">
                             <label for="name">City Name</label>
