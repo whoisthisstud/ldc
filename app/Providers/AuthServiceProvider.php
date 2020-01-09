@@ -37,7 +37,7 @@ class AuthServiceProvider extends ServiceProvider
             return $user->hasAnyRoles(['superadmin','admin']);
         });
 
-        Gate::define('manage-cities', function($user) {
+        Gate::define('manage-cities', function ($user) {
             return $user->hasAnyRoles(['superadmin', 'admin']);
         });
 

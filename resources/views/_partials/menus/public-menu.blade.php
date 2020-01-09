@@ -34,7 +34,7 @@
 									<li><a href="{{ route('discounts.index') }}">Discounts</a></li>
 								@endcan
 
-								@can('access-testing')
+								@can('manage-dashboard')
 									@if( isset($city) && $city->count() > 0 )
 										<li><a href="{{ route('public.signup', ['state' => $city->state->name, 'city' => $city->name]) }}">Request Club Card</a></li>
 									@endif
