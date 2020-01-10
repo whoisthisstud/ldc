@@ -1,6 +1,6 @@
 <?php
 
-use App\City;
+// use App\City;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,11 +20,6 @@ Route::get('/privacy-policy', function() {
 })->name('public.privacy');
 
 Auth::routes(['verify' => true]);
-// Auth::routes();
-
-// Route::get('profile', function () {
-//     // Only verified users may enter...
-// })->middleware('verified');
 
 Route::prefix('business-manager')->middleware('can:manage-businesses')->group(function () {
     Route::get('/home', function () {
@@ -37,10 +32,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/dashboard', 'HomeController@index')->name('home');
     Route::post('/store-media', 'StoreMediaController')->name('store.media');
     Route::get('/test', 'TestController')->name('test');
-    // Route::get('/test2', function() {
-    //     $city = City::find(1);
-    //     return view('test2', compact('city'));
-    // })->name('test2');
 
     Route::get('/states', 'StateController@index')->name('states.index');
     Route::get('/states/add', 'StateController@create')->name('states.create');
