@@ -15,6 +15,23 @@
 
 Route::get('/', 'PagesController@index')->name('public.index');
 
+// Route::get('/zip-codes/{zip}', function ($zip) {
+//     $api_url = 'https://www.zipcodeapi.com/rest/' . config('dev.zip_code_api') . '/radius.json/' . $zip . '/10/mile';
+//     $related_zips = file_get_contents($api_url);
+//     dd($related_zips);
+    
+//     $test = file_get_contents('https://secure.geonames.org/findNearbyPostalCodesJSON?postalcode=' . $zip . '&country=US&radius=20&username=yourldc');
+
+//     // $test2 = json_encode($test->postalCodes);
+
+//     // dd( json_encode($test) );
+//     //return json_encode($test->postalCodes);
+//     // $city = City::where('zip_code',$zip)->first();
+//     // dd($city->surrounding_cities);
+// });
+
+// Route::get('/zip-codes/{zip}', 'RelatedCityController');
+
 Route::get('/privacy-policy', function() {
     return view('public.privacy');
 })->name('public.privacy');

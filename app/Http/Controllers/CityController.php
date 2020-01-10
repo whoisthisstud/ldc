@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\City;
 use App\State;
 use App\Season;
+use App\Http\Controllers\RelatedCityController;
 use App\Http\Requests\StoreCityRequest;
 use Illuminate\Http\Request;
 
@@ -35,6 +36,9 @@ class CityController extends Controller
         }
 
         $city = City::create( $validated + ['state_id' => $state->id] );
+        $related = (new RelatedCityController($city->zip_code));
+
+        dd($related);
 
         if ( isset($extension) ) {
             $filename  = $city->name . '-' . $city->state->abbreviation 
@@ -69,6 +73,7 @@ class CityController extends Controller
         $validated = $request->validated();
 
         City::where('id', $city->id)->update($validated);
+        $related = new RelatedCityController($city->zip_code);
 
         if (! empty($request['image.0'])) {
             $media = $city->addMedia(storage_path('tmp/uploads/' . $request['image.0']))

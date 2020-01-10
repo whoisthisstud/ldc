@@ -15,6 +15,10 @@ class City extends Model implements HasMedia
     use HasMediaTrait;
 
     protected $guarded = [];
+
+    protected $casts = [
+        'surrounding_zips' => 'array'
+    ];
     
 
     public function state()

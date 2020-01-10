@@ -21,19 +21,41 @@ class PagesController extends Controller
 
     public function index(Request $request)
     {
-        SEOTools::setTitle('Home');
-        SEOTools::setDescription('This is the description of the page');
-        SEOTools::opengraph()->setUrl(route('public.index'));
-        SEOTools::setCanonical(route('public.index'));
-        SEOTools::opengraph()->addProperty('type', 'website');
-        // SEOTools::twitter()->setSite('@LuizVinicius73');
-        SEOTools::jsonLd()->addImage(Storage::url('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg'));
 
         $cities = City::with('state')
             // ->where('is_active', true)
             ->orderBy('views', 'desc')
             ->take(9)
             ->get();
+
+        $all_cities = City::with('state')->get();
+
+        $keywords = array();
+        $keywords = [
+            'save money', 
+            'local discounts',
+            'discount club', 
+            'restaurant discounts',
+            'restaurant coupons',
+            'business discounts', 
+            'business coupons'
+        ];
+
+        if ($all_cities->count() > 0) {
+            foreach ($all_cities as $city) {
+                array_push($keywords, $city->name . ' ' . $city->state->abbreviation);
+                array_push($keywords, $city->zip_code);
+            }
+        }
+
+        SEOTools::setTitle('Home');
+        SEOTools::setDescription('Coupons and Discounts for establishments in your area.');
+        SEOMeta::setKeywords($keywords);
+        SEOTools::opengraph()->setUrl(route('public.index'));
+        SEOTools::setCanonical(route('public.index'));
+        SEOTools::opengraph()->addProperty('type', 'website');
+        // SEOTools::twitter()->setSite('@LuizVinicius73');
+        SEOTools::jsonLd()->addImage(Storage::url('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg'));
 
         return view('public', compact('cities'));
     }
@@ -61,7 +83,18 @@ class PagesController extends Controller
         $faqs = Faq::where('is_active', true)->where('type', 'city')->orderBy('id', 'DESC')->get();
 
         $keywords = array();
-        $keywords = ['local discounts', 'discounts near me', $city->name, $state->abbreviation, $city->zip_code, $state->name];
+        $keywords = [
+            $city->name . ' ' . $state->abbreviation . ' discounts', 
+            'save money', 
+            'local discounts',
+            'discount club', 
+            'restaurant discounts',
+            'restaurant coupons',
+            'business discounts', 
+            'business coupons',
+            $city->zip_code, 
+            $state->name
+        ];
 
         if ($discounts->count() > 0) {
             foreach ($discounts as $discount) {
