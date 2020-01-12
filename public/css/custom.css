@@ -689,6 +689,33 @@ body.nav-open .open-nav-cover {
   min-height: 150px;
 }
 
+.city-card-header h4.active-city::before {
+  position:relative;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: green;
+  left: -15px;
+  content: " ";
+}
+
+.city-card-tile .active-city-badge {
+  display: block;
+  position: absolute;
+  background-color: rgb(4, 255, 4);
+  color: #000;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  width: 70px;
+  text-align: center;
+  left: calc(50% - 35px);
+  top: -7px;
+  border: 3px solid #ffffff;
+  box-shadow: 0 -3px 5px -3px rgba(0,0,0,.2);
+}
+
 .city-card-header .display-1 {
   line-height: 0.9;
 }
@@ -736,7 +763,7 @@ body.nav-open .open-nav-cover {
 }
 
 .city-card-stats.quad div:nth-of-type(4),
-.city-card-stats div:nth-of-type(3),
+.city-card-stats:not(.quad) div:nth-of-type(3),
 .city-card-stats.halfed div:nth-of-type(2) {
   border:none;
 }
@@ -1239,10 +1266,37 @@ body.nav-open .open-nav-cover {
 
 /* Shadows
 -------------------------------------------------- */
+
+.shadow-1,
+.shadow-1-on-hover {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.shadow-1:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.shadow-2,
+.shadow-2-on-hover {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.shadow-3,
+.shadow-3-on-hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.shadow-4,
+.shadow-4-on-hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
 .shadow-5,
 .shadow-5-on-hover {
   box-shadow: 0 19px 38px rgba(0,0,0,0.09), 0 15px 12px rgba(0,0,0,0.03);
 }
+
 
 
 /* MARKETING CONTENT

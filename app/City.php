@@ -17,7 +17,7 @@ class City extends Model implements HasMedia
     protected $guarded = [];
 
     protected $casts = [
-        'surrounding_zips' => 'array'
+        'surrounding_zips' => 'json'
     ];
     
 
@@ -100,6 +100,43 @@ class City extends Model implements HasMedia
             ->width(500)
             ->height(1000)
             ->sharpen(10);
+    }
+
+    public function setSurroundingCities()
+    {    
+        $related_zips = $this->getSurroundingCitiesData();
+
+        if( ! $related_zips ) {
+            return false;
+        }
+
+        $this->surrounding_cities = $related_zips;
+        $this->save();
+
+        return true;
+    }
+
+    public function getSurroundingCitiesData()
+    {
+        $api_url = 'https://www.zipcodeapi.com/rest/' . 
+            config('dev.zip_code_api') . 
+            '/radius.json/' . 
+            $this->zip_code . 
+            '/10/mile';
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $api_url);
+        curl_setopt($ch, CURLOPT_POST, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec ($ch);
+        $err = curl_error($ch);  //if you need
+        curl_close ($ch);
+
+        if( isset($err) ) {
+            return false;
+        }
+        return $response;
     }
 
 }

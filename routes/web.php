@@ -1,6 +1,7 @@
 <?php
 
-// use App\City;
+use App\City;
+Use Newsletter;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,12 +16,27 @@
 
 Route::get('/', 'PagesController@index')->name('public.index');
 
+// Route::get('/newsletters', function () {
+//     //Get the members for a given list, optionally filtered by passing a second array of parameters
+//     $news = Newsletter::getMembers('subscribers',[ 'offset' => 0, 'count' => 50, 'tags' => ['Springdale'] ]);
+//     dd($news);
+// });
+
 // Route::get('/zip-codes/{zip}', function ($zip) {
 //     $api_url = 'https://www.zipcodeapi.com/rest/' . config('dev.zip_code_api') . '/radius.json/' . $zip . '/10/mile';
 //     $related_zips = file_get_contents($api_url);
-//     dd($related_zips);
-    
-//     $test = file_get_contents('https://secure.geonames.org/findNearbyPostalCodesJSON?postalcode=' . $zip . '&country=US&radius=20&username=yourldc');
+//     // dd($related_zips);
+
+//     $city = City::where('zip_code',$zip)->first();
+//     $city->surrounding_cities = $related_zips;
+//     $city->save();
+
+//     notify()->success('Related Cities have been added for ' . $city->name . ', ' . $city->state->abbreviation, 'Related Cities Added');
+//     return redirect()->route('view.city', [ $city->id ]);
+
+//     // dd($city->surrounding_cities);
+
+//     // $test = file_get_contents('https://secure.geonames.org/findNearbyPostalCodesJSON?postalcode=' . $zip . '&country=US&radius=20&username=yourldc');
 
 //     // $test2 = json_encode($test->postalCodes);
 
@@ -56,6 +72,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/states/{state}', 'StateController@show')->name('view.state');
 
     Route::get('/city/{city}', 'CityController@show')->name('view.city');
+    Route::get('/by-zip/{zip}', 'CityController@showByZip')->name('view.zip-code');
+    Route::post('/city/{city}/delete', 'CityController@destroy')->name('delete.city');
     Route::get('/city/{city}/activate', 'CityController@activate')->name('activate.city');
     Route::get('/city/{city}/deactivate', 'CityController@deactivate')->name('deactivate.city');
     Route::get('/states/{state}/add-city', 'CityController@create')->name('cities.create');

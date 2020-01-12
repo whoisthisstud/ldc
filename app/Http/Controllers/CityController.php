@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\City;
 use App\State;
 use App\Season;
+use Newsletter;
 use App\Http\Controllers\RelatedCityController;
 use App\Http\Requests\StoreCityRequest;
 use Illuminate\Http\Request;
@@ -36,9 +37,12 @@ class CityController extends Controller
         }
 
         $city = City::create( $validated + ['state_id' => $state->id] );
-        $related = (new RelatedCityController($city->zip_code));
 
-        dd($related);
+        if( ! $city->setSurroundingCities() ) {
+            notify()->error('We\'re having API issues... The related cities were not added to this city.', 'ERROR', ['timeOut' => 10000]);
+        } else {
+            notify()->success('The related cities for ' . $city->name . ', ' . $city->state->abbreviation . ' were successfully added to this city.', 'Cha Ching!');
+        }
 
         if ( isset($extension) ) {
             $filename  = $city->name . '-' . $city->state->abbreviation 
@@ -58,7 +62,40 @@ class CityController extends Controller
 
     public function show(City $city)
     {
-        return view('admin.cities.index', compact('city'));
+        $city = City::where('id',$city->id)->with('seasons')->with('state')->first();
+
+        $surrounding = null;
+
+        if( $city->surrounding_cities != null ) {
+            $surrounding = json_decode($city->surrounding_cities);
+        }
+
+        //Get the members for a given list, optionally filtered by passing a second array of parameters
+        // Newsletter::getMembers();
+        $news = Newsletter::getMembers('subscribers',[ 'offset' => 0, 'count' => 50, 'tags' => ['Springdale'] ]);
+
+        return view('admin.cities.index', compact('city', 'surrounding', 'news'));
+    }
+
+    public function showByZip($zip) {
+        $city = City::where('zip_code',$zip)->with('seasons')->with('state')->first();
+
+        // dd($city);
+
+        if( ! $city || $city == null ) {
+            notify()->error('That city has not yet been created.', 'ERROR');
+            // return redirect()->route('view.city', [$city]);
+            return redirect()->back();
+        }
+
+        $surrounding = null;
+
+        if( $city->surrounding_cities != null ) {
+            $surrounding = json_decode($city->surrounding_cities);
+        }
+
+        return redirect()->route('view.city', [$city]);
+        // return view('admin.cities.index', compact('city', 'surrounding'));
     }
 
 
@@ -73,7 +110,13 @@ class CityController extends Controller
         $validated = $request->validated();
 
         City::where('id', $city->id)->update($validated);
-        $related = new RelatedCityController($city->zip_code);
+
+        if ( $city->surrounding_cities === null ) {
+            if( ! $city->setSurroundingCities() ) {
+                notify()->error('We\'re having API issues... The related cities were not added to this city. Please try again later.', 'ERROR', ['timeOut' => 10000]);
+            }
+            notify()->success('The related cities for ' . $city->name . ', ' . $city->state->abbreviation . ' were successfully added to this city.', 'Cha Ching!');
+        }
 
         if (! empty($request['image.0'])) {
             $media = $city->addMedia(storage_path('tmp/uploads/' . $request['image.0']))
@@ -171,6 +214,15 @@ class CityController extends Controller
 
     public function destroy(City $city)
     {
-        //
+        if( $city->is_active == true ) {
+            notify()->error($city->name . ', ' . $city->state->abbreviation . ' can not be deleted while active. Please deactivate the city and try again.', 'ERROR');
+            return redirect()->back();
+        }
+
+        $state = $city->state->id;
+        $city->delete();
+
+        notify()->success($city->name . ', ' . $city->state->abbreviation . ' successfully deleted', 'City Deleted');
+        return redirect()->route('view.state', [ $state ]);
     }
 }

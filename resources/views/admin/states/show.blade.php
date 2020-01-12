@@ -72,6 +72,9 @@
                             <div class="col-md-4 col-sm-12 mb-3">
                                 <div class="city-card-tile">
                                     <div class="city-card-wrapper">
+                                        @if( $city->is_active == true )
+                                            <span class="active-city-badge">ACTIVE</span>
+                                        @endif
 
                                         <a href="{{ route('view.city', [ 'city' => $city->id ]) }}" class="text-decoration-none">
                                             <div class="city-card-header">

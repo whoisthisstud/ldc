@@ -38,5 +38,10 @@
     @yield('scripts')
     @notify_js
     @notify_render
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+    </script>
 </body>
 </html>

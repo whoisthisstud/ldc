@@ -62,6 +62,8 @@ class PagesController extends Controller
 
     public function allCities()
     {
+        $states = State::with('cities')->get();
+
         SEOTools::setTitle('All Cities');
         // SEOTools::setDescription('This is the description of the page');
         SEOTools::opengraph()->setUrl(route('public.cities.list'));
@@ -70,7 +72,6 @@ class PagesController extends Controller
         // SEOTools::twitter()->setSite('@LuizVinicius73');
         SEOTools::jsonLd()->addImage(Storage::url('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg'));
 
-        $states = State::with('cities')->get();
         return view('public.all-cities', compact('states'));
     }
 
@@ -96,7 +97,17 @@ class PagesController extends Controller
             $state->name
         ];
 
-        if ($discounts->count() > 0) {
+        if ( $city->surrounding_cities !== null ) {
+            
+            $surrounding = json_decode($city->surrounding_cities);
+
+            foreach( $surrounding->zip_codes as $key => $value ) {
+                array_push($keywords, $value->city . ' ' . $value->state);
+                array_push($keywords, $value->zip_code);
+            }
+        }
+
+        if ( $city->is_active === true && $discounts->count() > 0) {
             foreach ($discounts as $discount) {
                 array_push($keywords, $discount->business->name);
             }
