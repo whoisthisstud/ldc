@@ -122,20 +122,23 @@ class City extends Model implements HasMedia
             config('dev.zip_code_api') . 
             '/radius.json/' . 
             $this->zip_code . 
-            '/10/mile';
+            '/10/mile'; //https://www.zipcodeapi.com/rest/aqAEuudKb1fHPqA0M0LKUlqZ3OAthUM2MbcwKLwmnyj7yFald1dyV9dJmLjA6nWK/radius.json/74112/10/mile
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $api_url);
-        curl_setopt($ch, CURLOPT_POST, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        // $ch = curl_init();
+        // curl_setopt($ch, CURLOPT_URL, $api_url);
+        // curl_setopt($ch, CURLOPT_POST, 0);
+        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        $response = curl_exec ($ch);
-        $err = curl_error($ch);  //if you need
-        curl_close ($ch);
+        // $response = curl_exec ($ch);
+        // $err = curl_error($ch);  //if you need
+        // curl_close ($ch);
 
-        if( isset($err) ) {
-            return false;
-        }
+        // if( isset($err) ) {
+        //     return $err;
+        // }
+
+        $response = file_get_contents('https://www.zipcodeapi.com/rest/' . $this->api . '/radius.json/' . $this->zip_code . '/10/mile');
+
         return $response;
     }
 

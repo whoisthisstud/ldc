@@ -39,9 +39,9 @@ class CityController extends Controller
         $city = City::create( $validated + ['state_id' => $state->id] );
 
         if( ! $city->setSurroundingCities() ) {
-            notify()->error('We\'re having API issues... The related cities were not added to this city.', 'ERROR', ['timeOut' => 10000]);
+            notify()->error('The related cities were not added. We\'re either having API issues or the zip code is invalid.', 'ERROR', ['timeOut' => 10000]);
         } else {
-            notify()->success('The related cities for ' . $city->name . ', ' . $city->state->abbreviation . ' were successfully added to this city.', 'Cha Ching!');
+            notify()->success('The related cities for ' . $city->name . ', ' . $city->state->abbreviation . ' were successfully added.', 'Cha Ching!');
         }
 
         if ( isset($extension) ) {
@@ -113,9 +113,10 @@ class CityController extends Controller
 
         if ( $city->surrounding_cities === null ) {
             if( ! $city->setSurroundingCities() ) {
-                notify()->error('We\'re having API issues... The related cities were not added to this city. Please try again later.', 'ERROR', ['timeOut' => 10000]);
-            }
-            notify()->success('The related cities for ' . $city->name . ', ' . $city->state->abbreviation . ' were successfully added to this city.', 'Cha Ching!');
+                notify()->error('The related cities were not added. We\'re either having API issues or the zip code is invalid.', 'ERROR', ['timeOut' => 10000]);
+            } else {
+                notify()->success('The related cities for ' . $city->name . ', ' . $city->state->abbreviation . ' were successfully added.', 'Cha Ching!');
+            }          
         }
 
         if (! empty($request['image.0'])) {
@@ -130,7 +131,6 @@ class CityController extends Controller
 
     public function activate(City $city)
     {
-
         if( $city->is_active === true ) {
             notify()->error($city->name . ', ' . $city->state->abbreviation . ' is already active', 'Activation Error');
             return redirect()->route('view.city', [ $city->id ]);

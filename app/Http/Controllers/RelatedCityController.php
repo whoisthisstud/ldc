@@ -18,17 +18,29 @@ class RelatedCityController extends Controller
 
     	// $city = City::where('zip_code',$zip)->first();
 
-    	// dd($city);
+    	// dd($this->api);
 
-    	if( !$city || $this->zip === null || $this->api === null ) 
+    	if( ! $city || $this->zip === null || $this->api === null ) 
     	{
-    		notify()->error('We\'re having API issues... The related cities were not added to this city.', 'ERROR');
+      //       if ( ! $city ) {
+      //           notify()->error('The city is missing.', 'ERROR');
+      //       }
+      //       else if ( $this->zip === null ) {
+      //           notify()->error('The zip is null.', 'ERROR');
+      //       }
+      //       else if ( $this->api === null ) {
+      //           notify()->error('We\'re having API issues... The related cities were not added to this city.', 'ERROR');
+      //       }
+    		// else {
+      //           notify()->error('I think something\'s broken.', 'ERROR');
+      //       }
+
     		return false;
     	}
 
     	if( $city->surrounding_cities != null ) 
     	{
-    		notify()->warning('The city already has surrounding cities added.', 'WARNING');
+    		// notify()->warning('The city already has surrounding cities added.', 'WARNING');
 			return true;
 		}
 
@@ -37,7 +49,7 @@ class RelatedCityController extends Controller
 		$city->surrounding_cities = $related_zips;
 		$city->save();
 
-		notify()->success('The related cities for ' . $city->name . ', ' . $city->state->abbreviation . ' were successfully added to this city.', 'Cha Ching!');
+		// notify()->success('The related cities for ' . $city->name . ', ' . $city->state->abbreviation . ' were successfully added to this city.', 'Cha Ching!');
 		
     	return true;
     }
