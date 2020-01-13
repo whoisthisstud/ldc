@@ -1,8 +1,5 @@
 <?php
 
-use App\City;
-Use Newsletter;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,38 +12,6 @@ Use Newsletter;
 */
 
 Route::get('/', 'PagesController@index')->name('public.index');
-
-// Route::get('/newsletters', function () {
-//     //Get the members for a given list, optionally filtered by passing a second array of parameters
-//     $news = Newsletter::getMembers('subscribers',[ 'offset' => 0, 'count' => 50, 'tags' => ['Springdale'] ]);
-//     dd($news);
-// });
-
-// Route::get('/zip-codes/{zip}', function ($zip) {
-//     $api_url = 'https://www.zipcodeapi.com/rest/' . config('dev.zip_code_api') . '/radius.json/' . $zip . '/10/mile';
-//     $related_zips = file_get_contents($api_url);
-//     // dd($related_zips);
-
-//     $city = City::where('zip_code',$zip)->first();
-//     $city->surrounding_cities = $related_zips;
-//     $city->save();
-
-//     notify()->success('Related Cities have been added for ' . $city->name . ', ' . $city->state->abbreviation, 'Related Cities Added');
-//     return redirect()->route('view.city', [ $city->id ]);
-
-//     // dd($city->surrounding_cities);
-
-//     // $test = file_get_contents('https://secure.geonames.org/findNearbyPostalCodesJSON?postalcode=' . $zip . '&country=US&radius=20&username=yourldc');
-
-//     // $test2 = json_encode($test->postalCodes);
-
-//     // dd( json_encode($test) );
-//     //return json_encode($test->postalCodes);
-//     // $city = City::where('zip_code',$zip)->first();
-//     // dd($city->surrounding_cities);
-// });
-
-// Route::get('/zip-codes/{zip}', 'RelatedCityController');
 
 Route::get('/privacy-policy', function() {
     return view('public.privacy');
