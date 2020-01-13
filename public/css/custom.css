@@ -456,6 +456,118 @@ body.nav-open .open-nav-cover {
 
 /* Menus
 -------------------------------------------------- */
+.icon-menu {
+  padding: 0;
+  margin: 0;
+}
+
+.icon-menu li {
+  display: inline-block;
+  /*margin-bottom: .5rem;*/
+  margin: .25rem;
+  -webkit-box-flex: 1 !important;
+  flex: 1 1 auto !important;
+  text-align: center;
+}
+
+/*.icon-menu li:not(:last-of-type) {
+  margin-right: .5rem;
+}*/
+
+.icon-menu li .icon-btn {
+  position: relative;
+  display: block;
+  min-height: 60px;
+  color: white;
+  background: rgba(64, 72, 79, 0.3);
+  border-radius: .35rem;
+  padding: 1rem;
+  font-size: .75rem;
+  min-height: 110px;
+  text-decoration: none;
+  transition: all .15s ease-out;
+  box-shadow: none;
+}
+
+.icon-menu li .icon-btn:hover {
+  background: rgba(0,0,0,0.25);
+  transition: all .25s ease-out;
+}
+
+.icon-menu li .icon-btn i {
+  display: block;
+  font-size: 1.25rem;
+
+}
+.icon-menu li .icon-btn .icon-btn-svg-icon {
+  display: block;
+  margin: .4rem auto .5rem;
+}
+.icon-menu li .icon-btn .icon-btn-svg {
+  max-width: 50px;
+  max-height: 40px;
+  opacity: .65;
+  top: 0;
+  position: relative;
+  transition: all .15s ease-out;
+  transform: scale(1);
+}
+
+.icon-menu li:hover .icon-btn .icon-btn-svg {
+  top: -5px;
+  position: relative;
+  transition: all .15s ease-in;
+  opacity: 1;
+  transform: scale(1.125);
+}
+
+.icon-menu li .icon-btn .icon-btn-svg-icon #lifeline_multi .circle {
+  opacity: .6;
+}
+
+.icon-menu li:hover .icon-btn .icon-btn-svg-icon #lifeline_multi .circle {
+  opacity: 1;
+}
+
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: rotate3d(0, 0, 1, -300deg);
+    transform: rotate3d(0, 0, 1, -300deg);
+  }
+
+  to {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes rotate {
+  from {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: rotate3d(0, 0, 1, -300deg);
+    transform: rotate3d(0, 0, 1, -300deg);
+  }
+
+  to {
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.rotate {
+  -webkit-animation-name: rotate;
+  animation-name: rotate;
+  animation-duration: 2.5s;
+}
+
+
 .user-menu {
   width: 250px;
   padding: 20px;

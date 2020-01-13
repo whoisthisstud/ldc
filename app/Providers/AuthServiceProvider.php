@@ -26,7 +26,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Gate::define('access-testing', function ($user) {
-            return $user->hasRole('superadmin');
+            // return $user->hasRole('superadmin');
+            return $user->hasAnyRoles(['superadmin','admin']);
         });
 
         Gate::define('manage-dashboard', function ($user) {
