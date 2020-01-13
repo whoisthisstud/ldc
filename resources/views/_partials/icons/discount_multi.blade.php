@@ -1,7 +1,7 @@
-<svg version="1.1" id="discount_multi" class="icon-btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve">
-	<g>
+<svg version="1.1" id="discount_multi" class="icon-btn-svg animated pulse slow infinite" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 400 400" style="enable-background:new 0 0 400 400;" xml:space="preserve">
+	<g class="">
 		<g>
-			<path class="animated rotate infinite" fill="#3490DC" d="M400,200c0,17.329-14.962,32.461-19.234,48.443c-4.42,16.537,0.842,37.099-7.536,51.578
+			<path fill="#3490DC" d="M400,200c0,17.329-14.962,32.461-19.234,48.443c-4.42,16.537,0.842,37.099-7.536,51.578
 				c-8.497,14.686-29.015,20.359-40.935,32.277c-11.918,11.919-17.591,32.436-32.276,40.933c-14.478,8.376-35.038,3.114-51.575,7.534
 				C232.461,385.038,217.33,400,200,400c-17.329,0-32.46-14.962-48.443-19.234c-16.537-4.42-37.099,0.842-51.578-7.535
 				c-14.686-8.498-20.36-29.016-32.278-40.936c-11.918-11.918-32.436-17.591-40.932-32.276c-8.376-14.478-3.115-35.038-7.535-51.575

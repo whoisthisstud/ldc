@@ -9,7 +9,7 @@
 				</div> -->
 
 				<!-- start: Public Menu -->
-				<div id="publicMenu" class="col-12 py-4 px-2 border-bottom" style="border-bottom: 1px solid #2a3137 !important;">
+				<div id="publicMenu" class="col-12 py-4 mb-4 px-2 border-bottom" style="border-bottom: 1px solid #2a3137 !important;">
 					<ul class="icon-menu d-flex flex-row align-content-center align-items-stretch flex-wrap">
 
 						<li class="">
@@ -103,7 +103,7 @@
 
 				@auth
 				<!-- start: Admin Menu -->
-				<div id="loggedInMenu" class="col-12 py-4 px-2">
+				<div id="loggedInMenu" class="col-12 pb-4 px-2">
 					<ul class="icon-menu d-flex flex-row align-content-center align-items-stretch flex-wrap">
 						@can('manage-dashboard')
 							<li class="">
