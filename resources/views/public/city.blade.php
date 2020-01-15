@@ -11,7 +11,7 @@
                 <div class="container">
                     <div class="row justify-content-between">
                         <div class="col-12 z-10 text-xs-center text-center">
-                            <div class="d-block">
+                            <div class="d-block page-header">
                                 <p class="city-header-text">{{ $city->name }}, <a href="#" class="section-title-state-link">{{ $city->state->abbreviation }}</a></p>
                                 
                                 @if( $city->is_active == true )
@@ -60,16 +60,53 @@
         </div>
     @else
         <div class="container pt-5">
-            <div class="row pb-5">
+            <!-- <div class="row pb-5">
 
                 <div class="col-12 pb-3">
                     <h3 class="text-center">Businesses w/ Exclusive Discounts in {{ $city->name }}</h3>
                 </div>
 
                 @forelse($city->discounts as $discount)
-                    <div class="col-12 col-sm-4 col-md-4 mb-3 card-hover"><!-- col-lg-3  -->
+                    <div class="col-6 col-sm-4 col-md-4 mb-3 card-hover">
                         <div class="card">
                             <div class="card-body">
+
+                                <!-- <a href="{{ route('public.discount', [ 'state' => $city->state->name, 'city' => $city->name, 'business' => $discount->business->id, 'discount' => $discount->code ]) }}" class="text-decoration-none"> --
+                                    <div class="py-2 px-sm-2 px-4">
+                                        @if( ! empty( $discount->business->logo ) )
+                                        <div class="business-logo" style="background-image: url({{ $discount->business->logo }});"></div>
+                                        @else
+                                        
+                                        <div class="business-logo" style="">
+                                            <h3 class="h3 text-center">{{ $discount->business->name }}</h3>
+                                        </div>
+                                        @endif
+
+                                    </div>
+                                <!-- </a> --
+
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div class="col-12 text-center">
+                        <h5 class="my-5">No businesses signed up!</h5>
+                    </div>
+                @endforelse
+
+            </div> -->
+
+            <!-- start: testing -->
+            <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 pb-5">
+
+                <div class="col-12 col-sm-12 col-md-12 pb-3 text-center">
+                    <h3 class="city-header text-center">Businesses w/ Exclusive Discounts in {{ $city->name }}</h3>
+                </div>
+
+                @forelse($city->discounts as $discount)
+                    <div class="col px-0 card-hover"><!-- col-lg-3  -->
+                        <div class="card business-display">
+                            <div class="card-body" rel="tooltip" data-toggle="tooltip" data-html="false" data-trigger="hover focus" title="Download your card and start saving at {{ $discount->business->name }} today.">
 
                                 <!-- <a href="{{ route('public.discount', [ 'state' => $city->state->name, 'city' => $city->name, 'business' => $discount->business->id, 'discount' => $discount->code ]) }}" class="text-decoration-none"> -->
                                     <div class="py-2 px-sm-2 px-4">
@@ -78,7 +115,7 @@
                                         @else
                                         
                                         <div class="business-logo" style="">
-                                            <h3 class="h3 text-center">{{ $discount->business->name }}</h3>
+                                            <span class="h3 text-center">{{ $discount->business->name }}</span>
                                         </div>
                                         @endif
 
@@ -95,6 +132,7 @@
                 @endforelse
 
             </div>
+            <!-- end: testing -->
         </div>
     @endif
 
@@ -124,4 +162,19 @@
         @include('_partials.buttons.signup-button-lg')
     @endif
 
+@endsection
+
+@section('scripts')
+<!-- <script>
+    $(document).ready(function() {
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip({
+               html: true, 
+               placement: 'top'
+            });
+        });
+
+    });
+</script> -->
 @endsection

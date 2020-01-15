@@ -41,10 +41,18 @@
         @include('_partials.footer')
 
         @include('_partials.modals.city-request-form-modal')
+        @include('_partials.modals.business-request-form-modal')
 
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/popper.js') }}"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+        <!-- <script   src="https://code.jquery.com/jquery-3.4.1.min.js"   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="   crossorigin="anonymous"></script>
+        
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 
         <script src="{{ asset('js/app.js') }}"></script>
+        <!-- <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script> -->
+
+
 
         @yield('scripts')
         @notify_js
@@ -64,5 +72,6 @@
                 i = (i==0 || i=='') ? i=1 : i=0;
             });
         </script>
+
     </body>
 </html>

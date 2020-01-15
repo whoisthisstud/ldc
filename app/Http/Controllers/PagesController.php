@@ -11,12 +11,19 @@ use Illuminate\Support\Facades\Cookie;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Facades\Storage;
+use View;
 
 class PagesController extends Controller
 {
     public function __construct(Request $request)
     {
         $this->middleware('auth');
+
+        $select_cities = City::all();
+        $select_states = State::all();
+        
+        View::share('select_cities', $select_cities);
+        View::share('select_states', $select_states);
     }
 
     public function index(Request $request)

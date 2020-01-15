@@ -284,6 +284,18 @@ body.nav-open .open-nav-cover {
   transform: translate(-50%,-50%);
 }
 
+.city-header {
+    /*font-size: 1.75rem;
+    line-height: 2.25rem;*/
+    font-weight: 700;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(0,0,0,0.125);
+    margin: 0 auto;
+    display: inline-block;
+    max-width: 80%;
+    color: #237fcb;
+  }
+
 .coming-soon-container {
   padding-top: 4rem;
 }
@@ -310,6 +322,19 @@ body.nav-open .open-nav-cover {
   margin: 0 auto 2rem;
 }
 
+.card.business-display {
+  background: transparent;
+}
+
+.business-display .business-logo {
+  /*filter: grayscale(100);*/
+  transition: all .15s linear;
+}
+
+.business-display:hover .business-logo {
+  /*filter: grayscale(0);*/
+  transition: all .15s linear;
+}
 
 
 /* DROPZONE
@@ -792,12 +817,22 @@ body.nav-open .open-nav-cover {
   background-size: contain;
   background-position: center center;
   background-repeat: no-repeat;
+  position: relative;
 }
 
 .business-logo h3 {
-  top: 40%;
+  top: calc(40% - .7875rem);
   display: block;
   position: relative;
+}
+
+.business-logo span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .city-card-tile {
@@ -1466,48 +1501,100 @@ body.nav-open .open-nav-cover {
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
-#cityRequestFormModal .modal-content {
-overflow: hidden;
-border-radius: 7px;
+#cityRequestFormModal .modal-content,
+#businessRequestFormModal .modal-content {
+  overflow: hidden;
+  border-radius: 7px;
+  min-height: 500px;
+}
+#cityRequestFormModal .modal-content .modal-body,
+#businessRequestFormModal .modal-content .modal-body {
+  padding: 0;
 }
 
-#cityRequestFormModal .city-request-bg-img-wrapper {
+#cityRequestFormModal .city-request-bg-img-wrapper,
+#businessRequestFormModal .city-request-bg-img-wrapper {
   display: block;
   position: relative;
   min-height: 400px;
   width: 100%;
 }
 
-#cityRequestFormModal .city-request-bg-img {
+#cityRequestFormModal .city-request-bg-img,
+#businessRequestFormModal .city-request-bg-img {
   position: absolute;
   top: 0;
-  right: 0;
-  bottom: 0;
+  right: -1px;
+  bottom: 50%;
   left: 0;
-  background-image: url(/storage//images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg);
+  /*background: url(/storage//images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg) no-repeat;*/
+  background: url(/storage//images/restaurant-bg.jpg) no-repeat;
   background-size: cover; 
-  background-position: center;
+  background-position: center center;
 }
 
-#cityRequestFormModal .close {
+#cityRequestFormModal .city-request-bg-img:after,
+#businessRequestFormModal .city-request-bg-img:after {
+  position: absolute;
+  content: " ";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: .75;
+  background-color: #4785be;
+}
+
+#cityRequestFormModal .close,
+#businessRequestFormModal .close {
   color: #ffffff;
   opacity: .5;
   transition: all .25s ease-out;
 }
 
-#cityRequestFormModal .close:hover {
+#cityRequestFormModal .close:hover,
+#businessRequestFormModal .close:hover {
   opacity: 1;
   transition: all .25s ease-in;
 }
 
-#cityRequestFormModal .request-form-modal-title {
+#cityRequestFormModal .top-row .title-wrapper,
+#businessRequestFormModal .top-row .title-wrapper {
+  padding: 1.5rem 5rem !important;
+}
+#cityRequestFormModal .top-row .title-wrapper .city-request-title,
+#businessRequestFormModal .top-row .title-wrapper .city-request-title {
+  font-size: 1.85rem;
+  height: 160px;
+  text-shadow: 0px 0px 8px #165181;
+}
+#cityRequestFormModal .top-row .title-wrapper .business-svg-icon,
+#businessRequestFormModal .top-row .title-wrapper .business-svg-icon {
+  display: inline-block;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  width: 125px;
+  height: 130px;
+  transform: translateX(-50%);
+}
+#cityRequestFormModal .bottom-row .form-wrapper,
+#businessRequestFormModal .bottom-row .form-wrapper {
+  padding: 2.75rem 8rem 1.75rem;
+  /*padding: 3rem 2rem 1.5rem;*/
+}
+
+#cityRequestFormModal .request-form-modal-title,
+#businessRequestFormModal .request-form-modal-title {
   padding: .5rem .0125rem;
   line-height: .8;
   font-weight: 600;
   text-shadow: 0px 0 16px #000000;
 }
 
-#cityRequestFormModal .request-form-modal-subtitle {
+#cityRequestFormModal .request-form-modal-subtitle,
+#businessRequestFormModal .request-form-modal-subtitle {
   padding: 0 .0125rem;
 /*  line-height: .8;
   font-weight: 600;
@@ -1581,6 +1668,15 @@ border-radius: 7px;
   .popular-city-card h1.city-name {
     font-size: 1.75rem;
   }
+  #cityRequestFormModal .top-row .title-wrapper .city-request-title {
+    font-size: 1.75rem;
+    height: 190px;
+    text-shadow: 0px 0px 8px #165181;
+  }
+  #cityRequestFormModal .top-row .title-wrapper .business-svg-icon {
+    bottom: -30px;
+    width: 120px;
+  }
   .coming-soon-container {
     padding-top: 2rem;
   }
@@ -1615,6 +1711,20 @@ border-radius: 7px;
     display: block;
     padding: 1rem 0;
     font-weight: 600;
+  }
+  #cityRequestFormModal .top-row .title-wrapper .city-request-title,
+  #businessRequestFormModal .top-row .title-wrapper .city-request-title {
+    font-size: 1.8rem;
+    height: 190px;
+  }
+  #cityRequestFormModal .top-row .title-wrapper .business-svg-icon,
+  #businessRequestFormModal .top-row .title-wrapper .business-svg-icon  {
+    bottom: -25px;
+    width: 120px;
+  }
+  #cityRequestFormModal .bottom-row .form-wrapper,
+  #businessRequestFormModal .bottom-row .form-wrapper  {
+    padding: 2.75rem 3rem 1.75rem;
   }
   #popular > .container {
     max-width: 90%;
@@ -1695,15 +1805,43 @@ border-radius: 7px;
     padding: 1rem;
     font-weight: 600;
   }
+  .page-header .btn.btn-sm.btn-primary {
+    padding: .75rem;
+    font-size: .85rem;
+    margin: 2rem 1rem;
+  }
+  .city-header {
+    font-size: 1.75rem;
+    line-height: 2.25rem;
+    font-weight: 700;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(0,0,0,0.125);
+    margin: 0 auto;
+    display: inline-block;
+    max-width: 80%;
+    color: #237fcb;
+  }
   #popular .all-cities-btn a.btn {
     display: block;
   }
-  /*#stateBlock ul.city-list {
-    padding: 0 20px;
-    column-count:2;
-    column-gap: 10% 
-    column-width:45%;
-  }*/
+  #cityRequestFormModal .bottom-row .form-wrapper,
+  #businessRequestFormModal .bottom-row .form-wrapper {
+    padding: 3rem 2rem 1.5rem;
+  }
+  #cityRequestFormModal .top-row .title-wrapper,
+  #businessRequestFormModal .top-row .title-wrapper {
+    padding: 1rem 3rem !important;
+  }
+  #cityRequestFormModal .top-row .title-wrapper .city-request-title,
+  #businessRequestFormModal .top-row .title-wrapper .city-request-title {
+    font-size: 1.5rem;
+    height: 215px;
+  }
+  #cityRequestFormModal .top-row .title-wrapper .business-svg-icon,
+  #businessRequestFormModal .top-row .title-wrapper .business-svg-icon {
+    bottom: -10px;
+    width: 140px;
+  }
   .signup-container {
     padding-top: 1rem;
   }
@@ -1801,5 +1939,13 @@ border-radius: 7px;
   .carousel-item p.lead {
     font-size: 1.25rem;
     line-height: 1.5rem;
+  }
+}
+
+@media (max-width: 400px) {
+  #cityRequestFormModal .top-row .title-wrapper .business-svg-icon,
+  #businessRequestFormModal .top-row .title-wrapper .business-svg-icon {
+    bottom: -40px;
+    width: 110px;
   }
 }

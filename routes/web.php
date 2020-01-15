@@ -17,6 +17,8 @@ Route::get('/privacy-policy', function() {
     return view('public.privacy');
 })->name('public.privacy');
 
+Route::post('/request-business', 'BusinessRequestController@store')->middleware('throttle:3,10')->name('request.business');
+
 Auth::routes(['verify' => true]);
 
 Route::prefix('business-manager')->middleware('can:manage-businesses')->group(function () {

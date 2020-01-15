@@ -6,9 +6,9 @@ All Cities
 
 @section('content')
 <div class="container pb-4">
-	<div class="row">
+	<div class="row justify-content-center">
 
-		<div class="col-12">
+		<div class="col-12 col-md-11">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
@@ -17,7 +17,7 @@ All Cities
 			</nav>
 		</div>
 		
-		<div class="col-12 pt-4">
+		<div class="col-12 col-md-11 pt-4">
 			<div class="row">
 				<div class="col-12" style="">
 					
@@ -52,7 +52,7 @@ All Cities
 			</div>
 		</div>
 
-		<div class="col-12 pb-2 text-center more-coming">
+		<div class="col-12 col-md-11 pb-2 text-center more-coming">
 			<h3 class="pb-3">More cities coming throughout {{ now()->year }}</h3>
 			<!-- <a href="#" class="btn btn-primary">Request a City</a> -->
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".cityRequestFormModal">Request a City</button>

@@ -30,7 +30,7 @@
 							</a>
 						</li>
 						<li class="">
-							<a href="#" class="icon-btn text-white">
+							<a href="#" class="icon-btn text-white" data-toggle="modal" data-target=".businessRequestFormModal">
 								<span class="icon-btn-svg-icon">
 									@include('_partials.icons.storefront_duotone')
 								</span>
