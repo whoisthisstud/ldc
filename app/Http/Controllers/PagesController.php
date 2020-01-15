@@ -20,7 +20,7 @@ class PagesController extends Controller
         $this->middleware('auth');
 
         $select_cities = City::all();
-        $select_states = State::all();
+        $select_states = State::with('cities')->get();
 
         View::share('select_cities', $select_cities);
         View::share('select_states', $select_states);

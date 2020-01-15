@@ -29,15 +29,11 @@
                     <div class="col-12">
                         <div class="form-wrapper">
 
-                            <form action="" method="POST">
+                            <form id="cityRequestForm" method="POST">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">City Name</label>
-                                    <input type="text" class="form-control" id="city" name="city" aria-describedby="city">
-                                </div>
-                                <div class="form-group">
                                     <select class="custom-select mr-sm-2" id="state_id" name="state_id">
-                                        <option selected>State</option>
+                                        <option value="" selected>State</option>
 
                                         @foreach( $select_states as $state )
                                             @if( $state->cities->count() > 0 )
@@ -46,22 +42,28 @@
                                         @endforeach
 
                                     </select>
+                                    <small id="state_idError" class="form-text text-danger error-text"></small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city_name">City Name</label>
+                                    <input type="text" class="form-control" id="city_name" name="city_name" aria-describedby="city">
+                                    <small id="city_nameError" class="form-text text-danger error-text"></small>
                                 </div>
 
                                 <div class="form-group pt-3">
-                                    <button class="btn btn-primary btn-block">
+                                    <button type="submit" class="btn btn-primary btn-block">
                                         Submit City Request
                                     </button>
                                 </div>
 
                             </form>
-                            
+
                         </div>
                     </div>
                 </div>
 
             </div>
-                
+
         </div>
     </div>
 </div>

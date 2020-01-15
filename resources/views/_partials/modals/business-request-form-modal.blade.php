@@ -28,12 +28,13 @@
                 <div class="row bottom-row">
                     <div class="col-12">
                         <div class="form-wrapper">
+                            <div class="error-display"></div>
 
-                            <form action="{{ route('request.business') }}" method="POST">
+                            <form id="businessRequestForm" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <select class="custom-select mr-sm-2" id="city_id" name="city_id">
-                                        <option selected>Choose City...</option>
+                                        <option selected value="">Choose City...</option>
 
                                         @foreach( $select_states as $state )
                                             @if( $state->cities->count() > 0 )
@@ -48,27 +49,28 @@
                                         @endforeach
 
                                     </select>
-                                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                                    <small id="city_idError" class="form-text text-danger error-text"></small>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Business Name</label>
+                                    <label for="business">Business Name</label>
                                     <input type="text" class="form-control" id="business" name="business" aria-describedby="business">
+                                    <small id="businessError" class="form-text text-danger error-text"></small>
                                 </div>
 
                                 <div class="form-group pt-3">
-                                    <button class="btn btn-primary btn-block">
+                                    <button type="submit" class="btn btn-primary btn-block">
                                         Submit Business Request
                                     </button>
                                 </div>
 
                             </form>
-                            
+
                         </div>
                     </div>
                 </div>
 
             </div>
-                
+
         </div>
     </div>
 </div>

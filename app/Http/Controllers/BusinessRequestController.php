@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\BusinessRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\RequestBusinessRequest;
 
 class BusinessRequestController extends Controller
@@ -19,59 +20,49 @@ class BusinessRequestController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(RequestBusinessRequest $request)
+    public function store(Request $request) //RequestBusinessRequest
     {
-        $validated = $request->validate();
-        dd($validated);
-    }
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'city_id' => 'required',
+                'business' => 'required|string|max:255',
+            ],
+            [
+                'city_id.required' => 'The city is required.',
+                'business.required' => 'A business name is required',
+                'business.string' => 'The business name must be a string',
+                'business.max' => 'The business name can not be longer than 255 characters.'
+            ]
+        );
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\BusinessRequest  $businessRequest
-     * @return \Illuminate\Http\Response
-     */
-    public function show(BusinessRequest $businessRequest)
-    {
-        //
-    }
+        if ($validator->fails()) {
+            if ($request->ajax()) {
+                return response()->json(array(
+                    'success' => false,
+                    'message' => 'There is data missing from the form!',
+                    'errors' => $validator->getMessageBag()->toArray()
+                ), 422);
+            }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\BusinessRequest  $businessRequest
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(BusinessRequest $businessRequest)
-    {
-        //
-    }
+            $this->throwValidationException(
+                $request,
+                $validator
+            );
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\BusinessRequest  $businessRequest
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, BusinessRequest $businessRequest)
-    {
-        //
+        $bizRequest = new BusinessRequest();
+        $bizRequest->city_id = $request->city_id;
+        $bizRequest->business_name = $request->business;
+        $bizRequest->ip_address = $request->ip();
+        $bizRequest->save();
+
+        return response()->json(['success'=>'Thank you! Your request for a new business for this city has been received.']);
     }
 
     /**
