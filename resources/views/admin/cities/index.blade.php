@@ -30,10 +30,10 @@
 
                         <div class="col-12 col-md-6">
                             <ul class="submenu ml-auto mb-0 text-right">
-                                
+
                                 @can('manage-cities')
                                 <li class="nav-item d-inline-block">
-                                    <form id="deleteCityForm" method="POST" 
+                                    <form id="deleteCityForm" method="POST"
                                         action="{{ route('delete.city',[$city]) }}">
                                         @csrf
                                         <button type="submit" class="btn btn-sm btn-danger btn-badge">
@@ -123,18 +123,18 @@
                                             <label class="mr-sm-2 d-inline-block" for="seasonSelector" data-toggle="tooltip" data-placement="top" title="Temporarily disabled, but eventually sortable by Season">
                                                 Select Season:
                                             </label>
-                                        
+
                                             <select class="custom-select mr-sm-2" id="seasonSelector" style="width: 75%;" disabled="">
 
                                                 @foreach( $city->seasons as $season )
-                                                    <option value="{{ $season->id }}" 
-                                                        {{-- $season->pivot->filled == true ? 'disabled' : '' --}} data-begin-date="{{ date('m/d/y', strtotime($season->pivot->begins_on)) }}" 
+                                                    <option value="{{ $season->id }}"
+                                                        {{-- $season->pivot->filled == true ? 'disabled' : '' --}} data-begin-date="{{ date('m/d/y', strtotime($season->pivot->begins_on)) }}"
                                                         data-end-date="{{ date('m/d/y', strtotime($season->pivot->ends_on)) }}"> {{ date('M jS, Y', strtotime($season->pivot->begins_on)) }} to {{ date('M jS, Y', strtotime($season->pivot->ends_on)) }}&nbsp; (Season {{ $season->id }} {{ $season->pivot->filled == true ? '- Filled' : '' }})</option>
                                                 @endforeach
 
                                             </select>
                                         </div>
-                                    </div>    
+                                    </div>
                                 </div>
                                 @endif
 
@@ -203,7 +203,7 @@
                             <p>no surrounding locations collected</p>
                         @endif
                     </ul>
-                    
+
                 </div>
                 <div class="tab-pane fade" id="city-requested" role="tabpanel" aria-labelledby="city-requested-tab">
                     <h4 class="text-muted mb-4">Requested Businesses - Pending</h4>
@@ -229,9 +229,9 @@
                 <div class="tab-pane fade" id="city-notify" role="tabpanel" aria-labelledby="city-notify-tab">
                     Notification Signups - Pending
 
-                     {{-- @dd( $news['members'] )  --}}
+                    @if( $news['members'] )
 
-                     <table class="table">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">First Name</th>
@@ -247,20 +247,22 @@
                                 <td>{{ $member['merge_fields']['LNAME'] }}</td>
                                 <td>{{ $member['email_address'] }}</td>
                                 <td>{{ Carbon\Carbon::parse($member['timestamp_opt'])->format('m-d-Y \@ h:i A') }}</td>
-                                
+
                             </tr>
                             @endforeach
                         </tbody>
 
-                     </table>
-                    
+                    </table>
+                    @else
+                        <p>No users signed up for notifications, yet.</p>
+                    @endif
                 </div>
             </div>
         </div>
 
         <div class="col-12">
 
-            
+
 
         </div>
     </div>

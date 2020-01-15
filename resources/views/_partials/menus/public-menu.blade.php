@@ -41,7 +41,7 @@
 						<li class="separator d-none d-md-inline-block"></li>
 
 						<li class="">
-							<a href="#" class="icon-btn text-white">
+							<a href="{{ route('public.about') }}" class="icon-btn text-white">
 								<span class="icon-btn-svg-icon">
 									@include('_partials.icons.ldc_card_light-icon')
 								</span>
@@ -49,7 +49,7 @@
 							</a>
 						</li>
 						<li class="">
-							<a href="#" class="icon-btn text-white">
+							<a href="{{ route('public.contact') }}" class="icon-btn text-white">
 								<span class="icon-btn-svg-icon">
 									@include('_partials.icons.contact_duotone')
 								</span>
@@ -57,7 +57,7 @@
 							</a>
 						</li>
 						<li class="">
-							<a href="#" class="icon-btn text-white">
+							<a href="{{ route('public.faqs') }}" class="icon-btn text-white">
 								<span class="icon-btn-svg-icon">
 									@include('_partials.icons.lifeline_multi')
 								</span>
@@ -166,7 +166,7 @@
 
 							<li class="separator d-none d-md-inline-block"></li>
 
-							@if( isset($city) && $city->count() > 0 )
+							@if( isset($city) )
 								<li class="">
 									<a href="{{ route('public.signup', ['state' => $city->state->name, 'city' => $city->name]) }}" class="icon-btn text-white">
 										<span class="icon-btn-svg-icon">

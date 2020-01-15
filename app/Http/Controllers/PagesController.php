@@ -21,14 +21,13 @@ class PagesController extends Controller
 
         $select_cities = City::all();
         $select_states = State::all();
-        
+
         View::share('select_cities', $select_cities);
         View::share('select_states', $select_states);
     }
 
     public function index(Request $request)
     {
-
         $cities = City::with('state')
             // ->where('is_active', true)
             ->orderBy('views', 'desc')
@@ -39,12 +38,12 @@ class PagesController extends Controller
 
         $keywords = array();
         $keywords = [
-            'save money', 
+            'save money',
             'local discounts',
-            'discount club', 
+            'discount club',
             'restaurant discounts',
             'restaurant coupons',
-            'business discounts', 
+            'business discounts',
             'business coupons'
         ];
 
@@ -92,29 +91,28 @@ class PagesController extends Controller
 
         $keywords = array();
         $keywords = [
-            $city->name . ' ' . $state->abbreviation . ' discounts', 
-            'save money', 
+            $city->name . ' ' . $state->abbreviation . ' discounts',
+            'save money',
             'local discounts',
-            'discount club', 
+            'discount club',
             'restaurant discounts',
             'restaurant coupons',
-            'business discounts', 
+            'business discounts',
             'business coupons',
-            $city->zip_code, 
+            $city->zip_code,
             $state->name
         ];
 
-        if ( $city->surrounding_cities !== null ) {
-            
+        if ($city->surrounding_cities !== null) {
             $surrounding = json_decode($city->surrounding_cities);
 
-            foreach( $surrounding->zip_codes as $key => $value ) {
+            foreach ($surrounding->zip_codes as $key => $value) {
                 array_push($keywords, $value->city . ' ' . $value->state);
                 array_push($keywords, $value->zip_code);
             }
         }
 
-        if ( $city->is_active === true && $discounts->count() > 0) {
+        if ($city->is_active === true && $discounts->count() > 0) {
             foreach ($discounts as $discount) {
                 array_push($keywords, $discount->business->name);
             }
@@ -163,5 +161,30 @@ class PagesController extends Controller
         SEOTools::setCanonical(route('public.signup', ['state' => $state->name, 'city' => $city->name]));
 
         return view('public.signup', compact('city'));
+    }
+
+    public function privacy()
+    {
+        return view('public.privacy');
+    }
+
+    public function terms()
+    {
+        return view('public.terms');
+    }
+
+    public function about()
+    {
+        return view('public.about');
+    }
+
+    public function contact()
+    {
+        return view('public.contact');
+    }
+
+    public function faqs()
+    {
+        return view('public.faqs');
     }
 }

@@ -12,11 +12,11 @@
 */
 
 Route::get('/', 'PagesController@index')->name('public.index');
-
-Route::get('/privacy-policy', function() {
-    return view('public.privacy');
-})->name('public.privacy');
-
+Route::get('/about-us', 'PagesController@about')->name('public.about');
+Route::get('/contact-us', 'PagesController@contact')->name('public.contact');
+Route::get('/faqs', 'PagesController@faqs')->name('public.faqs');
+Route::get('/privacy-policy', 'PagesController@privacy')->name('public.privacy');
+Route::get('/terms-of-use', 'PagesController@terms')->name('public.terms');
 Route::post('/request-business', 'BusinessRequestController@store')->middleware('throttle:3,10')->name('request.business');
 
 Auth::routes(['verify' => true]);
@@ -79,9 +79,3 @@ Route::get('/club/{state}/{city}/thank-you', 'ClubSignupController@thanks')->nam
 Route::get('/club/{state}/{city}/{business}/{discount}', 'PagesController@discount')->name('public.discount');
 Route::get('/clubs/all-cities', 'PagesController@allCities')->name('public.cities.list');
 Route::get('/states/{state}', 'PagesController@state')->name('public.state');
-
-
-
-
-
-
