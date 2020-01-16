@@ -36,8 +36,8 @@ a,
 }
 
 #popular .card.popular-city-card {
-  background-size: cover !important; 
-  background-position: center center; 
+  background-size: cover !important;
+  background-position: center center;
   background-color: rgba(0, 59, 121,0.65);
   overflow: hidden;
   transition: all .25s ease-in;
@@ -153,8 +153,10 @@ footer .container {
   margin-right: 1rem;
 }
 
-#admin-header {
-  background-color: #227dc7 !important;
+#admin-header,
+#navbarMain {
+  background-color: #227dc7;
+  /*transition: all .25s ease-out;*/
 }
 
 .navbar-opacity {
@@ -163,12 +165,15 @@ footer .container {
 
 .navbar-transparent {
   background: transparent !important;
-  transition: all .15s linear;
+  /*transition: all .25s ease-out;*/
 }
 
-body.nav-open .navbar-transparent {
+body.nav-open .navbar-transparent,
+body.nav-open #navbarMain,
+#navbarHeader {
   background: #343a40 !important;
-  transition: all .15s linear;
+  /*background-color: #227dc7 !important;*/
+  /*transition: all .25s ease-in;*/
 }
 
 body.nav-open .navbar {
@@ -185,6 +190,9 @@ body.nav-open .open-nav-cover {
   z-index: 15;
 }
 
+.navbar {
+  padding: 0.75rem 1rem;
+}
 .navbar-dark .navbar-toggler {
   border-color: rgba(255, 255, 255, 0.25);
 }
@@ -204,7 +212,7 @@ body.nav-open .open-nav-cover {
 }
 
 .navbar-dark .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); 
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.75)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 .navbar-dark .navbar-toggler:hover {
@@ -213,7 +221,7 @@ body.nav-open .open-nav-cover {
 }
 
 .navbar-dark .navbar-toggler:hover .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e"); 
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 .footer-logo-wrapper .brand-logo-svg {
@@ -336,6 +344,110 @@ body.nav-open .open-nav-cover {
   transition: all .15s linear;
 }
 
+#faqHeader,
+#contactHeader {
+  margin-top: -15px;
+  height: 260px;
+}
+
+.faq-header-bkgd,
+.contact-header-bkgd {
+  position:absolute;
+  top:0;
+  right: 0;
+  bottom:0;
+  left:0;
+  height: 260px;
+  z-index: -1;
+  opacity: .6;
+  background: url(/i/bkg_ptn3.jpg);
+}
+
+#faqSearch {
+  display: inline-block;
+  margin: 2rem auto 1.25rem;
+  position: relative;
+  width: 50%;
+}
+
+.has-search .form-control {
+  border-radius: 1.75rem;
+  padding: 5px 1.5rem .5rem 2.5rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.75rem;
+  height: 2.75rem;
+  line-height: 2.75rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+.has-search .form-control-clear {
+  position: absolute;
+  z-index: 2;
+  display: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  line-height: 2.75rem;
+  text-align: center;
+  color: #aaa;
+  right: 5px;
+  top: 0;
+  cursor: pointer;
+}
+
+.search-subtext {
+  font-weight: 500;
+}
+.faqs-row-wrapper .grid {
+  position: relative;
+  padding: 0 0 2.5rem 0;
+}
+.none-available {
+  position: absolute;
+  top: -5px;
+  font-weight: 800;
+  opacity: 0.2;
+}
+.faq-category-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+.faq-wrapper {
+  width: 30%;
+  background-color: #eff1f3;
+}
+.faq-gutter {
+  width: 5%;
+}
+.faq-question {
+  font-size: 1.025rem;
+  font-weight: 600;
+  line-height: 1.35rem;
+}
+
+.contact-intro {
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom:0;
+}
+
+.contact-header-text {
+    font-weight: 800;
+    font-size: 4rem;
+    text-transform: uppercase;
+    letter-spacing: -.5px;
+}
+
+#contactForm {
+  margin-top: -75px;
+}
+
 
 /* DROPZONE
 -------------------------------------------------- */
@@ -361,8 +473,8 @@ body.nav-open .open-nav-cover {
 #stateBlock .city-list {
   padding: 0;
   list-style: none;
-  /*column-count:5; 
-  column-gap:7.5%; 
+  /*column-count:5;
+  column-gap:7.5%;
   column-width:14%;*/
 }
 
@@ -609,7 +721,7 @@ body.nav-open .open-nav-cover {
   -webkit-animation-name: rotate;
   animation-name: rotate;
   animation-duration: 2.5s;
-  
+
 }
 
 
@@ -1531,7 +1643,7 @@ body.nav-open .open-nav-cover {
   left: 0;
   /*background: url(/storage//images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg) no-repeat;*/
   background: url(/storage//images/restaurant-bg.jpg) no-repeat;
-  background-size: cover; 
+  background-size: cover;
   background-position: center center;
 }
 
@@ -1636,9 +1748,12 @@ body.nav-open .open-nav-cover {
   border-radius: 0;
   background-position: 15px center;
   background-repeat: no-repeat;
-  -moz-box-shadow: 0 -14px 28px rgba(0,0,0,0.25), 0 -10px 10px rgba(0,0,0,0.22);
-  -webkit-box-shadow: 0 -14px 28px rgba(0,0,0,0.25), 0 -10px 10px rgba(0,0,0,0.22);
-  box-shadow: 0 -14px 28px rgba(0,0,0,0.25), 0 -10px 10px rgba(0,0,0,0.22);
+/*  -moz-box-shadow: 0 -14px 28px rgba(0,0,0,0.05), 0 -10px 10px rgba(0,0,0,0.12);
+  -webkit-box-shadow: 0 -14px 28px rgba(0,0,0,0.05), 0 -10px 10px rgba(0,0,0,0.12);
+  box-shadow: 0 -14px 28px rgba(0,0,0,0.05), 0 -10px 10px rgba(0,0,0,0.12);*/
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
   color: #fff;
   opacity: 1;
 }
@@ -1679,7 +1794,7 @@ body.nav-open .open-nav-cover {
 /*@media (max-width: 767px) {
   #stateBlock ul.city-list {
     padding: 0 20px;
-    column-count:1; 
+    column-count:1;
     column-width:90%;
   }
 }*/
@@ -1746,6 +1861,9 @@ body.nav-open .open-nav-cover {
   #toast-container.toast-bottom-center>div, #toast-container.toast-top-center>div {
     width: 90%;
   }
+  .faq-wrapper {
+    width: 100%;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 766px) {
@@ -1803,7 +1921,7 @@ body.nav-open .open-nav-cover {
   }
   /*#stateBlock ul.city-list {
     padding: 0 20px;
-    column-count:3; 
+    column-count:3;
     column-gap: 5%;
     column-width:30%;
   }*/
@@ -1880,6 +1998,10 @@ body.nav-open .open-nav-cover {
     max-width: 80%;
     color: #237fcb;
   }
+  .contact-header-text {
+    font-size: 3.5rem;
+    font-weight: 600;
+  }
   #popular .all-cities-btn a.btn {
     display: block;
   }
@@ -1900,6 +2022,9 @@ body.nav-open .open-nav-cover {
   #businessRequestFormModal .top-row .title-wrapper .business-svg-icon {
     bottom: -10px;
     width: 140px;
+  }
+  #faqSearch {
+    width: 100%;
   }
   .signup-container {
     padding-top: 1rem;

@@ -39,7 +39,11 @@ class FaqController extends Controller
     {
         $validated = $request->validated();
 
-        Faq::create($validated);
+        if ($request->type == "general") {
+            Faq::create($validated + ['is_general' => true]);
+        } else {
+            Faq::create($validated);
+        }
 
         notify()->success('Your Frequently Asked Question has been added', 'FAQ Added');
         return redirect()->route('faqs.index');

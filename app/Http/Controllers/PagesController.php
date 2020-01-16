@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\Faq;
 use App\City;
 use App\State;
@@ -185,6 +186,12 @@ class PagesController extends Controller
 
     public function faqs()
     {
-        return view('public.faqs');
+        $faqs = Faq::where('is_active', true)->get();
+        $categories = DB::table('faqs')
+            ->select('type', 'is_general')
+            ->orderBy('is_general', 'DESC')
+            ->groupBy('type', 'is_general')
+            ->get();
+        return view('public.faqs', compact('faqs', 'categories'));
     }
 }

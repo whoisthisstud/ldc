@@ -11,8 +11,7 @@
         <!-- MINIFIED -->
         {!! SEO::generate() !!}
 
-        <!-- <meta name="description" content="">
-        <title>Local Discount Club | @yield('page-title')</title> -->
+        @include('_partials.favicons')
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
@@ -53,6 +52,7 @@
         @notify_js
         <script src="{{ asset('js/popper.js') }}"></script>
         <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
 
         @include('_partials.scripts.business-request-ajax-script')
         @include('_partials.scripts.city-request-ajax-script')
