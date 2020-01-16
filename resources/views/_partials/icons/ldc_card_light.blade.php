@@ -1,7 +1,7 @@
 <svg class="brand-logo-svg brand-logo-svg-light animated jackInTheBox" version="1.1" id="Layer_1" xmlns:x="&ns_extend;" xmlns:i="&ns_ai;" xmlns:graph="&ns_graphs;"
 	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
 	 x="0px" y="0px" viewBox="0 0 252 144" enable-background="new 0 0 252 144" xml:space="preserve">
-<path fill="rgba(255,255,255,0.65)" d="M252,133.999c0,5.523-4.478,10.001-10.001,10.001H10.001C4.478,144,0,139.522,0,133.999V10.001C0,4.478,4.478,0,10.001,0
+<path fill="rgba(255,255,255,1)" d="M252,133.999c0,5.523-4.478,10.001-10.001,10.001H10.001C4.478,144,0,139.522,0,133.999V10.001C0,4.478,4.478,0,10.001,0
 	h231.998C247.522,0,252,4.478,252,10.001V133.999z"/>
 <g>
 	<path class="animated flipInY slower infinite" fill="#1e6daf" style="opacity:.5;" d="M55.001,41.277c0,5.523-4.478,10.001-10.001,10.001H27.576c-5.523,0-10.001-4.478-10.001-10.001V25.606

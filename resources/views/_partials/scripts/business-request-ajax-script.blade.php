@@ -20,7 +20,9 @@ $('#businessRequestForm').on('submit', function (e) {
             $('#businessRequestFormModal').modal('hide');
             $('.navbar-toggler').click();
             $("#businessRequestForm")[0].reset();
-            toastr.success(data['success'], "Business Request Submitted");
+            toastr.success(data['success'], "Business Request Submitted", {
+                "timeOut": "4000"
+            });
         },
         error: function(jqXhr, json, errorThrown){// this are default for ajax errors
             var errors = jqXhr.responseJSON;

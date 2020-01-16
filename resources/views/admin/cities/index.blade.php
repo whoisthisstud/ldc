@@ -33,13 +33,17 @@
 
                                 @can('manage-cities')
                                 <li class="nav-item d-inline-block">
+                                    <button class="btn btn-sm btn-danger btn-badge" data-toggle="modal" data-target="#areYouSure" data-form-id="deleteCityForm" data-object="{{ $city->name }}, {{ $city->state->abbreviation }}">
+                                        <i class="fas fa-trash mr-1"></i>
+                                        Delete City
+                                    </button>
                                     <form id="deleteCityForm" method="POST"
                                         action="{{ route('delete.city',[$city]) }}">
                                         @csrf
-                                        <button type="submit" class="btn btn-sm btn-danger btn-badge">
+                                        <!-- <button type="submit" class="btn btn-sm btn-danger btn-badge">
                                             <i class="fas fa-trash mr-1"></i>
                                             Delete City
-                                        </button>
+                                        </button> -->
                                     </form>
                                 </li>
                                 @endcan
@@ -99,14 +103,33 @@
 
     <div class="row mt-5 mb-4">
 
-        <div class="col-12 col-md-3">
-            <div class="nav flex-column nav-pills" id="tablist" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active" id="city-discounts-tab" data-toggle="pill" href="#city-discounts" role="tab" aria-controls="city-discounts" aria-selected="true">Discounts</a>
-                <a class="nav-link" id="city-businesses-tab" data-toggle="pill" href="#city-businesses" role="tab" aria-controls="city-businesses" aria-selected="false">Businesses</a>
-                <a class="nav-link" id="city-signups-tab" data-toggle="pill" href="#city-signups" role="tab" aria-controls="city-signups" aria-selected="false">Registered Users</a>
-                <a class="nav-link" id="city-surrounding-tab" data-toggle="pill" href="#city-surrounding" role="tab" aria-controls="city-surrounding" aria-selected="false">Surrounding Cities</a>
-                <a class="nav-link" id="city-requested-tab" data-toggle="pill" href="#city-requested" role="tab" aria-controls="city-requested" aria-selected="false">Requested Businesses</a>
-                <a class="nav-link" id="city-notify-tab" data-toggle="pill" href="#city-notify" role="tab" aria-controls="city-notify" aria-selected="false">Requested Notifications</a>
+        <div class="col-12 col-md-3 mb-4">
+            <div class="nav flex-column nav-pills sticky-top mb-4" id="tablist" role="tablist" aria-orientation="vertical" style="top: 160px;">
+                <h5 class="pb-3 mb-2 text-uppercase city-menu-header">City Menu</h5>
+                <a class="nav-link active" id="city-discounts-tab" data-toggle="pill" href="#city-discounts" role="tab" aria-controls="city-discounts" aria-selected="true">
+                    <i class="fas fa-tags mr-2"></i>
+                    Discounts
+                </a>
+                <a class="nav-link" id="city-businesses-tab" data-toggle="pill" href="#city-businesses" role="tab" aria-controls="city-businesses" aria-selected="false">
+                    <i class="fas fa-building mr-2"></i>
+                    Businesses
+                </a>
+                <a class="nav-link" id="city-signups-tab" data-toggle="pill" href="#city-signups" role="tab" aria-controls="city-signups" aria-selected="false">
+                    <i class="fas fa-users mr-2"></i>
+                    Registered Users
+                </a>
+                <a class="nav-link" id="city-surrounding-tab" data-toggle="pill" href="#city-surrounding" role="tab" aria-controls="city-surrounding" aria-selected="false">
+                    <i class="fas fa-city mr-2"></i>
+                    Surrounding Cities
+                </a>
+                <a class="nav-link" id="city-requested-tab" data-toggle="pill" href="#city-requested" role="tab" aria-controls="city-requested" aria-selected="false">
+                    <i class="fas fa-bullhorn mr-2"></i>
+                    Requested Businesses
+                </a>
+                <a class="nav-link" id="city-notify-tab" data-toggle="pill" href="#city-notify" role="tab" aria-controls="city-notify" aria-selected="false">
+                    <i class="fas fa-envelope-open-text mr-2"></i>
+                    Requested Notifications
+                </a>
             </div>
         </div>
         <div class="col-12 col-md-9">
@@ -176,7 +199,41 @@
                     </section>
                 </div>
                 <div class="tab-pane fade" id="city-businesses" role="tabpanel" aria-labelledby="city-businesses-tab">
-                    Businesses - Pending
+                    <section class="">
+                        <div class="row">
+                            <div class="col-12">
+                                <h4 class="text-muted pb-2 mb-3 border-bottom">City Businesses</h4>
+                            </div>
+                            @foreach( $city->discounts as $discount )
+                                <div class="col-md-4 col-sm-12 mb-3 card-hover"><!-- col-lg-3  -->
+                                    <div class="business-card hover-card">
+                                        <div class="card-top">
+                                            <div class="city-card-tile">
+                                                <div class="city-card-wrapper">
+
+                                                    <a href="{{ route('view.business', [ 'business' => $discount->business->id ]) }}" class="text-decoration-none">
+                                                        @if( $discount->business->logo != null )
+                                                            <div class="py-2 px-4">
+                                                                <div class="business-logo" style="background-image: url({{ asset( $discount->business->logo ) }});"></div>
+                                                            </div>
+                                                        @else
+                                                            <div class="city-card-header">
+                                                                <div class="text-center">
+                                                                    <h4 class="mt-2 mb-0">{{ $discount->business->name }}</h4>
+                                                                </div>
+                                                            </div>
+                                                        @endif
+                                                    </a>
+
+                                                </div>
+                                            </div> 
+                                        </div>
+                                    </div>                                   
+                                </div>
+                            @endforeach
+
+                        </div>   
+                    </section>
                 </div>
                 <div class="tab-pane fade" id="city-signups" role="tabpanel" aria-labelledby="city-signups-tab">
                     @forelse($city->users as $user)
@@ -206,23 +263,25 @@
 
                 </div>
                 <div class="tab-pane fade" id="city-requested" role="tabpanel" aria-labelledby="city-requested-tab">
-                    <h4 class="text-muted mb-4">Requested Businesses - Pending</h4>
+                    <h4 class="text-muted mb-4">Requested Businesses</h4>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Column</th>
-                                <th scope="col">Column</th>
-                                <th scope="col">Column</th>
-                                <th scope="col">Column</th>
+                                <th scope="col">Business Requested</th>
+                                <th scope="col">IP Address</th>
+                                <th scope="col" class="text-right">Requested On</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Data</td>
-                                <td>Data</td>
-                                <td>@Data</td>
-                            </tr>
+                            @if( $city->requestedBusinesses->count() > 0 )
+                                @foreach( $city->requestedBusinesses as $business )
+                                    <tr>
+                                        <th scope="row">{{ $business->business_name }}</th>
+                                        <td>{{ $business->ip_address }}</td>
+                                        <td class="text-right">{{ $business->created_at->format('m/d/y \@ h:i A') }}</td>
+                                    </tr>
+                                @endforeach
+                            @endif
                         </tbody>
                     </table>
                 </div>
@@ -237,18 +296,27 @@
                                 <th scope="col">First Name</th>
                                 <th scope="col">Last Name</th>
                                 <th scope="col">Email Address</th>
+                                <th scope="col">Tags</th>
                                 <th scope="col">Requested On</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody>  <!-- in_array($city->name, $member['tags']) -->
+                            <!-- dd($news['members']) -->
                             @foreach( $news['members'] as $key => $member )
-                            <tr>
-                                <td>{{ $member['merge_fields']['FNAME'] }}</td>
-                                <td>{{ $member['merge_fields']['LNAME'] }}</td>
-                                <td>{{ $member['email_address'] }}</td>
-                                <td>{{ Carbon\Carbon::parse($member['timestamp_opt'])->format('m-d-Y \@ h:i A') }}</td>
 
-                            </tr>
+                                    <tr>
+                                        <td>{{ $member['merge_fields']['FNAME'] }}</td>
+                                        <td>{{ $member['merge_fields']['LNAME'] }}</td>
+                                        <td>{{ $member['email_address'] }}</td>
+                                        <td>
+                                            @foreach( $member['tags'] as $tag)
+                                                {{ $tag['name'] }}{{ ! $loop->last ? ', ' : '' }}
+                                            @endforeach
+                                        </td>
+                                        <td>{{ Carbon\Carbon::parse($member['timestamp_opt'])->format('m-d-Y \@ h:i A') }}</td>
+
+                                    </tr>
+
                             @endforeach
                         </tbody>
 

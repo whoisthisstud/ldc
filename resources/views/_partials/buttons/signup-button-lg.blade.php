@@ -15,7 +15,7 @@
 	@if( Auth::user()->cities->count() > 0 && ( Auth::user()->cities->first()->id !== $city->id ) )
 		<div class="col-12 text-center">
 		    <div class="d-block mb-5">
-		        <a href="#" class="btn btn-lg btn-primary">Add {{ $city->name }}, {{ $city->state->abbreviation }} to your Available Cities</a>
+		        <a href="#" class="btn btn-lg btn-primary">Add {{ $city->name }}, {{ $city->state->abbreviation }} to your account</a>
 		    </div>
 		</div>
 	@endif

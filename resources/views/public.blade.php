@@ -19,13 +19,11 @@
 							</div>
 						</div>
 						<div class="col-12 col-sm-7 col-md-6 z-10 text-xs-center text-right">
-							<p class="display-4"><strong>Exclusive Local Discounts</strong></p>
-							<p class="lead">
-								Members enjoy unique discounts to establishments in their local areas. These discounts are not available anywhere else.
-								<br>
-								<strong class="text-uppercase">Membership is free!</strong>
-							</p>
-							<a class="btn btn-primary" href="#popular" role="button">Pick your city</a>
+							<p class="display-4" style="font-size: 3.75rem;line-height: 3.5rem;font-weight: 400;"><strong>Exclusive Local Discounts</strong></p>
+							<p class="lead" style="font-size: 1.125rem; font-weight: 400; line-height: 1.5rem;">
+								Members enjoy unique discounts to establishments in their local areas. These discounts are not available anywhere else.</p>
+							<p class="text-uppercase text-center text-md-right" style="font-weight: 700;font-size: 1.25rem;letter-spacing: .25px;">Membership is free!</p>
+							<a class="btn btn-lg btn-primary" href="#popular" role="button" style="padding: 0.75rem 2.5rem;text-transform: uppercase;font-size: .8rem;letter-spacing: .25px;">Download Your Free Card</a>
 							<!-- <a class="btn btn-lg btn-primary" href="#" role="button">Sign me up for this free membership!</a> -->
 						</div>
 					</div>

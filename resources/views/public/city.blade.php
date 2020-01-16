@@ -12,7 +12,8 @@
                     <div class="row justify-content-between">
                         <div class="col-12 z-10 text-xs-center text-center">
                             <div class="d-block page-header">
-                                <p class="city-header-text">{{ $city->name }}, <a href="#" class="section-title-state-link">{{ $city->state->abbreviation }}</a></p>
+                                <!-- <p class="city-header-text">{{ $city->name }}, <a href="#" class="section-title-state-link">{{ $city->state->abbreviation }}</a></p> -->
+                                <p class="city-header-text">{{ $city->name }}, {{ $city->state->abbreviation }}</p>
                                 
                                 @if( $city->is_active == true )
                                     @include('_partials.buttons.signup-button-sm')

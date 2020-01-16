@@ -5,6 +5,7 @@ namespace App;
 use App\User;
 use App\State;
 use App\Season;
+use App\BusinessRequest;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\Models\Media;
 use Spatie\MediaLibrary\HasMedia\HasMedia;
@@ -68,6 +69,11 @@ class City extends Model implements HasMedia
     public function users()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function requestedBusinesses() 
+    {
+        return $this->hasMany(BusinessRequest::class);
     }
 
     public function registerMediaCollections(Media $media = null)

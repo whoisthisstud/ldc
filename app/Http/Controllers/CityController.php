@@ -62,7 +62,12 @@ class CityController extends Controller
 
     public function show(City $city)
     {
-        $city = City::where('id',$city->id)->with('seasons')->with('state')->first();
+        $city = City::where('id',$city->id)
+            ->with('seasons')
+            ->with('state')
+            ->with('discounts')
+            ->with('requestedBusinesses')
+            ->first();
 
         $surrounding = null;
 
@@ -71,8 +76,7 @@ class CityController extends Controller
         }
 
         //Get the members for a given list, optionally filtered by passing a second array of parameters
-        // Newsletter::getMembers();
-        $news = Newsletter::getMembers('subscribers',[ 'offset' => 0, 'count' => 50, 'tags' => ['Springdale'] ]);
+        $news = Newsletter::getMembers('subscribers',[ 'offset' => 0, 'count' => 50, 'tags' => [$city->name] ]);
 
         return view('admin.cities.index', compact('city', 'surrounding', 'news'));
     }
@@ -217,6 +221,11 @@ class CityController extends Controller
         if( $city->is_active == true ) {
             notify()->error($city->name . ', ' . $city->state->abbreviation . ' can not be deleted while active. Please deactivate the city and try again.', 'ERROR');
             return redirect()->back();
+        }
+
+        if( Auth()->user()->cannot('manage-cities') ) {
+            notify()->error('You do not have sufficient permissions to delete a city.', 'UNAUTHORIZED');
+            return redirect()->route('view.state', [ $state ]);  
         }
 
         $state = $city->state->id;
