@@ -52,6 +52,7 @@
 @endsection
 
 @section('scripts')
+<script src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
 <script>
 
 $(document).ready(function() {

@@ -3,15 +3,21 @@
 @section('page-title', 'Terms of Use')
 
 @section('content')
+<div id="termsHeader" class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <div class="terms-header-bkgd"></div>
+            <h1 class="pt-5 text-primary">Terms and Conditions</h1>
+            <p class="search-subtext text-primary">These terms and conditions outline the rules and regulations for the use of this Website.</p>
+        </div>
+    </div>
+</div>
 <div class="container signup-container">
     <div class="row justify-content-center">
-        <div class="col-12 col-md-10">
+        <div class="col-10 pt-4">
+          <p><strong>Welcome to Local Discount Club!</strong></p>
 
-          <h2><strong>Terms and Conditions</strong></h2>
-
-          <p>Welcome to Local Discount Club!</p>
-
-          <p>These terms and conditions outline the rules and regulations for the use of Local Discount Club's Website, located at www.yourldc.com.</p>
+          <p>These terms and conditions outline the rules and regulations for the use of Local Discount Club's Website, located at <a href="https://yourldc.com" data-toggle="tooltip" data-placement="top" data-title="https://yourldc.com will open in a new window" target="_blank">yourldc.com</a>.</p>
 
           <p>By accessing this website we assume you accept these terms and conditions. Do not continue to use Local Discount Club if you do not agree to take all of the terms and conditions stated on this page.</p>
 

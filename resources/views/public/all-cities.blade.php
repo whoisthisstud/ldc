@@ -5,19 +5,35 @@ All Cities
 @endsection
 
 @section('content')
+<div id="contactHeader" class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center pt-5">
+            <!-- <div class="contact-header-bkgd"></div> -->
+            <div class="contact-header-bkgd" style="opacity:.85;">
+                @include('_partials.icons.dinner_primary')
+            </div>
+            <h1 class="contact-header-text">Spreading the love around!</h1>
+            <p class="contact-intro">Don't see your city? <a href="#" class="text-decoration-none" data-toggle="modal" data-target=".cityRequestFormModal">Submit a request</a> and we'll start working on bringing discounts to your local area.</p>
+            <div class="contact-page-ldc-card" style="opacity: .05;">
+                @include('_partials.icons.ldc_card_light_contact')
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container pb-4">
 	<div class="row justify-content-center">
 
-		<div class="col-12 col-md-11">
+		<!-- <div class="col-12 col-md-10">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
 					<li class="breadcrumb-item active">All Cities</li>
 				</ol>
 			</nav>
-		</div>
+		</div> -->
 		
-		<div class="col-12 col-md-11 pt-4">
+		<div class="col-12 col-md-10 pt-4 text-center">
 			<div class="row">
 				<div class="col-12" style="">
 					

@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-12">
                         <div class="title-wrapper p-4 text-center">
-                            <h3 class="city-request-title text-white">Help us bring your favorite city to your Local Discount Club.</h3>
+                            <h3 class="city-request-title text-white">Help us bring the your favorite city to your Local Discount Club.</h3>
                             <span class="svg-icon business-svg-icon">
                                 @include('_partials.icons.skyline_buildings_duotone')
                             </span>
@@ -46,7 +46,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="city_name">City Name</label>
-                                    <input type="text" class="form-control" id="city_name" name="city_name" aria-describedby="city">
+                                    <input type="text" class="form-control" id="city_name" name="city_name" aria-describedby="city" placeholder="Your city here">
                                     <small id="city_nameError" class="form-text text-danger error-text"></small>
                                 </div>
 

@@ -3,20 +3,29 @@
 @section('page-title', 'Terms of Use')
 
 @section('content')
+<div id="termsHeader" class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <div class="terms-header-bkgd"></div>
+            <h1 class="pt-5 text-primary">PRIVACY POLICY</h1>
+            <p class="search-subtext text-primary">Last updated <strong>January 01, 2020</strong></p>
+        </div>
+    </div>
+</div>
 <div class="container signup-container">
-  <div class="row justify-content-between">
-    <div class="col-12">
+  <div class="row justify-content-center">
+    <div class="col-10">
 
       <div style="margin: 0px auto; -webkit-user-select: none;">
 
         <div>
-          <p class="mb-0" style="font-size: 26px; font-weight: 700;">PRIVACY POLICY</p>
+          <!-- <p class="mb-0" style="font-size: 26px; font-weight: 700;">PRIVACY POLICY</p>
           <p class="mb-4" style="font-size:15px;">
             <span class="subtitle" style="color: rgb(127, 127, 127);">
               Last updated 
               <strong>January 01, 2020</strong>
             </span>
-          </p>
+          </p> -->
           <p style="font-size: 15px;color: rgb(89, 89, 89);">Thank you for choosing to be part of our community at One Community Marketing LLC, doing business as Local Discount Club (“<strong>Local Discount Club</strong>”, “<strong>we</strong>”, “<strong>us</strong>”, or “<strong>our</strong>”). We are committed to protecting your personal information and your right to privacy. If you have any questions or concerns about our policy, or our practices with regards to your personal information, please contact us at <em>createonecommunity@gmail.com</em>.</p>
           <p style="font-size: 15px; color: rgb(89, 89, 89);">When you visit our website www.yourldc.com, and use our services, you trust us with your personal information. We take your privacy very seriously. In this privacy policy, we seek to explain to you in the clearest way possible what information we collect, how we use it and what rights you have in relation to it. We hope you take some time to read through it carefully, as it is important. If there are any terms in this privacy policy that you do not agree with, please discontinue use of our Sites and our services.</p>
           <p style="font-size: 15px;">This privacy policy applies to all information collected through our website (such as www.yourldc.com), and/or any related services, sales, marketing or events (we refer to them collectively in this privacy policy as the "<strong>Services</strong>").</p>

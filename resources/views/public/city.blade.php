@@ -103,13 +103,48 @@
                 <div class="col-12 col-sm-12 col-md-12 pb-3 text-center">
                     <h3 class="city-header text-center">Businesses w/ Exclusive Discounts in {{ $city->name }}</h3>
                 </div>
+                
+{{-- @php $userCitiesArray = Auth::user()->cities->toArray() @endphp
+@dd( $userCitiesArray[0]['pivot']['city_id'] ) --}}  
 
                 @forelse($city->discounts as $discount)
                     <div class="col px-0 card-hover"><!-- col-lg-3  -->
                         <div class="card business-display">
-                            <div class="card-body" rel="tooltip" data-toggle="tooltip" data-html="false" data-trigger="hover focus" title="Download your card and start saving at {{ $discount->business->name }} today.">
+                            <div class="card-body" rel="tooltip" data-toggle="tooltip" data-html="true" data-trigger="hover focus" title="
 
-                                <!-- <a href="{{ route('public.discount', [ 'state' => $city->state->name, 'city' => $city->name, 'business' => $discount->business->id, 'discount' => $discount->code ]) }}" class="text-decoration-none"> -->
+                            @if( Auth::user() && Auth::user()->cities->first() )
+                                @if( Auth::user()->cities->count() > 0 )
+                                    {{-- @if( in_array($city->id, Auth::user()->cities->toArray()) === true )
+                                        Click to view <b class='text-primary'>{{ $discount->business->name }}</b>'s discount.
+                                    @else
+                                        Add this city to your account and start saving at {{ $discount->business->name }} today.
+                                    @endif --}}
+
+                                    @foreach( Auth::user()->cities as $subscribedTo )
+                                        @if( $subscribedTo->id === $city->id )
+                                            Click to view <b class='text-primary'>{{ $discount->business->name }}</b>'s discount.
+                                        @endif
+                                    @endforeach
+                                @else
+                                    Download your card and start saving at <b class='text-primary'>{{ $discount->business->name }}</b> today.
+                                @endif
+                            @else
+                                Download your card and start saving at <b class='text-primary'>{{ $discount->business->name }}</b> today.
+                            @endif
+
+                            ">
+
+                                @if( Auth::user() && Auth::user()->cities->first() )
+                                    @if( Auth::user()->cities->count() > 0 )
+                                        @foreach( Auth::user()->cities as $subscribedTo )
+                                            @if( $subscribedTo->id === $city->id )
+
+                                                <a href="{{ route('public.discount', [ 'state' => $city->state->name, 'city' => $city->name, 'business' => $discount->business->id, 'discount' => $discount->code ]) }}" class="text-decoration-none">
+                                            @else
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                @endif
                                     <div class="py-2 px-sm-2 px-4">
                                         @if( ! empty( $discount->business->logo ) )
                                         <div class="business-logo" style="background-image: url({{ $discount->business->logo }});"></div>
@@ -121,7 +156,16 @@
                                         @endif
 
                                     </div>
-                                <!-- </a> -->
+                                @if( Auth::user() && Auth::user()->cities->first() )
+                                    @if( Auth::user()->cities->count() > 0 )
+                                        @foreach( Auth::user()->cities as $subscribedTo )
+                                            @if( $subscribedTo->id === $city->id )
+                                                </a>
+                                            @else
+                                            @endif
+                                        @endforeach
+                                    @endif
+                                @endif
 
                             </div>
                         </div>

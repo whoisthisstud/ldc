@@ -6,7 +6,14 @@
 				<!-- start: Public Menu -->
 				<div id="publicMenu" class="col-12 py-4 mb-4 px-2 border-bottom" style="border-bottom: 1px solid #2a3137 !important;">
 					<ul class="icon-menu d-flex flex-row align-content-center align-items-stretch flex-wrap">
-
+						<li id="downloadCard" class="primary-icon-btn">
+							<a href="#" class="icon-btn text-white bg-primary">
+								<span class="icon-btn-svg-icon">
+									@include('_partials.icons.ldc_card_light-icon')
+								</span>
+								Download Card
+							</a>
+						</li>
 						<li class="">
 							<a href="{{ route('public.cities.list') }}" class="icon-btn text-white">
 								<!-- <i class="fas fa-home"></i> -->
@@ -35,14 +42,14 @@
 
 						<li class="separator d-none d-md-inline-block"></li>
 
-						<li class="">
+						<!-- <li class="">
 							<a href="{{ route('public.about') }}" class="icon-btn text-white">
 								<span class="icon-btn-svg-icon">
 									@include('_partials.icons.ldc_card_light-icon')
 								</span>
 								About Us
 							</a>
-						</li>
+						</li> -->
 						<li class="">
 							<a href="{{ route('public.contact') }}" class="icon-btn text-white">
 								<span class="icon-btn-svg-icon">
@@ -54,7 +61,8 @@
 						<li class="">
 							<a href="{{ route('public.faqs') }}" class="icon-btn text-white">
 								<span class="icon-btn-svg-icon">
-									@include('_partials.icons.lifeline_multi')
+									{{--  @include('_partials.icons.lifeline_multi') --}}
+									@include('_partials.icons.qa_multi2')
 								</span>
 								FAQs
 							</a>

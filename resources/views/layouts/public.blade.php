@@ -52,7 +52,6 @@
         @notify_js
         <script src="{{ asset('js/popper.js') }}"></script>
         <script src="{{ asset('js/bootstrap/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('js/isotope.pkgd.min.js') }}"></script>
 
         @include('_partials.scripts.business-request-ajax-script')
         @include('_partials.scripts.city-request-ajax-script')
@@ -73,6 +72,10 @@
 
                 i = (i==0 || i=='') ? i=1 : i=0;
             });
+            
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
         </script>
 
     </body>
