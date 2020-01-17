@@ -18,7 +18,7 @@ class PagesController extends Controller
 {
     public function __construct(Request $request)
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
 
         $select_cities = City::all();
         $select_states = State::with('cities')->get();

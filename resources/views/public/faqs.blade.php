@@ -6,7 +6,10 @@
 <div id="faqHeader" class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-12 text-center">
-            <div class="faq-header-bkgd"></div>
+            <!-- <div class="faq-header-bkgd"></div> -->
+            <div class="contact-header-bkgd">
+                @include('_partials.icons.dinner_primary')
+            </div>
             <h3 class="pt-5 text-primary">How may we help you?</h3>
             <div id="faqSearch" class="text-center">
                 <form id="faqSearchForm">

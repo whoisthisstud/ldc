@@ -34,6 +34,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/dashboard', 'HomeController@index')->name('home');
     Route::post('/store-media', 'StoreMediaController')->name('store.media');
     Route::get('/test', 'TestController')->name('test');
+    Route::get('/card', 'ClubCardController@view')->name('card');
 
     Route::get('/states', 'StateController@index')->name('states.index');
     Route::get('/states/add', 'StateController@create')->name('states.create');

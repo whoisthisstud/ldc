@@ -168,7 +168,14 @@
 						@can('access-testing')
 
 							<li class="separator d-none d-md-inline-block"></li>
-
+							<li class="">
+								<a href="{{ route('card') }}" class="icon-btn text-white">
+									<span class="icon-btn-svg-icon">
+										@include('_partials.icons.business-card_multi')
+									</span>
+									View Club Card
+								</a>
+							</li>
 							@if( isset($city) )
 								<li class="">
 									<a href="{{ route('public.signup', ['state' => $city->state->name, 'city' => $city->name]) }}" class="icon-btn text-white">

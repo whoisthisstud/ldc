@@ -487,12 +487,16 @@ body.nav-open .open-nav-cover {
 /*  font-weight: 400;
   line-height: 1.6;*/
   color: #4f565e;
-  background-color: #eff1f3;
+
 /*  background-clip: padding-box;*/
   border: 1px solid #eef0f2;
 /*  border-radius: 0.25rem;
   -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/
+}
+
+.card .form-control {
+  background-color: #eff1f3;
 }
 
 .contact-page-ldc-card {
@@ -519,7 +523,7 @@ body.nav-open .open-nav-cover {
   margin: 2.85em 0;
 }
 
-/* DISCOUNT CARD
+/* ALL CITIES
 -------------------------------------------------- */
 #stateBlock {
   display:block;
@@ -1859,7 +1863,7 @@ body.nav-open .open-nav-cover {
   border-radius: 5px;
   box-shadow: 0 -10px 20px rgba(0,0,0,0.15), 0 -4px 6px rgba(0,0,0,0.06);
 }
-.bs-tooltip-top .arrow::before, 
+.bs-tooltip-top .arrow::before,
 .bs-tooltip-auto[x-placement^=top] .arrow::before {
 border-width: 0.4rem 0.4rem 0;
 border-top-color: #343a40;
