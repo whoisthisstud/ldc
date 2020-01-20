@@ -355,6 +355,24 @@ body.nav-open .open-nav-cover {
   margin-top: -15px;
   height: 180px;
 }
+#pageHeader {
+  margin-top: -15px;
+  /*height: calc(100vh - 60px);*/
+}
+
+#pageHeader .page-header-wrapper {
+  height: calc(100vh - 60px);
+  padding: 3rem 0;
+}
+
+.scroller-arrow {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  width: 30px;
+  transform: translateX(-15px);
+  -webkit-transform: translateX(-15px);
+}
 
 .faq-header-bkgd/*,
 .contact-header-bkgd */{
@@ -369,7 +387,8 @@ body.nav-open .open-nav-cover {
   background: url(/i/bkg_ptn3.jpg);
 }
 
-.contact-header-bkgd {
+.contact-header-bkgd,
+.page-header-bkgd {
   position: absolute;
   top: 0;
   left: 50%;
@@ -470,7 +489,7 @@ body.nav-open .open-nav-cover {
   margin: 0 auto 1rem;
   max-width: 600px;
   font-weight: 500;
-  font-size: .85rem;
+  font-size: 1rem;
   letter-spacing: .75px;
 }
 
@@ -495,7 +514,8 @@ body.nav-open .open-nav-cover {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/
 }
 
-.card .form-control {
+.card .form-control,
+.modal-body .form-control {
   background-color: #eff1f3;
 }
 
@@ -508,6 +528,58 @@ body.nav-open .open-nav-cover {
   transform: rotate(-7deg);
   opacity: .1;
 }
+
+.page-bkgd-ldc-card {
+  width: 250px;
+  display: block;
+  position: absolute;
+  top: 69%;
+  right: 10%;
+  transform: rotate(-7deg);
+  opacity: .05;
+}
+
+
+/* #easyPeasy
+-------------------------------------------------- */
+#easyPeasy {
+  min-height: 100vh;
+  padding-top: 5rem;
+}
+
+#easyPeasy h2 {
+  font-size: 2.125rem;
+  text-align: center;
+  margin: 2.5rem 0;
+  color: #292827;
+  font-weight: 600;
+}
+
+#easyPeasy h4.easy-subtext {
+  text-align: center;
+  margin: 2.5rem 0;
+}
+
+.jumbotron.easy-jumbotron {
+  background-color: #e4e9ee;
+  padding: 2rem;
+}
+
+.jumbotron.easy-jumbotron .icon-btn-svg {
+  max-height: 115px;
+  margin-bottom: 1rem;
+}
+
+.jumbotron.easy-jumbotron h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+#easyPeasy .easy-last-call {
+  margin-top: 3.5rem;
+}
+
 
 
 /* DROPZONE
@@ -876,13 +948,15 @@ body.nav-open .open-nav-cover {
   padding: 0.75rem;
 }
 
-.carousel-item .carouse-graphic-wrapper.large {
+.carousel-item .carousel-graphic-wrapper.large {
   border-radius: 1.5rem;
-  box-shadow: 0 0px 24px -6px rgba(0,0,0,.6);
+  box-shadow: 0 19px 38px rgba(0,0,0,0.16), 0 15px 12px rgba(0,0,0,0.08);
+  margin-top: 2rem;
 }
 
 .carousel-item .carousel-graphic-wrapper.large .brand-logo-svg {
-  border: 6px solid rgba(255,255,255,0.4);
+  /*border: 6px solid rgba(255,255,255,0.4);*/
+  /*box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);*/
   border-radius: 1.5rem;
 }
 
@@ -896,6 +970,41 @@ body.nav-open .open-nav-cover {
   z-index: 10;
   left: unset;
   right: 9%;
+}
+
+.carousel-item .carousel-header {
+  font-size: 4.5rem;
+  line-height: 3.85rem;
+  font-weight: 800;
+  letter-spacing: -.75px;
+  color: #292827;
+  margin-bottom: 1.5rem;
+}
+
+.carousel-item .carousel-lead {
+  font-size: 1.25rem;
+  line-height: 1.65rem;
+  font-weight: 400;
+  letter-spacing: .125px;
+  color: #292827;
+}
+
+.carousel-item .carousel-emphasis {
+  font-size: 1.375rem;
+  font-weight: 500;
+  letter-spacing: -.25px;
+  color: #3490dc;
+}
+
+.carousel-item .carousel-btn {
+  padding: 0.75rem 3.125rem;
+  font-size: 1rem;
+  letter-spacing: .25px;
+}
+
+.carousel-item .btn-link.more-link {
+  font-size: .85rem;
+
 }
 
 .carousel-item p.city-header-text {
@@ -1756,10 +1865,11 @@ body.nav-open .open-nav-cover {
   opacity: 1;
   transition: all .25s ease-in;
 }
-
-#cityRequestFormModal .top-row .title-wrapper,
-#businessRequestFormModal .top-row .title-wrapper {
+#cityRequestFormModal .top-row .title-wrapper {
   padding: 1.5rem 5rem !important;
+}
+#businessRequestFormModal .top-row .title-wrapper {
+  padding: 1.5rem 4rem !important;
 }
 #cityRequestFormModal .top-row .title-wrapper .city-request-title,
 #businessRequestFormModal .top-row .title-wrapper .city-request-title {
@@ -1767,19 +1877,28 @@ body.nav-open .open-nav-cover {
   height: 160px;
   text-shadow: 0px 0px 8px #165181;
 }
-#cityRequestFormModal .top-row .title-wrapper .business-svg-icon,
-#businessRequestFormModal .top-row .title-wrapper .business-svg-icon {
+#cityRequestFormModal .top-row .title-wrapper .business-svg-icon{
   display: inline-block;
   position: absolute;
   bottom: -30px;
   left: 50%;
-  width: 125px;
+  width: 175px;
+  height: 130px;
+  transform: translateX(-50%);
+}
+#businessRequestFormModal .top-row .title-wrapper .business-svg-icon {
+  display: inline-block;
+  position: absolute;
+  bottom: -55px;
+  left: 50%;
+  width: 150px;
   height: 130px;
   transform: translateX(-50%);
 }
 #cityRequestFormModal .bottom-row .form-wrapper,
 #businessRequestFormModal .bottom-row .form-wrapper {
-  padding: 2.75rem 8rem 1.75rem;
+  /*padding: 2.75rem 8rem 1.75rem;*/
+  padding: 7rem 3rem 1.75rem;
   /*padding: 3rem 2rem 1.5rem;*/
 }
 
@@ -1842,7 +1961,7 @@ body.nav-open .open-nav-cover {
   opacity: 1;
 }
 #toast-container>.toast-success {
-  background: #51a351 !important;
+  background: #41bc11 !important;
 }
 
 .toast-title {
@@ -1975,6 +2094,20 @@ border-top-color: #343a40;
     width: 450px;
     transform: translateX(-50%) translateY(-10%);
   }
+  .carousel-item > .container {
+    padding: 0 1rem 2rem;
+    margin: 0;
+  }
+  #pageHeader .page-header-wrapper {
+    padding: 1rem 1rem;
+  }
+  .scroller-arrow {
+    left: 47%;
+  }
+
+  #easyPeasy .jumbotron.easy-jumbotron .col {
+    margin-bottom: 2rem;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 766px) {
@@ -2086,7 +2219,7 @@ border-top-color: #343a40;
   .carousel-item p.display-4,
   .carousel-item p.lead {
     text-align: center;
-    text-shadow: 0 0 24px rgba(0,0,0,1);
+    /*text-shadow: 0 0 24px rgba(0,0,0,1);*/
   }
   .carousel-item p.lead strong {
     display: block;
@@ -2236,11 +2369,14 @@ border-top-color: #343a40;
 @media (min-width: 400px) and (max-width: 420px) {
   .carousel-item p.display-4 {
     font-size: 3rem;
-    font-weight: 500;
+    font-weight: 800;
+    line-height: 2.75rem;
+    padding-top: 1rem;
   }
   .carousel-item p.lead {
-    font-size: 1.25rem;
-    line-height: 1.5rem;
+    font-size: .95rem;
+    line-height: 1.25rem;
+    letter-spacing: -.125px;
   }
 }
 

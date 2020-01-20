@@ -15,10 +15,12 @@ $('#cityRequestForm').on('submit', function (e) {
         url: '{{ route('petition.city') }}',
         data: {"_token":_token, "city_name":city_name, "state_id":state_id},
         success: function (data) {
-            // alert(data['success']);
-
             $('#cityRequestFormModal').modal('hide');
-            $('.navbar-toggler').click();
+
+            if( $('body').hasClass('nav-open') ) {
+                $('.navbar-toggler').click();
+            }
+
             $("#cityRequestForm")[0].reset();
             toastr.success(data['success'], "City Request Submitted");
         },

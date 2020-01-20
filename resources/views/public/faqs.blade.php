@@ -6,10 +6,10 @@
 <div id="faqHeader" class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-12 text-center">
-            <!-- <div class="faq-header-bkgd"></div> -->
-            <div class="contact-header-bkgd">
+            <div class="faq-header-bkgd"></div>
+            <!-- <div class="contact-header-bkgd">
                 @include('_partials.icons.dinner_primary')
-            </div>
+            </div> -->
             <h3 class="pt-5 text-primary">How may we help you?</h3>
             <div id="faqSearch" class="text-center">
                 <form id="faqSearchForm">
@@ -35,10 +35,10 @@
                         <div class="faq-gutter"></div>
                         <div class="none-available">NONE AVAILABLE</div>
                         @foreach( $faqs as $faq )
-                            @if( $faq->type === $category->type )
+                            @if( $faq->type === $category->type && $faq->is_active == true )
                                 <div class="faq-wrapper mb-3" data-category="{{ $faq->type }}">
                                     <h5 class="faq-question">
-                                        {{ $faq->question }} {{ substr($faq->question,-1) !== '?' ? '?' : '' }}
+                                        {{ $faq->question }}{{ substr($faq->question,-1) !== '?' ? '?' : '' }}
                                     </h5>
                                     <div class="faq-answer pb-3" id="q{{ $faq->id }}">
                                             {!! $faq->answer !!}

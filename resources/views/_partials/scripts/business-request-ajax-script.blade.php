@@ -15,13 +15,15 @@ $('#businessRequestForm').on('submit', function (e) {
         url: '{{ route('petition.business') }}',
         data: {"_token":_token, "city_id":cityID, "business":bizName},
         success: function (data) {
-            // alert(data['success']);
-
             $('#businessRequestFormModal').modal('hide');
-            $('.navbar-toggler').click();
+
+            if( $('body').hasClass('nav-open') ) {
+                $('.navbar-toggler').click();
+            }
+
             $("#businessRequestForm")[0].reset();
             toastr.success(data['success'], "Business Request Submitted", {
-                "timeOut": "4000"
+                "timeOut": "0"
             });
         },
         error: function(jqXhr, json, errorThrown){// this are default for ajax errors

@@ -90,8 +90,8 @@
                         </div>
                         <div class="col-12 col-md-3 pt-4 mb-3">
                             <div class="custom-control custom-switch pt-2">
-                                <input type="checkbox" checked class="custom-control-input" id="is_active">
-                                <label class="custom-control-label" for="is_active">Active</label>
+                                <input type="checkbox" value="0" class="custom-control-input" id="is_active" name="is_active">
+                                <label class="custom-control-label" for="is_active">Deactivate?</label>
                             </div>
                         </div>
 

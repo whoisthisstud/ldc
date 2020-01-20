@@ -2,9 +2,9 @@
     <head>
         <meta charset="UTF-8">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <!-- <style type="text/css" media="all">
-            {{-- @include('_partials.inline.cardpdf-inline-styles') --}}
-        </style> -->
+        <style type="text/css" media="all">
+            @include('_partials.inline.cardpdf-inline-styles')
+        </style>
     </head>
     <body>
 
@@ -39,14 +39,14 @@
                         <div class="discount-block">
                             <div class="discount-logo">
                                 @if( !empty($discount->business->logo) )
-                                    @php
+                                    {{-- @php
                                         $path   = public_path($discount->business->logo);
                                         $type   = pathinfo($path, PATHINFO_EXTENSION);
                                         $data   = file_get_contents($path);
                                         $base64 = 'data:application/' . $type . ';base64,' . base64_encode($data);
-                                    @endphp
-                                    <!-- <img class="" src="{{ $discount->business->logo }}"> -->
-                                    <img class="" src="{{-- $base64 --}}">
+                                    @endphp --}}
+                                    <img class="" src="{{ asset($discount->business->logo) }}">
+                                    <!-- <img class="" src="{{-- $base64 --}}"> -->
 
                                 @else
                                     <span class="business-name">
@@ -102,7 +102,7 @@
                     </div>
                     <div class="col-4">
                         <span class="expiration-block">
-                            EXPIRES: <strong>12/31/2020</strong>
+                            EXPIRES: <strong>{{ date('m/d/y', strtotime($season->ends_on) ) }}</strong>  <!-- 12/31/2020 -->
                         </span>
                     </div>
                 </div>

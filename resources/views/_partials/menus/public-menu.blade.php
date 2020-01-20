@@ -197,7 +197,7 @@
 	</div>
 
 	<!-- start: Brand Logo | Site Name -->
-	<div id="navbarMain" class="navbar navbar-dark {{ Route::is('public.index') || Route::is('public.city') ? 'navbar-transparent' : '' }}">
+	<div id="navbarMain" class="navbar navbar-dark {{ Route::is('public.city') ? 'navbar-transparent' : '' }}"> {{-- Route::is('public.index') || --}}
 		<div class="container d-flex justify-content-between">
 			<a href="/" class="navbar-brand d-flex align-items-center text-light">
 				{{-- @include('_partials.icons.logo2') --}}

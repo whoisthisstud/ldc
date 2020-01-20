@@ -64,7 +64,7 @@ class PagesController extends Controller
         // SEOTools::twitter()->setSite('@LuizVinicius73');
         SEOTools::jsonLd()->addImage(Storage::url('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg'));
 
-        return view('public', compact('cities'));
+        return view('public2', compact('cities'));
     }
 
     public function allCities()
@@ -189,6 +189,7 @@ class PagesController extends Controller
         $faqs = Faq::where('is_active', true)->get();
         $categories = DB::table('faqs')
             ->select('type', 'is_general')
+            ->where('is_active',true)
             ->orderBy('is_general', 'DESC')
             ->groupBy('type', 'is_general')
             ->get();

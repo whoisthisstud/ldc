@@ -4,11 +4,6 @@
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
 Route::get('/', 'PagesController@index')->name('public.index');
@@ -18,8 +13,8 @@ Route::get('/faqs', 'PagesController@faqs')->name('public.faqs');
 Route::get('/privacy-policy', 'PagesController@privacy')->name('public.privacy');
 Route::get('/terms-of-use', 'PagesController@terms')->name('public.terms');
 
-Route::post('/city-petition', 'CityRequestController@store')->name('petition.city'); //->middleware('throttle:3,10')
-Route::post('/business-petition', 'BusinessRequestController@store')->name('petition.business');
+Route::post('/city-petition', 'CityRequestController@store')->name('petition.city')->middleware('throttle:3|20,1440'); //
+Route::post('/business-petition', 'BusinessRequestController@store')->name('petition.business')->middleware('throttle:3|20,1440'); //
 
 Auth::routes(['verify' => true]);
 
@@ -74,11 +69,11 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 });
 
 
-Route::get('/club/{state}/{city}', 'PagesController@city')->name('public.city');
-Route::post('/club/{state}/{city}/city-notify-request', 'MailchimpNotifyCityController')->name('mc.notify.city');
-Route::get('/club/{state}/{city}/request-card', 'PagesController@signup')->name('public.signup');
-Route::post('/club/{state}/{city}/register', 'ClubSignupController@signupUser')->name('signup.user');
-Route::get('/club/{state}/{city}/thank-you', 'ClubSignupController@thanks')->name('signup.complete');
-Route::get('/club/{state}/{city}/{business}/{discount}', 'PagesController@discount')->name('public.discount');
+Route::get('/clubs/{state}/{city}', 'PagesController@city')->name('public.city');
+Route::post('/clubs/{state}/{city}/city-notify-request', 'MailchimpNotifyCityController')->name('mc.notify.city')->middleware('throttle:2|10,1440'); //;
+Route::get('/clubs/{state}/{city}/request-card', 'PagesController@signup')->name('public.signup');
+Route::post('/clubs/{state}/{city}/register', 'ClubSignupController@signupUser')->name('signup.user')->middleware('throttle:2|5,1440'); //
+Route::get('/clubs/{state}/{city}/thank-you', 'ClubSignupController@thanks')->name('signup.complete');
+Route::get('/clubs/{state}/{city}/{business}/{discount}', 'PagesController@discount')->name('public.discount');
 Route::get('/clubs/all-cities', 'PagesController@allCities')->name('public.cities.list');
-Route::get('/states/{state}', 'PagesController@state')->name('public.state');
+// Route::get('/states/{state}', 'PagesController@state')->name('public.state');

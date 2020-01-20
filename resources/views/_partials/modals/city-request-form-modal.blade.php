@@ -1,5 +1,5 @@
 <div id="cityRequestFormModal" class="modal cityRequestFormModal fade" tabindex="-1" role="dialog" aria-labelledby="cityRequestFormModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+    <div class="modal-dialog " role="document"> <!-- modal-dialog-centered -->
         <div class="modal-content">
 
             <div class="modal-body">
@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-12">
                         <div class="title-wrapper p-4 text-center">
-                            <h3 class="city-request-title text-white">Help us bring the your favorite city to your Local Discount Club.</h3>
+                            <h3 class="city-request-title text-white">Recommend your city for a Local Discount Club.</h3>
                             <span class="svg-icon business-svg-icon">
                                 @include('_partials.icons.skyline_buildings_duotone')
                             </span>
