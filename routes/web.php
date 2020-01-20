@@ -13,8 +13,9 @@ Route::get('/faqs', 'PagesController@faqs')->name('public.faqs');
 Route::get('/privacy-policy', 'PagesController@privacy')->name('public.privacy');
 Route::get('/terms-of-use', 'PagesController@terms')->name('public.terms');
 
-Route::post('/city-petition', 'CityRequestController@store')->name('petition.city')->middleware('throttle:3|20,1440'); //
-Route::post('/business-petition', 'BusinessRequestController@store')->name('petition.business')->middleware('throttle:3|20,1440'); //
+Route::post('/city-petition', 'CityRequestController@store')->name('petition.city')->middleware('throttle:3|20,1440');
+Route::post('/business-petition', 'BusinessRequestController@store')->name('petition.business')->middleware('throttle:3|20,1440');
+Route::post('/submit-contact', 'ContactController@store')->name('submit.contact'); //->middleware('throttle:3:20,1440');
 
 Auth::routes(['verify' => true]);
 

@@ -155,6 +155,16 @@ footer .container {
   margin-right: 1rem;
 }
 
+footer .rights {
+
+}
+
+footer .small-footer-links {
+  float: right;
+  font-size:.75rem;
+  line-height:1.5rem;
+}
+
 #admin-header,
 #navbarMain {
   background-color: #227dc7;
@@ -368,7 +378,7 @@ body.nav-open .open-nav-cover {
 .scroller-arrow {
   position: absolute;
   bottom: 20px;
-  left: 50%;
+  left: 49%;
   width: 30px;
   transform: translateX(-15px);
   -webkit-transform: translateX(-15px);
@@ -393,6 +403,7 @@ body.nav-open .open-nav-cover {
   top: 0;
   left: 50%;
   width: 900px;
+  max-width: 100%;
   transform: translateX(-50%) translateY(-30%);
 }
 
@@ -490,7 +501,7 @@ body.nav-open .open-nav-cover {
   max-width: 600px;
   font-weight: 500;
   font-size: 1rem;
-  letter-spacing: .75px;
+  letter-spacing: .25px;
 }
 
 #contactForm {
@@ -517,6 +528,17 @@ body.nav-open .open-nav-cover {
 .card .form-control,
 .modal-body .form-control {
   background-color: #eff1f3;
+}
+
+.card .form-control:focus,
+.modal-body .form-control:focus {
+    background-color: #fff;
+}
+
+.contact-ldc-logo {
+  opacity: .3;
+  max-width: 100px;
+  margin: 0 auto;
 }
 
 .contact-page-ldc-card {
@@ -547,17 +569,28 @@ body.nav-open .open-nav-cover {
   padding-top: 5rem;
 }
 
-#easyPeasy h2 {
+#easyPeasy h2,
+#popular h2 {
   font-size: 2.125rem;
   text-align: center;
-  margin: 2.5rem 0;
+  margin: .5rem 0 2.75rem;
   color: #292827;
   font-weight: 600;
+}
+
+#easyPeasy .section-header-svg,
+#popular .section-header-svg {
+  width: 70px;
+  margin: 1rem auto 0;
 }
 
 #easyPeasy h4.easy-subtext {
   text-align: center;
   margin: 2.5rem 0;
+}
+
+#easyPeasy p {
+  font-size: .75rem;
 }
 
 .jumbotron.easy-jumbotron {
@@ -574,6 +607,7 @@ body.nav-open .open-nav-cover {
   font-size: 1rem;
   font-weight: 700;
   text-align: center;
+  color: #353535;
 }
 
 #easyPeasy .easy-last-call {
@@ -952,6 +986,7 @@ body.nav-open .open-nav-cover {
   border-radius: 1.5rem;
   box-shadow: 0 19px 38px rgba(0,0,0,0.16), 0 15px 12px rgba(0,0,0,0.08);
   margin-top: 2rem;
+  z-index: 10;
 }
 
 .carousel-item .carousel-graphic-wrapper.large .brand-logo-svg {
@@ -2078,6 +2113,9 @@ border-top-color: #343a40;
   #city-faq .faq > .container {
     max-width: 88%;
   }
+  .contact-header-text {
+    font-size: 3.75rem;
+  }
 }
 
 @media (max-width: 766px) {
@@ -2092,6 +2130,7 @@ border-top-color: #343a40;
   }
   .contact-header-bkgd {
     width: 450px;
+    max-width: 90%;
     transform: translateX(-50%) translateY(-10%);
   }
   .carousel-item > .container {
@@ -2196,6 +2235,7 @@ border-top-color: #343a40;
   }
   .carousel-item a.btn {
     display: block;
+    margin-top: 1rem;
   }
   .carousel-item .display-4 {
   }
@@ -2206,12 +2246,15 @@ border-top-color: #343a40;
     text-shadow: 0 0 8px rgba(0,0,0,0.8);
   }
   .carousel-item p.display-4 {
-    font-size: 2.125rem;
-    font-weight: 500;
+    font-size: 2.75rem;
+    font-weight: 900;
+    line-height: 3rem;
+    padding-top: 1rem;
   }
   .carousel-item p.lead {
-    font-size: 1rem;
-    line-height: 1.25rem;
+    font-size: .75rem;
+    line-height: 1.125rem;
+    font-weight: 500;
   }
   .carousel-item p.lead br {
     padding-top: 15px;
@@ -2243,7 +2286,7 @@ border-top-color: #343a40;
     color: #237fcb;
   }
   .contact-header-text {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 800;
     line-height: 1;
     padding-bottom: .75rem;
@@ -2273,6 +2316,10 @@ border-top-color: #343a40;
   #businessRequestFormModal .top-row .title-wrapper .business-svg-icon {
     bottom: -10px;
     width: 140px;
+  }
+  #easyPeasy,
+  #popular {
+    padding-top: 1rem !important;
   }
   #faqSearch {
     width: 100%;
@@ -2353,6 +2400,17 @@ border-top-color: #343a40;
     /*height: calc(100vh - 6rem);*/
     height:auto;
   }
+  footer .rights {
+    display: block;
+    text-align: center;
+  }
+  footer .small-footer-links {
+    text-align: center;
+    float: none;
+    /*font-size:.75rem;
+    line-height:1.5rem;*/
+  }
+
 }
 
 @media (min-width: 500px) and (max-width: 520px) {
@@ -2385,5 +2443,14 @@ border-top-color: #343a40;
   #businessRequestFormModal .top-row .title-wrapper .business-svg-icon {
     bottom: -40px;
     width: 110px;
+  }
+  .contact-header-text {
+    font-size: 2.5rem;
+  }
+  #contactForm {
+    padding: 0 !important;
+  }
+  .scroller-arrow {
+    display: none;
   }
 }

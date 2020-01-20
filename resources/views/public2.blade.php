@@ -10,7 +10,7 @@
             <div class="page-header-bkgd" style="opacity:.85;">
                 @include('_partials.icons.dinner_primary')
             </div>
-            
+
             <div id="myCarousel" class="carousel slide" data-ride="carousel" style="">
 				<!-- <ol class="carousel-indicators">
 					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -21,7 +21,7 @@
 					<div class="carousel-item active"> <!-- style="background-image: url({{ asset('i/restaurant-bg.jpg') }}); background-size: cover; background-position: center;" alt="Photo by Kenny Luo on Unsplash" -->
 						<div class="container">
 							<div class="row justify-content-between">
-								<div class="col-12 col-sm-5 col-md-5 z-10 animated slideInUp">
+								<div class="col-12 col-sm-5 col-md-5 z-10 animated slideInUp" style="z-index: 12 !important;">
 									<div class="carousel-graphic-wrapper large">
 										@include('_partials.icons.ldc_card_front_color')
 										<div class="card-front-shadow"></div>
@@ -39,7 +39,7 @@
 
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 			<div class="scroller-arrow animated bounce slower infinite">
@@ -60,6 +60,9 @@
 	<div class="row justify-content-center">
 		<div class="col-10 col-md-12 text-center">
 
+            <div class="section-header-svg">
+                @include('_partials.icons.easy-snap_multi')
+            </div>
 			<h2>It's this easy..</h2>
 
 			<div class="jumbotron easy-jumbotron">
@@ -70,30 +73,35 @@
 							@include('_partials.icons.city-skyline_multi')
 						</div>
 						<h4 class="">Select your city</h4>
+                        <p>Start by selecting a city. Here you can view the businesses offering discounts and links to register for a card.</p>
 					</div>
 					<div class="col register-col">
 						<div class="icon-btn-svg">
 							@include('_partials.icons.request-card_multi')
 						</div>
 						<h4 class="">Register for the card</h4>
+                        <p>From any city, click the registration button to fill out a simple form. This will create an account with LDC and send a verification email to you.</p>
 					</div>
 					<div class="col verify-email-col">
 						<div class="icon-btn-svg">
 							@include('_partials.icons.verify-email_multi')
 						</div>
 						<h4 class="">Verify your email</h4>
+                        <p>Once you've registered, you will need to confirm your email by clicking on the button in the confirmation email.</p>
 					</div>
 					<div class="col download-card-col">
 						<div class="icon-btn-svg">
 							@include('_partials.icons.download-card_multi')
 						</div>
 						<h4 class="">Download your card</h4>
+                        <p>Once you confirm your email, we automatically email you a Club Card. You can also download it at any time from your profile page.</p>
 					</div>
 					<div class="col redeem-col">
 						<div class="icon-btn-svg">
 							@include('_partials.icons.business-card_multi')
 						</div>
 						<h4 class="">Show card to redeem</h4>
+                        <p>Show the discount on the back of the card, or from our website, to redeem a participating discount.</p>
 					</div>
 
 				</div>
@@ -110,9 +118,11 @@
 	<div class="container">
 		<div class="row justify-content-center pb-5">
 			<div class="col-12 text-center">
-				<p class="section-title">Select your city</p>
+                <div class="section-header-svg">
+                    @include('_partials.icons.city-skyline_multi')
+                </div>
+                <h2>Select your city</h2>
 			</div>
-
 
 			@forelse($cities as $city)
 				<div class="col-12 col-sm-4 col-md-4">

@@ -6,7 +6,6 @@
 <div id="contactHeader" class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-12 text-center pt-5">
-            <!-- <div class="contact-header-bkgd"></div> -->
             <div class="contact-header-bkgd">
                 @include('_partials.icons.dinner_primary')
             </div>
@@ -18,41 +17,42 @@
         </div>
     </div>
 </div>
+
 <div class="container pb-5">
     <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-md-8 col-lg-6">
 
             <div id="contactForm" class="card p-4 shadow-5">
                 <div class="card-body">
-                    <form>
+                    <form id="contactForm" action="{{ route('submit.contact') }}" method="POST">
+                        @csrf
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control form-control-lg" id="name" aria-describedby="nameHelp" placeholder="Your Name" onfocus="this.style.color='#000'; 
-    this.value='';" style="color: #f00;">
+                            <input type="text" class="form-control form-control-lg @error('email') is-invalid @enderror" id="name" name="name" aria-describedby="nameHelp" placeholder="Your Name">
 
                         </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" class="form-control form-control-lg" id="email" aria-describedby="emailHelp" placeholder="you@youremailprovider.com">
-
+                            <input type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" id="email" name="email" aria-describedby="emailHelp" placeholder="you@youremailprovider.com">
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea class="form-control form-control-lg" id="message" name="message" rows="5" placeholder="Your message here..."></textarea>
+                            <textarea class="form-control form-control-lg @error('message') is-invalid @enderror" id="message" name="message" rows="5" placeholder="Your message here..."></textarea>
                         </div>
                         <div class="d-block text-center mt-5">
                             <button type="" class="btn btn-primary">Submit Contact</button>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
 
         </div>
     </div>
+
     <div class="row justify-content-center pt-5">
-        <div class="col-6 col-md-1 mt-5">
-            <div class="contact-ldc-logo" style="opacity: .3;">
+        <div class="col-6 mt-5">
+            <div class="contact-ldc-logo">
                 @include('_partials.icons.ldc_card_dark')
             </div>
         </div>
@@ -65,10 +65,11 @@
                     Prairie Grove, Arkansas 72753
                 </address>
                 <address>
-                    <a href="mailto:contact@yourldc.com">contact@yourldc.com</a>    
+                    <a href="mailto:contact@yourldc.com">contact@yourldc.com</a>
                 </address>
             </div>
         </div>
     </div>
+
 </div>
 @endsection

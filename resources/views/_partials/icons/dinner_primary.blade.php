@@ -1,5 +1,5 @@
 <svg version="1.1" id="dinner" class="icon-btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 600 600" xml:space="preserve">
-<g opacity="0.05">
+<g opacity="0.06">
 	<g>
 		<path fill="#237DC7" d="M338.962,434.113c104.018,0,188.626-84.58,188.626-188.588c0-104.016-84.608-188.605-188.626-188.605
 			c-103.986,0-188.594,84.59-188.594,188.605C150.368,349.533,234.976,434.113,338.962,434.113z M338.962,73.611

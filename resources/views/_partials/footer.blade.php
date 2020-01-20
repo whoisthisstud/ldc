@@ -47,8 +47,8 @@
 
         <div class="row">
             <div class="col-12">
-                <small>&copy;{{ now()->year }} {{ config('app_name', 'Local Discount Club') }}. All rights reserved.</small>
-                <div class="float-right" style="font-size:.75rem; line-height:1.5rem;">
+                <small class="rights">&copy;{{ now()->year }} {{ config('app_name', 'Local Discount Club') }}. All rights reserved.</small>
+                <div class="small-footer-links" style="">
                     <a class="pr-2 mr-1 text-decoration-none" href="{{ route('public.privacy') }}" style="border-right: 1px solid #4d555d !important;">Privacy Policy</a>
                     <a class=" text-decoration-none" href="{{ route('public.terms') }}">Terms of Use</a>
                 </div>
