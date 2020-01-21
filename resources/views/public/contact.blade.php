@@ -28,16 +28,24 @@
                         @csrf
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" class="form-control form-control-lg @error('email') is-invalid @enderror" id="name" name="name" aria-describedby="nameHelp" placeholder="Your Name">
-
+                            <input type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" id="name" name="name" placeholder="Your Name" value="{{ old('name') }}">
+                            @error('name')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" id="email" name="email" aria-describedby="emailHelp" placeholder="you@youremailprovider.com">
+                            <input type="email" class="form-control form-control-lg @error('email') is-invalid @enderror" id="email" name="email" placeholder="you@youremailprovider.com" value="{{ old('email') }}">
+                            @error('email')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea class="form-control form-control-lg @error('message') is-invalid @enderror" id="message" name="message" rows="5" placeholder="Your message here..."></textarea>
+                            <textarea class="form-control form-control-lg @error('message') is-invalid @enderror" id="message" name="message" rows="5" placeholder="Your message here...">{{ old('message') }}</textarea>
+                            @error('message')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="d-block text-center mt-5">
                             <button type="" class="btn btn-primary">Submit Contact</button>

@@ -67,6 +67,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('/faqs/store', 'FaqController@store')->name('faqs.store');
 
     Route::get('/users', 'Admin\UserController@index')->name('users.index');
+    Route::get('/messages', 'ContactController@index')->name('messages.index');
 });
 
 

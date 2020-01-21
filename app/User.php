@@ -62,4 +62,9 @@ class User extends Authenticatable implements MustVerifyEmail
         }
         return false;
     }
+
+    public function userMessages()
+    {
+        return $this->hasMany('App\Contact');
+    }
 }

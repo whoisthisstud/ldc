@@ -16,6 +16,14 @@ class SignupUserRequest extends FormRequest
         return true;
     }
 
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'name' => strip_tags($this->name),
+            'phone' => strip_tags($this->phoine),
+        ]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *

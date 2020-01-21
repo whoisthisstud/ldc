@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Contact extends Model
@@ -12,4 +13,9 @@ class Contact extends Model
         'contacted_on' => 'datetime',
         'resolved_on' => 'datetime'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

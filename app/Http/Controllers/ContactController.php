@@ -2,40 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Validator;
 use App\Contact;
 use Illuminate\Http\Request;
-
-// use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\ContactStoreRequest;
 
 class ContactController extends Controller
 {
-    public function store(Request $request)
+    public function index()
     {
-        // dd($request);
+        $contacts = Contact::with('user')
+            ->orderBy('is_resolved', 'ASC')
+            ->orderBy('has_contacted', 'ASC')
+            ->orderBy('created_at', 'DESC')
+            ->get();
 
-        $validated = $request->validate([
-            'name' => 'required|max:255',  //^\[a-zA-Z0-9,.!?]*$'
-            'email' => 'required|email:rfc',
-            'message' => 'required|max:1500'
-            // 'name' => 'required|max:255|regex:[a-zA-Z0-9,.!?]',  //^\[a-zA-Z0-9,.!?]*$'
-            // 'email' => 'required|email:rfc',
-            // 'message' => 'required|max:1500',
-           ]);
+        return view('admin.contact.index', compact('contacts'));
+    }
 
-        // , [
-        //     'name.required' => 'Your name is required',
-        //     'name.max' => 'Please limit this to 255 characters',
-        //     'name.regex' => 'This field contains illegal characters',
-        //     'email.required' => 'Your email is required',
-        //     'email.email' => 'A valid email is required',
-        //     'message.required' => 'A message is required',
-        //     'message.max' => 'Please limit your message to 1500 characters'
-        // ]
 
-        // dd($request);
+    public function store(ContactStoreRequest $request)
+    {
+        $validated = $request->validated();
 
-        $cleaned_name = strip_tags($request->input('name'));
-        $cleaned_msg = strip_tags($request->input('message'));
+        $user = null;
+
+        if (Auth::user()) {
+            $user = Auth::user()->id;
+        }
+
+        $contact = Contact::create($validated + [
+            'user_id' => $user,
+            'ip_address' => $request->ip()
+        ]);
+
+        notify()->success('Thank you for contacting LDC. Your message has been received.', 'Message Received');
+
+        return redirect()->route('public.contact');
     }
 }

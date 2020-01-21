@@ -62,10 +62,10 @@
                         <a class="nav-link mr-4 bg-inverse" href="{{ route('test') }}">Testing</a>
                     </li>
                     @endcan
-                    
+
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                            Welcome, {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right user-menu" aria-labelledby="navbarDropdown">
@@ -86,6 +86,13 @@
                                     <i class="fas fa-desktop mr-2"></i>
                                     View Public Website
                                 </a>
+
+                                @can('manage-messages')
+                                <a class="dropdown-item user-menu-link" href="{{ route('messages.index') }}">
+                                    <i class="fas fa-inbox mr-2"></i>
+                                    Public Contact
+                                </a>
+                                @endcan
 
                                 @can('access-testing')
                                 <a class="dropdown-item user-menu-link" href="/telescope">

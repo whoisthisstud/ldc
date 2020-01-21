@@ -134,6 +134,13 @@ label:not(.btn) {
   background-color: #e2e6e9;
 }
 
+form .error {
+  font-size: .65rem;
+  padding: .25rem 0;
+  color: #e3342f;
+  font-weight: 500;
+}
+
 footer {
   /*padding-top: 5rem;
   padding-bottom: 3rem;*/
@@ -1489,6 +1496,22 @@ body.nav-open .open-nav-cover {
 
 .btn-danger.btn-badge:hover:not(:disabled):not(label) {
   box-shadow: 0 10px 20px rgba(227, 55, 50, 0.19), 0 6px 6px rgba(227, 55, 50, 0.23);
+}
+
+.btn-success.btn-badge {
+  color: #38c172;
+  background-color: #adebc7;
+  border-color: #9ce2b9;
+}
+
+.btn-success.btn-badge:hover:not(:disabled) {
+  color: #ffffff;
+  background-color: #38c172;
+  border-color: #38c172;
+}
+
+.btn-success.btn-badge:hover:not(:disabled):not(label) {
+  box-shadow: 0 10px 20px rgba(56, 204, 10, 0.19), 0 6px 6px rgba(56, 167, 20, 0.23);
 }
 
 .logout-btn,

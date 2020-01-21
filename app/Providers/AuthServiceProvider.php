@@ -57,5 +57,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('manage-faqs', function ($user) {
             return $user->hasAnyRoles(['superadmin','admin']);
         });
+
+        Gate::define('manage-messages', function ($user) {
+            return $user->hasAnyRoles(['superadmin','admin']);
+        });
     }
 }
