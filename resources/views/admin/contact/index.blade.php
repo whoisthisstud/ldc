@@ -29,8 +29,8 @@ table.dataTable tbody td.no-padding {
 }
 .table .thead-dark th {
     color: #ffffff;
-    background-color: #3490dc;
-    border-color: #3490dc;
+    background-color: #5e768a;
+    border-color: #5e768a;
 }
 td.details-control::before {
     display: inline-block;
