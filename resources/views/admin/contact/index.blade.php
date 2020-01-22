@@ -73,6 +73,7 @@ td.details-control::before {
 }
 td.details-control {
     cursor: pointer;
+    text-align: right;
 }
 tr.shown td.details-control::before {
     /*content: '\f062';*/
