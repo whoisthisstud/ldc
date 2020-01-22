@@ -40,9 +40,7 @@
                         </div>
                         <h1 class="error-header-text">@yield('code', __('Oh no'))</h1>
                         <p class="error-intro">@yield('message')</p>
-                        <a href="{{ route('public.index') }}" class="btn btn-primary mt-4">
-                                {{ __('Go Home') }}
-                        </a>
+                        <a href="{{ route('public.index') }}" class="btn btn-primary mt-4">Get me outta here!</a>
                         <div class="error-bkgd-ldc-card">
                             @include('_partials.icons.ldc_card_light_contact')
                         </div>

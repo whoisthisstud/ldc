@@ -17,7 +17,7 @@ Route::post('/city-petition', 'CityRequestController@store')->name('petition.cit
 Route::post('/business-petition', 'BusinessRequestController@store')->name('petition.business')->middleware('throttle:3|20,1440');
 Route::post('/submit-contact', 'ContactController@store')->name('submit.contact'); //->middleware('throttle:3:20,1440');
 
-Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true, 'register' => false]);
 
 Route::prefix('business-manager')->middleware('can:manage-businesses')->group(function () {
     Route::get('/home', function () {
@@ -65,6 +65,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/faqs', 'FaqController@index')->name('faqs.index');
     Route::get('/faqs/add', 'FaqController@create')->name('faqs.create');
     Route::post('/faqs/store', 'FaqController@store')->name('faqs.store');
+    Route::get('/faqs/edit/{faq}', 'FaqController@edit')->name('faqs.edit');
+    Route::post('/faqs/update/{faq}', 'FaqController@update')->name('faqs.update');
 
     Route::get('/users', 'Admin\UserController@index')->name('users.index');
 

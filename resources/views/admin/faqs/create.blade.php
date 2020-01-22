@@ -2,8 +2,7 @@
 
 @section('content')
 <div class="container">
-
-    <form action="{{ route('faqs.store') }}" class="needs-validation" novalidate="" method="POST">
+    <form action="{{ Request::segment(3) == 'add' ? route('faqs.store') : route('faqs.update',[$faq]) }}" class="needs-validation" novalidate="" method="POST">
         @csrf
 
         <div class="row">
@@ -63,7 +62,7 @@
                     <div class="card-body row">
                         <div class="col-12 col-md-9 mb-3">
                             <label for="question">Question</label>
-                            <input type="text" class="form-control" id="question" placeholder="Question" value="{{ old('question') }}" required="" name="question">
+                            <input type="text" class="form-control" id="question" placeholder="Question" value="{{ $faq->question ?? old('question') }}" required="" name="question">
                             <div class="invalid-feedback" style="{{ $errors->has('question') ? 'display:block;' : '' }}">
                                 {{ $errors->first('question') }}
                             </div>
@@ -71,26 +70,27 @@
                         <div class="col-12 col-md-3">
                             <label for="type">Question Type</label>
                             <select class="form-control" id="type" name="type">
-                                <option value="city">City</option>
-                                <option value="state">State</option>
-                                <option value="discount">Discount</option>
-                                <option value="business">Business</option>
+                                <option value="city" {{ ((!empty($faq) && $faq->type == "city") || old('type') == "city") ? 'selected' : '' }}>City</option>
+                                <option value="state" {{ ((!empty($faq) && $faq->type == "state") || old('type') == "state") ? 'selected' : '' }}>State</option>
+                                <option value="discount" {{ ((!empty($faq) && $faq->type == "discount") || old('type') == "discount") ? 'selected' : '' }}>Discount</option>
+                                <option value="business" {{ ((!empty($faq) && $faq->type == "business") || old('type') == "business") ? 'selected' : '' }}>Business</option>
                                 <option disabled>──────────</option>
-                                <<option value="general">General FAQ</option>}
+                                <<option value="general" {{ ((!empty($faq) && $faq->type == "general") || old('type') == "general") ? 'selected' : '' }}>General FAQ</option>}
                                 option
                             </select>
                         </div>
                         <div class="col-12 col-md-9 mb-3">
                             <label for="answer">Answer</label>
-                            <!-- <input type="text" class="form-control" id="answer" placeholder="Answer" value="" required="" name="answer"> -->
-                            <textarea class="form-control" id="answer" name="answer" required="">{{ old('answer') }}</textarea>
+                            <textarea class="form-control" id="answer" name="answer" required="">{{ $faq->answer ?? old('answer') }}</textarea>
                             <div class="invalid-feedback" style="{{ $errors->has('answer') ? 'display:block;' : '' }}">
                                 {{ $errors->first('answer') }}
                             </div>
                         </div>
+                        {{-- @dd($faq->is_active) --}}
+
                         <div class="col-12 col-md-3 pt-4 mb-3">
                             <div class="custom-control custom-switch pt-2">
-                                <input type="checkbox" value="0" class="custom-control-input" id="is_active" name="is_active">
+                                <input type="checkbox" value="0" {{ (!empty($faq) && $faq->is_active != 1) ? 'checked' : '' }} class="custom-control-input" id="is_active" name="is_active">
                                 <label class="custom-control-label" for="is_active">Deactivate?</label>
                             </div>
                         </div>

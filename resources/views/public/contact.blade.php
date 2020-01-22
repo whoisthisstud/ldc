@@ -22,7 +22,7 @@
     <div class="row justify-content-center">
         <div class="col-12 col-sm-10 col-md-8 col-lg-6">
 
-            <div id="contactForm" class="card p-4 shadow-5">
+            <div class="card contact-form-card p-4 shadow-5">
                 <div class="card-body">
                     <form id="contactForm" action="{{ route('submit.contact') }}" method="POST">
                         @csrf

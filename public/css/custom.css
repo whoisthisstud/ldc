@@ -18,11 +18,12 @@ main {
   position: relative;
   background-color: #eff1f3;
   padding-bottom: 2rem;
+  overflow: hidden;
+  min-height: 75vh;
 }
 
 main.hidden-footer {
-  margin-bottom: 220px;
-  /*margin-bottom: 55px;*/
+  margin-bottom: 240px;
 }
 
 a,
@@ -151,12 +152,13 @@ footer {
   right: 0;
   z-index: 9;
 }
-
 footer .container {
   /*height: calc(300px - 6rem);*/
   height: auto;
 }
-
+footer .row:first-of-type {
+  padding: 1.75rem 0;
+}
 footer .footer-logo-wrapper {
   width: 80%;
 }
@@ -404,6 +406,13 @@ body.nav-open .open-nav-cover {
   max-width: 500px;
 }
 
+#pageHeader .signup-subtext {
+  display: inline-block;
+  max-width: 650px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
 .select-city-icon-svg {
   width: 175px;
   margin: 0 auto;
@@ -426,7 +435,7 @@ body.nav-open .open-nav-cover {
 }
 
 #pageHeader .page-header-wrapper {
-  height: calc(100vh - 60px);
+  min-height: calc(100vh - 60px);
   padding: 3rem 0;
 }
 
@@ -578,7 +587,7 @@ body.nav-open .open-nav-cover {
 
 }
 
-#contactForm {
+.contact-form-card {
   margin-top: -25px;
 }
 
@@ -623,6 +632,7 @@ body.nav-open .open-nav-cover {
   right: 10%;
   transform: rotate(-7deg);
   opacity: .1;
+  z-index: -1;
 }
 
 .page-bkgd-ldc-card {
@@ -633,6 +643,7 @@ body.nav-open .open-nav-cover {
   right: 10%;
   transform: rotate(-7deg);
   opacity: .05;
+  z-index: -1;
 }
 
 .city-bkgd-ldc-card {
@@ -643,6 +654,7 @@ body.nav-open .open-nav-cover {
   right: 10%;
   transform: rotate(-7deg);
   opacity: .05;
+  z-index: -1;
 }
 
 .error-bkgd-ldc-card {
@@ -653,6 +665,7 @@ body.nav-open .open-nav-cover {
   right: 10%;
   transform: rotate(-7deg);
   opacity: .05;
+  z-index: -1;
 }
 
 /* #easyPeasy
@@ -763,12 +776,10 @@ body.nav-open .open-nav-cover {
   height: 290px;
   margin: 0 auto;
 }
-
 .discount-card .card-header {
   padding: 0.5rem 1.25rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
-
 .discount-card .card-header .ldc-card-logo {
   margin-right: .25rem;
   display: inline-block;
@@ -776,7 +787,6 @@ body.nav-open .open-nav-cover {
   float: left;
   margin-top: 3px;
 }
-
 .discount-card .card-header .ldc-title {
   font-weight: 700;
   text-transform: uppercase;
@@ -785,7 +795,6 @@ body.nav-open .open-nav-cover {
   padding: 6px 5px 0px;
   display: inline-block;
 }
-
 .discount-card .card-header .city-name {
   display: inline-block;
   padding-top: 4px;
@@ -794,7 +803,6 @@ body.nav-open .open-nav-cover {
   letter-spacing: .5px;
   text-transform: uppercase;
 }
-
 .discount-card .discount-block {
   position: relative;
   display: inline-block;
@@ -805,24 +813,18 @@ body.nav-open .open-nav-cover {
   /*background-color: #f4f4f4;*/
   text-align: center;
 }
-
 .discount-card .discount-block:nth-last-child(n+6) {
   border-bottom: 1px solid rgba(0,0,0,0.1);
 }
-
 .discount-card .discount-block:not(:nth-of-type(5n+5)) {
   border-right: 1px solid rgba(0,0,0,0.1);
-
 }
-
-
 .discount-card .discount-block .discount-logo {
   font-size: 8px;
   line-height: 1rem;
   padding: 4px 8px;
   height: 22px;
 }
-
 .discount-card .discount-block .discount-logo img {
   margin: 0 auto;
   max-height: 18px;
@@ -1192,7 +1194,7 @@ body.nav-open .open-nav-cover {
 /* Signup
 -------------------------------------------------- */
 .signup-container {
-  padding-top: 3rem;
+  padding: 3rem 1rem;
 }
 
 .signup-container .discount-card-wrapper.sticky-top {
@@ -1202,6 +1204,42 @@ body.nav-open .open-nav-cover {
 
 .card-footer {
   border-top: 1px solid rgba(0, 0, 0, 0.075);
+}
+
+#pointsContainer {
+  padding: 3rem 0 0;
+}
+
+#pointsContainer .signup-values {
+  padding-inline-start: 2rem;
+  width: 80%;
+  display: inline-block;
+  margin: 0 auto;
+  text-align: left;
+}
+
+#pointsContainer .signup-values li {
+  text-decoration: none;
+  list-style: none;
+  margin-bottom: .35rem;
+  line-height: 1.25rem;
+}
+
+#pointsContainer .signup-values li:before {
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  content: '\f058';
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  transform: rotate(0deg);
+  transition: transform .15s linear;
+  margin-left: -1.5rem;
+  padding-right: .5rem;
+  color: green;
+  font-size: 1rem;
 }
 
 
@@ -2174,6 +2212,9 @@ border-top-color: #343a40;
 }*/
 
 @media (min-width: 767px) and (max-width: 1024px) {
+  main {
+    min-height: 75vh;
+  }
   main > .container {
     max-width: 88%;
   }
@@ -2184,8 +2225,10 @@ border-top-color: #343a40;
     padding: 2rem .5rem;
   }
   .carousel-item p.display-4 {
-    font-size: 2.5rem;
-    font-weight: 400;
+    /*font-size: 2.5rem;
+    font-weight: 400;*/
+    font-size: 3.5rem;
+    font-weight: 800;
   }
   .carousel-item p.lead {
     font-size: 1rem;
@@ -2242,7 +2285,7 @@ border-top-color: #343a40;
   .faq-wrapper {
     width: 100%;
   }
-  #contactForm {
+  .contact-form-card {
     margin-top: 3rem;
   }
   .contact-header-bkgd {
@@ -2448,6 +2491,9 @@ border-top-color: #343a40;
   .signup-container {
     padding-top: 1rem;
   }
+  #signupForm .form-group.row > .col-md-6:first-of-type {
+    margin-bottom: 1rem;
+  }
   .coming-soon-container {
     padding: 4.5rem 1.5rem 0rem;
   }
@@ -2465,7 +2511,6 @@ border-top-color: #343a40;
     font-weight: 400;
     margin-bottom: .25rem;
   }
-
   .coming-soon-text-wrapper p.city-notify-subtext {
     font-size: .7rem;
     font-weight: 400;
@@ -2497,11 +2542,9 @@ border-top-color: #343a40;
   .pagination .page-item {
     margin-right: .25rem;
   }
-
   .pagination .page-item.active {
     margin: 0 .4rem;
   }
-
   .pagination .page-item.break {
     margin-right: 0;
     margin-left: -0.35rem;
@@ -2521,13 +2564,18 @@ border-top-color: #343a40;
     margin: 0 auto;
   }
   main.hidden-footer {
-    /*margin-bottom: 100vh;*/
-    margin-bottom:15vh;
+    margin-bottom: 90vh;
   }
-
+  #pointsContainer {
+    padding: 2rem 0 1rem;
+  }
   footer .container {
-    /*height: calc(100vh - 6rem);*/
     height:auto;
+    text-align: center;
+  }
+  footer .footer-logo-wrapper {
+    display: inline-block;
+    margin-bottom: .75rem;
   }
   footer .rights {
     display: block;
@@ -2538,6 +2586,9 @@ border-top-color: #343a40;
     float: none;
     /*font-size:.75rem;
     line-height:1.5rem;*/
+  }
+  footer .row:first-of-type {
+    padding: 1.5rem 0 0;
   }
 
 }
@@ -2565,6 +2616,9 @@ border-top-color: #343a40;
     line-height: 1.25rem;
     letter-spacing: -.125px;
   }
+  main.hidden-footer {
+    margin-bottom: 90vh;
+  }
 }
 
 @media (max-width: 400px) {
@@ -2577,10 +2631,20 @@ border-top-color: #343a40;
   .page-header-text {
     font-size: 2.5rem;
   }
-  #contactForm {
+  .contact-form-card {
     padding: 0 !important;
   }
   .scroller-arrow {
     display: none;
+  }
+  main.hidden-footer {
+    margin-bottom: 78vh;
+    min-height: 90vh;
+  }
+}
+
+@media (max-width: 350px) {
+  main.hidden-footer {
+    margin-bottom: 100vh;
   }
 }

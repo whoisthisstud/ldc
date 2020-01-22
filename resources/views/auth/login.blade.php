@@ -13,7 +13,7 @@
         <!-- Bootstrap core CSS -->
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/login.css') }}" rel="stylesheet">
-        @notify_css
+        <!-- @notify_css -->
 
         <!-- Custom styles for this template -->
         <!-- <link href="{{ asset('css/custom.css') }}" rel="stylesheet"> -->
@@ -26,7 +26,7 @@
         <div class="container-fluid">
             <div class="row no-gutter">
                 <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
-                <div class="col-md-8 col-lg-6">
+                <div class="col-md-8 col-lg-6 z-10">
                     <div class="login d-flex align-items-center py-5">
                         <div class="container">
                             <div class="row">
@@ -35,11 +35,11 @@
                                         @include('_partials.icons.ldc_card_blue')
                                     </div>
                                     <h3 class="login-heading text-center mb-4">Welcome back!</h3>
-                                    <form method="POST" action="{{ route('login') }}">
+                                    <form method="POST" action="{{ route('login') }}" style="z-index:10;">
                                         @csrf
                                         <div class="form-label-group">
-                                            <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="Email address" required autocomplete="email" autofocus>
-                                            <label for="inputEmail">Email address</label>
+                                            <input type="email" id="email" name="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="Email address" required autocomplete="email" autofocus="true">
+                                            <!-- <label for="inputEmail">Email address</label> -->
 
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
@@ -50,7 +50,7 @@
 
                                         <div class="form-label-group">
                                             <input type="password" id="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Password" required autocomplete="current-password">
-                                            <label for="inputPassword">Password</label>
+                                            <!-- <label for="inputPassword">Password</label> -->
 
                                             @error('password')
                                                 <span class="invalid-feedback" role="alert">

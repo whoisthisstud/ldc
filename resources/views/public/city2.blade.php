@@ -45,7 +45,7 @@
             <div class="row justify-content-center">
                 <div class="col-12 col-sm-10 col-md-6">
                     <div class="coming-soon-text-wrapper">
-                        
+
                         <form id="cityNotifyForm" action="{{ route('mc.notify.city', ['state' => $city->state->id, $city ]) }}" method="POST">
                             @csrf
                             <div class="input-group mb-1 shadow-5">
@@ -56,26 +56,8 @@
                             </div>
                         </form>
                         <p class="city-notify-subtext">*We don't like spam either. We'll notify you when this city is available and nothing else.</p>
-                    </div>  
-                </div>
-
-                <!-- <div class="col-12 col-sm-6">
-
-                    <div class="jumbotron notify-jumbotron bg-primary text-light shadow">
-                        <h5>Notify Me!</h5>
-                        <p class="">We promise not to spam your email.</p>
-                        <form id="cityNotifyForm" action="{{ route('mc.notify.city', ['state' => $city->state->id, $city ]) }}" method="POST">
-                            @csrf
-                            <div class="input-group mb-1">
-                                <input type="email" name="email" required="" class="form-control" placeholder="you@youremail.com" aria-label="Email Address" aria-describedby="submitNotifyForm">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary btn-badge" type="submit" id="submitNotifyForm">Notify Me!</button>
-                                </div>
-                            </div>
-                        </form>
                     </div>
-
-                </div> -->
+                </div>
             </div>
         </div>
     @else
@@ -91,7 +73,7 @@
                 @forelse($city->discounts as $discount)
                     <div class="col px-0 card-hover"><!-- col-lg-3  -->
                         <div class="card business-display">
-                            <div class="card-body" rel="tooltip" 
+                            <div class="card-body" rel="tooltip"
 
                             @if( Auth::user() && Auth::user()->cities->first() )
                                 @if( Auth::user()->cities->count() > 0 )
@@ -130,7 +112,7 @@
                                         @if( ! empty( $discount->business->logo ) )
                                         <div class="business-logo" style="background-image: url({{ $discount->business->logo }});"></div>
                                         @else
-                                        
+
                                         <div class="business-logo" style="">
                                             <span class="h3 text-center">{{ $discount->business->name }}</span>
                                         </div>

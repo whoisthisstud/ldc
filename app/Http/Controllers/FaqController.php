@@ -15,8 +15,10 @@ class FaqController extends Controller
      */
     public function index()
     {
-        $faqs = Faq::all();
-        return view('admin.faqs.index', compact('faqs'));
+        $faqs = Faq::orderBy('is_active', 'DESC')
+            ->orderBy('type')
+            ->get();
+        return view('admin.faqs.index2', compact('faqs'));
     }
 
     /**
@@ -68,7 +70,7 @@ class FaqController extends Controller
      */
     public function edit(Faq $faq)
     {
-        //
+        return view('admin.faqs.create', compact('faq'));
     }
 
     /**

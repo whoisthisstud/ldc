@@ -150,6 +150,7 @@ class PagesController extends Controller
     {
         $state = State::where('name', $state)->first();
         $city = City::where('state_id', $state->id)->where('name', $city)->first();
+        $faqs = Faq::all()->random(3);
 
         // SEO Details
         SEOTools::setTitle($city->name . ', ' . $state->abbreviation . ' club card request form');
@@ -161,7 +162,7 @@ class PagesController extends Controller
         SEOTools::opengraph()->setUrl(route('public.signup', ['state' => $state->name, 'city' => $city->name]));
         SEOTools::setCanonical(route('public.signup', ['state' => $state->name, 'city' => $city->name]));
 
-        return view('public.signup', compact('city'));
+        return view('public.signup2', compact('city', 'faqs'));
     }
 
     public function privacy()
@@ -189,7 +190,7 @@ class PagesController extends Controller
         $faqs = Faq::where('is_active', true)->get();
         $categories = DB::table('faqs')
             ->select('type', 'is_general')
-            ->where('is_active',true)
+            ->where('is_active', true)
             ->orderBy('is_general', 'DESC')
             ->groupBy('type', 'is_general')
             ->get();

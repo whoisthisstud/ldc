@@ -20,7 +20,7 @@ class SignupUserRequest extends FormRequest
     {
         $this->merge([
             'name' => strip_tags($this->name),
-            'phone' => strip_tags($this->phoine),
+            'phone' => strip_tags($this->phone),
         ]);
     }
 
