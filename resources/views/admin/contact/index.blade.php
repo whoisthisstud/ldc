@@ -3,6 +3,9 @@
 @section('styles')
 <link rel="stylesheet" type="text/css" href="{{ asset('/vendors/DataTables/datatables.min.css') }}"/>
 <style>
+#messagesTable {
+    border-radius: 5px;
+}
 #messagesTable_length,
 #messagesTable_info,
 #messagesTable_paginate {
@@ -49,6 +52,13 @@ table.dataTable tbody td.no-padding {
     background-color: #5e768a;
     border-color: #5e768a;
 }
+.table .thead-dark th:first-of-type {
+    border-top-left-radius: 5px;
+}
+.table .thead-dark th:last-of-type {
+    border-top-right-radius: 5px;
+}
+
 td.details-control::before {
     display: inline-block;
     font-style: normal;
@@ -59,7 +69,7 @@ td.details-control::before {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     transform: rotate(0deg);
-    transition: transform .35s linear;
+    transition: transform .15s linear;
 }
 td.details-control {
     cursor: pointer;
@@ -178,7 +188,7 @@ button.reply-btn {
 
                             @if( $contacts->count() > 0 )
                             <div class="container-fluid">
-                                <table id="messagesTable" class="display table table-striped table-hover" data-page-length="10" data-order="[[ 4, &quot;desc&quot; ]]" style="width:100%;">
+                                <table id="messagesTable" class="shadow-5 display table table-striped table-hover" data-page-length="10" data-order="[[ 4, &quot;desc&quot; ]]" style="width:100%;">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th></th>
@@ -258,6 +268,7 @@ button.reply-btn {
             "ordering": false
         });
 
+
         $("#toExcel").on("click", function() {
             table.button( '.buttons-excel' ).trigger();
         });
@@ -292,6 +303,7 @@ button.reply-btn {
                 tr.addClass('shown');
             }
         });
+        // $('#messagesTable').addClass('shadow-5');
     });
 
     function setColVisible(columnIndex){
