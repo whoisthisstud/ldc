@@ -22,7 +22,7 @@
 @else
 	<div class="col-12 text-center">
 	    <div class="d-block mb-5">
-	        <a href="{{ route('public.signup', [ 'state' => $city->state->name, 'city' => $city->name ]) }}" class="btn btn-lg btn-primary">Request your Local Discount Club card for {{ $city->name }}, {{ $city->state->abbreviation }}</a>
+	        <a href="{{ route('public.signup', [ 'state' => $city->state->name, 'city' => $city->name ]) }}" class="btn btn-lg btn-primary">Request Club Card for {{ $city->name }}</a>
 	    </div>
 	</div>
 @endif

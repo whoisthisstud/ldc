@@ -119,7 +119,8 @@
 		<div class="row justify-content-center pb-5">
 			<div class="col-12 text-center">
                 <div class="section-header-svg">
-                    @include('_partials.icons.city-skyline_multi')
+                	{{-- @include('_partials.icons.map_multi') --}}
+	                @include('_partials.icons.city-skyline_multi')
                 </div>
                 <h2>Select your city</h2>
 			</div>

@@ -67,4 +67,13 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany('App\Contact');
     }
+
+    protected static function redirectWhenNotUser() {
+    if (Gate::denies('view-profile')) {
+        notify()->error('You are not authorized to view this user', 'Access Denied');
+        redirect()->back()->send();
+        return true;
+    }
+    return false;
+}
 }

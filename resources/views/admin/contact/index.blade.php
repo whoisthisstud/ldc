@@ -18,6 +18,23 @@
     font-size: 80%;
     font-weight: 500;
 }
+#messagesTable_filter input {
+    margin-left: 0.5rem;
+    display: inline-block;
+    width: 300px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0 .5rem 0 2.125rem;
+}
+#messagesTable_filter .form-control{
+    background-image: url({{ asset('/i/search.svg') }});
+    background-repeat: no-repeat;
+    background-position: 9px 4px !important;
+    background-size: 17px 25px;
+}
+#messagesTable_filter input:focus {
+    background-color: #ffffff;
+}
 #messagesTable_length select {
     margin: 0 .25rem;
 }
@@ -171,7 +188,7 @@ button.reply-btn {
                                             <th>Message Date</th>
                                             <th>Contacted?</th>
                                             <th>Resolved?</th>
-                                            <th>Actions</th>
+                                            <th class="text-right">Actions</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -179,14 +196,15 @@ button.reply-btn {
                                         @foreach($contacts as $contact)
                                         <tr data-child-message="{{ $contact->message }}">
                                             <td class="details-control"></td>
-                                            <td>{!! $contact->user_id != null ? '<a href="#">' : '' !!}{{ $contact->name }}{!! $contact->user_id != null ? '</a>' : '' !!}</td>
+                                            <td>{!! $contact->user_id != null ? '<a href="' . route('view.profile', ['user' => $contact->user_id]) . '">' : '' !!}{{ $contact->name }}{!! $contact->user_id != null ? '</a>' : '' !!}</td>
                                             <td>{{ $contact->email }}</td>
                                             <td>{{ $contact->ip_address }}</td>
                                             <td>{{ $contact->created_at->format('m/d/y \@ h:i A') }}</td>
                                             <td>{{ $contact->has_contacted == true ? 'Yes' : 'No' }}</td>
                                             <td>{{ $contact->is_resolved == true ? 'Yes' : 'No' }}</td>
-                                            <td>
-                                                <a class="btn btn-sm btn-success btn-badge"><i class="fas fa-check"></i></a>
+                                            <td class="text-right">
+                                                <a class="btn btn-sm btn-primary btn-badge" data-toggle="tooltip" data-placement="top" title="Mark Contacted"><i class="fas fa-headset"></i></a>
+                                                <a class="btn btn-sm btn-success btn-badge" data-toggle="tooltip" data-placement="top" title="Mark Resolved"><i class="fas fa-check"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -221,6 +239,7 @@ button.reply-btn {
         table = $('#messagesTable').DataTable({
             // 'responsive': true,
             "dom": 'lBfrtip',
+            language: { search: "" },
             buttons: [
                 {
                     extend: 'csv',

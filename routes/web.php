@@ -67,6 +67,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('/faqs/store', 'FaqController@store')->name('faqs.store');
 
     Route::get('/users', 'Admin\UserController@index')->name('users.index');
+
     Route::get('/messages', 'ContactController@index')->name('messages.index');
 });
 
@@ -79,3 +80,6 @@ Route::get('/clubs/{state}/{city}/thank-you', 'ClubSignupController@thanks')->na
 Route::get('/clubs/{state}/{city}/{business}/{discount}', 'PagesController@discount')->name('public.discount');
 Route::get('/clubs/all-cities', 'PagesController@allCities')->name('public.cities.list');
 // Route::get('/states/{state}', 'PagesController@state')->name('public.state');
+
+Route::get('/user/{user}/profile', 'UserController@show')
+    ->name('view.profile'); //->middleware('can:view-profile');

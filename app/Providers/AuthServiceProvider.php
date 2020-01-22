@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Auth;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
@@ -60,6 +61,10 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('manage-messages', function ($user) {
             return $user->hasAnyRoles(['superadmin','admin']);
+        });
+
+        Gate::define('view-profile', function ($user) {
+            return $user->hasAnyRoles(['superadmin','admin']) ? true : Auth::id() === $user->id;
         });
     }
 }

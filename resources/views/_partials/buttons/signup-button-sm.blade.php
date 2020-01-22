@@ -3,11 +3,11 @@
 		@foreach( Auth::user()->cities as $subscribedTo )
 			@if( $subscribedTo->id === $city->id )
 
-				<div class="col-12 text-center">
+				<!-- <div class="col-12 text-center">
 				    <div class="d-block mb-5">
 				        <button class="btn btn-sm btn-danger btn-badge" disabled>You are already subscribed to {{ $city->name }}, {{ $city->state->abbreviation }}</button>
 				    </div>
-				</div>
+				</div> -->
 
 			@endif
 		@endforeach
@@ -22,7 +22,7 @@
 @else
 	<div class="col-12 text-center">
 	    <div class="d-block mb-5">
-	        <a href="{{ route('public.signup', [ 'state' => $city->state->name, 'city' => $city->name ]) }}" class="btn btn-sm btn-primary">Request your Local Discount Club card for {{ $city->name }}, {{ $city->state->abbreviation }}</a>
+	        <a href="{{ route('public.signup', [ 'state' => $city->state->name, 'city' => $city->name ]) }}" class="btn btn-sm btn-primary">Request Club Card for {{ $city->name }}</a>
 	    </div>
 	</div>
 @endif

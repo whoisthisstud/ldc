@@ -16,9 +16,8 @@ class MailchimpNotifyCityController extends Controller
     	{
 		        Newsletter::subscribe($request->email);
 		}
-    	// Newsletter::subscribe($request->email);
     	
-    	Newsletter::addTags([$state->name, $city->name], $request->email);
+    	Newsletter::addTags([$state->name, $city->name, 'Notify'], $request->email);
 
     	notify()->success('You have registered to recieve notifications when ' . $city->name . ', ' . $state->abbreviation . ' becomes available.', 'Notification Request Received', ['timeOut' => 5000]);
 

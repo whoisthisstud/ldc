@@ -4,8 +4,9 @@
 			<div class="row">
 
 				<!-- start: Public Menu -->
-				<div id="publicMenu" class="col-12 py-4 mb-4 px-2 border-bottom" style="border-bottom: 1px solid #2a3137 !important;">
+				<div id="publicMenu" class="col-12 py-4 px-2">
 					<ul class="icon-menu d-flex flex-row align-content-center align-items-stretch flex-wrap">
+						@if( $active_count && $active_count > 0 )
 						<li id="downloadCard" class="primary-icon-btn">
 							<a href="#" class="icon-btn text-white bg-primary">
 								<span class="icon-btn-svg-icon">
@@ -14,6 +15,7 @@
 								Download Card
 							</a>
 						</li>
+						@endif
 						<li class="">
 							<a href="{{ route('public.cities.list') }}" class="icon-btn text-white">
 								<!-- <i class="fas fa-home"></i> -->
@@ -50,14 +52,14 @@
 								About Us
 							</a>
 						</li> -->
-						<li class="">
+						<!-- <li class="">
 							<a href="{{ route('public.contact') }}" class="icon-btn text-white">
 								<span class="icon-btn-svg-icon">
 									@include('_partials.icons.contact_duotone')
 								</span>
 								Contact Us
 							</a>
-						</li>
+						</li> -->
 						<li class="">
 							<a href="{{ route('public.faqs') }}" class="icon-btn text-white">
 								<span class="icon-btn-svg-icon">
@@ -72,6 +74,14 @@
 
 						@if (Route::has('login'))
 		                    @auth
+			                    <li class="">
+									<a href="{{ route('view.profile',['user' => Auth::id()]) }}" class="icon-btn text-white">
+										<span class="icon-btn-svg-icon">
+											@include('_partials.icons.user-profile_multi')
+										</span>
+										View Profile
+									</a>
+								</li>
 			                    <li class="">
 									<a href="{{ route('logout') }}" class="icon-btn text-white"
                                         onclick="event.preventDefault();
@@ -106,7 +116,7 @@
 
 				@auth
 				<!-- start: Admin Menu -->
-				<div id="loggedInMenu" class="col-12 pb-4 px-2">
+				<div id="loggedInMenu" class="col-12 pt-4 pb-2 px-2 border-top" style="border-top: 1px solid #2a3137 !important;">
 					<ul class="icon-menu d-flex flex-row align-content-center align-items-stretch flex-wrap">
 						@can('manage-dashboard')
 							<li class="">
@@ -197,7 +207,7 @@
 	</div>
 
 	<!-- start: Brand Logo | Site Name -->
-	<div id="navbarMain" class="navbar navbar-dark {{ Route::is('public.city') ? 'navbar-transparent' : '' }}"> {{-- Route::is('public.index') || --}}
+	<div id="navbarMain" class="navbar navbar-dark">
 		<div class="container d-flex justify-content-between">
 			<a href="/" class="navbar-brand d-flex align-items-center text-light">
 				{{-- @include('_partials.icons.logo2') --}}

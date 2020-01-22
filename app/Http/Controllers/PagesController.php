@@ -129,7 +129,7 @@ class PagesController extends Controller
         SEOTools::opengraph()->setUrl(route('public.cities.list'));
         SEOTools::setCanonical(route('public.cities.list'));
 
-        return view('public.city', compact('city', 'discounts', 'faqs'));
+        return view('public.city2', compact('city', 'discounts', 'faqs'));
     }
 
     public function state(State $state)
