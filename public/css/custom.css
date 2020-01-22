@@ -547,6 +547,12 @@ body.nav-open .open-nav-cover {
     letter-spacing: -.5px;
 }
 
+.error-header-text {
+  font-weight: 800;
+  font-size: 8rem;
+  letter-spacing: -.5px;
+}
+
 .contact-intro {
   position: relative;
   display: inline-block;
@@ -555,6 +561,17 @@ body.nav-open .open-nav-cover {
   font-weight: 500;
   font-size: 1rem;
   letter-spacing: .25px;
+}
+
+.error-intro {
+  position: relative;
+  display: block;
+  margin: 0 auto 1rem;
+  max-width: 600px;
+  font-weight: 500;
+  font-size: 1.25rem;
+  letter-spacing: .25px;
+  
 }
 
 #contactForm {
@@ -619,6 +636,16 @@ body.nav-open .open-nav-cover {
   display: block;
   position: absolute;
   top: 150%;
+  right: 10%;
+  transform: rotate(-7deg);
+  opacity: .05;
+}
+
+.error-bkgd-ldc-card {
+  width: 250px;
+  display: block;
+  position: absolute;
+  top: 125%;
   right: 10%;
   transform: rotate(-7deg);
   opacity: .05;
