@@ -1,4 +1,4 @@
-<svg version="1.1" id="ldc_card_front_color" class="icon-btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 400 230" xml:space="preserve">
+<svg version="1.1" id="ldc_card_front_color" class="brand-logo-svg icon-btn-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 400 230" xml:space="preserve">
 <g>
 	<path fill="#146AB5" d="M400,214.025c0,8.823-7.107,15.975-15.875,15.975H15.875C7.116,230,0,222.849,0,214.025V15.974
 		C0,7.151,7.116,0,15.875,0h368.25C392.893,0,400,7.151,400,15.974V214.025z"/>

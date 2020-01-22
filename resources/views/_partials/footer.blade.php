@@ -1,49 +1,39 @@
 <footer class="text-muted bg-dark">
     <div class="container">
-        <!-- <div class="row">
-            <div class="col-12 col-md-8">
+        <div class="row justify-content-center py-4">
+            <div class="col-12 col-md-3">
                 <a href="#" class="display-4 d-flex align-items-center text-light" style="font-size: 2rem;">
                     <div class="footer-logo-wrapper">
-                        @include('_partials.icons.ldc_card_light')
+                        {{-- @include('_partials.icons.ldc_card_light') --}}
+                        @include('_partials.icons.ldc_card_front_color')
                     </div>
-                    <strong>{{ config('app.name', 'Local Discount Club') }}</strong>
                 </a>
-                <div class="row mt-4">
-                    <div class="col-12 col-md-4">
-                        <h5 class="text-muted">General</h5>
-                        <ul class="pl-0" style="list-style: none;">
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">Link Here</a></li>
-                            <li><a href="#">Link Here</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <h5 class="text-muted">More Info</h5>
-                        <ul class="pl-0" style="list-style: none;">
-                            <li><a href="#">View All Cities</a></li>
-                            <li><a href="#">Request A City</a></li>
-                            <li><a href="#">Request A Business</a></li>
-                            <li><a href="#">Link Here</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-12 col-md-4">
-                        <h5 class="text-muted">Other Links</h5>
-                        <ul class="pl-0" style="list-style: none;">
-                            <li><a href="#">Link Here</a></li>
-                            <li><a href="#">Link Here</a></li>
-                            <li><a href="#">Link Here</a></li>
-                            <li><a href="#">Link Here</a></li>
-                        </ul>
-                    </div>
-                </div>
             </div>
-            <div class="col-12 col-md-4 mt-n5">
-                <div class="d-block bg-light text-center" style="min-height:180px;">
-                    <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness. I say to myself, “The Lord is my portion; therefore I will wait for him. Lamentations 3: 22-24</p>&mdash; God’s Motivations 📖 (@GodsMotivations) <a href="https://twitter.com/GodsMotivations/status/1211799376789532672?ref_src=twsrc%5Etfw">December 31, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
+            <div class="col-12 col-md-3 pt-2">
+                <h4 class="footer-section-header">General</h4>
+                <ul class="pl-0 footer-submenu" style="list-style: none;">
+                    <li><a href="{{ route('public.about') }}">About Us</a></li>
+                    <li><a href="{{ route('public.contact') }}">Contact Us</a></li>
+                    <li><a href="{{ route('public.faqs') }}">Frequently Asked Questions</a></li>
+                </ul>
             </div>
-        </div> -->
+            <div class="col-12 col-md-3 pt-2">
+                <h4 class="footer-section-header">Recommend</h4>
+                <ul class="pl-0 footer-submenu" style="list-style: none;">
+                    <li><a href="#" data-toggle="modal" data-target=".cityRequestFormModal">Request a City</a></li>
+                    <li><a href="#" data-toggle="modal" data-target=".businessRequestFormModal">Request a Business</a></li>
+                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Coming Soon!">Add Your Business</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-3 pt-2">
+                <h4 class="footer-section-header">Get Social</h4>
+                <ul class="pl-0 footer-submenu" style="list-style: none;">
+                    <li><a href="//www.facebook.com/yourldc" target="_blank">Facebook</a></li>
+                    <li><a href="//www.instagram.com/localdiscountclub/" target="_blank">Instagram</a></li>
+                    <li><a href="//twitter.com/yourldc" target="_blank">Twitter</a></li>
+                </ul>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col-12">
