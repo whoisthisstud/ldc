@@ -57,6 +57,12 @@ class ClubSignupController extends Controller
 
     public function thanks(State $state, City $city)
     {
+        $select_cities = City::all();
+        $select_states = State::with('cities')->get();
+
+        View::share('select_cities', $select_cities);
+        View::share('select_states', $select_states);
+
         return view('public.thank-you', compact('city'));
     }
 }

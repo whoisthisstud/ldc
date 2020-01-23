@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use View;
 use App\City;
 use App\State;
 use App\Business;
@@ -35,6 +36,12 @@ class TestController extends Controller
 
     public function thanks()
     {
+        $select_cities = City::all();
+        $select_states = State::with('cities')->get();
+
+        View::share('select_cities', $select_cities);
+        View::share('select_states', $select_states);
+
         $user = Auth::user();
         $city = City::find(1);
         return view('public.thank-you', compact('user','city'));
