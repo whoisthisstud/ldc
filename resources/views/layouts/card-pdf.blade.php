@@ -35,19 +35,12 @@
                         I got my code to work by replacing line 4860 in Cpdf.php with:
                         $imagickClonable = (new ReflectionClass(Imagick::class))->isCloneable();
                     -->
-                    @foreach( $city->discounts as $discount )
+                    {{-- @dd($discounts) --}}
+                    @foreach( $discounts as $discount )
                         <div class="discount-block">
                             <div class="discount-logo">
                                 @if( !empty($discount->business->logo) )
-                                    {{-- @php
-                                        $path   = public_path($discount->business->logo);
-                                        $type   = pathinfo($path, PATHINFO_EXTENSION);
-                                        $data   = file_get_contents($path);
-                                        $base64 = 'data:application/' . $type . ';base64,' . base64_encode($data);
-                                    @endphp --}}
-                                    <img class="" src="{{ asset($discount->business->logo) }}">
-                                    <!-- <img class="" src="{{-- $base64 --}}"> -->
-
+                                    <img class="" src="{{ asset($discount->business->logo) }}" alt="Beginning: {{ $discount->begins_at->format('m/d/y') }} | Expiring: {{ $discount->expires_at->format('m/d/y') }}">
                                 @else
                                     <span class="business-name">
                                         {{ $discount->business->name }}

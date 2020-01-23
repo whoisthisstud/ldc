@@ -80,9 +80,18 @@ class FaqController extends Controller
      * @param  \App\Faq  $faq
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Faq $faq)
+    public function update(FaqStoreRequest $request, Faq $faq)
     {
-        //
+        $validated = $request->validated();
+
+        if ($request->type == "general") {
+            Faq::where('id', $faq->id)->update($validated + ['is_general' => true]);
+        } else {
+            Faq::where('id', $faq->id)->update($validated);
+        }
+
+        notify()->success('Your Frequently Asked Question has been updated', 'FAQ Updated');
+        return redirect()->route('faqs.index');
     }
 
     /**

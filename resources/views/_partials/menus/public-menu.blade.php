@@ -7,14 +7,14 @@
 				<div id="publicMenu" class="col-12 py-4 px-2">
 					<ul class="icon-menu d-flex flex-row align-content-center align-items-stretch flex-wrap">
 						@if( $active_count && $active_count > 0 )
-						<li id="downloadCard" class="primary-icon-btn">
+						<!-- <li id="downloadCard" class="primary-icon-btn">
 							<a href="#" class="icon-btn text-white bg-primary">
 								<span class="icon-btn-svg-icon">
 									@include('_partials.icons.ldc_card_light-icon')
 								</span>
 								Download Card
 							</a>
-						</li>
+						</li> -->
 						@endif
 						<li class="">
 							<a href="{{ route('public.cities.list') }}" class="icon-btn text-white">
