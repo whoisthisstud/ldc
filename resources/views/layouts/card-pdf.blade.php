@@ -35,7 +35,6 @@
                         I got my code to work by replacing line 4860 in Cpdf.php with:
                         $imagickClonable = (new ReflectionClass(Imagick::class))->isCloneable();
                     -->
-                    {{-- @dd($discounts) --}}
                     @foreach( $discounts as $discount )
                         <div class="discount-block">
                             <div class="discount-logo">
