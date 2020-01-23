@@ -51,7 +51,7 @@
     position: relative;
     display: inline-block;
     width: 20%;
-    height: 62px;
+    height: 60px;
     margin: 0;
     padding: 3px 4.85px;
     /*background-color: #f4f4f4;*/
@@ -106,7 +106,6 @@
     color: #3490dc;
     letter-spacing: 1px;
     margin-bottom: 0;
-    padding-bottom: 6px;
   }
 
   .discount-card .card-footer p {

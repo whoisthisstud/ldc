@@ -70,7 +70,7 @@
                     <h3 class="city-header text-center">Businesses w/ Exclusive Discounts in {{ $city->name }}</h3>
                 </div>
 
-                @forelse($city->discounts as $discount)
+                @forelse($discounts as $discount)
                     <div class="col px-0 card-hover"><!-- col-lg-3  -->
                         <div class="card business-display">
                             <div class="card-body" rel="tooltip"
@@ -156,13 +156,14 @@
                 <div class="row">
                     @foreach($faqs as $faq)
                         <div class="col-12 col-sm-6 col-md-4 text-left py-2 px-4">
-                            <h5><strong>{{ $faq->question }}</strong></h5>
+                            <h5><strong>{{ $faq->question }}{{ substr($faq->question,-1) !== '?' ? '?' : '' }}</strong></h5>
                             <p class="">{!! $faq->answer !!}</p>
                         </div>
                     @endforeach
                 </div>
             </div>
         </div>
+        <p class="easy-last-call pt-3 border-top d-inline-block mt-4">Still curious?  Check out our <a href="{{ route('public.faqs') }}">Frequently Asked Questions</a>.</p>
     </div>
     @endif
 

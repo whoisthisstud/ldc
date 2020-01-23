@@ -87,8 +87,14 @@ class PagesController extends Controller
         $state = State::where('name', $state)->first();
         $city = City::where('state_id', $state->id)->where('name', $city)->first();
         $city->increment('views');
-        $discounts = Discount::where('city_id', $city->id)->get();
-        $faqs = Faq::where('is_active', true)->where('type', 'city')->orderBy('id', 'DESC')->get();
+        // $discounts = Discount::where('city_id', $city->id)->get();
+        $discounts = Discount::inSeason($city);
+        $faqs = Faq::inRandomOrder()
+            ->where('is_active', true)
+            ->where('type', 'city')
+            ->orderBy('id', 'DESC')
+            ->limit(9)
+            ->get();
 
         $keywords = array();
         $keywords = [

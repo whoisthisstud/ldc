@@ -205,7 +205,7 @@ tr.inactive {
                                         @foreach($faqs as $faq)
                                         <tr data-child-message="{{ $faq->answer }}" class="{{ $faq->is_active == true ? '' : 'inactive' }}">
                                             <td class="details-control"></td>
-                                            <td>{{ $faq->question }}</td>
+                                            <td>{{ $faq->question }}{{ substr($faq->question,-1) !== '?' ? '?' : '' }}</td>
                                             <td>{{ $faq->type }}</td>
                                             <td>{{ $faq->is_active == true ? 'Active' : 'Inactive' }}</td>
                                             <td class="text-right">

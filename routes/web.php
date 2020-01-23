@@ -29,7 +29,8 @@ Route::prefix('business-manager')->middleware('can:manage-businesses')->group(fu
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/dashboard', 'HomeController@index')->name('home');
     Route::post('/store-media', 'StoreMediaController')->name('store.media');
-    Route::get('/test', 'TestController')->name('test');
+    Route::get('/test', 'TestController@card')->name('test');
+    Route::get('/test-thanks', 'TestController@thanks')->name('test.thanks');
     Route::get('/card', 'ClubCardController@view')->name('card');
 
     Route::get('/states', 'StateController@index')->name('states.index');
@@ -81,7 +82,6 @@ Route::post('/clubs/{state}/{city}/register', 'ClubSignupController@signupUser')
 Route::get('/clubs/{state}/{city}/thank-you', 'ClubSignupController@thanks')->name('signup.complete');
 Route::get('/clubs/{state}/{city}/{business}/{discount}', 'PagesController@discount')->name('public.discount');
 Route::get('/clubs/all-cities', 'PagesController@allCities')->name('public.cities.list');
-// Route::get('/states/{state}', 'PagesController@state')->name('public.state');
 
 Route::get('/user/{user}/profile', 'UserController@show')
     ->name('view.profile'); //->middleware('can:view-profile');

@@ -89,10 +89,10 @@
                     </div>
                     <div class="col-8">
                         <p class="p-0 m-0 pt-2"><small>
-                            These are the terms that this card is required to be held to and define all of the stuff that is required to be put on the card, from a legal standpoint. These are the terms that this card is required to be held to and defin - maximum 250 characters.
+                            This card is redeemable only at the actively-participating businesses listed, within the stated city, and for the discount printed on the card or available on our site. Cannot be used with any other coupon or discount. <strong>This card has zero monetary value.</strong>
                         </small></p>
                     </div>
-                    <div class="col-4">
+                    <div class="col-4 text-right">
                         <span class="expiration-block">
                             EXPIRES: <strong>{{ date('m/d/y', strtotime($season->ends_on) ) }}</strong>  <!-- 12/31/2020 -->
                         </span>

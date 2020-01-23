@@ -179,6 +179,14 @@
 
 							<li class="separator d-none d-md-inline-block"></li>
 							<li class="">
+								<a href="{{ route('test.thanks') }}" class="icon-btn text-white">
+									<span class="icon-btn-svg-icon">
+										@include('_partials.icons.verify-email_multi')
+									</span>
+									View Thank You Page
+								</a>
+							</li>
+							<li class="">
 								<a href="{{ route('card') }}" class="icon-btn text-white">
 									<span class="icon-btn-svg-icon">
 										@include('_partials.icons.business-card_multi')
@@ -190,7 +198,7 @@
 								<li class="">
 									<a href="{{ route('public.signup', ['state' => $city->state->name, 'city' => $city->name]) }}" class="icon-btn text-white">
 										<span class="icon-btn-svg-icon">
-											@include('_partials.icons.business-card_multi')
+											@include('_partials.icons.easy-snap_multi')
 										</span>
 										Request Club Card
 									</a>

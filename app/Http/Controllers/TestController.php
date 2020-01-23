@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\City;
 use App\State;
 use App\Business;
@@ -9,7 +10,7 @@ use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
-    public function __invoke()
+    public function card()
     {
     	// $businesses = Business::all();
     	// $business = Business::find(4);
@@ -30,5 +31,12 @@ class TestController extends Controller
     	$city = City::find(1);
 
     	return view('test', compact('city'));
+    }
+
+    public function thanks()
+    {
+        $user = Auth::user();
+        $city = City::find(1);
+        return view('public.thank-you', compact('user','city'));
     }
 }

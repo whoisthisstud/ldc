@@ -560,6 +560,14 @@ body.nav-open .open-nav-cover {
     /*text-transform: uppercase;*/
     letter-spacing: -.5px;
 }
+.thank-you-header-text {
+  font-weight: 800;
+  font-size: 4rem;
+  letter-spacing: -.5px;
+  max-width: 700px;
+  display: block;
+  margin: 0 auto;
+}
 
 .error-header-text {
   font-weight: 800;
@@ -576,7 +584,14 @@ body.nav-open .open-nav-cover {
   font-size: 1rem;
   letter-spacing: .25px;
 }
-
+.thank-you-follow {
+  position: relative;
+  display: inline-block;
+  margin: 2rem auto;
+  max-width: 560px;
+  font-weight: 500;
+  font-size: 1.35rem;
+}
 .error-intro {
   position: relative;
   display: block;
@@ -585,46 +600,28 @@ body.nav-open .open-nav-cover {
   font-weight: 500;
   font-size: 1.25rem;
   letter-spacing: .25px;
-
 }
-
 .contact-form-card {
   margin-top: -25px;
 }
-
 .form-control {
-/*  display: block;
-  width: 100%;
-  height: calc(1.6em + 0.75rem + 2px);
-  padding: 0.375rem 0.75rem;*/
-  font-size: 1.0125rem; /*0.9rem;*/
-/*  font-weight: 400;
-  line-height: 1.6;*/
+  font-size: 1.0125rem;
   color: #4f565e;
-
-/*  background-clip: padding-box;*/
   border: 1px solid #eef0f2;
-/*  border-radius: 0.25rem;
-  -webkit-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;*/
 }
-
 .card .form-control,
 .modal-body .form-control {
   background-color: #eff1f3;
 }
-
 .card .form-control:focus,
 .modal-body .form-control:focus {
     background-color: #fff;
 }
-
 .contact-ldc-logo {
   opacity: .3;
   max-width: 100px;
   margin: 0 auto;
 }
-
 .contact-page-ldc-card {
   width: 250px;
   display: block;
@@ -635,7 +632,6 @@ body.nav-open .open-nav-cover {
   opacity: .1;
   z-index: -1;
 }
-
 .page-bkgd-ldc-card {
   width: 250px;
   display: block;
@@ -2213,6 +2209,9 @@ border-top-color: #343a40;
 }*/
 
 @media (min-width: 767px) and (max-width: 1024px) {
+  .icon-menu li .icon-btn {
+    font-size: .65rem;
+  }
   main {
     min-height: 75vh;
   }
@@ -2275,6 +2274,9 @@ border-top-color: #343a40;
   }
   .contact-header-text,
   .page-header-text {
+    font-size: 3.75rem;
+  }
+  .thank-you-header-text {
     font-size: 3.75rem;
   }
 }
@@ -2450,7 +2452,8 @@ border-top-color: #343a40;
     /*color: #237fcb;*/
   }
   .contact-header-text,
-  .page-header-text {
+  .page-header-text,
+  .thank-you-header-text {
     font-size: 3rem;
     font-weight: 800;
     line-height: 1;
@@ -2460,6 +2463,12 @@ border-top-color: #343a40;
     margin: 0 auto 1rem;
     max-width: 375px;
     letter-spacing: .75px;
+  }
+  .thank-you-follow {
+    margin: 1rem auto 1rem;
+    max-width: 350px;
+    letter-spacing: 0;
+    line-height: 1.85rem;
   }
   #popular .all-cities-btn a.btn {
     display: block;
@@ -2629,7 +2638,8 @@ border-top-color: #343a40;
     width: 110px;
   }
   .contact-header-text,
-  .page-header-text {
+  .page-header-text,
+  .thank-you-header-text  {
     font-size: 2.5rem;
   }
   .contact-form-card {
