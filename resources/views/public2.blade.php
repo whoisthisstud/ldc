@@ -30,7 +30,7 @@
 								<div class="col-12 col-sm-7 col-md-6 z-10 text-xs-center text-left">
 									<p class="display-4 carousel-header" style="">Exclusive Local Discounts</p>
 									<p class="lead carousel-lead" style="">
-										With our club card, you have fifteen exclusive reusable coupons that can be redeemed every single day at establishments near you. The best part?</p>
+										Each city's club card has fifteen exclusive and reusable coupons that you can redeem every single day at establishments near you. The best part?</p>
 									<p class="carousel-emphasis text-uppercase text-center text-md-left" style="">Membership is free!</p>
 									<a class="btn btn-lg btn-primary carousel-btn" href="#popular" role="button" style="">Start Saving</a>
 									<a class="btn btn-link more-link" href="#easyPeasy" role="button">Tell me more!</a>

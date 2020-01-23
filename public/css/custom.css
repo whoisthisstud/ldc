@@ -182,10 +182,11 @@ footer .small-footer-links {
   line-height:1.5rem;
 }
 
-#admin-header,
+#admin-header {
+  background-color: #0f3757; /*#5e768a;*/
+}
 #navbarMain {
   background-color: #227dc7;
-  /*transition: all .25s ease-out;*/
 }
 
 .navbar-opacity {

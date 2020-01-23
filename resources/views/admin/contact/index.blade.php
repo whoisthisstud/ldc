@@ -49,8 +49,8 @@ table.dataTable tbody td.no-padding {
 }
 .table .thead-dark th {
     color: #ffffff;
-    background-color: #5e768a;
-    border-color: #5e768a;
+    background-color: #708fa9;
+    border-color: #708fa9;
 }
 .table .thead-dark th:first-of-type {
     border-top-left-radius: 5px;

@@ -34,8 +34,5 @@ class Discount extends Model
             ->get();
 
         return $discounts;
-
-        // return $this->where('begins_at','<=',now())
-        //     ->where('expires_at','>',now());
     }
 }
