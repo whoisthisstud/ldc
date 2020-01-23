@@ -78,6 +78,11 @@ return [
             'visibility' => 'public'
         ],
 
+        'dropbox' => [
+            'driver' => 'dropbox',
+            'authorization_token' => env('DROPBOX_AUTH_TOKEN'),
+        ],
+
     ],
 
 ];

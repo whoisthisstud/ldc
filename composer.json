@@ -17,6 +17,8 @@
         "laravel/framework": "^6.2",
         "laravel/telescope": "^2.1",
         "laravel/tinker": "^2.0",
+        "spatie/flysystem-dropbox": "^1.2",
+        "spatie/laravel-backup": "^6.7",
         "spatie/laravel-medialibrary": "^7.0.0",
         "spatie/laravel-newsletter": "^4.7",
         "spatie/laravel-sitemap": "^5.5",

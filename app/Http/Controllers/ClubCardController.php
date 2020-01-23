@@ -16,35 +16,44 @@ class ClubCardController extends Controller
     {
         // $client = new Client();
 
-        // Eventually we'll type-hint the exact city 
+        // Eventually we'll type-hint the exact city
         // by changing the inital where('id',1) to where('id',$city->id)
         // Tell me again why we can't type-hint a where method?
         // i.e. City::where($city)->with()...
 
         $city = City::where('id', 1)        // Get the city
-            ->where('is_active',true)       // and ensure active
+            ->where('is_active', true)       // and ensure active
             ->with('state')                 // Lazy-load respective state
             ->first();
 
-        if( empty($city) ) {
+        if (empty($city)) {
             notify()->error('City either inactive or not found', 'ERROR');
             return redirect()->back();
         }
 
-        $discounts = Discount::where('city_id',$city->id)
-            ->where('begins_at','<=',now())
-            ->where('expires_at','>',now())
+        $discounts = Discount::where('city_id', $city->id)
+            ->where('begins_at', '<=', now())
+            ->where('expires_at', '>', now())
             ->get();
 
+        if (empty($discounts)) {
+            notify()->error('No discounts found.', 'ERROR');
+            return redirect()->back();
+        }
+
         $season = DB::table('city_season')  // Get the season
-            ->where('city_id',$city->id)    // for this city,
-            ->where('begins_on','<=',now()) // that begins before, or on, today
-            ->where('ends_on','>=',now())   // and ends after, or on, today
-            ->where('filled','1')           // in which all discount "spots" are sold.
-            ->first();                      // Take the first result. (should only be 1)
+            ->where('city_id', $city->id)    // for this city,
+            ->where('begins_on', '<=', now()) // that begins before, or on, today
+            ->where('ends_on', '>=', now())   // and ends after, or on, today
+            ->where('filled', '1')           // where all discount "spots" are sold.
+            ->first();                      // Take the first result. (should be 1)
 
-        return view('layouts.card-pdf', compact('city','season','discounts'));
+        if (empty($season)) {
+            notify()->error('No seasons found. Are you sure you\'ve activated the city?', 'ERROR');
+            return redirect()->back();
+        }
 
+        return view('layouts.card-pdf', compact('city', 'season', 'discounts'));
     }
 
     protected function generatePdf()
@@ -64,5 +73,4 @@ class ClubCardController extends Controller
 
         return $pdf->setPaper([0, 0, 504, 288], 'landscape')->download($city->name . '_' . $city->state->abbreviation . '-club_card.pdf');
     }
-
 }

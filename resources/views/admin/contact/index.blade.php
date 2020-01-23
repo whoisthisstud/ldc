@@ -304,11 +304,9 @@ button.reply-btn {
                 tr.addClass('shown');
             }
         });
-        // $('#messagesTable').addClass('shadow-5');
     });
 
     function setColVisible(columnIndex){
-        // table.column( columnIndex ).visible(false);
         if( table.column( columnIndex ).visible() ) {
             table.column( columnIndex ).visible(false);
         } else {
@@ -321,9 +319,5 @@ button.reply-btn {
         setColVisible(thisColumn);
         $(this).children('i').toggleClass('d-none');
     });
-
-
-    // setColVisible(1);return false;
-
 </script>
 @endsection

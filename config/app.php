@@ -176,6 +176,7 @@ return [
         // App\Providers\TelescopeServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         // Barryvdh\DomPDF\ServiceProvider::class,
+        App\Providers\DropboxServiceProvider::class,
 
     ],
 

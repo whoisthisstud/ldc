@@ -24,15 +24,14 @@
                             <div class="flex-fill">
                                 <span>{{ $user->name }}</span>
                             </div>
-                            <a href="{{ route('view.profile', ['user' => '1']) }}" class="btn btn-sm btn-primary btn-badge mr-1">Admin user</a>
+                            <!-- <a href="{{ route('view.profile', ['user' => '1']) }}" class="btn btn-sm btn-primary btn-badge mr-1">Admin user</a>
                             <a href="{{ route('view.profile', ['user' => Auth::id()]) }}" class="btn btn-sm btn-primary btn-badge mr-1">Current User</a>
-                            <a href="{{ route('view.profile', ['user' => '4']) }}" class="btn btn-sm btn-primary btn-badge">Business user</a>
+                            <a href="{{ route('view.profile', ['user' => '4']) }}" class="btn btn-sm btn-primary btn-badge">Business user</a> -->
                         </div>
 
                     </div>
                 </div>
             </section>
-            <!-- <hr class="h-separator"> -->
         </div>
     </div>
 

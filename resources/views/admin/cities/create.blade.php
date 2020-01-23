@@ -22,7 +22,6 @@
                                 <div class="pt-1">
                                     <span class="d-inline-block">
                                         <a href="{{ Route::is('cities.create') ? route('view.state', [ 'state' => $state->id ]) : route('view.state', [ 'state' => $city->state->id ]) }}" class="text-decoration-none">
-                                            <!-- <i class="fas fa-home"></i> -->
                                             {{ Route::is('cities.create') ? $state->abbreviation : $city->state->abbreviation }}
                                         </a>
                                         &nbsp; &raquo; &nbsp;
@@ -49,12 +48,11 @@
                         </div>
                     </div>
                 </section>
-                <!-- <hr class="h-separator"> -->
             </div>
         </div>
 
         <div class="row justify-content-between mt-5 mb-4">
-            
+
             @if( Route::is('cities.create') )
                 <div class="col-md-5 col-sm-12 pr-5 ml-3">
                     <h5 class="">A New City</h5>
@@ -62,7 +60,7 @@
                     <p><small>By adding a city, you will make this market available for businesses and discounters, alike. <em>Get 'em, tiger!</em></small></p>
                 </div>
             @else
-                <div id="popular" class="col-md-4 col-sm-12">    
+                <div id="popular" class="col-md-4 col-sm-12">
                     <div class="card popular-city-card mb-4 pb-4 shadow-sm" style="">
                         <img class="card-bg-img" src="{{ !empty($city->media->first()) ? Storage::url($city->media->first()->getUrl('thumb')) : Storage::url('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg') }}">
                         <a href="{{ route('public.city', [ 'state' => $city->state->name, 'city' => $city->name ]) }}">
@@ -98,7 +96,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12">                                   
+                        <div class="col-12">
                             <div class="form-group">
                                 <label for="file">City Image</label>
                                 <div class="needsclick dropzone" id="document-dropzone">
@@ -127,14 +125,11 @@
                             </li>
                         </ul>
                     </div>
-
                 </section>
-
             </div>
         </div>
 
     </form>
-
 </div>
 @endsection
 

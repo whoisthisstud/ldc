@@ -21,7 +21,7 @@
         @notify_css
         @yield('styles')
 
-        <!-- Custom styles for this template -->
+        <!-- Custom styles for this site -->
         <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
         <!-- Favicons -->
@@ -34,7 +34,7 @@
         @include('_partials.menus.public-menu')
 
         <main class="menu-padding hidden-footer" role="main">
-            {{-- Route::is('public.index') || --}}  
+            {{-- Route::is('public.index') || --}}
 
             @yield('content')
 
@@ -73,7 +73,7 @@
 
                 i = (i==0 || i=='') ? i=1 : i=0;
             });
-            
+
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })

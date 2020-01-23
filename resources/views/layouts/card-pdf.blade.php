@@ -1,6 +1,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="robots" content="noindex, nofollow" />
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <style type="text/css" media="all">
             @include('_partials.inline.cardpdf-inline-styles')

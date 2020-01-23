@@ -2,16 +2,15 @@
 
 @section('content')
 <div class="container">
-            
-    <form action="{{ route('discounts.store') }}" class="needs-validation" novalidate="" method="POST">                        
-        @csrf
 
+    <form action="{{ route('discounts.store') }}" class="needs-validation" novalidate="" method="POST">
+        @csrf
         <div class="row">
             <div class="col-12">
 
                 <section class="sub-header">
                     <div class="container">
-                        
+
                         <div class="row">
                             <div class="col-12 col-md-6 d-flex">
                                 <div class="pt-1">
@@ -33,7 +32,7 @@
 	                                    @endif
                                         &nbsp; &raquo; &nbsp;
                                     </span>
-                                    <h5 class="d-inline-block">Add Discount</h5>               
+                                    <h5 class="d-inline-block">Add Discount</h5>
                                 </div>
                             </div>
 
@@ -54,7 +53,7 @@
 
                         </div>
                     </div>
-                </section>  
+                </section>
                 <!-- <hr class="h-separator"> -->
             </div>
         </div>
@@ -81,7 +80,7 @@
                 		</div>
                 		<div class="discount-title-preview">Get 50% Off Online On Cyber Monday</div>
             			<div class="discount-description-preview">During Cyber Monday, get 50% off any item purchased online through our website.</div>
-            			
+
                         <div class="cta-wrapper">
                             <div class="call_to_action">
                                 <a href="#" target="_blank" class="btn btn-lg btn-block btn-primary btn-badge cta-link">
@@ -89,12 +88,12 @@
                                 </a>
                             </div>
                         </div>
-                            
+
             			<!-- <div class="discount-code">
             				<span>Discount code: </span>
             				<div class="discount-code-preview">19CYBER50</div>
             			</div> -->
-                		
+
             			<div class="discount-terms-preview">Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit.</div>
 
             			<div class="expires_at">
@@ -112,7 +111,7 @@
                 <section class="card shadow-5 sticky-top" style="top:2rem;">
 
                     <div class="card-body row">
-                    	   
+
                         @if( !empty($business) )
                             <input hidden="" name="business_id" value="{{ $business->id }}">
                         @else
@@ -190,14 +189,14 @@
                             </div>
                             <!-- <div class="btn-group btn-group-toggle btn-block radio-block" data-toggle="buttons">
                                 <label class="btn btn-primary btn-badge active">
-                                    <input type="radio" name="cta-options" id="linked" value="true" checked class="cta-options"> 
+                                    <input type="radio" name="cta-options" id="linked" value="true" checked class="cta-options">
                                     <span class="radio-block-icon mr-2">
                                         <i class="fas fa-paperclip"></i>
                                     </span>
                                     Link to Advertiser
                                 </label>
                                 <label class="btn btn-danger btn-badge">
-                                    <input type="radio" name="cta-options" id="unlinked" value="false" class="cta-options">  
+                                    <input type="radio" name="cta-options" id="unlinked" value="false" class="cta-options">
                                     <span class="radio-block-icon mr-2">
                                         <i class="fas fa-unlink"></i>
                                     </span>
@@ -205,7 +204,7 @@
                                 </label>
                             </div> -->
                         </div>
-                        <!-- end: CTA selection -->  
+                        <!-- end: CTA selection -->
 
                     	<!-- begin: Discount Call to Action -->
                         <div id="disc_cta" class="w-100 mb-3 mx-3">
@@ -234,14 +233,14 @@
                         <div id="date_type" class="col-md-12 mt-4 mb-3">
                             <div class="btn-group btn-group-toggle btn-block radio-block" data-toggle="buttons">
                                 <label class="btn btn-primary btn-badge active">
-                                    <input type="radio" name="date-options" id="seasons" value="true" checked class="date-options"> 
+                                    <input type="radio" name="date-options" id="seasons" value="true" checked class="date-options">
                                     <span class="radio-block-icon mr-2">
                                         <i class="fas fa-paperclip"></i>
                                     </span>
                                     Use Seasons
                                 </label>
                                 <label class="btn btn-primary btn-badge">
-                                    <input type="radio" name="date-options" id="customDate" value="false" class="date-options">  
+                                    <input type="radio" name="date-options" id="customDate" value="false" class="date-options">
                                     <span class="radio-block-icon mr-2">
                                         <i class="fas fa-unlink"></i>
                                     </span>
@@ -249,7 +248,7 @@
                                 </label>
                             </div>
                         </div>
-                        <!-- end: Date Type selection -->  
+                        <!-- end: Date Type selection -->
 
                         @if( $city->seasons->count() > 0 )
                             <!-- begin: Season Select -->
@@ -259,8 +258,8 @@
                                     <option selected>Choose...</option>
 
                                     @foreach($city->seasons as $season)
-                                        <option value="{{ $season->id }}" 
-                                            {{ $season->pivot->filled == true ? 'disabled' : '' }} data-begin-date="{{ date('m/d/y', strtotime($season->pivot->begins_on)) }}" 
+                                        <option value="{{ $season->id }}"
+                                            {{ $season->pivot->filled == true ? 'disabled' : '' }} data-begin-date="{{ date('m/d/y', strtotime($season->pivot->begins_on)) }}"
                                             data-end-date="{{ date('m/d/y', strtotime($season->pivot->ends_on)) }}"> {{ date('M jS, Y', strtotime($season->pivot->begins_on)) }} to {{ date('M jS, Y', strtotime($season->pivot->ends_on)) }}&nbsp; (Season {{ $season->id }} {{ $season->pivot->filled == true ? '- Filled' : '' }})</option>
                                     @endforeach
                                 </select>
@@ -367,7 +366,7 @@
             $('.cta-wrapper').html(btn);
         });
 
-        $('#unlinked').click( function() {     
+        $('#unlinked').click( function() {
             // $('#disc_cta').removeClass('d-block');
             $('#disc_cta').addClass('d-none');
             $('.call_to_action').remove();

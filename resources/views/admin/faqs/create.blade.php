@@ -4,10 +4,8 @@
 <div class="container">
     <form action="{{ Request::segment(3) == 'add' ? route('faqs.store') : route('faqs.update',[$faq]) }}" class="needs-validation" novalidate="" method="POST">
         @csrf
-
         <div class="row">
             <div class="col-12">
-
                 <section class="sub-header">
                     <div class="container">
 
@@ -16,7 +14,6 @@
                                 <div class="pt-1">
                                     <span class="d-inline-block">
                                         <a href="{{ route('faqs.index') }}" class="text-decoration-none">
-                                            <!-- <i class="fas fa-home"></i> -->
                                             FAQs
                                         </a>
                                         &nbsp; &raquo; &nbsp;
@@ -43,22 +40,12 @@
                         </div>
                     </div>
                 </section>
-                <!-- <hr class="h-separator"> -->
             </div>
         </div>
 
         <div class="row justify-content-between mt-5 mb-4">
-
-            <!-- <div class="col-md-5 col-sm-12 pr-5 ml-3">
-                <h5 class="">A New FAQ</h5>
-                <p><small>Adding a new state is a pretty big deal!</small></p>
-                <p><small>Don't worry about whether this will negatively affect your users. You can add a state and nothing will show until you add cities. <em>Go get 'em, tiger!</em></small></p>
-            </div> -->
-
             <div class="col-12 mr-3">
-
                 <section class="card shadow-5">
-
                     <div class="card-body row">
                         <div class="col-12 col-md-9 mb-3">
                             <label for="question">Question</label>
@@ -110,14 +97,10 @@
                             </li>
                         </ul>
                     </div>
-
                 </section>
-
             </div>
         </div>
-
     </form>
-
 </div>
 @endsection
 

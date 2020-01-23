@@ -74,14 +74,17 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/messages', 'ContactController@index')->name('messages.index');
 });
 
+Route::prefix('clubs')->group(function () {
+    Route::get('/{state}/{city}', 'PagesController@city')->name('public.city');
+    Route::post('/{state}/{city}/city-notify-request', 'MailchimpNotifyCityController')->name('mc.notify.city')->middleware('throttle:2|10,1440'); //;
+    Route::get('/{state}/{city}/request-card', 'PagesController@signup')->name('public.signup');
+    Route::post('/{state}/{city}/register', 'ClubSignupController@signupUser')->name('signup.user')->middleware('throttle:2|5,1440'); //
+    Route::get('/{state}/{city}/thank-you', 'ClubSignupController@thanks')->name('signup.complete');
+    Route::get('/{state}/{city}/{business}/{discount}', 'PagesController@discount')->name('public.discount');
+    Route::get('/all-cities', 'PagesController@allCities')->name('public.cities.list');
+});
 
-Route::get('/clubs/{state}/{city}', 'PagesController@city')->name('public.city');
-Route::post('/clubs/{state}/{city}/city-notify-request', 'MailchimpNotifyCityController')->name('mc.notify.city')->middleware('throttle:2|10,1440'); //;
-Route::get('/clubs/{state}/{city}/request-card', 'PagesController@signup')->name('public.signup');
-Route::post('/clubs/{state}/{city}/register', 'ClubSignupController@signupUser')->name('signup.user')->middleware('throttle:2|5,1440'); //
-Route::get('/clubs/{state}/{city}/thank-you', 'ClubSignupController@thanks')->name('signup.complete');
-Route::get('/clubs/{state}/{city}/{business}/{discount}', 'PagesController@discount')->name('public.discount');
-Route::get('/clubs/all-cities', 'PagesController@allCities')->name('public.cities.list');
-
-Route::get('/user/{user}/profile', 'UserController@show')
+Route::prefix('user')->group(function () {
+    Route::get('/{user}/profile', 'UserController@show')
     ->name('view.profile'); //->middleware('can:view-profile');
+});

@@ -2,16 +2,15 @@
 
 @section('content')
 <div class="container">
-            
-    <form action="{{ route('states.store') }}" class="needs-validation" novalidate="" method="POST">                        
-        @csrf
 
+    <form action="{{ route('states.store') }}" class="needs-validation" novalidate="" method="POST">
+        @csrf
         <div class="row">
             <div class="col-12">
 
                 <section class="sub-header">
                     <div class="container">
-                        
+
                         <div class="row">
                             <div class="col-12 col-md-6 d-flex">
                                 <div class="pt-1">
@@ -22,7 +21,7 @@
                                         </a>
                                         &nbsp; &raquo; &nbsp;
                                     </span>
-                                    <h5 class="d-inline-block">Add State</h5>               
+                                    <h5 class="d-inline-block">Add State</h5>
                                 </div>
                             </div>
 
@@ -43,8 +42,7 @@
 
                         </div>
                     </div>
-                </section>  
-                <!-- <hr class="h-separator"> -->
+                </section>
             </div>
         </div>
 
@@ -57,9 +55,7 @@
             </div>
 
             <div class="col-md-6 col-sm-12 mr-3">
-
                 <section class="card shadow-5">
-
                     <div class="card-body row">
                         <div class="col-md-9 mb-3">
                             <label for="name">State Name</label>
@@ -90,13 +86,10 @@
                             </li>
                         </ul>
                     </div>
-
                 </section>
-
             </div>
         </div>
 
     </form>
-
 </div>
 @endsection

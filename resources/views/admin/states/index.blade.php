@@ -56,7 +56,6 @@
                     </div>
                 </div>
             </section>
-            <!-- <hr class="h-separator"> -->
         </div>
     </div>
 
@@ -68,7 +67,7 @@
                     <div class="row">
 
                         @foreach($states as $state)
-                            <div class="col-md-4 col-sm-12 mb-3"><!-- col-lg-3  -->
+                            <div class="col-md-4 col-sm-12 mb-3">
                                 <div class="city-card-tile">
                                     <div class="city-card-wrapper">
 
@@ -99,32 +98,11 @@
                             </div>
                         @endforeach
 
-
                     </div>
                 </div>
             </section>
 
         </div>
     </div>
-
-<!--     <div class="row mt-3">
-        <div class="container">
-            <div class="col-12">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item page-nav disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo;</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item break"><span class="page-link">...</span></li>
-                        <li class="page-item"><a class="page-link" href="#">7</a></li>
-                        <li class="page-item"><a class="page-link" href="#">8</a></li>
-                        <li class="page-item page-nav"><a class="page-link" href="#">&raquo;</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div> -->
-
 </div>
 @endsection

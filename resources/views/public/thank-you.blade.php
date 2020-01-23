@@ -14,12 +14,12 @@
                 @include('_partials.icons.verify-email_multi')
                 <span class="city-icon-text">Verify your email</span>
             </div>
-            <h1 class="thank-you-header-text">Thank you for signing up, {{ $user->name }}!</h1>
+            <h1 class="thank-you-header-text">Welcome to the club, {{ $user->name }}!</h1>
             <div class="thank-you-follow">
             	<p>We've sent a confirmation email to {{ $user->email }}.</p>
             	<p>Check your inbox and verify your email to receive your Local Discount Club card.</p>
             </div>
-            
+
             <div class="contact-page-ldc-card" style="opacity: .05;">
                 @include('_partials.icons.ldc_card_light_contact')
             </div>

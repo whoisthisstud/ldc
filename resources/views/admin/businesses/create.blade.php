@@ -2,27 +2,25 @@
 
 @section('content')
 <div class="container">
-            
-    <form action="{{ route('businesses.store') }}" class="needs-validation" novalidate="" method="POST" enctype="multipart/form-data">                        
-        @csrf
 
+    <form action="{{ route('businesses.store') }}" class="needs-validation" novalidate="" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="row">
             <div class="col-12">
 
                 <section class="sub-header">
                     <div class="container">
-                        
+
                         <div class="row">
                             <div class="col-12 col-md-6 d-flex">
                                 <div class="pt-1">
                                     <span class="d-inline-block align-text-bottom mt-n2">
                                         <a href="{{ route('businesses.index') }}" class="text-decoration-none">
-                                            <!-- <i class="fas fa-home"></i> -->
                                             Businesses
                                         </a>
                                         &nbsp; &raquo; &nbsp;
                                     </span>
-                                    <h5 class="d-inline-block">Add Business</h5>               
+                                    <h5 class="d-inline-block">Add Business</h5>
                                 </div>
                             </div>
 
@@ -43,8 +41,7 @@
 
                         </div>
                     </div>
-                </section>  
-                <!-- <hr class="h-separator"> -->
+                </section>
             </div>
         </div>
 
@@ -79,7 +76,6 @@
                                 <input type="file" class="custom-file-input" id="logo" name="logo" aria-describedby="logo">
                                 <label class="custom-file-label" for="logo">Upload Logo <em>(optional)</em></label>
                             </div>
-                            <!-- dropzone here -->
 
                             <div class="invalid-feedback" style="{{ $errors->has('logo') ? 'display:block;' : '' }}">
                                 {{ $errors->first('logo') }}

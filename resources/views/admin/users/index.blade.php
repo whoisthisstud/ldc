@@ -56,7 +56,6 @@
                     </div>
                 </div>
             </section>
-            <!-- <hr class="h-separator"> -->
         </div>
     </div>
 
@@ -100,8 +99,5 @@
 
         </div>
     </div>
-
-
-
 </div>
 @endsection

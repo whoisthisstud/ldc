@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Url;
+use View;
 use App\Faq;
 use App\City;
 use App\State;
@@ -12,7 +14,7 @@ use Illuminate\Support\Facades\Cookie;
 use Artesaos\SEOTools\Facades\SEOMeta;
 use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Facades\Storage;
-use View;
+use Artesaos\SEOTools\Facades\TwitterCard;
 
 class PagesController extends Controller
 {
@@ -61,23 +63,56 @@ class PagesController extends Controller
         SEOTools::opengraph()->setUrl(route('public.index'));
         SEOTools::setCanonical(route('public.index'));
         SEOTools::opengraph()->addProperty('type', 'website');
-        // SEOTools::twitter()->setSite('@LuizVinicius73');
-        SEOTools::jsonLd()->addImage(Storage::url('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg'));
+        SEOTools::twitter()->setSite('@yourldc');
+        SEOTools::jsonLd()->addImage(asset('/i/local-discount-club.png'));
+        SEOMeta::setRobots('index,follow');
 
-        return view('public2', compact('cities'));
+        return view('public', compact('cities'));
     }
 
     public function allCities()
     {
         $states = State::with('cities')->get();
 
+        $keywords = [
+            'discounts',
+            'save money',
+            'local discounts',
+            'discount club',
+            'restaurant discounts',
+            'restaurant coupons',
+            'business discounts',
+            'business coupons',
+        ];
+
+        foreach ($states as $state) {
+            array_push($keywords, $state->name . ', ' . $state->abbreviation);
+            foreach ($state->cities as $city) {
+                array_push($keywords, $city->name);
+                if ($city->surrounding_cities !== null) {
+                    $surrounding = json_decode($city->surrounding_cities);
+                    foreach ($surrounding->zip_codes as $key => $value) {
+                        if ($value->city != $city->name) {
+                            array_push($keywords, $value->city);
+                        }
+                        if ($value->zip_code != $city->zip_code) {
+                            array_push($keywords, $value->zip_code);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Set SEO Info
         SEOTools::setTitle('All Cities');
-        // SEOTools::setDescription('This is the description of the page');
+        SEOMeta::setKeywords($keywords);
+        SEOTools::setDescription('Find a Local Discount Club near you and signup to start saving at establishments in your local area!');
         SEOTools::opengraph()->setUrl(route('public.cities.list'));
         SEOTools::setCanonical(route('public.cities.list'));
         SEOTools::opengraph()->addProperty('type', 'website');
-        // SEOTools::twitter()->setSite('@LuizVinicius73');
-        SEOTools::jsonLd()->addImage(Storage::url('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg'));
+        SEOTools::twitter()->setSite('@yourldc');
+        SEOTools::jsonLd()->addImage(asset('/i/local-discount-club.png'));
+        SEOMeta::setRobots('index,follow');
 
         return view('public.all-cities', compact('states'));
     }
@@ -85,10 +120,12 @@ class PagesController extends Controller
     public function city($state, $city)
     {
         $state = State::where('name', $state)->first();
+
         $city = City::where('state_id', $state->id)->where('name', $city)->first();
         $city->increment('views');
-        // $discounts = Discount::where('city_id', $city->id)->get();
+
         $discounts = Discount::inSeason($city);
+
         $faqs = Faq::inRandomOrder()
             ->where('is_active', true)
             ->where('type', 'city')
@@ -96,7 +133,6 @@ class PagesController extends Controller
             ->limit(9)
             ->get();
 
-        $keywords = array();
         $keywords = [
             $city->name . ' ' . $state->abbreviation . ' discounts',
             'save money',
@@ -114,8 +150,12 @@ class PagesController extends Controller
             $surrounding = json_decode($city->surrounding_cities);
 
             foreach ($surrounding->zip_codes as $key => $value) {
-                array_push($keywords, $value->city . ' ' . $value->state);
-                array_push($keywords, $value->zip_code);
+                if ($value->city != $city->name) {
+                    array_push($keywords, $value->city . ' ' . $value->state);
+                }
+                if ($value->zip_code != $city->zip_code) {
+                    array_push($keywords, $value->zip_code);
+                }
             }
         }
 
@@ -126,16 +166,17 @@ class PagesController extends Controller
         }
 
         // SEO Details
-        SEOTools::setTitle('All Cities');
+        SEOTools::setTitle($city->name . ', ' . $state->name . ' Local Discount Club');
         SEOMeta::setKeywords($keywords);
-        SEOTools::setDescription('Request your Local Discount Club card now, for ' . $city->name . ', ' . $city->state->name . ', and start saving tonight at local establishments!');
+        SEOTools::setDescription('Request your Local Discount Club card now for ' . $city->name . ', ' . $city->state->name . ' and start saving tonight at local establishments!');
         SEOTools::opengraph()->addProperty('type', 'website');
-        // SEOTools::twitter()->setSite('@LuizVinicius73');
-        SEOTools::jsonLd()->addImage($city->getMedia('city-images')->first());
-        SEOTools::opengraph()->setUrl(route('public.cities.list'));
-        SEOTools::setCanonical(route('public.cities.list'));
+        SEOTools::twitter()->setSite('@yourldc');
+        SEOTools::opengraph()->setUrl(route('public.city', ['state'=>$state->name,'city'=>$city->name]));
+        SEOTools::setCanonical(route('public.city', ['state'=>$state->name,'city'=>$city->name]));
+        SEOTools::jsonLd()->addImage(url($city->getFirstMediaUrl('city-images', 'thumb')));
+        SEOMeta::setRobots('index,follow');
 
-        return view('public.city2', compact('city', 'discounts', 'faqs'));
+        return view('public.city', compact('city', 'discounts', 'faqs'));
     }
 
     public function state(State $state)
@@ -163,31 +204,62 @@ class PagesController extends Controller
         SEOMeta::setKeywords(['local discounts', 'discounts near me', $city->name, $city->zip_code, $city->state->name]);
         SEOTools::setDescription('Request your Local Discount Club card now, for ' . $city->name . ', ' . $city->state->name . ', and start saving tonight at local establishments!');
         SEOTools::opengraph()->addProperty('type', 'website');
-        // SEOTools::twitter()->setSite('@LuizVinicius73');
+        SEOTools::twitter()->setSite('@yourldc');
         SEOTools::jsonLd()->addImage($city->getMedia('city-images')->first());
         SEOTools::opengraph()->setUrl(route('public.signup', ['state' => $state->name, 'city' => $city->name]));
         SEOTools::setCanonical(route('public.signup', ['state' => $state->name, 'city' => $city->name]));
+        SEOMeta::setRobots('index,nofollow');
 
         return view('public.signup2', compact('city', 'faqs'));
     }
 
     public function privacy()
     {
+        SEOTools::setTitle('Our Privacy Policy');
+        SEOTools::setDescription('Privacy Policy for Local Discount Club');
+        SEOTools::jsonLd()->addImage(asset('/i/local-discount-club.png'));
+        SEOTools::opengraph()->setUrl(route('public.privacy'));
+        SEOTools::setCanonical(route('public.privacy'));
+        SEOMeta::setRobots('index,nofollow');
+
         return view('public.privacy');
     }
 
     public function terms()
     {
+        SEOTools::setTitle('Our Terms of Use');
+        SEOTools::setDescription('Local Discount Club Terms of Use.');
+        SEOTools::jsonLd()->addImage(asset('/i/local-discount-club.png'));
+        SEOTools::opengraph()->setUrl(route('public.terms'));
+        SEOTools::setCanonical(route('public.terms'));
+        SEOMeta::setRobots('index,nofollow');
+
         return view('public.terms');
     }
 
     public function about()
     {
+        SEOTools::setTitle('About Us');
+        SEOTools::setDescription('Learn more about your Local Discount Club and our mission.');
+        SEOMeta::setKeywords(['Local Discount Club', 'discounts', 'discounts near me', 'About us']);
+        SEOTools::jsonLd()->addImage(asset('/i/local-discount-club.png'));
+        SEOTools::opengraph()->setUrl(route('public.about'));
+        SEOTools::setCanonical(route('public.about'));
+        SEOMeta::setRobots('index,follow');
+
         return view('public.about');
     }
 
     public function contact()
     {
+        SEOTools::setTitle('Contact Us');
+        SEOTools::setDescription('Contact your Local Discount Club.');
+        SEOMeta::setKeywords(['Local Discount Club', 'discounts', 'discounts near me', 'Contact us']);
+        SEOTools::jsonLd()->addImage(asset('/i/local-discount-club.png'));
+        SEOTools::opengraph()->setUrl(route('public.contact'));
+        SEOTools::setCanonical(route('public.contact'));
+        SEOMeta::setRobots('index,nofollow');
+
         return view('public.contact');
     }
 
@@ -200,6 +272,15 @@ class PagesController extends Controller
             ->orderBy('is_general', 'DESC')
             ->groupBy('type', 'is_general')
             ->get();
+
+        SEOTools::setTitle('Frequently Asked Questions');
+        SEOTools::setDescription('Find answers to commonly-asked questions concerning your Local Discount Club');
+        SEOMeta::setKeywords(['Local Discount Club', 'discounts', 'discounts near me', 'frequently asked questions']);
+        SEOTools::jsonLd()->addImage(asset('/i/local-discount-club.png'));
+        SEOTools::opengraph()->setUrl(route('public.faqs'));
+        SEOTools::setCanonical(route('public.faqs'));
+        SEOMeta::setRobots('index,nofollow');
+
         return view('public.faqs', compact('faqs', 'categories'));
     }
 }

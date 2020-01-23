@@ -5,134 +5,93 @@
 @endsection
 
 @section('content')
-    <div id="cityCarousel" class="carousel slide" data-ride="carousel" style="">
-        <div class="carousel-inner">
-            <div class="carousel-item active" style="background-image: url({{ !empty($city->media->first()) ? Storage::url($city->media->first()->getUrl('d-banner')) : Storage::url('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg') }}); background-size: cover; background-position: center;">
-                <div class="container">
-                    <div class="row justify-content-between">
-                        <div class="col-12 z-10 text-xs-center text-center">
-                            <div class="d-block page-header">
-                                <!-- <p class="city-header-text">{{ $city->name }}, <a href="#" class="section-title-state-link">{{ $city->state->abbreviation }}</a></p> -->
-                                <p class="city-header-text">{{ $city->name }}, {{ $city->state->abbreviation }}</p>
-                                
-                                @if( $city->is_active == true )
-                                    @include('_partials.buttons.signup-button-sm')
-                                @endif
-                            </div>      
-                        </div>
-                    </div>
-
-                </div>
-                <div class="img-cover"></div>
+<div id="pageHeader" class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 text-center pt-5">
+            <div class="page-header-bkgd" style="opacity:.85;">
+                @include('_partials.icons.dinner_primary')
             </div>
-                
+            @if( $city->is_active == true )
+                <div class="select-city-icon-svg">
+                    @include('_partials.icons.city-skyline_multi')
+                    <span class="city-icon-text">Select your city</span>
+                </div>
+            @else
+                <div class="coming-soon-badge">
+                    Coming Soon!
+                </div>
+            @endif
+            <h1 class="contact-header-text mb-4">{{ $city->name }}, {{ $city->state->abbreviation }}</h1>
+            @if( $city->is_active == true )
+                @include('_partials.buttons.signup-button')
+            @else
+                <div class="sub-text">
+                    Fayetteville, AR is not yet open for membership. Check back regularly for availability or <strong>signup below to be notified when registration opens</strong>.
+                </div>
+            @endif
+            <div class="city-bkgd-ldc-card" style="opacity: .05;">
+                @include('_partials.icons.ldc_card_light_contact')
+            </div>
         </div>
     </div>
+</div>
 
     @if( $city->is_active != true )
-        <div class="container coming-soon-container">
-            <div class="row">
-                <div class="col-12 col-sm-6">
+        <div class="container coming-soon-container mb-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-sm-10 col-md-6">
                     <div class="coming-soon-text-wrapper">
-                        <!-- <h5 class="text-left text-center-md">Coming Soon!</h5> -->
-                        <p class=""><strong>Coming Soon!</strong></p>
-                        <p class="">{{ $city->name }}, {{ $city->state->name }} is not currently available for membership. Signup to get notified when you can download this city's Club Card.</p>
-                    </div> 
-                    
-                </div>
-                <div class="col-12 col-sm-6">
 
-                    <div class="jumbotron notify-jumbotron bg-primary text-light shadow">
-                        <h5>Notify Me!</h5>
-                        <p class="">We promise not to spam your email.</p>
                         <form id="cityNotifyForm" action="{{ route('mc.notify.city', ['state' => $city->state->id, $city ]) }}" method="POST">
                             @csrf
-                            <div class="input-group mb-1">
+                            <div class="input-group mb-1 shadow-5">
                                 <input type="email" name="email" required="" class="form-control" placeholder="you@youremail.com" aria-label="Email Address" aria-describedby="submitNotifyForm">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary btn-badge" type="submit" id="submitNotifyForm">Notify Me!</button>
+                                    <button class="btn btn-primary" type="submit" id="submitNotifyForm">Notify Me!</button>
                                 </div>
                             </div>
                         </form>
+                        <p class="city-notify-subtext">*We don't like spam either. We'll notify you when this city is available and nothing else.</p>
                     </div>
-
                 </div>
             </div>
         </div>
     @else
         <div class="container pt-5">
-            <!-- <div class="row pb-5">
 
-                <div class="col-12 pb-3">
-                    <h3 class="text-center">Businesses w/ Exclusive Discounts in {{ $city->name }}</h3>
-                </div>
-
-                @forelse($city->discounts as $discount)
-                    <div class="col-6 col-sm-4 col-md-4 mb-3 card-hover">
-                        <div class="card">
-                            <div class="card-body">
-
-                                <!-- <a href="{{ route('public.discount', [ 'state' => $city->state->name, 'city' => $city->name, 'business' => $discount->business->id, 'discount' => $discount->code ]) }}" class="text-decoration-none"> --
-                                    <div class="py-2 px-sm-2 px-4">
-                                        @if( ! empty( $discount->business->logo ) )
-                                        <div class="business-logo" style="background-image: url({{ $discount->business->logo }});"></div>
-                                        @else
-                                        
-                                        <div class="business-logo" style="">
-                                            <h3 class="h3 text-center">{{ $discount->business->name }}</h3>
-                                        </div>
-                                        @endif
-
-                                    </div>
-                                <!-- </a> --
-
-                            </div>
-                        </div>
-                    </div>
-                @empty
-                    <div class="col-12 text-center">
-                        <h5 class="my-5">No businesses signed up!</h5>
-                    </div>
-                @endforelse
-
-            </div> -->
-
-            <!-- start: testing -->
+            <!-- start: city discount businesses -->
             <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 pb-5">
 
                 <div class="col-12 col-sm-12 col-md-12 pb-3 text-center">
                     <h3 class="city-header text-center">Businesses w/ Exclusive Discounts in {{ $city->name }}</h3>
                 </div>
-                
-{{-- @php $userCitiesArray = Auth::user()->cities->toArray() @endphp
-@dd( $userCitiesArray[0]['pivot']['city_id'] ) --}}  
 
-                @forelse($city->discounts as $discount)
+                @forelse($discounts as $discount)
                     <div class="col px-0 card-hover"><!-- col-lg-3  -->
                         <div class="card business-display">
-                            <div class="card-body" rel="tooltip" data-toggle="tooltip" data-html="true" data-trigger="hover focus" title="
+                            <div class="card-body" rel="tooltip"
 
                             @if( Auth::user() && Auth::user()->cities->first() )
                                 @if( Auth::user()->cities->count() > 0 )
                                     {{-- @if( in_array($city->id, Auth::user()->cities->toArray()) === true )
-                                        Click to view <b class='text-primary'>{{ $discount->business->name }}</b>'s discount.
+                                        data-toggle="tooltip" data-html="true" data-trigger="hover focus" title="Click to view <b class='text-primary'>{{ $discount->business->name }}</b>'s discount."
                                     @else
-                                        Add this city to your account and start saving at {{ $discount->business->name }} today.
+                                        data-toggle="tooltip" data-html="true" data-trigger="hover focus" title="Add this city to your account and start saving at {{ $discount->business->name }} today."
                                     @endif --}}
 
                                     @foreach( Auth::user()->cities as $subscribedTo )
                                         @if( $subscribedTo->id === $city->id )
-                                            Click to view <b class='text-primary'>{{ $discount->business->name }}</b>'s discount.
+                                            data-toggle="tooltip" data-html="true" data-trigger="hover focus" title="Click to view <b class='text-primary'>{{ $discount->business->name }}</b>'s discount."
                                         @endif
                                     @endforeach
                                 @else
-                                    Download your card and start saving at <b class='text-primary'>{{ $discount->business->name }}</b> today.
+                                    data-toggle="tooltip" data-html="true" data-trigger="hover focus" title="Download your card and start saving at <b class='text-primary'>{{ $discount->business->name }}</b> today."
                                 @endif
                             @else
-                                Download your card and start saving at <b class='text-primary'>{{ $discount->business->name }}</b> today.
+                                data-toggle="tooltip" data-html="true" data-trigger="hover focus" title="Download your card and start saving at <b class='text-primary'>{{ $discount->business->name }}</b> today."
                             @endif
 
-                            ">
+                            >
 
                                 @if( Auth::user() && Auth::user()->cities->first() )
                                     @if( Auth::user()->cities->count() > 0 )
@@ -149,7 +108,7 @@
                                         @if( ! empty( $discount->business->logo ) )
                                         <div class="business-logo" style="background-image: url({{ $discount->business->logo }});"></div>
                                         @else
-                                        
+
                                         <div class="business-logo" style="">
                                             <span class="h3 text-center">{{ $discount->business->name }}</span>
                                         </div>
@@ -177,49 +136,35 @@
                 @endforelse
 
             </div>
-            <!-- end: testing -->
+            <!-- end: city discount businesses -->
         </div>
     @endif
 
     @if( $city->is_active == true )
-        @include('_partials.buttons.signup-button-lg')
+        @include('_partials.buttons.signup-button')
     @endif
 
     @if( $faqs->count() > 0 )
     <div id="city-faq" class="col-12 py-5 text-center">
-        <h3 class="text-center pb-3 mb-3 border-bottom d-inline-block">Frequently Asked Questions</h3>
+        <h3 class="text-center pb-3 mb-5 border-bottom d-inline-block">Frequently Asked Questions</h3>
         <div class="faq">
             <div class="container">
                 <div class="row">
                     @foreach($faqs as $faq)
                         <div class="col-12 col-sm-6 col-md-4 text-left py-2 px-4">
-                            <h5><strong>{{ $faq->question }}</strong></h5>
+                            <h5><strong>{{ $faq->question }}{{ substr($faq->question,-1) !== '?' ? '?' : '' }}</strong></h5>
                             <p class="">{!! $faq->answer !!}</p>
                         </div>
                     @endforeach
                 </div>
             </div>
         </div>
+        <p class="easy-last-call pt-3 border-top d-inline-block mt-4">Still curious?  Check out our <a href="{{ route('public.faqs') }}">Frequently Asked Questions</a>.</p>
     </div>
     @endif
 
     @if( $city->is_active == true )
-        @include('_partials.buttons.signup-button-lg')
+        @include('_partials.buttons.signup-button')
     @endif
 
-@endsection
-
-@section('scripts')
-<!-- <script>
-    $(document).ready(function() {
-
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip({
-               html: true, 
-               placement: 'top'
-            });
-        });
-
-    });
-</script> -->
 @endsection

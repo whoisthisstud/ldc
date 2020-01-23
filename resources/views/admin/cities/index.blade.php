@@ -40,10 +40,6 @@
                                     <form id="deleteCityForm" method="POST"
                                         action="{{ route('delete.city',[$city]) }}">
                                         @csrf
-                                        <!-- <button type="submit" class="btn btn-sm btn-danger btn-badge">
-                                            <i class="fas fa-trash mr-1"></i>
-                                            Delete City
-                                        </button> -->
                                     </form>
                                 </li>
                                 @endcan
@@ -97,12 +93,10 @@
                     </div>
                 </div>
             </section>
-            <!-- <hr class="h-separator"> -->
         </div>
     </div>
 
     <div class="row mt-5 mb-4">
-
         <div class="col-12 col-md-3 mb-4">
             <div class="nav flex-column nav-pills sticky-top mb-4" id="tablist" role="tablist" aria-orientation="vertical" style="top: 160px;">
                 <h5 class="pb-3 mb-2 text-uppercase city-menu-header">City Menu</h5>
@@ -226,13 +220,13 @@
                                                     </a>
 
                                                 </div>
-                                            </div> 
+                                            </div>
                                         </div>
-                                    </div>                                   
+                                    </div>
                                 </div>
                             @endforeach
 
-                        </div>   
+                        </div>
                     </section>
                 </div>
                 <div class="tab-pane fade" id="city-signups" role="tabpanel" aria-labelledby="city-signups-tab">
@@ -300,23 +294,19 @@
                                 <th scope="col">Requested On</th>
                             </tr>
                         </thead>
-                        <tbody>  <!-- in_array($city->name, $member['tags']) -->
-                            <!-- dd($news['members']) -->
+                        <tbody>
                             @foreach( $news['members'] as $key => $member )
-
-                                    <tr>
-                                        <td>{{ $member['merge_fields']['FNAME'] }}</td>
-                                        <td>{{ $member['merge_fields']['LNAME'] }}</td>
-                                        <td>{{ $member['email_address'] }}</td>
-                                        <td>
-                                            @foreach( $member['tags'] as $tag)
-                                                {{ $tag['name'] }}{{ ! $loop->last ? ', ' : '' }}
-                                            @endforeach
-                                        </td>
-                                        <td>{{ Carbon\Carbon::parse($member['timestamp_opt'])->format('m-d-Y \@ h:i A') }}</td>
-
-                                    </tr>
-
+                                <tr>
+                                    <td>{{ $member['merge_fields']['FNAME'] }}</td>
+                                    <td>{{ $member['merge_fields']['LNAME'] }}</td>
+                                    <td>{{ $member['email_address'] }}</td>
+                                    <td>
+                                        @foreach( $member['tags'] as $tag)
+                                            {{ $tag['name'] }}{{ ! $loop->last ? ', ' : '' }}
+                                        @endforeach
+                                    </td>
+                                    <td>{{ Carbon\Carbon::parse($member['timestamp_opt'])->format('m-d-Y \@ h:i A') }}</td>
+                                </tr>
                             @endforeach
                         </tbody>
 
@@ -328,31 +318,6 @@
             </div>
         </div>
 
-        <div class="col-12">
-
-
-
-        </div>
     </div>
-
-<!--     <div class="row mt-3">
-        <div class="container">
-            <div class="col-12">
-                <nav aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item page-nav disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">&laquo;</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item break"><span class="page-link">...</span></li>
-                        <li class="page-item"><a class="page-link" href="#">7</a></li>
-                        <li class="page-item"><a class="page-link" href="#">8</a></li>
-                        <li class="page-item page-nav"><a class="page-link" href="#">&raquo;</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div> -->
-
 </div>
 @endsection

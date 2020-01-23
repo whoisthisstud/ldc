@@ -20,7 +20,6 @@ class City extends Model implements HasMedia
     protected $casts = [
         'surrounding_zips' => 'json'
     ];
-    
 
     public function state()
     {
@@ -32,16 +31,18 @@ class City extends Model implements HasMedia
         return $this->hasMany(Discount::class);
     }
 
-    public function newDiscounts() {
+    public function newDiscounts()
+    {
         return $this->discounts()
-            ->where('begins_at','=', null)
-            ->where('expires_at','=',null);
+            ->where('begins_at', '=', null)
+            ->where('expires_at', '=', null);
     }
 
-    public function availableDiscounts() {
+    public function availableDiscounts()
+    {
         return $this->discounts()
-            ->where('begins_at','<=',now())
-            ->where('expires_at','>=', now());
+            ->where('begins_at', '<=', now())
+            ->where('expires_at', '>=', now());
     }
 
     public function businesses()
@@ -71,7 +72,7 @@ class City extends Model implements HasMedia
         return $this->belongsToMany(User::class);
     }
 
-    public function requestedBusinesses() 
+    public function requestedBusinesses()
     {
         return $this->hasMany(BusinessRequest::class);
     }
@@ -109,10 +110,10 @@ class City extends Model implements HasMedia
     }
 
     public function setSurroundingCities()
-    {    
+    {
         $related_zips = $this->getSurroundingCitiesData();
 
-        if( ! $related_zips ) {
+        if (! $related_zips) {
             return false;
         }
 
@@ -124,28 +125,14 @@ class City extends Model implements HasMedia
 
     public function getSurroundingCitiesData()
     {
-        $api_url = 'https://www.zipcodeapi.com/rest/' . 
-            config('dev.zip_code_api') . 
-            '/radius.json/' . 
-            $this->zip_code . 
-            '/10/mile'; //https://www.zipcodeapi.com/rest/aqAEuudKb1fHPqA0M0LKUlqZ3OAthUM2MbcwKLwmnyj7yFald1dyV9dJmLjA6nWK/radius.json/74112/10/mile
-
-        // $ch = curl_init();
-        // curl_setopt($ch, CURLOPT_URL, $api_url);
-        // curl_setopt($ch, CURLOPT_POST, 0);
-        // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        // $response = curl_exec ($ch);
-        // $err = curl_error($ch);  //if you need
-        // curl_close ($ch);
-
-        // if( isset($err) ) {
-        //     return $err;
-        // }
+        $api_url = 'https://www.zipcodeapi.com/rest/' .
+            config('dev.zip_code_api') .
+            '/radius.json/' .
+            $this->zip_code .
+            '/10/mile';
 
         $response = file_get_contents('https://www.zipcodeapi.com/rest/' . $this->api . '/radius.json/' . $this->zip_code . '/10/mile');
 
         return $response;
     }
-
 }

@@ -1,2 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /user/
+Disallow: /admin/
+Disallow: /business-logos/
+Disallow: /business-manager/
