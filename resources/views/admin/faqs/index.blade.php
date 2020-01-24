@@ -210,7 +210,7 @@ tr.inactive {
                                             <td>{{ $faq->is_active == true ? 'Active' : 'Inactive' }}</td>
                                             <td class="text-right">
                                                 <a href="{{ route('faqs.edit',[$faq]) }}" class="btn btn-sm btn-primary btn-badge" data-toggle="tooltip" data-placement="top" title="Edit FAQ"><i class="fas fa-edit"></i></a>
-                                                <a href="" class="btn btn-sm btn-danger btn-badge" data-toggle="tooltip" data-placement="top" title="Delete FAQ"><i class="fas fa-trash"></i></a>
+                                                <a class="btn btn-sm btn-danger btn-badge" data-toggle="tooltip" data-placement="top" title="Delete FAQ"><i class="fas fa-trash"></i></a>
                                             </td>
                                         </tr>
                                         @endforeach
