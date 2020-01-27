@@ -29,7 +29,6 @@ class DiscountController extends Controller
     {
         $beg = Carbon::parse('today -30 days');
         $end = now();
-
         $ranges = CarbonPeriod::create($beg, $end);
 
         $views = DiscountView::select(
@@ -54,7 +53,25 @@ class DiscountController extends Controller
             }
         }
 
-        return view('admin.discounts.index', compact('beg','end','dates','date_list'));
+        $top_five = DiscountView::select(
+                'business_id',
+                'discount_id',
+                'city_id',
+                DB::raw('count(*) as views'))
+            ->groupBy('business_id')
+            ->groupBy('discount_id')
+            ->groupBy('city_id')
+            ->orderBy('views','DESC')
+            ->with('business')
+            ->with('discount')
+            ->with('city.state')
+            ->with('user')
+            ->limit(5)
+            ->get();
+
+            // dd($top_five);
+
+        return view('admin.discounts.index', compact('date_list','top_five'));
     }
 
     /**

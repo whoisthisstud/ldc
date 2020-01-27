@@ -75,6 +75,43 @@
         		</div>
         	</div>
         </div>
+        <div class="col-6">
+            <div class="card bg-primary" style="/* background-color: #2968a3 !important; */">
+                <div class="card-body p-0 pt-3">
+                    <div id="discountViews2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <h5 class="pb-3">Top Five Viewed Discounts</h5>
+            <table class="table table-sm table-striped table-hover" style="width:100%;">
+                <thead style="background-color: #5d7b98 !important; color: #e3e7ee;">
+                    <tr>
+                        <th>Business</th>
+                        <th>Discount</th>
+                        <th>City</th>
+                        <th>Views</th>
+                    </tr>
+                </thead>
+                <tbody class="">
+                    @forelse($top_five as $top)
+                    <tr>
+                        <th>{{ $top->business->name }}</th>
+                        <th>{{ $top->discount->title }}</th>
+                        <th>{{ $top->city->name }}, {{ $top->city->state->abbreviation }}</th>
+                        <th>{{ $top->views }}</th>
+                    </tr>
+                    @empty
+                        <th>n/a</th>
+                        <th>n/a</th>
+                        <th>n/a</th>
+                        <th>n/a</th>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </div>
@@ -143,5 +180,62 @@
 	var chart = new ApexCharts(document.querySelector("#discountViews"), options);
 	chart.render();
 </script>
+<script>
+    var options2 = {
+        series: [{
+            name: 'Views',
+            data: [
+                @foreach( $date_list as $day )
+                    { x:"{{ date($day['date']) }}",y:{{ $day['views'] }} },
+                @endforeach
+            ]
+        }],
+        chart: {
+            type: 'area',
+            height: 160,
+            sparkline: {
+                enabled: true
+            },
+        },
+        stroke: {
+          curve: 'smooth',
+          colors: ['#eff1f3'],
+        },
+        fill: {
+          type:'solid',
+          colors: ['#eff1f3'],
+          opacity: [0.4, 1],
+        },
+        xaxis: {
+            crosshairs: {
+                width: 1
+            },
+        },
+        yaxis: {
+            min: 0
+        },
+        title: {
+            text: '{{ $total }}',
+            offsetX: 20,
+            style: {
+                fontSize: '56px',
+                color: '#eff1f3',
+            }
+        },
+        subtitle: {
+            text: 'Discount Views (last 30 days)',
+            offsetX: 20,
+            offsetY: 62,
+            style: {
+                fontSize: '12px',
+                color: 'rgba(239, 241, 243, 0.6)',
+                fontStyle: 'italic',
+                opacity: [0.4, 1],
+            }
+        }
+    };
 
+    var chart = new ApexCharts(document.querySelector("#discountViews2"), options2);
+    chart.render();
+</script>
 @endsection
