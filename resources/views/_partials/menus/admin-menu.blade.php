@@ -2,7 +2,7 @@
     <div class="container">
         <a class="navbar-brand" href="{{ Auth() && Auth()->user() ? route('home') : '/' }}">
             @include('_partials.icons.ldc_card_light')
-            <span class="pt-1"><strong>{{ config('app.name', 'Local Discount Club') }}</strong></span>
+            <span class="d-inline-block" style="position: absolute;margin-top: .125rem;"><strong>{{ config('app.name', 'Local Discount Club') }}</strong></span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -10,12 +10,12 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav mr-auto">
+            <!-- <ul class="navbar-nav mr-auto">
 
-            </ul>
+            </ul> -->
 
             <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
+            <ul class="navbar-nav ml-auto mt-1">
                 <!-- Authentication Links -->
                 @guest
                     <!-- <li class="nav-item">

@@ -69,7 +69,7 @@
 
     <div class="row mt-5">
         <div class="col-6">
-        	<div class="card shadow-5" style="background-color: #e3e7ee !important;">
+        	<div class="card" style="background-color: #e3e7ee !important;">
         		<div class="card-body p-0 pt-3">
         			<div id="discountViews"></div>
         		</div>
@@ -85,23 +85,23 @@
     </div>
     <div class="row mt-5">
         <div class="col-12">
-            <h5 class="pb-3">Top Five Viewed Discounts</h5>
+            <h5 class="pt-2 pb-2">Top Five Viewed Discounts</h5>
             <table class="table table-sm table-striped table-hover" style="width:100%;">
                 <thead style="background-color: #5d7b98 !important; color: #e3e7ee;">
                     <tr>
-                        <th>Business</th>
+                        <th class="pl-3">Business</th>
                         <th>Discount</th>
                         <th>City</th>
-                        <th>Views</th>
+                        <th class="text-right pr-3">Views</th>
                     </tr>
                 </thead>
                 <tbody class="">
                     @forelse($top_five as $top)
                     <tr>
-                        <th>{{ $top->business->name }}</th>
-                        <th>{{ $top->discount->title }}</th>
-                        <th>{{ $top->city->name }}, {{ $top->city->state->abbreviation }}</th>
-                        <th>{{ $top->views }}</th>
+                        <td class="pl-3">{{ $top->business->name }}</td>
+                        <td>{{ $top->discount->title }}</td>
+                        <td>{{ $top->city->name }}, {{ $top->city->state->abbreviation }}</td>
+                        <td class="text-right pr-3">{{ $top->views }}</td>
                     </tr>
                     @empty
                         <th>n/a</th>
@@ -123,6 +123,10 @@
 	foreach($date_list as $day){
 		$total += $day['views'];
 	}
+    $active_total = 0;
+    foreach($active_list as $discount){
+        $active_total += $discount['amt'];
+    }
 @endphp
 
 @section('scripts')
@@ -132,8 +136,8 @@
         series: [{
         	name: 'Views',
         	data: [
-	    		@foreach( $date_list as $day )
-	        		{ x:"{{ date($day['date']) }}",y:{{ $day['views'] }} },
+	    		@foreach( $active_list as $discounts )
+	        		{ x:"{{ date($discounts['date']) }}",y:{{ $discounts['amt'] }} },
 	        	@endforeach
 	    	]
         }],
@@ -159,21 +163,22 @@
         	min: 0
         },
         title: {
-        	text: '{{ $total }}',
-        	offsetX: 10,
+        	text: '{{ $active_total }}',
+        	offsetX: 20,
         	style: {
-        		fontSize: '36px',
+        		fontSize: '56px',
         		color: '#3490dc',
         	}
         },
         subtitle: {
-        	text: 'Discount Views (last 30 days)',
-        	offsetX: 10,
-        	offsetY: 42,
-          	style: {
-            	fontSize: '12px',
-            	fontStyle: 'italic'
-          	}
+        	text: 'Active Discounts Created (last 30 days)',
+        	offsetX: 20,
+            offsetY: 62,
+            style: {
+                fontSize: '12px',
+                fontStyle: 'italic',
+                opacity: [0.4, 1],
+            }
         }
     };
 

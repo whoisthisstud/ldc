@@ -36,14 +36,26 @@ class DiscountController extends Controller
                 DB::raw('count(*) as views')
             )->groupBy('date')
             ->get();
+
+        $active_discounts = Discount::select(
+                DB::raw('DATE(created_at) as date'),
+                DB::raw('count(*) as amt')
+            )->groupBy('date')
+            ->where('created_at','>',$beg)
+            ->where('begins_at','<=',now())
+            ->where('expires_at','>',now())
+            ->get();
         
         $dates = [];
+        $active_dates = [];
 
         foreach( $ranges as $date ) {
             array_push($dates, ['date' => $date->format('m/d/y'),'views' => 0] );
+            array_push($active_dates, ['date' => $date->format('m/d/y'),'amt' => 0] );
         }
 
         $views = $views->toArray();
+        $active_discounts = $active_discounts->toArray();
 
         foreach (array($dates, $views) as $array) { 
             foreach ($array as $data) {
@@ -52,6 +64,16 @@ class DiscountController extends Controller
                 $date_list[$key]["views"] = $data["views"];
             }
         }
+
+        foreach (array($active_dates, $active_discounts) as $array) { 
+            foreach ($array as $data) {
+                $key = strtotime($data['date']); // convert to a timestamp so it will be sortable
+                $active_list[$key]['date'] = $data['date'];
+                $active_list[$key]['amt'] = $data['amt'];
+            }
+        }
+
+        // dd($active_list);
 
         $top_five = DiscountView::select(
                 'business_id',
@@ -71,7 +93,7 @@ class DiscountController extends Controller
 
             // dd($top_five);
 
-        return view('admin.discounts.index', compact('date_list','top_five'));
+        return view('admin.discounts.index', compact('date_list','top_five','active_list'));
     }
 
     /**
