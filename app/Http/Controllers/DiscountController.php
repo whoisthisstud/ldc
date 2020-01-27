@@ -39,25 +39,13 @@ class DiscountController extends Controller
             ->get();
         
         $dates = [];
-        // foreach( $ranges as $date ) {
-        //     foreach( $views as $view ) {
-        //         if( strtotime($view->date) == $date->timestamp ) {
-        //             array_push($dates, [ 'date' => $date->timestamp, 'views' => $view->views ]);
-        //         } else {
-        //             array_push($dates, [ 'date' => $date->timestamp, 'views' => 0 ]);
-        //         }
-        //     }
-        // }
+
         foreach( $ranges as $date ) {
-            // if( array_search() )
             array_push($dates, ['date' => $date->format('m/d/y'),'views' => 0] );
         }
 
         $views = $views->toArray();
 
-        // array_map(function ($a, $b) { 
-        //     return $a + $b; 
-        // }, $dates, $views);
         foreach (array($dates, $views) as $array) { 
             foreach ($array as $data) {
                 $key = strtotime($data['date']); // convert to a timestamp so it will be sortable
@@ -65,8 +53,6 @@ class DiscountController extends Controller
                 $date_list[$key]["views"] = $data["views"];
             }
         }
-
-        // dd($dates);
 
         return view('admin.discounts.index', compact('beg','end','dates','date_list'));
     }

@@ -67,7 +67,7 @@
         </div>
     </div>
 
-    <div class="row mt-4">
+    <div class="row mt-5">
         <div class="col-6">
         	<div class="card shadow-5" style="background-color: #e3e7ee !important;">
         		<div class="card-body p-0 pt-3">
