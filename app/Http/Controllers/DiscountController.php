@@ -2,13 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Auth;
 use App\City;
 use App\Business;
 use App\Discount;
+use App\DiscountView;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 
 class DiscountController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->only('index');
+        $this->middleware('can:manage-discounts')->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +27,48 @@ class DiscountController extends Controller
      */
     public function index()
     {
-        return view('admin.discounts.index');
+        $beg = Carbon::parse('today -30 days');
+        $end = now();
+
+        $ranges = CarbonPeriod::create($beg, $end);
+
+        $views = DiscountView::select(
+                DB::raw('DATE(created_at) as date'), 
+                DB::raw('count(*) as views')
+            )->groupBy('date')
+            ->get();
+        
+        $dates = [];
+        // foreach( $ranges as $date ) {
+        //     foreach( $views as $view ) {
+        //         if( strtotime($view->date) == $date->timestamp ) {
+        //             array_push($dates, [ 'date' => $date->timestamp, 'views' => $view->views ]);
+        //         } else {
+        //             array_push($dates, [ 'date' => $date->timestamp, 'views' => 0 ]);
+        //         }
+        //     }
+        // }
+        foreach( $ranges as $date ) {
+            // if( array_search() )
+            array_push($dates, ['date' => $date->format('m/d/y'),'views' => 0] );
+        }
+
+        $views = $views->toArray();
+
+        // array_map(function ($a, $b) { 
+        //     return $a + $b; 
+        // }, $dates, $views);
+        foreach (array($dates, $views) as $array) { 
+            foreach ($array as $data) {
+                $key = strtotime($data['date']); // convert to a timestamp so it will be sortable
+                $date_list[$key]['date'] = $data['date'];
+                $date_list[$key]["views"] = $data["views"];
+            }
+        }
+
+        // dd($dates);
+
+        return view('admin.discounts.index', compact('beg','end','dates','date_list'));
     }
 
     /**
@@ -62,6 +114,13 @@ class DiscountController extends Controller
      */
     public function show(Discount $discount)
     {
+        // DiscountView::create([
+        //     'discount_id' => $discount->id,
+        //     'user_id' => Auth::id(),
+        //     'business_id' => $discount->business_id,
+        //     'city_id' => $discount->city_id
+        // ]);
+
         return view('admin.discounts.show');
     }
 

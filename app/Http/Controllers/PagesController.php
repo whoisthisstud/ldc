@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use DB;
 use Url;
 use View;
+use Auth;
 use App\Faq;
 use App\City;
 use App\State;
 use App\Discount;
+use App\DiscountView;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Artesaos\SEOTools\Facades\SEOMeta;
@@ -189,6 +191,13 @@ class PagesController extends Controller
         $state = State::where('name', $state)->first();
         $city = City::where('state_id', $state->id)->where('name', $city)->first();
         $discount = Discount::where('business_id', $business)->where('city_id', $city->id)->where('code', $discount)->first();
+
+        DiscountView::create([
+            'discount_id' => $discount->id,
+            'user_id' => Auth::id(),
+            'business_id' => $discount->business_id,
+            'city_id' => $discount->city_id
+        ]);
 
         return view('public.discount', compact('state', 'city', 'discount'));
     }

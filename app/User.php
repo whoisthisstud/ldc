@@ -68,12 +68,25 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Contact');
     }
 
-    protected static function redirectWhenNotUser() {
-    if (Gate::denies('view-profile')) {
-        notify()->error('You are not authorized to view this user', 'Access Denied');
-        redirect()->back()->send();
-        return true;
+    protected static function redirectWhenNotUser() 
+    {
+        if (Gate::denies('view-profile')) {
+            notify()->error('You are not authorized to view this user', 'Access Denied');
+            redirect()->back()->send();
+            return true;
+        }
+        return false;
     }
-    return false;
-}
+
+    // protected static function uniqidReal($length = 13) 
+    // {
+    //     if (function_exists("random_bytes")) {
+    //         $bytes = random_bytes(ceil($length / 2));
+    //     } elseif (function_exists("openssl_random_pseudo_bytes")) {
+    //         $bytes = openssl_random_pseudo_bytes(ceil($length / 2));
+    //     } else {
+    //         throw new Exception("no cryptographically secure random function available");
+    //     }
+    //     return substr(bin2hex($bytes), 0, $length);
+    // }
 }
