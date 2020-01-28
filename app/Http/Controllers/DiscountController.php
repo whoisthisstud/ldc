@@ -73,8 +73,6 @@ class DiscountController extends Controller
             }
         }
 
-        // dd($active_list);
-
         $top_five = DiscountView::select(
                 'business_id',
                 'discount_id',
@@ -91,9 +89,11 @@ class DiscountController extends Controller
             ->limit(5)
             ->get();
 
-            // dd($top_five);
+        $discounts = Discount::with('business')
+            ->with('city.state')
+            ->get();
 
-        return view('admin.discounts.index', compact('date_list','top_five','active_list'));
+        return view('admin.discounts.index', compact('date_list','top_five','active_list','discounts'));
     }
 
     /**

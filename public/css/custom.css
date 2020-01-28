@@ -1988,6 +1988,9 @@ body.nav-open .open-nav-cover {
 }
 
 
+.table-sm th, .table-sm td {
+  padding: 0.275rem;
+}
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
