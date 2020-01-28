@@ -22,6 +22,26 @@
                 </div>
             @endif
             <h1 class="contact-header-text mb-4">{{ $city->name }}, {{ $city->state->abbreviation }}</h1>
+
+            <!-- <div class="social-media-shares">
+                <ul class="social-share-list">
+                    {!! Share::currentPage()->facebook() !!}
+                </ul>
+            </div> -->
+
+            <div id="shareWrapper">
+                <input type="checkbox" class="share-checkbox" id="share" />
+                <label for="share" class="share-label export">
+                    <i class="fa fa-share mr-2" aria-hidden="true"></i>
+                    Share to
+                </label>
+                <div class="social">
+                    <ul class="shadow-5">
+                        {!! Share::currentPage()->twitter()->facebook()->linkedin()->pinterest() !!}    
+                    </ul>
+                </div>
+            </div>
+            
             @if( $city->is_active == true )
                 @include('_partials.buttons.signup-button')
             @else
@@ -167,4 +187,8 @@
         @include('_partials.buttons.signup-button')
     @endif
 
+@endsection
+
+@section('scripts')
+<script src="{{ asset('js/share.js') }}"></script>
 @endsection
