@@ -152,8 +152,8 @@
 <script>
     var table;
 
-    function format (message) {
-        return '<div class="slider"><div class="sub-row">Message: ' + message + '</div><button class="btn btn-primary reply-btn">Reply (eventually)</button></div>';
+    function format (message,other) {
+        return '<div class="slider"><div class="sub-row">Message: ' + message + '</div></div>';
     }
 
     $(document).ready(function() {

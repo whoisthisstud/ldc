@@ -23,7 +23,7 @@
     display: inline-block;
     width: 300px;
     border-radius: 20px;
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: #e3e7ee;
     padding: 0 .5rem 0 2.125rem;
 }
 #messagesTable_filter .form-control{
@@ -81,9 +81,16 @@ tr.shown td.details-control::before {
     display:none;
 }
 .sub-row {
-    padding: .5rem 3.5rem 1.5rem;
+    padding: .5rem 2.5rem 1.5rem;
     font-size: 1rem;
     font-weight: 500;
+}
+.sub-row .main {
+
+}
+.sub-row .secondary {
+    font-size: .75rem;
+    font-weight: 400;
 }
 button.reply-btn {
     margin: 0 3.5rem 1.5rem;

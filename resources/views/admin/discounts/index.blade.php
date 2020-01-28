@@ -66,15 +66,35 @@
                                                 <i class="fas fa-times mr-2 text-danger d-none"></i>
                                                 Business
                                             </a>
-                                            <a class="dropdown-item" title="City" href="#" data-column="2">
+                                            <a class="dropdown-item" title="Discount" href="#" data-column="2">
                                                 <i class="fas fa-check mr-2 text-success"></i>
                                                 <i class="fas fa-times mr-2 text-danger d-none"></i>
-                                                City
+                                                Discount
                                             </a>
                                             <a class="dropdown-item" title="Discount" href="#" data-column="3">
                                                 <i class="fas fa-check mr-2 text-success"></i>
                                                 <i class="fas fa-times mr-2 text-danger d-none"></i>
-                                                Discount
+                                                Code
+                                            </a>
+                                            <a class="dropdown-item" title="City" href="#" data-column="4">
+                                                <i class="fas fa-check mr-2 text-success"></i>
+                                                <i class="fas fa-times mr-2 text-danger d-none"></i>
+                                                City
+                                            </a>
+                                            <a class="dropdown-item" title="Begins On" href="#" data-column="5">
+                                                <i class="fas fa-check mr-2 text-success"></i>
+                                                <i class="fas fa-times mr-2 text-danger d-none"></i>
+                                                Begins On
+                                            </a>
+                                            <a class="dropdown-item" title="Expires On" href="#" data-column="6">
+                                                <i class="fas fa-check mr-2 text-success"></i>
+                                                <i class="fas fa-times mr-2 text-danger d-none"></i>
+                                                Expires On
+                                            </a>
+                                            <a class="dropdown-item" title="Actions" href="#" data-column="7">
+                                                <i class="fas fa-check mr-2 text-success"></i>
+                                                <i class="fas fa-times mr-2 text-danger d-none"></i>
+                                                Actions
                                             </a>
                                         </div>
                                     </div>
@@ -145,8 +165,9 @@
                                 <tr>
                                     <th></th>
                                     <th>Business</th>
-                                    <th>City</th>
                                     <th>Discount</th>
+                                    <th>Code</th>
+                                    <th>City</th>
                                     <th>Begins On</th>
                                     <th>Expires On</th>
                                     <th class="text-right">Actions</th>
@@ -155,11 +176,12 @@
                             <tbody>
 
                                 @foreach($discounts as $discount)
-                                <tr data-child-message="{{ $discount->description }}" class="">
+                                <tr data-child-message="{{ $discount->description }}" data-child-other="{{ $discount->terms }}" class="">
                                     <td class="details-control"></td>
                                     <td>{{ $discount->business->name }}</td>
-                                    <td>{{ $discount->city->name }}, {{ $discount->city->state->abbreviation }}</td>
                                     <td>{{ $discount->title }}</td>
+                                    <td>{{ $discount->code }}</td>
+                                    <td>{{ $discount->city->name }}, {{ $discount->city->state->abbreviation }}</td>
                                     <td>{{ $discount->begins_at != null ? date('m/d/y',strtotime($discount->begins_at)) : 'Pending' }}</td>
                                     <td>{{ $discount->expires_at != null ? date('m/d/y',strtotime($discount->expires_at)) : 'Pending' }}</td>
                                     <td class="text-right">
@@ -201,8 +223,8 @@
 <script>
     var table;
 
-    function format (message) {
-        return '<div class="slider"><div class="sub-row">' + message + '</div><div class="sub-row"></div></div>';
+    function format (message, other) {
+        return '<div class="slider"><div class="sub-row"><span class="main d-block">' + message + '</span><span class="secondary d-block">' + other + '</span></div></div>';
     }
 
     $(document).ready(function() {
@@ -258,7 +280,7 @@
             }
             else {
                 // Open this row
-                row.child(format( tr.data('child-message') )).show();
+                row.child(format( tr.data('child-message'), tr.data('child-other') )).show();
                 $('div.slider', row.child(), 'no-padding').slideDown();
                 tr.addClass('shown');
             }
@@ -326,7 +348,7 @@
             style: {
                 fontSize: '12px',
                 fontStyle: 'italic',
-                opacity: [0.4, 1],
+                color: '#98accd',
             }
         }
     };
