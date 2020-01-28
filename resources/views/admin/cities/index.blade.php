@@ -25,6 +25,9 @@
                                 <a href="{{ route('city.discount', [ 'city' => $city->id ]) }}" class="btn btn-sm btn-primary btn-badge">
                                     <i class="fas fa-plus mr-1"></i> Add Discount
                                 </a>
+                                <a href="{{ route('public.city', [ 'city' => $city->name, 'state' => $city->state->name ]) }}" class="btn btn-sm btn-secondary btn-badge ml-2" target="_blank">
+                                    <i class="fas fa-globe-americas"></i>
+                                </a>
                             </div>
                         </div>
 
@@ -98,32 +101,34 @@
 
     <div class="row mt-5 mb-4">
         <div class="col-12 col-md-3 mb-4">
-            <div class="nav flex-column nav-pills sticky-top mb-4" id="tablist" role="tablist" aria-orientation="vertical" style="top: 160px;">
-                <h5 class="pb-3 mb-2 text-uppercase city-menu-header">City Menu</h5>
-                <a class="nav-link active" id="city-discounts-tab" data-toggle="pill" href="#city-discounts" role="tab" aria-controls="city-discounts" aria-selected="true">
-                    <i class="fas fa-tags mr-2"></i>
-                    Discounts
-                </a>
-                <a class="nav-link" id="city-businesses-tab" data-toggle="pill" href="#city-businesses" role="tab" aria-controls="city-businesses" aria-selected="false">
-                    <i class="fas fa-building mr-2"></i>
-                    Businesses
-                </a>
-                <a class="nav-link" id="city-signups-tab" data-toggle="pill" href="#city-signups" role="tab" aria-controls="city-signups" aria-selected="false">
-                    <i class="fas fa-users mr-2"></i>
-                    Registered Users
-                </a>
-                <a class="nav-link" id="city-surrounding-tab" data-toggle="pill" href="#city-surrounding" role="tab" aria-controls="city-surrounding" aria-selected="false">
-                    <i class="fas fa-city mr-2"></i>
-                    Surrounding Cities
-                </a>
-                <a class="nav-link" id="city-requested-tab" data-toggle="pill" href="#city-requested" role="tab" aria-controls="city-requested" aria-selected="false">
-                    <i class="fas fa-bullhorn mr-2"></i>
-                    Requested Businesses
-                </a>
-                <a class="nav-link" id="city-notify-tab" data-toggle="pill" href="#city-notify" role="tab" aria-controls="city-notify" aria-selected="false">
-                    <i class="fas fa-envelope-open-text mr-2"></i>
-                    Requested Notifications
-                </a>
+            <div class="nav flex-column nav-pills mb-4" id="tablist" role="tablist" aria-orientation="vertical" style="">
+                <div id="stickyNav" class="">
+                    <h5 class="pb-3 mb-2 text-uppercase city-menu-header">City Menu</h5>
+                    <a class="nav-link active" id="city-discounts-tab" data-toggle="pill" href="#city-discounts" role="tab" aria-controls="city-discounts" aria-selected="true">
+                        <i class="fas fa-tags mr-2"></i>
+                        Discounts
+                    </a>
+                    <a class="nav-link" id="city-businesses-tab" data-toggle="pill" href="#city-businesses" role="tab" aria-controls="city-businesses" aria-selected="false">
+                        <i class="fas fa-building mr-2"></i>
+                        Businesses
+                    </a>
+                    <a class="nav-link" id="city-signups-tab" data-toggle="pill" href="#city-signups" role="tab" aria-controls="city-signups" aria-selected="false">
+                        <i class="fas fa-users mr-2"></i>
+                        Registered Users
+                    </a>
+                    <a class="nav-link" id="city-surrounding-tab" data-toggle="pill" href="#city-surrounding" role="tab" aria-controls="city-surrounding" aria-selected="false">
+                        <i class="fas fa-city mr-2"></i>
+                        Surrounding Cities
+                    </a>
+                    <a class="nav-link" id="city-requested-tab" data-toggle="pill" href="#city-requested" role="tab" aria-controls="city-requested" aria-selected="false">
+                        <i class="fas fa-bullhorn mr-2"></i>
+                        Requested Businesses
+                    </a>
+                    <a class="nav-link" id="city-notify-tab" data-toggle="pill" href="#city-notify" role="tab" aria-controls="city-notify" aria-selected="false">
+                        <i class="fas fa-envelope-open-text mr-2"></i>
+                        Requested Notifications
+                    </a>
+                </div>
             </div>
         </div>
         <div class="col-12 col-md-9">
@@ -320,4 +325,21 @@
 
     </div>
 </div>
+@endsection
+
+@section('scripts')
+<script>
+    window.onscroll = function() {makeSticky()};
+    var sidebar = document.getElementById("stickyNav");
+    // Get the offset position of the navbar
+    var sticky = sidebar.offsetTop + 5;
+    // Add the sticky class to the navbar when you reach its scroll position. Remove "sticky" when you leave the scroll position
+    function makeSticky() {
+      if (window.pageYOffset >= sticky) {
+        sidebar.classList.add("sticky")
+      } else {
+        sidebar.classList.remove("sticky");
+      }
+    }
+</script>
 @endsection

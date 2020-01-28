@@ -10,6 +10,7 @@
 
         <!-- MINIFIED -->
         {!! SEO::generate() !!}
+        <meta name="fb:app_id" content="2856796751037947">
 
         @include('_partials.favicons')
 
@@ -33,7 +34,7 @@
 
         @include('_partials.menus.public-menu')
 
-        <main class="menu-padding hidden-footer" role="main">
+        <main class="{{ (Route::is('public.faqs') || Route::is('public.privacy') || Route::is('public.terms')) ? '' : 'menu-padding' }} hidden-footer" role="main">
             {{-- Route::is('public.index') || --}}
 
             @yield('content')

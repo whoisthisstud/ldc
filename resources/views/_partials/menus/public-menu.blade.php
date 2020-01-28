@@ -1,4 +1,4 @@
-<header>
+<header class="sticky-top">
 	<div class="collapse" id="navbarHeader">
 		<div class="container">
 			<div class="row">

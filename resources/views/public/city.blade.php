@@ -21,15 +21,15 @@
                     Coming Soon!
                 </div>
             @endif
-            <h1 class="contact-header-text mb-4">{{ $city->name }}, {{ $city->state->abbreviation }}</h1>
+            <h1 class="contact-header-text mb-2">{{ $city->name }}, {{ $city->state->abbreviation }}</h1>
 
-            <!-- <div class="social-media-shares">
-                <ul class="social-share-list">
-                    {!! Share::currentPage()->facebook() !!}
-                </ul>
-            </div> -->
+            <div id="socialMediaShares">
+                <div class="social-share-list">
+                    {!! Share::page( route('public.city',['city'=>$city->name,'state'=>$city->state->name]), 'Discounts exclusive to ' . $city->name . ', ' . $city->state->abbreviation . '. Register for a FREE membership and start saving today! #yourldc #buylocal #savings #discounts #' . $city->name . $city->state->abbreviation . ' #' . $city->zip_code)->twitter()->facebook()->pinterest() !!}
+                </div>
+            </div>
 
-            <div id="shareWrapper">
+            <!-- <div id="shareWrapper">
                 <input type="checkbox" class="share-checkbox" id="share" />
                 <label for="share" class="share-label export">
                     <i class="fa fa-share mr-2" aria-hidden="true"></i>
@@ -40,7 +40,7 @@
                         {!! Share::currentPage()->twitter()->facebook()->linkedin()->pinterest() !!}    
                     </ul>
                 </div>
-            </div>
+            </div> -->
             
             @if( $city->is_active == true )
                 @include('_partials.buttons.signup-button')
