@@ -257,7 +257,7 @@ body.nav-open .open-nav-cover {
 
 
 .menu-padding {
-  padding-top: 75px;
+  padding-top: 55px;
 }
 
 .h-separator {
@@ -437,13 +437,13 @@ body.nav-open .open-nav-cover {
 }
 
 #pageHeader .page-header-wrapper {
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - 75px);
   padding: 3rem 0;
 }
 
 .scroller-arrow {
   position: absolute;
-  bottom: 20px;
+  bottom: 50px; /*20px;*/
   left: 49%;
   width: 30px;
   transform: translateX(-15px);
@@ -668,9 +668,10 @@ body.nav-open .open-nav-cover {
 
 /* #easyPeasy
 -------------------------------------------------- */
-#easyPeasy {
+#easyPeasy, 
+#popular {
   min-height: 100vh;
-  padding-top: 5vh;
+  padding-top: 8vh;
 }
 
 #easyPeasy h2,
@@ -1809,7 +1810,7 @@ body.nav-open .open-nav-cover {
 
 .discount-preview-wrapper {
   display: block;
-  min-height: 600px;
+  /*min-height: 600px;*/
   border-radius: 5px;
   border: 1px solid #e9e9e9;
   width: 380px;
@@ -1853,9 +1854,9 @@ body.nav-open .open-nav-cover {
 }
 
 .discount-preview-window .discount-description-preview {
-  font-size: 1rem;
+  font-size: .9rem;
   margin: 0 40px;
-  line-height: 1;
+  line-height: 1.1;
 }
 
 .discount-preview-window .expires_at {
@@ -1883,7 +1884,7 @@ body.nav-open .open-nav-cover {
 
 .discount-preview-window .discount-terms-preview {
   display: block;
-  margin: 1rem 0;
+  margin: 2rem 0 1.5rem;
   padding: 0 2rem;
   height: auto;
   text-align: left;
@@ -1904,7 +1905,7 @@ body.nav-open .open-nav-cover {
 }
 
 .discount-preview-window .business-logo-wrapper .business-logo img {
-  max-height: 100px;
+  max-height: 120px;
   max-width: 90%;
 }
 
@@ -2332,6 +2333,9 @@ border-top-color: #343a40;
   #toast-container.toast-bottom-center>div, #toast-container.toast-top-center>div {
     width: 90%;
   }
+  .menu-padding {
+    padding-top: 5px;
+  }
   .faq-wrapper {
     width: 100%;
   }
@@ -2540,7 +2544,7 @@ border-top-color: #343a40;
   }
   #easyPeasy,
   #popular {
-    padding-top: 1rem !important;
+    padding-top: 4rem !important;
   }
   #faqSearch {
     width: 100%;
@@ -2620,6 +2624,9 @@ border-top-color: #343a40;
     max-width: 88%;
     margin: 0 auto;
   }
+  .scroller-arrow {
+    display: none;
+  }
   main.hidden-footer {
     margin-bottom: 90vh;
   }
@@ -2692,11 +2699,8 @@ border-top-color: #343a40;
   .contact-form-card {
     padding: 0 !important;
   }
-  .scroller-arrow {
-    display: none;
-  }
   main.hidden-footer {
-    margin-bottom: 78vh;
+    margin-bottom: 91vh;
     min-height: 90vh;
   }
 }

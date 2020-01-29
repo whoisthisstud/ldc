@@ -62,7 +62,7 @@
             <div class="col-md-5 col-sm-12 pr-5 ml-3">
 
                 <div class="discount-preview-wrapper sticky-top" style="top: 85px">
-                	<div class="discount-preview-window">
+                	<div class="discount-preview-window shadow-5">
                 		<div class="begins_at">
                 			Available beginning:
                 			<div class="discount-begins_at-preview">10/15/2019</div>

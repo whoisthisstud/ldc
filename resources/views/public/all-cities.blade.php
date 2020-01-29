@@ -12,7 +12,7 @@ All Cities
             <div class="contact-header-bkgd" style="opacity:.85;">
                 @include('_partials.icons.dinner_primary')
             </div>
-            <h1 class="contact-header-text">Welcome to the Club!</h1>
+            <h1 class="contact-header-text">Local Discount Clubs!</h1>
             <p class="contact-intro">Don't see your city? <a href="#" class="text-decoration-none" data-toggle="modal" data-target=".cityRequestFormModal">Submit a request</a> and we'll start working on bringing discounts to your local area.</p>
             <div class="contact-page-ldc-card" style="opacity: .05;">
                 @include('_partials.icons.ldc_card_light_contact')
