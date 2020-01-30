@@ -61,11 +61,12 @@
         <div class="row justify-content-between mt-5 mb-4">
             <div class="col-md-5 col-sm-12 pr-5 ml-3">
 
+                <!-- start: Discount Preview Window -->
                 <div class="discount-preview-wrapper sticky-top" style="top: 85px">
                 	<div class="discount-preview-window shadow-5">
                 		<div class="club-info">
                 			Local Discount Club - 
-                			<div class="discount-city-preview">Somewhereville, ST</div>
+                			<div class="discount-city_id-preview">Somewhereville, ST</div>
                 		</div>
                 		<div class="business-logo-wrapper">
                 			<div class="business-logo">
@@ -103,15 +104,15 @@
 
                 	</div>
                 </div>
-
+                <!-- end: Discount Preview Window -->
             </div>
 
+            <!-- start: Discount Form -->
             <div class="col-md-6 col-sm-12 mr-3">
-
                 <section class="card shadow-5 sticky-top" style="top:2rem;">
-
                     <div class="card-body row">
 
+                        <!-- if: we already know the business -->
                         @if( !empty($business) )
                             <input hidden="" name="business_id" value="{{ $business->id }}">
                         @else
@@ -131,17 +132,26 @@
                             <!-- end: business select -->
                         @endif
 
+                        <!-- if: we already know the city -->
                         @if( !empty($city) )
                             <input hidden="" name="city_id" value="{{ $city->id }}">
                         @else
                             <!-- begin: Business Select -->
                             <div class="col-md-12 mb-3">
                                 <label for="city_id">City</label>
-                                <select class="custom-select" id="city_id" name="city_id">
+                                <select class="custom-select form-control update" id="city_id" name="city_id">
                                     <option selected>Choose...</option>
-                                    @foreach($cities as $city)
-                                        <option value="{{ $city->id }}">{{ $city->name }}, {{ $city->state->abbreviation }}</option>
-                                    @endforeach
+                                    <optgroup label="Available Cities">
+                                        @foreach($cities as $city)
+                                            <option value="{{ $city->id }}">{{ $city->name }}, {{ $city->state->abbreviation }}</option>
+                                        @endforeach
+                                    </optgroup>
+                                    @can('access-testing')
+                                        <optgroup label="Testing">
+                                            <option value="">Somewhereville, ST</option>
+                                        </optgroup>
+                                    @endcan
+                                    
                                 </select>
                                 <div class="invalid-feedback" style="{{ $errors->has('city_id') ? 'display:block;' : '' }}">
                                     {{ $errors->first('city_id') }}
@@ -172,7 +182,7 @@
 
                         <!-- begin: CTA selection -->
                         <div class="col-md-12 mt-4 mb-3">
-                            <div class="radio-block">
+                            <!-- <div class="radio-block">
                                 <label>
                                     <input type="radio" name="cta-options" id="linked" value="true" checked class="cta-options"/>
                                     <div class="link radio-block-box">
@@ -186,8 +196,8 @@
                                         <span>Remove Call to Action</span>
                                     </div>
                                 </label>
-                            </div>
-                            <!-- <div class="btn-group btn-group-toggle btn-block radio-block" data-toggle="buttons">
+                            </div> -->
+                            <div class="btn-group btn-group-toggle btn-block radio-block" data-toggle="buttons">
                                 <label class="btn btn-primary btn-badge active">
                                     <input type="radio" name="cta-options" id="linked" value="true" checked class="cta-options">
                                     <span class="radio-block-icon mr-2">
@@ -202,7 +212,7 @@
                                     </span>
                                     Remove Call to Action
                                 </label>
-                            </div> -->
+                            </div>
                         </div>
                         <!-- end: CTA selection -->
 
@@ -250,9 +260,10 @@
                         </div>
                         <!-- end: Date Type selection -->
 
+                        <div id="citySeason" class="col-md-12">
                         @if( $city->seasons->count() > 0 )
                             <!-- begin: Season Select -->
-                            <div class="col-md-12 mb-3">
+                            <div class="mb-3">
                                 <label for="season">Season</label>
                                 <select class="custom-select" id="season" name="season">
                                     <option selected>Choose...</option>
@@ -269,6 +280,7 @@
                             </div>
                             <!-- end: Season select -->
                         @endif
+                        </div>
 
                         <!-- begin: Discount Code -->
                         <div class="col-md-12 mb-3">
@@ -328,15 +340,13 @@
                                 </button>
                             </li>
                         </ul>
+
                     </div>
-
                 </section>
-
             </div>
+
         </div>
-
     </form>
-
 </div>
 @endsection
 
@@ -344,8 +354,18 @@
 	<script>
         // When a discount field is updated, update the preview
 		$('.update').change( function() {
-			var text = $(this).val();
-			var name = $(this).attr("name");
+            var name = $(this).attr("name");
+
+            if( $(this).is('select') ) {
+                var text = $(':selected', this).text();
+                if( name == "city_id" ) {
+                    var id = $(':selected', this).val();
+                    getSeasons(id);
+                }
+            } else {
+                var text = $(this).val();
+            }
+			
 			var target = '.discount-' + name + '-preview';
 			$(target).text(text);
 		});
@@ -405,6 +425,49 @@
             $('.discount-begins_at-preview').text(begin);
             $('.discount-expires_at-preview').text(end);
         })
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        function getSeasons(city) {       
+            $.ajax({
+               type:'GET',
+               url:'/admin/ajax/get-seasons/'+city,
+               // data:{city:city},
+               success:function(data){
+                    if( data.error ) {
+                        alert(data.error);
+                    }
+                    if( data.seasons ) {
+                        var select = '<div class="mb-3"><label for="season">Season</label><select class="custom-select form-control" id="season" name="season">';
+                        
+                        // foreach season returned
+                        $.each( JSON.parse(data.seasons), function(key,value) {
+                            console.log(value['pivot']['begins_on']); //temp
+
+                            var disabled = value['pivot']['filled'] === 1 ? 'disabled' : '';
+
+                            var today = new Date(value['pivot']['begins_on']);
+                            console.log(today);
+
+                            // Create the options
+                            select = select + '<option value="' + value['pivot']['city_id'] + '" ' + disabled + '>Season ' + value['pivot']['season_id'] + '</option>';
+
+                            // value['pivot']['begins_on']
+                            // value['pivot']['ends_on']
+                        });
+                        var select = select + '</select></div>';
+                        console.log(select);
+
+                        $('#citySeason').html(select);
+                    }
+                  
+               }
+            });
+        }
 
 	</script>
 @endsection

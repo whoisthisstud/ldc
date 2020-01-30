@@ -1683,7 +1683,7 @@ body.nav-open .open-nav-cover {
   opacity: 1;
 }
 .radio-block label:not(:last-of-type) {
-  margin-right: 20px;
+  /*margin-right: 20px;*/
 }
 .radio-block input[type="radio"]:checked + .radio-block-box {
   background-color: #3490dc;
@@ -1832,7 +1832,7 @@ font-weight: 600;
   color: #227dc7;
 }
 
-.discount-preview-window .club-info .discount-city-preview {
+.discount-preview-window .club-info .discount-city_id-preview {
   display: inline-block;
 }
 
@@ -1875,7 +1875,11 @@ font-weight: 600;
 }
 
 .discount-preview-window .call_to_action {
-  padding: 2.5rem 2rem 1.5rem;
+  padding: 2.5rem 2rem .5rem;
+}
+
+.discount-preview-window .discount-code {
+  padding: 2rem 0 .25rem;
 }
 
 .discount-preview-window .call_to_action .discount-call_to_action-preview {
@@ -1917,8 +1921,12 @@ font-weight: 600;
 }
 
 #disc_cta {
-  background: #e9ebec;
+  background: #eff1f3;
   border-radius: 5px;
+  padding-top: .5rem;
+}
+#disc_cta input {
+  background-color: #ffffff;
 }
 
 

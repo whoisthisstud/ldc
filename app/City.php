@@ -18,8 +18,14 @@ class City extends Model implements HasMedia
     protected $guarded = [];
 
     protected $casts = [
-        'surrounding_zips' => 'json'
+        'surrounding_zips' => 'json',
+        'seasons.pivot.begins_on' => 'date:m-d-y'
     ];
+    // protected $dateFormat = 'm-d-y';
+
+    // protected $dates = [
+    //     'seasons.pivot.begins_on'
+    // ];
 
     public function state()
     {

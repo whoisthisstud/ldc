@@ -72,6 +72,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/users', 'Admin\UserController@index')->name('users.index');
 
     Route::get('/messages', 'ContactController@index')->name('messages.index');
+
+    Route::get('/ajax/get-seasons/{city}','SeasonController@ajaxGetSeasons')->name('admin.ajaxSeasons.get');
 });
 
 Route::prefix('clubs')->group(function () {

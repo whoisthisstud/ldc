@@ -15,5 +15,7 @@ use Illuminate\Http\Request;
 
 Route::middleware('auth')->group(function () {
     // Route::post('/cities/{city}/delete-city')->name('api.cities.delete');
+
+    
     
 });
