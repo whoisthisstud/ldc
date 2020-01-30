@@ -274,10 +274,13 @@ class PagesController extends Controller
 
     public function faqs()
     {
-        $faqs = Faq::where('is_active', true)->get();
+        $faqs = Faq::where('is_active', true)
+            ->where('type','!=','business')
+            ->get();
         $categories = DB::table('faqs')
             ->select('type', 'is_general')
             ->where('is_active', true)
+            ->where('type','!=','business')
             ->orderBy('is_general', 'DESC')
             ->groupBy('type', 'is_general')
             ->get();

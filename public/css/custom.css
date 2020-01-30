@@ -1826,13 +1826,13 @@ body.nav-open .open-nav-cover {
   text-align: center;
 }
 
-.discount-preview-window .begins_at {
-  padding: .65rem;
-  font-weight: 400;
+.discount-preview-window .club-info {
+  padding: 1.125rem .5rem .5rem;
+font-weight: 600;
   color: #227dc7;
 }
 
-.discount-preview-window .begins_at .discount-begins_at-preview {
+.discount-preview-window .club-info .discount-city-preview {
   display: inline-block;
 }
 

@@ -2,6 +2,7 @@
 
 return [
 
+    'authorization_token' => env('DROPBOX_AUTH_TOKEN'),
     /*
     |--------------------------------------------------------------------------
     | Application Name

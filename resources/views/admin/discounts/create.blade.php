@@ -63,9 +63,9 @@
 
                 <div class="discount-preview-wrapper sticky-top" style="top: 85px">
                 	<div class="discount-preview-window shadow-5">
-                		<div class="begins_at">
-                			Available beginning:
-                			<div class="discount-begins_at-preview">10/15/2019</div>
+                		<div class="club-info">
+                			Local Discount Club - 
+                			<div class="discount-city-preview">Somewhereville, ST</div>
                 		</div>
                 		<div class="business-logo-wrapper">
                 			<div class="business-logo">
@@ -89,10 +89,10 @@
                             </div>
                         </div>
 
-            			<!-- <div class="discount-code">
+            			<div class="discount-code">
             				<span>Discount code: </span>
             				<div class="discount-code-preview">19CYBER50</div>
-            			</div> -->
+            			</div>
 
             			<div class="discount-terms-preview">Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit.</div>
 
@@ -270,7 +270,7 @@
                             <!-- end: Season select -->
                         @endif
 
-                        <!-- begin: Discount Code --
+                        <!-- begin: Discount Code -->
                         <div class="col-md-12 mb-3">
                     		<label for="code">Code</label>
                         	<div class="input-group">
