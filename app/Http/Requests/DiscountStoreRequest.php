@@ -26,8 +26,8 @@ class DiscountStoreRequest extends FormRequest
             'call_to_action' => strip_tags($this->call_to_action),
             'cta_link' => preg_replace("(^https?://)", "", $this->cta_link ),
             'code' => strip_tags($this->code),
-            'begins_at' => date('Y-m-d h:i:s', strtotime($this->begins_at . ' 00:00:01')),
-            'expires_at' => date('Y-m-d h:i:s', strtotime($this->expires_at . ' 00:00:01'))
+            'begins_at' => !empty($this->begins_at) ? date('Y-m-d h:i:s', strtotime($this->begins_at . ' 00:00:01')) : null,
+            'expires_at' => !empty($this->expires_at) ? date('Y-m-d h:i:s', strtotime($this->expires_at . ' 11:59:59')) : null,
         ]);
     }
 

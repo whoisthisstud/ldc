@@ -119,37 +119,20 @@ class DiscountController extends Controller
         return view('admin.discounts.create', compact('business', 'cities'));
     }
 
+
     public function createCityDiscount(City $city)
     {
         $businesses = Business::all();
         return view('admin.discounts.create', compact('city', 'businesses'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(DiscountStoreRequest $request)
     {
         // Max 35 characters on the title
         // dd($request);
         $validated = $request->validated();
         $discount = Discount::create($validated);
-
-        // $discount = Discount::create([
-        //     'business_id' => $request->business_id,
-        //     'city_id' => $request->city_id,
-        //     'code' => $request->code,
-        //     'title' => $request->title,
-        //     'description' => $request->description,
-        //     'call_to_action' => $request->call_to_action,
-        //     'cta_link' => $request->cta_link,
-        //     'terms' => $request->terms,
-        //     'begins_at' => $request->begins_at,
-        //     'expires_at' => $request->expires_at
-        // ]);
 
         notify()->success('The discount has been successfully added', 'Discount Added');
         return redirect()->route('discounts.index');
