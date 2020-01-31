@@ -11,6 +11,7 @@ use App\DiscountView;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
+use App\Http\Requests\DiscountStoreRequest;
 
 class DiscountController extends Controller
 {
@@ -91,6 +92,7 @@ class DiscountController extends Controller
 
         $discounts = Discount::with('business')
             ->with('city.state')
+            ->orderBy('created_at','DESC')
             ->get();
 
         return view('admin.discounts.index', compact('date_list','top_five','active_list','discounts'));
@@ -103,7 +105,12 @@ class DiscountController extends Controller
      */
     public function create()
     {
-        return view('admin.discounts.create');
+        $businesses = Business::all();
+        $cities = City::with('seasons')
+            ->with('state')
+            ->get();
+
+        return view('admin.discounts.create', compact('businesses','cities'));
     }
 
     public function createBusinessDiscount(Business $business)
@@ -124,10 +131,28 @@ class DiscountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DiscountStoreRequest $request)
     {
         // Max 35 characters on the title
-        dd($request);
+        // dd($request);
+        $validated = $request->validated();
+        $discount = Discount::create($validated);
+
+        // $discount = Discount::create([
+        //     'business_id' => $request->business_id,
+        //     'city_id' => $request->city_id,
+        //     'code' => $request->code,
+        //     'title' => $request->title,
+        //     'description' => $request->description,
+        //     'call_to_action' => $request->call_to_action,
+        //     'cta_link' => $request->cta_link,
+        //     'terms' => $request->terms,
+        //     'begins_at' => $request->begins_at,
+        //     'expires_at' => $request->expires_at
+        // ]);
+
+        notify()->success('The discount has been successfully added', 'Discount Added');
+        return redirect()->route('discounts.index');
 
     }
 

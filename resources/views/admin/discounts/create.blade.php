@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+<link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+@endsection
+
 @section('content')
 <div class="container">
 
@@ -58,18 +62,23 @@
             </div>
         </div>
 
-        <div class="row justify-content-between mt-5 mb-4">
-            <div class="col-md-5 col-sm-12 pr-5 ml-3">
+        <div class="row justify-content-center mt-5 mb-4">
+            <div class="col-12 col-md-4">
 
                 <!-- start: Discount Preview Window -->
                 <div class="discount-preview-wrapper sticky-top" style="top: 85px">
                 	<div class="discount-preview-window shadow-5">
                 		<div class="club-info">
-                			Local Discount Club - 
-                			<div class="discount-city_id-preview">Somewhereville, ST</div>
+                            <div class="club-logo">
+                                @include('_partials.icons.ldc_card_front_color')
+                            </div>
+                			<span style="display:inline-block;vertical-align: middle;">
+                                Local Discount Club
+                                <div class="discount-city_id-preview">{{ isset($city) ? ' - ' . $city->name . ', ' . $city->state->abbreviation : '' }}</div>
+                            </span>
                 		</div>
                 		<div class="business-logo-wrapper">
-                			<div class="business-logo">
+                			<div class="business-logo-block">
                                 @if( !empty($business) && $business->logo )
                 				    <img class="business-logo-img" src="{{ $business->logo }}">
                                 @else
@@ -79,27 +88,27 @@
                                 @endif
                 			</div>
                 		</div>
-                		<div class="discount-title-preview">Get 50% Off Online On Cyber Monday</div>
-            			<div class="discount-description-preview">During Cyber Monday, get 50% off any item purchased online through our website.</div>
+                		<div class="discount-title-preview">Your Title Text Goes Here!</div>
+            			<div class="discount-description-preview" style="{{ old('description') ? '' : 'display:none;' }}">{{ old('description') ?? '' }}</div>
 
                         <div class="cta-wrapper">
                             <div class="call_to_action">
                                 <a href="#" target="_blank" class="btn btn-lg btn-block btn-primary btn-badge cta-link">
-                                    <span class="discount-call_to_action-preview">Order Online Now</span>
+                                    <span class="discount-call_to_action-preview">{{ old('call_to_action') ?? 'Call to Action' }}</span>
                                 </a>
                             </div>
                         </div>
 
             			<div class="discount-code">
             				<span>Discount code: </span>
-            				<div class="discount-code-preview">19CYBER50</div>
+            				<div class="discount-code-preview">{{ old('code') ?? 'XXXXXXXX' }}</div>
             			</div>
 
-            			<div class="discount-terms-preview">Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit. Lorem ipsum gel ti desitrea foritit.</div>
+            			<div class="discount-terms-preview" style="{{ old('terms') ? '' : 'display:none;' }}">{{ old('terms') }}</div>
 
             			<div class="expires_at">
-            				<span>Expires: </span>
-	            			<div class="discount-expires_at-preview">12/31/2019</div>
+            				<span>ends: </span>
+	            			<div class="discount-expires_at-preview">{{ old('expires_at') ?? '{Season Start Date}' }}</div>
             			</div>
 
                 	</div>
@@ -108,8 +117,8 @@
             </div>
 
             <!-- start: Discount Form -->
-            <div class="col-md-6 col-sm-12 mr-3">
-                <section class="card shadow-5 sticky-top" style="top:2rem;">
+            <div id="discountForm" class="col-12 col-md-6 offset-md-1">
+                <section class="card px-2" style="">
                     <div class="card-body row">
 
                         <!-- if: we already know the business -->
@@ -118,7 +127,7 @@
                         @else
                             <!-- begin: Business Select -->
                             <div class="col-md-12 mb-3">
-                                <label for="business_id">Business</label>
+                                <label for="business_id">Business <span class="text-danger">*</span></label>
                                 <select class="custom-select" id="business_id" name="business_id">
 									<option selected>Choose...</option>
 									@foreach($businesses as $business)
@@ -138,12 +147,12 @@
                         @else
                             <!-- begin: Business Select -->
                             <div class="col-md-12 mb-3">
-                                <label for="city_id">City</label>
+                                <label for="city_id">City <span class="text-danger">*</span></label>
                                 <select class="custom-select form-control update" id="city_id" name="city_id">
-                                    <option selected>Choose...</option>
+                                    <option>Choose...</option>
                                     <optgroup label="Available Cities">
                                         @foreach($cities as $city)
-                                            <option value="{{ $city->id }}">{{ $city->name }}, {{ $city->state->abbreviation }}</option>
+                                            <option value="{{ $city->id }}" {{ $city->id == old('city_id') ? 'selected' : '' }}>{{ $city->name }}, {{ $city->state->abbreviation }}</option>
                                         @endforeach
                                     </optgroup>
                                     @can('access-testing')
@@ -162,7 +171,7 @@
 
                     	<!-- begin: Discount Title -->
                         <div class="col-md-12 mb-3">
-                            <label for="title">Title</label>
+                            <label for="title">Title <span class="text-danger">*</span></label>
                             <input type="text" class="form-control update" id="title" placeholder="Title  (max:35 characters)" value="{{ old('title') }}" required="" name="title" maxlength="35">
                             <div class="invalid-feedback" style="{{ $errors->has('title') ? 'display:block;' : '' }}">
                                 {{ $errors->first('title') }}
@@ -172,7 +181,7 @@
 
                         <!-- begin: Discount Description -->
                         <div class="col-md-12 mb-3">
-                            <label for="description">Description</label>
+                            <label for="description">Description <small><em>&nbsp;(optional)</em></small></label>
                             <textarea type="text" class="form-control update" id="description" placeholder="Discount description" value="{{ old('description') }}" required="" name="description" rows="3"></textarea>
                             <div class="invalid-feedback" style="{{ $errors->has('description') ? 'display:block;' : '' }}">
                                 {{ $errors->first('description') }}
@@ -181,119 +190,141 @@
                         <!-- end: discount description -->
 
                         <!-- begin: CTA selection -->
-                        <div class="col-md-12 mt-4 mb-3">
-                            <!-- <div class="radio-block">
-                                <label>
-                                    <input type="radio" name="cta-options" id="linked" value="true" checked class="cta-options"/>
-                                    <div class="link radio-block-box">
-                                        <span>Link to Advertiser</span>
-                                    </div>
-                                </label>
+                        <div class="col-md-12 mt-2 mb-3">
+                            <div class="cta-block">
+                                <!-- begin: Discount CTA Radio -->
+                                <div class="radio-block" data-toggle="buttons"> <!-- btn-group-toggle -->
+                                    <label class="btn border active">
+                                        <input type="radio" name="cta-options" id="linked" value="true" checked class="cta-options">
+                                        <span class="radio-block-text">Link to Advertiser</span>
+                                    </label>                                      
+                                    <label class="btn border">
+                                        <input type="radio" name="cta-options" id="unlinked" value="false" class="cta-options">
+                                        <span class="radio-block-text">
+                                            Remove Call to Action
+                                        </span>                                       
+                                    </label>
+                                </div>
+                                <!-- end: Discount CTA Radio -->
 
-                                <label>
-                                    <input type="radio" name="cta-options" id="unlinked" value="false" class="cta-options"/>
-                                    <div class="remove radio-block-box">
-                                        <span>Remove Call to Action</span>
+                                <!-- begin: Discount Call to Action -->
+                                <div id="disc_cta" class="">
+                                    <!-- begin: Discount Call to Action Text -->
+                                    <div  class="col-md-12 mb-3">
+                                        <label for="call_to_action">Call to Action</label>
+                                        <input type="text" class="form-control update" id="call_to_action" placeholder="Call to Action  (max:25 characters)" value="{{ old('call_to_action') }}" required="" name="call_to_action">
+                                        <div class="invalid-feedback" style="{{ $errors->has('call_to_action') ? 'display:block;' : '' }}">
+                                            {{ $errors->first('call_to_action') }}
+                                        </div>
                                     </div>
-                                </label>
-                            </div> -->
-                            <div class="btn-group btn-group-toggle btn-block radio-block" data-toggle="buttons">
-                                <label class="btn btn-primary btn-badge active">
-                                    <input type="radio" name="cta-options" id="linked" value="true" checked class="cta-options">
-                                    <span class="radio-block-icon mr-2">
-                                        <i class="fas fa-paperclip"></i>
-                                    </span>
-                                    Link to Advertiser
-                                </label>
-                                <label class="btn btn-danger btn-badge">
-                                    <input type="radio" name="cta-options" id="unlinked" value="false" class="cta-options">
-                                    <span class="radio-block-icon mr-2">
-                                        <i class="fas fa-unlink"></i>
-                                    </span>
-                                    Remove Call to Action
-                                </label>
+                                    <!-- end: discount cta text -->
+
+                                    <!-- begin: Discount Call to Action Link -->
+                                    <div class="col-md-12 mb-3">
+                                        <label for="cta_link">Call to Action Link</label>
+                                        <input type="text" class="form-control update-link" id="cta_link" placeholder="https://" value="{{ old('cta_link') }}" required="" name="cta_link">
+                                        <div class="invalid-feedback" style="{{ $errors->has('cta_link') ? 'display:block;' : '' }}">
+                                            {{ $errors->first('cta_link') }}
+                                        </div>
+                                    </div>
+                                    <!-- end: discount cta link -->
+                                </div>
                             </div>
+                                
                         </div>
                         <!-- end: CTA selection -->
 
-                    	<!-- begin: Discount Call to Action -->
-                        <div id="disc_cta" class="w-100 mb-3 mx-3">
-                            <!-- begin: Discount Call to Action Text -->
-                            <div  class="col-md-12 mb-3">
-                                <label for="call_to_action">Call to Action</label>
-                                <input type="text" class="form-control update" id="call_to_action" placeholder="Call to Action  (max:25 characters)" value="{{ old('call_to_action') }}" required="" name="call_to_action">
-                                <div class="invalid-feedback" style="{{ $errors->has('call_to_action') ? 'display:block;' : '' }}">
-                                    {{ $errors->first('call_to_action') }}
-                                </div>
-                            </div>
-                            <!-- end: discount cta text -->
-
-                            <!-- begin: Discount Call to Action Link -->
-                            <div class="col-md-12 mb-3">
-                                <label for="cta_link">Call to Action Link</label>
-                                <input type="text" class="form-control update-link" id="cta_link" placeholder="https://" value="{{ old('cta_link') }}" required="" name="cta_link">
-                                <div class="invalid-feedback" style="{{ $errors->has('cta_link') ? 'display:block;' : '' }}">
-                                    {{ $errors->first('cta_link') }}
-                                </div>
-                            </div>
-                            <!-- end: discount cta link -->
-                        </div>
-
                         <!-- begin: Date Type selection -->
-                        <div id="date_type" class="col-md-12 mt-4 mb-3">
-                            <div class="btn-group btn-group-toggle btn-block radio-block" data-toggle="buttons">
-                                <label class="btn btn-primary btn-badge active">
-                                    <input type="radio" name="date-options" id="seasons" value="true" checked class="date-options">
-                                    <span class="radio-block-icon mr-2">
-                                        <i class="fas fa-paperclip"></i>
-                                    </span>
-                                    Use Seasons
-                                </label>
-                                <label class="btn btn-primary btn-badge">
-                                    <input type="radio" name="date-options" id="customDate" value="false" class="date-options">
-                                    <span class="radio-block-icon mr-2">
-                                        <i class="fas fa-unlink"></i>
-                                    </span>
-                                    Use Custom Date
-                                </label>
+                        <div id="date_type" class="col-md-12 mt-2 mb-3 {{ ($city->seasons->count() > 0 || old('expires_at') !== null) ? '' : 'd-none' }}">
+                            <div class="season-block">
+                                <div class="radio-block" data-toggle="buttons"> <!-- btn-group-toggle -->
+                                    <label class="btn border active">
+                                        <input type="radio" name="date-options" id="seasons" value="true" checked class="cta-options">
+                                        <span class="radio-block-text">Use Seasons</span>
+                                    </label>                                      
+                                    <label class="btn border">
+                                        <input type="radio" name="date-options" id="customDate" value="false" class="cta-options">
+                                        <span class="radio-block-text">Use Custom Dates</span>
+                                    </label>
+                                </div>
+                                <div id="citySeason" class="col-md-12" style="">
+                                    @if( $city->seasons->count() > 0 || old('season') )
+                                        <!-- begin: Season Select -->
+                                        <div class="mb-3">
+                                            <label for="seasonSelect">Season</label>
+                                            <select class="custom-select" id="seasonSelect" name="season">
+                                                <option {{ old('season') ? '' : 'selected' }}selected>Choose Season...</option>
+
+                                                @foreach($city->seasons as $season)
+                                                    <option value="{{ $season->id }}"
+                                                        {{ old('season') == $season->id ? 'selected' : '' }}
+                                                        {{ $season->pivot->filled == true ? 'disabled' : '' }} data-begin-date="{{ date('m/d/y', strtotime($season->pivot->begins_on)) }}"
+                                                        data-end-date="{{ date('m/d/y', strtotime($season->pivot->ends_on)) }}"> {{ date('M jS, Y', strtotime($season->pivot->begins_on)) }} to {{ date('M jS, Y', strtotime($season->pivot->ends_on)) }}&nbsp; (Season {{ $season->id }} {{ $season->pivot->filled == true ? '- Filled' : '' }})</option>
+                                                @endforeach
+                                            </select>
+                                            <div class="invalid-feedback" style="{{ $errors->has('city_id') ? 'display:block;' : '' }}">
+                                                {{ $errors->first('city_id') }}
+                                            </div>
+                                        </div>
+                                        <!-- end: Season select -->
+                                    @endif
+                                </div>
+                                
+                                <div id="cityDates" class="col-12" style="margin-bottom:-1px; display:none;">
+                                    <div class="row justify-content-center">
+                                        <div class="col-12">
+                                            <label for="beginsAt">Period</label>
+                                        </div>
+                                        <div class="col-md-5 mb-3">                                           
+                                            <input id="beginsAt" class="form-control" name="begins_at" placeholder="From" value="{{ $city->seasons->count() > 0 ? date('m/d/yy', strtotime($city->seasons->where('filled','!=',1)->first()->pivot->begins_on) ) : old('begins_at') }}">
+                                            <div class="invalid-feedback" style="{{ $errors->has('begins_at') ? 'display:block;' : '' }}">
+                                                {{ $errors->first('begins_at') }}
+                                            </div>
+                                        </div>
+                                        <div class="col-2 mb-3">
+                                            <span>to</span>
+                                        </div>
+                                        <div class="col-md-5 mb-3">
+                                            <input id="expiresAt" class="form-control" name="expires_at" placeholder="To" value="{{ $city->seasons->count() > 0 ? date('m/d/yy', strtotime($city->seasons->where('filled','!=',1)->first()->pivot->ends_on) ) : old('expires_at') }}">
+                                            <div class="invalid-feedback" style="{{ $errors->has('expires_at') ? 'display:block;' : '' }}">
+                                                {{ $errors->first('expires_at') }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                        
+                                </div>
                             </div>
                         </div>
                         <!-- end: Date Type selection -->
 
-                        <div id="citySeason" class="col-md-12">
-                        @if( $city->seasons->count() > 0 )
-                            <!-- begin: Season Select -->
-                            <div class="mb-3">
-                                <label for="season">Season</label>
-                                <select class="custom-select" id="season" name="season">
-                                    <option selected>Choose...</option>
+                        <!-- begin: Discount Code -->
+                        <div class="col-md-12 mt-2 mb-3">
+                            <div class="code-block">
+                                <div class="radio-block" data-toggle="buttons"> <!-- btn-group-toggle -->
+                                    <label class="btn border active">
+                                        <input type="radio" name="code-options" id="useCode" value="true" checked class="cta-options">
+                                        <span class="radio-block-text">Use Discount Code</span>
+                                    </label>                                      
+                                    <label class="btn border">
+                                        <input type="radio" name="code-options" id="noCode" value="false" class="cta-options">
+                                        <span class="radio-block-text">Remove Code</span>
+                                    </label>
+                                </div>
 
-                                    @foreach($city->seasons as $season)
-                                        <option value="{{ $season->id }}"
-                                            {{ $season->pivot->filled == true ? 'disabled' : '' }} data-begin-date="{{ date('m/d/y', strtotime($season->pivot->begins_on)) }}"
-                                            data-end-date="{{ date('m/d/y', strtotime($season->pivot->ends_on)) }}"> {{ date('M jS, Y', strtotime($season->pivot->begins_on)) }} to {{ date('M jS, Y', strtotime($season->pivot->ends_on)) }}&nbsp; (Season {{ $season->id }} {{ $season->pivot->filled == true ? '- Filled' : '' }})</option>
-                                    @endforeach
-                                </select>
-                                <div class="invalid-feedback" style="{{ $errors->has('city_id') ? 'display:block;' : '' }}">
-                                    {{ $errors->first('city_id') }}
+                                <div id="codeEntry" class="col-12 mt-2 mb-3">
+                                    <label for="code">Code</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control update" id="code" placeholder="Discount Code (6-12 characters)" value="{{ old('code') }}" required="" name="code" aria-described-by="codeGenerator">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary btn-badge px-4" type="button" id="codeGenerator" onclick="generateCode();">Generate Code</button>
+                                        </div>
+                                    </div>
+                                    <div class="invalid-feedback" style="{{ $errors->has('code') ? 'display:block;' : '' }}">
+                                        {{ $errors->first('code') }}
+                                    </div>
                                 </div>
                             </div>
-                            <!-- end: Season select -->
-                        @endif
-                        </div>
-
-                        <!-- begin: Discount Code -->
-                        <div class="col-md-12 mb-3">
-                    		<label for="code">Code</label>
-                        	<div class="input-group">
-								<input type="text" class="form-control" id="code" placeholder="Discount Code (6-12 characters)" value="{{ old('code') }}" required="" name="code" aria-described-by="codeGenerator">
-								<div class="input-group-append">
-									<button class="btn btn-primary btn-badge" type="button" id="codeGenerator">Generate Code</button>
-								</div>
-							</div>
-                            <div class="invalid-feedback" style="{{ $errors->has('code') ? 'display:block;' : '' }}">
-                                {{ $errors->first('code') }}
-                            </div>
+                        		
                         </div>
                         <!-- end: discount code -->
 
@@ -306,27 +337,8 @@
                             </div>
                         </div>
                         <!-- end: discount terms -->
-
-                        <!-- begin: Discount Start Date --
-                        <div class="col-md-6 mb-3">
-                            <label for="begins_at">Start Date</label>
-                            <input type="text" class="form-control" id="begins_at" placeholder="Start date" value="{{ old('begins_at') }}" required="" name="begins_at">
-                            <div class="invalid-feedback" style="{{ $errors->has('begins_at') ? 'display:block;' : '' }}">
-                                {{ $errors->first('begins_at') }}
-                            </div>
-                        </div>
-                        <!-- end: discount start date -->
-
-                        <!-- begin: Discount Expiration Date --
-                        <div class="col-md-6 mb-3">
-                            <label for="expires_at">Expiration Date</label>
-                            <input type="text" class="form-control" id="expires_at" placeholder="Expiration date" value="{{ old('expires_at') }}" required="" name="expires_at">
-                            <div class="invalid-feedback" style="{{ $errors->has('expires_at') ? 'display:block;' : '' }}">
-                                {{ $errors->first('expires_at') }}
-                            </div>
-                        </div>
-                        <!-- end: discount expiration date -->
                     </div>
+
                     <div class="card-footer d-sm-block d-md-none">
                         <ul class="submenu ml-auto mb-0 text-right">
                             <li class="nav-item d-inline-block">
@@ -351,45 +363,81 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('/js/moment.js') }}"></script>
 	<script>
+        moment().locale('en').format('l');
+        var code = '';
+
         // When a discount field is updated, update the preview
 		$('.update').change( function() {
             var name = $(this).attr("name");
 
             if( $(this).is('select') ) {
-                var text = $(':selected', this).text();
+                var text = ' - ' + $(':selected', this).text();
                 if( name == "city_id" ) {
                     var id = $(':selected', this).val();
                     getSeasons(id);
                 }
             } else {
-                var text = $(this).val();
+                if( $(this).val() ) {
+                    var text = $(this).val();
+                } else {
+                    var text = '';
+                }  
             }
-			
-			var target = '.discount-' + name + '-preview';
+
+            var target = '.discount-' + name + '-preview';
+
+            if( name == "description" && $(this).val() ) {
+                $(target).css('padding-top','1rem');
+                $(target).slideDown(200);
+            } else if ( name == "description" && ! $(this).val() ) {
+                $(target).slideUp(300);
+            }
+            if( name == "terms" && $(this).val() ) {
+                $(target).slideDown(200);
+            } else if ( name == "terms" && ! $(this).val() ) {
+                $(target).slideUp(300);
+            }
+
 			$(target).text(text);
 		});
 
         // Update the preview link
 		$('.update-link').change( function() {
 			var text = $(this).val();
-			// var name = $(this).attr("name");
-			// var target = '.discount-' + name + '-preview';
-			// $(target).text(text);
             $('.cta-link').attr("href", text);
 		});
 
         // Toggle the Call to Action fields
         $('#linked').click( function() {
-            var btn = '<div class="call_to_action"><a href="#" target="_blank" class="btn btn-lg btn-block btn-primary btn-badge cta-link"><span class="discount-call_to_action-preview">Order Online Now</span></a></div>'
-            $('#disc_cta').removeClass('d-none');
-            $('.cta-wrapper').html(btn);
+            var btn = '<div class="call_to_action"><a href="#" target="_blank" class="btn btn-lg btn-block btn-primary btn-badge cta-link"><span class="discount-call_to_action-preview">Call to Action</span></a></div>'
+            $('#disc_cta').slideDown(500);
+            $('.cta-wrapper').slideDown(500).html(btn);
         });
 
         $('#unlinked').click( function() {
-            // $('#disc_cta').removeClass('d-block');
-            $('#disc_cta').addClass('d-none');
-            $('.call_to_action').remove();
+            $('#disc_cta').slideUp(500);
+            $('.cta-wrapper').slideUp(300);
+        });
+
+        $('#seasonSelect').change( function() {
+            var begins = $(':selected', this).data('begin-date');
+            var ends = $(':selected', this).data('end-date');
+            $('#beginsAt').val(begins);
+            $('#expiresAt').val(ends);
+            $('.discount-expires_at-preview').text(ends);
+            $('')
+        });
+
+        $('#seasons').click( function() {
+            $('#cityDates').slideUp(500);
+            $('#citySeason').slideDown(300);
+        });
+
+        $('#customDate').click( function() {
+            $('#citySeason').slideUp(500);
+            $('#cityDates').slideDown(300);
         });
 
         $('#business_id').change( function(e) {
@@ -408,23 +456,28 @@
                 success: function(data){
                     if( data['logo'] != null ) {
                         var img = '<img class="business-logo-img" src="' + data['logo'] + '">';
-                        $('.business-logo').html(img);
+                        $('.business-logo-block').html(img);
                     } else {
                         var name = '<span class="business-logo-name">' + data['name'] + '</span>';
-                        $('.business-logo').html(name);
+                        $('.business-logo-block').html(name);
                     }
 
                 }
             });
         });
 
-        $('#season').change( function() {
-            var begin = $(this).find(':selected').data('begin-date');
-            var end = $(this).find(':selected').data('end-date');
+        $('#noCode').change( function() {
+            $('#codeEntry').slideUp(400);
+            code = $('#code').val();
+            $('#code').val('');
+            $('.discount-code').slideUp(500);
+        });
 
-            $('.discount-begins_at-preview').text(begin);
-            $('.discount-expires_at-preview').text(end);
-        })
+        $('#useCode').change( function() {
+            $('#code').val(code);
+            $('#codeEntry').slideDown(400);
+            $('.discount-code').slideDown(300);
+        });
 
         $.ajaxSetup({
             headers: {
@@ -436,38 +489,82 @@
             $.ajax({
                type:'GET',
                url:'/admin/ajax/get-seasons/'+city,
-               // data:{city:city},
                success:function(data){
                     if( data.error ) {
-                        alert(data.error);
+                        $('#citySeason').empty();
+                        $('#date_type').addClass('d-none');
                     }
                     if( data.seasons ) {
-                        var select = '<div class="mb-3"><label for="season">Season</label><select class="custom-select form-control" id="season" name="season">';
+                        var select = '<div class="mb-3"><label for="season">Season</label><select class="custom-select form-control" id="seasonSelect" name="season">';
                         
+                        $i = 0;
                         // foreach season returned
                         $.each( JSON.parse(data.seasons), function(key,value) {
-                            console.log(value['pivot']['begins_on']); //temp
-
                             var disabled = value['pivot']['filled'] === 1 ? 'disabled' : '';
+                            console.log(value['pivot']);
+                            var beginsAt = moment(value['pivot']['begins_on']).format('MM/D/YYYY');
+                            var expiresAt = moment(value['pivot']['ends_on']).format('MM/D/YYYY');
 
-                            var today = new Date(value['pivot']['begins_on']);
-                            console.log(today);
-
+                            while( $i === 0 && value['pivot']['filled'] === 0 ) {
+                                // alert('here');
+                                $('#beginsAt').val(beginsAt);
+                                $('#expiresAt').val(expiresAt);
+                                $('.discount-expires_at-preview').text(expiresAt);
+                                $i++;
+                            }
                             // Create the options
-                            select = select + '<option value="' + value['pivot']['city_id'] + '" ' + disabled + '>Season ' + value['pivot']['season_id'] + '</option>';
-
-                            // value['pivot']['begins_on']
-                            // value['pivot']['ends_on']
+                            select = select + '<option value="' + value['pivot']['city_id'] + '" ' + disabled + ' data-begin-date="' + beginsAt + '" data-end-date="' + expiresAt + '">' + beginsAt + ' - ' + expiresAt + '&nbsp; (Season ' + value['pivot']['season_id'] + (value['pivot']['filled'] === 1 ? ' - Filled' : '') + ')</option>';
                         });
                         var select = select + '</select></div>';
-                        console.log(select);
 
+                        $('#date_type').removeClass('d-none');
                         $('#citySeason').html(select);
+
+                        $('#seasonSelect').change( function() {
+                            var begins = $(':selected', this).data('begin-date');
+                            var ends = $(':selected', this).data('end-date');
+                            $('#beginsAt').val(begins);
+                            $('#expiresAt').val(ends);
+                            $('.discount-expires_at-preview').text(ends);
+                        });
                     }
                   
                }
             });
         }
 
+        function randomLength(min, max) {  
+            return Math.random() * (max - min) + min; 
+        }
+
+        function randomStr(len, arr) { 
+            var ans = ''; 
+            for (var i = len; i > 0; i--) { 
+                ans +=  
+                  arr[Math.floor(Math.random() * arr.length)]; 
+            } 
+            return ans; 
+        } 
+  
+        function generateCode() { 
+            var code = randomStr(randomLength(6,12), '1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ'); 
+            $('#code').val(code);
+            $('.discount-code-preview').html(code);
+        }
 	</script>
+
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <script>
+        $('#beginsAt').datepicker({
+            uiLibrary: 'bootstrap4'
+        });
+
+        $('#expiresAt').datepicker({
+            uiLibrary: 'bootstrap4',
+            change: function (e) {
+                var ends = $('#expiresAt').val();
+                $('.discount-expires_at-preview').text(ends);
+            }
+        });
+    </script>
 @endsection

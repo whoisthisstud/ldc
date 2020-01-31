@@ -1671,24 +1671,95 @@ body.nav-open .open-nav-cover {
 
 /* Radio Block
 -------------------------------------------------- */
+#discountForm {
 
+}
+#discountForm input,
+#discountForm select,
+#discountForm textarea {
+  background-color: #e8ebee;
+  border-color: #e8ebee;
+  outline: none;
+}
+#discountForm input:focus,
+#discountForm select:focus,
+#discountForm textarea:focus {
+  background-color: #ffffff;
+  /*border-color: #e8ebee;*/
+  outline: none;
+}
 .radio-block {
   width: 100%;
   text-align: center;
 }
 .radio-block input[type="radio"] {
-  display: none;
+  position: relative;
 }
 .radio-block label {
+  opacity: .4;
+  padding: 1rem .5rem;
+  display: inline-block;
+  width: 225px;
+  border-color: #d3dde5!important;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+.radio-block label:hover:not(.active) {
+  opacity: .85;
+}
+.radio-block label:not(:first-of-type) {
+  margin-left: .5rem;
+}
+.radio-block label.active {
+  background-color: #d9e2e9;
   opacity: 1;
 }
-.radio-block label:not(:last-of-type) {
-  /*margin-right: 20px;*/
+.radio-block label + label.active {
+  color: #e3342f;
+  background-color: #fde7e6;
+  border-color: #fde7e6 !important;
+}
+
+.radio-block .btn:focus,
+.radio-block .btn.focus {
+  box-shadow: none;
+}
+.radio-block input[type="radio"]:checked {
+  background: green;
+}
+.radio-block input[type="radio"]:checked+.radio-block-text { 
+  color: #3490dc;
+}
+.radio-block input[type="radio"][value="false"]:checked+.radio-block-text { 
+  color: #e3342f;
+}
+
+.cta-block,
+.season-block,
+.code-block {
+  background: #eff1f3;
+  padding: 1.25rem .25rem .75rem;
+  border-radius: 5px;
+}
+#disc_cta,
+#citySeason,
+#cityDates {
+  padding-top: .5rem;
+}
+#disc_cta input,
+#citySeason select {
+  /*background-color: #e0e6eb;*/
+  background-color: #ffffff;
+  border-color: #d3dde5!important;
+}
+#citySeason .form-control,
+#cityDates .form-control {
+  background-color: #ffffff;
+  border-color: #d3dde5!important;
 }
 .radio-block input[type="radio"]:checked + .radio-block-box {
   background-color: #3490dc;
 }
-.radio-block input[type="radio"]:checked + .radio-block-box span {
+/*.radio-block input[type="radio"]:checked + .radio-block-box span {
   color: #ffffff;
   transform: translateY(20px);
   font-weight: 600;
@@ -1696,7 +1767,14 @@ body.nav-open .open-nav-cover {
 .radio-block input[type="radio"]:checked + .radio-block-box span:before {
   transform: translateY(0px);
   opacity: 1;
+}*/
+.radio-block .radio-block-text {
+  display: block;
+  position: relative;
+  margin-top: .5rem;
+  line-height: 1rem;
 }
+
 .radio-block .radio-block-box {
   width: 220px;
   height: 100px;
@@ -1737,8 +1815,15 @@ body.nav-open .open-nav-cover {
 .radio-block .remove span:before {
   content: '\f127';  /*Unlink Icon*/
 }
+#codeEntry input {
+  background-color: #ffffff;
+}
 
-
+.gj-datepicker-bootstrap [role=right-icon] button {
+  border-color: #eff1f3;
+  border-color: #d3dde5!important;
+  border-left: 1px solid #d3dde5!important;
+}
 
 
 /* Business Details
@@ -1813,8 +1898,9 @@ body.nav-open .open-nav-cover {
   /*min-height: 600px;*/
   border-radius: 5px;
   border: 1px solid #e9e9e9;
-  width: 380px;
+  /*width: 380px;*/
   height: auto;
+  margin-bottom: 2rem;
 }
 
 .discount-preview-window {
@@ -1824,12 +1910,20 @@ body.nav-open .open-nav-cover {
   overflow: hidden;
   background: #ffffff;
   text-align: center;
+  border-top: 7px solid #3490dc;
+  border-radius: 5px;
 }
 
 .discount-preview-window .club-info {
   padding: 1.125rem .5rem .5rem;
 font-weight: 600;
   color: #227dc7;
+}
+.discount-preview-window .club-info .club-logo {
+  display: inline-block;
+  width: 27px;
+  vertical-align: middle;
+  margin: -3px 4px 0 0;
 }
 
 .discount-preview-window .club-info .discount-city_id-preview {
@@ -1846,7 +1940,7 @@ font-weight: 600;
 }
 
 .discount-preview-window .discount-title-preview {
-  margin: 1rem 3rem;
+  margin: 1rem 3rem 0;
   font-size: 2.5rem;
   font-weight: 700;
   line-height: 1;
@@ -1861,7 +1955,7 @@ font-weight: 600;
 
 .discount-preview-window .expires_at {
   display: block;
-  padding-bottom: 1rem;
+  padding: 1rem 0;
   right: 0;
   bottom: 0;
   left: 0;
@@ -1888,10 +1982,10 @@ font-weight: 600;
 
 .discount-preview-window .discount-terms-preview {
   display: block;
-  margin: 2rem 0 1.5rem;
+  margin: 2rem 0 0;
   padding: 0 2rem;
   height: auto;
-  text-align: left;
+  text-align: center;
   font-size: .7rem;
   font-weight: 400;
   letter-spacing: -.0125rem;
@@ -1899,7 +1993,7 @@ font-weight: 600;
   color: #777;
 }
 
-.discount-preview-window .business-logo-wrapper .business-logo {
+.discount-preview-window .business-logo-wrapper .business-logo-block {
   height:auto;
   margin: 1rem 0;
   text-align: center;
@@ -1908,25 +2002,16 @@ font-weight: 600;
   justify-content: center;
 }
 
-.discount-preview-window .business-logo-wrapper .business-logo img {
+.discount-preview-window .business-logo-wrapper .business-logo-block img {
   max-height: 120px;
   max-width: 90%;
 }
 
-.discount-preview-window .business-logo-wrapper .business-logo span.business-logo-name {
+.discount-preview-window .business-logo-wrapper .business-logo-block span.business-logo-name {
   display: block;
   font-size: 3rem;
   line-height: 2.75rem;
   padding-bottom: 1rem;
-}
-
-#disc_cta {
-  background: #eff1f3;
-  border-radius: 5px;
-  padding-top: .5rem;
-}
-#disc_cta input {
-  background-color: #ffffff;
 }
 
 

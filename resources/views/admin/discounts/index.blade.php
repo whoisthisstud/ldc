@@ -26,7 +26,7 @@
                             </div>
                             <span class="v-separator"></span>
                             <div class="flex-fill">
-                                <a href="#" class="btn btn-sm btn-primary btn-badge">
+                                <a href="{{ route('discounts.create') }}" class="btn btn-sm btn-primary btn-badge">
                                     <i class="fas fa-plus mr-1"></i> Add Discount
                                 </a>
                             </div>

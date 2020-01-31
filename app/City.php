@@ -19,13 +19,9 @@ class City extends Model implements HasMedia
 
     protected $casts = [
         'surrounding_zips' => 'json',
-        'seasons.pivot.begins_on' => 'date:m-d-y'
+        'seasons.pivot.begins_on' => 'date:m-d-y',
+        'seasons.pivot.ends_on' => 'date:m-d-y'
     ];
-    // protected $dateFormat = 'm-d-y';
-
-    // protected $dates = [
-    //     'seasons.pivot.begins_on'
-    // ];
 
     public function state()
     {
@@ -140,5 +136,12 @@ class City extends Model implements HasMedia
         $response = file_get_contents('https://www.zipcodeapi.com/rest/' . $this->api . '/radius.json/' . $this->zip_code . '/10/mile');
 
         return $response;
+    }
+
+    public function openSeason()
+    {
+        return $this->seasons()
+            ->where('filled','!=',1)
+            ->first();
     }
 }
