@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('page-title', 'About Us')
+@section('page-title', 'Contact Us')
 
 @section('content')
 <div id="contactHeader" class="container-fluid">

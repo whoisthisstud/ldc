@@ -393,6 +393,14 @@ body.nav-open .open-nav-cover {
   margin-top: -15px;
   height: 260px;
 }
+#aboutHeader {
+  margin-top: -15px;
+  height: auto;
+  min-height: 65vh;
+}
+#aboutHeader .cta-buttons {
+  margin-top: 2rem;
+}
 #termsHeader {
   margin-top: -15px;
   height: 180px;
@@ -401,18 +409,79 @@ body.nav-open .open-nav-cover {
   margin-top: -15px;
   /*height: calc(100vh - 60px);*/
 }
-
 #pageHeader .sub-text {
   display: inline-block;
   max-width: 500px;
   font-size: 1rem;
 }
-
 #pageHeader .signup-subtext {
   display: inline-block;
   max-width: 650px;
   font-weight: 600;
   font-size: 1rem;
+}
+.about-us-icon-svg {
+  width: 250px;
+  margin: 0 auto 2rem;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.16), 0 15px 12px rgba(0,0,0,0.08);
+  border-radius: .75rem;
+}
+#mission {
+  background-color: #505962;
+}
+#missionContent .row {
+  padding: 3rem 0;
+}
+#missionContent .row:last-of-type {
+  padding-bottom: 0;
+}
+#missionHeader {
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 800;
+  color: #49525a;
+}
+#mission .section-svg {
+  margin: 0 auto 1rem;
+  max-height: 230px;
+  max-width: 250px;
+}
+#mission .section-svg.section-card-svg {
+  transform: rotate(-3deg);
+  box-shadow: 0 19px 38px rgba(0,0,0,0.16), 0 15px 12px rgba(0,0,0,0.08);
+  border-radius: .75rem;
+}
+#mission .section-svg svg {
+  /*margin: 0 auto;*/
+}
+#mission .section-text {
+  color: #d6e2ee;
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -.25px;
+  line-height: 1.25;
+  padding: 1rem 0 .25rem;
+  margin: 0;
+}
+.section-1.section-text {}
+.section-2.section-text {padding: 1.5rem 0 !important; text-align:right;}
+.section-3.section-text {padding-top: 3rem !important;}
+
+#mission .section-hash-tags {
+  color: #343a40;
+  font-size: 1rem;
+  font-weight: 500;
+}
+.divider-top-container {margin-bottom: 2rem;}
+.divider-bottom-container {margin-top: 2rem;}
+.divider-top-container > .icon-btn-svg {
+  margin-top: -2px;
+}
+.divider-bottom-container > .icon-btn-svg {
+  margin-bottom: -2px;
+  transform: rotate(180deg);
 }
 
 .select-city-icon-svg {
@@ -428,7 +497,6 @@ body.nav-open .open-nav-cover {
 .select-city-icon-svg svg {
   max-width: 100px;
 }
-
 .select-city-icon-svg .city-icon-text {
   display: block;
   font-size: 1rem;
@@ -575,8 +643,8 @@ body.nav-open .open-nav-cover {
   font-size: 8rem;
   letter-spacing: -.5px;
 }
-
-.contact-intro {
+.contact-intro,
+.about-intro {
   position: relative;
   display: inline-block;
   margin: 0 auto 1rem;
@@ -584,6 +652,9 @@ body.nav-open .open-nav-cover {
   font-weight: 500;
   font-size: 1rem;
   letter-spacing: .25px;
+}
+.about-intro {
+  max-width: 675px;
 }
 .thank-you-follow {
   position: relative;
@@ -623,7 +694,8 @@ body.nav-open .open-nav-cover {
   max-width: 100px;
   margin: 0 auto;
 }
-.contact-page-ldc-card {
+.contact-page-ldc-card,
+.about-page-ldc-card {
   width: 250px;
   display: block;
   position: absolute;
@@ -632,6 +704,9 @@ body.nav-open .open-nav-cover {
   transform: rotate(-7deg);
   opacity: .1;
   z-index: -1;
+}
+.about-page-ldc-card {
+  top: 90%;
 }
 .page-bkgd-ldc-card {
   width: 250px;
@@ -1726,10 +1801,10 @@ body.nav-open .open-nav-cover {
 .radio-block input[type="radio"]:checked {
   background: green;
 }
-.radio-block input[type="radio"]:checked+.radio-block-text { 
+.radio-block input[type="radio"]:checked+.radio-block-text {
   color: #3490dc;
 }
-.radio-block input[type="radio"][value="false"]:checked+.radio-block-text { 
+.radio-block input[type="radio"][value="false"]:checked+.radio-block-text {
   color: #e3342f;
 }
 
@@ -2392,6 +2467,12 @@ border-top-color: #343a40;
   .popular-city-card h1.city-name {
     font-size: 1.75rem;
   }
+  #aboutHeader {
+    min-height: 50vh;
+  }
+  .about-page-ldc-card {
+    top: 75%;
+  }
   #cityRequestFormModal .top-row .title-wrapper .city-request-title {
     font-size: 1.75rem;
     height: 190px;
@@ -2439,6 +2520,44 @@ border-top-color: #343a40;
     width: 450px;
     max-width: 90%;
     transform: translateX(-50%) translateY(-10%);
+  }
+  .about-us-icon-svg {
+    margin-top: 2rem;
+  }
+  .about-page-ldc-card {
+    top: 50% !important;
+    width: 100px !important;
+  }
+  #mission .section-text {
+    text-align: center !important;
+    font-size: 1.35rem;
+  }
+  #mission .section-hash-tags {
+    text-align: center !important;
+  }
+  #mission .row-2 > div:first-of-type {
+    -webkit-box-ordinal-group: 3;
+    order: 2;
+  }
+  #mission .row-2 > div:nth-of-type(2) {
+    -webkit-box-ordinal-group: 2;
+    order: 1;
+  }
+  #missionContent .row:first-of-type {
+    padding: 3rem 0 0;
+  }
+  #missionContent .row:nth-of-type(2) {
+    padding: 2rem 0 0;
+  }
+  #missionContent .row:first-of-type {
+    padding: 3rem 0 1.5rem;
+  }
+  .section-2.section-text {
+    margin-bottom: 1.5rem !important;
+    padding: .25rem 0 1rem !important;
+  }
+  .section-3.section-text {
+    padding-top: .5rem !important;
   }
   .card.business-display > .card-body {
     padding: 0;
@@ -2789,7 +2908,8 @@ border-top-color: #343a40;
   }
   .contact-header-text,
   .page-header-text,
-  .thank-you-header-text  {
+  .thank-you-header-text,
+  #missionHeader  {
     font-size: 2.5rem;
   }
   .contact-form-card {
@@ -2804,5 +2924,15 @@ border-top-color: #343a40;
 @media (max-width: 350px) {
   main.hidden-footer {
     margin-bottom: 100vh;
+  }
+  #aboutHeader {
+    margin-top: -40px;
+  }
+  #aboutHeader .about-intro {
+    font-size: .85rem;
+    margin: 0 auto;
+  }
+  #aboutHeader .cta-buttons {
+    margin-top: 1.25rem;
   }
 }

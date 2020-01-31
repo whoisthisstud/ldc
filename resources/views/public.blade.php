@@ -162,7 +162,7 @@
 @endsection
 
 @section('scripts')
-<script>
+<!-- <script>
 $(document).ready(function(){
     // Add smooth scrolling to all links
     $("a").on('click', function(event) {
@@ -177,5 +177,5 @@ $(document).ready(function(){
         } // End if
     });
 });
-</script>
+</script> -->
 @endsection

@@ -29,24 +29,11 @@
                 </div>
             </div>
 
-            <!-- <div id="shareWrapper">
-                <input type="checkbox" class="share-checkbox" id="share" />
-                <label for="share" class="share-label export">
-                    <i class="fa fa-share mr-2" aria-hidden="true"></i>
-                    Share to
-                </label>
-                <div class="social">
-                    <ul class="shadow-5">
-                        {!! Share::currentPage()->twitter()->facebook()->linkedin()->pinterest() !!}    
-                    </ul>
-                </div>
-            </div> -->
-            
             @if( $city->is_active == true )
                 @include('_partials.buttons.signup-button')
             @else
                 <div class="sub-text">
-                    Fayetteville, AR is not yet open for membership. Check back regularly for availability or <strong>signup below to be notified when registration opens</strong>.
+                    {{ $city->name }}, {{ $city->state->abbreviation }} is not yet open for membership. Check back regularly for availability or <strong>signup below to be notified when registration opens</strong>.
                 </div>
             @endif
             <div class="city-bkgd-ldc-card" style="opacity: .05;">
