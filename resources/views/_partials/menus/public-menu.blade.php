@@ -176,7 +176,6 @@
 						@endcan
 
 						@can('access-testing')
-
 							<li class="separator d-none d-md-inline-block"></li>
 							<li class="">
 								<a href="{{ route('test.thanks') }}" class="icon-btn text-white">

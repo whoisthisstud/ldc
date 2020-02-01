@@ -49,11 +49,11 @@
                                             * Production code should include checking 
                                             * if 15 discounts exists or not
                                         -->
-                                        @foreach( $city->discounts as $discount )
+                                        @foreach( $discounts as $discount )
                                             <div class="discount-block">
                                                 <div class="discount-logo">
                                                     @if( !empty($discount->business->logo) )
-                                                        <img class="" src="{{ $discount->business->logo }}">
+                                                        <img class="" src="{{ $discount->business->logo }}" alt="Beginning: {{ $discount->begins_at->format('m/d/y') }} | Expiring: {{ $discount->expires_at->format('m/d/y') }}">
                                                     @else
                                                         <span class="business-name">
                                                             {{ $discount->business->name }}

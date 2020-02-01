@@ -2,36 +2,53 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use Auth;
 use View;
 use App\City;
 use App\State;
 use App\Business;
+use App\Discount;
 use Illuminate\Http\Request;
 
 class TestController extends Controller
 {
     public function card()
     {
-    	// $businesses = Business::all();
-    	// $business = Business::find(4);
-    	// $states = State::with('cities')->orderBy('name', 'ASC')->get();
-    	// $state = State::find(1);
+        $city = City::where('id', 1)        // Get the city
+            ->where('is_active', true)       // and ensure active
+            ->with('state')                 // Lazy-load respective state
+            ->first();
 
-    	// foreach( $states as $state ) {
-    	// 	$signups = 0;
-    	// 	$discounts = 0;
-    	// 	foreach( $state->cities as $city ){
-	    // 		$signups += $city->users()->count();
-	    // 		$discounts += $city->discounts()->count();
-	    // 	}
-	    // 	$state->signups = $signups;
-	    // 	$state->discounts = $discounts;
-    	// }
+        if (empty($city)) {
+            notify()->error('City either inactive or not found', 'ERROR');
+            return redirect()->back();
+        }
 
-    	$city = City::find(1);
+        $discounts = Discount::where('city_id', $city->id)
+            ->where('begins_at', '<=', now())
+            ->where('expires_at', '>', now())
+            ->limit(15)
+            ->get();
 
-    	return view('test', compact('city'));
+        if (empty($discounts)) {
+            notify()->error('No discounts found.', 'ERROR');
+            return redirect()->back();
+        }
+
+        $season = DB::table('city_season')  // Get the season
+            ->where('city_id', $city->id)    // for this city,
+            ->where('begins_on', '<=', now()) // that begins before, or on, today
+            ->where('ends_on', '>=', now())   // and ends after, or on, today
+            ->where('filled', '1')           // where all discount "spots" are sold.
+            ->first();                      // Take the first result. (should be 1)
+
+        if (empty($season)) {
+            notify()->error('No seasons found. Are you sure you\'ve activated the city?', 'ERROR');
+            return redirect()->back();
+        }
+
+    	return view('test', compact('city', 'season', 'discounts'));
     }
 
     public function thanks()
