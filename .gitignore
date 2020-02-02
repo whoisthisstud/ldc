@@ -1,5 +1,6 @@
 /node_modules
 /public/storage
+/resources/junk
 /storage/*.key
 /storage/tmp
 /vendor

@@ -60,7 +60,7 @@ class PagesController extends Controller
         }
 
         SEOTools::setTitle('Home');
-        SEOTools::setDescription('Coupons and Discounts for establishments in your area.');
+        SEOTools::setDescription('Get exclusive discounts and savings for establishments in your city with a free membership in your Local Discount Club.');
         SEOMeta::setKeywords($keywords);
         SEOTools::opengraph()->setUrl(route('public.index'));
         SEOTools::setCanonical(route('public.index'));
@@ -75,6 +75,7 @@ class PagesController extends Controller
     public function allCities()
     {
         $states = State::with('cities')->get();
+        $faqs = Faq::where('is_active',true)->get()->random(3);
 
         $keywords = [
             'discounts',
@@ -116,7 +117,7 @@ class PagesController extends Controller
         SEOTools::jsonLd()->addImage(asset('/i/local-discount-club.png'));
         SEOMeta::setRobots('index,follow');
 
-        return view('public.all-cities', compact('states'));
+        return view('public.all-cities', compact('states','faqs'));
     }
 
     public function city($state, $city)
@@ -206,7 +207,7 @@ class PagesController extends Controller
     {
         $state = State::where('name', $state)->first();
         $city = City::where('state_id', $state->id)->where('name', $city)->first();
-        $faqs = Faq::all()->random(3);
+        $faqs = Faq::where('is_active',true)->get()->random(3);
 
         // SEO Details
         SEOTools::setTitle($city->name . ', ' . $state->abbreviation . ' club card request form');
@@ -219,7 +220,7 @@ class PagesController extends Controller
         SEOTools::setCanonical(route('public.signup', ['state' => $state->name, 'city' => $city->name]));
         SEOMeta::setRobots('index,nofollow');
 
-        return view('public.signup2', compact('city', 'faqs'));
+        return view('public.signup', compact('city', 'faqs'));
     }
 
     public function privacy()

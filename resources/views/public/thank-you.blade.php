@@ -17,7 +17,7 @@
             <h1 class="thank-you-header-text">Welcome to the club, {{ $user->name }}!</h1>
             <div class="thank-you-follow">
             	<p>We've sent a confirmation email to {{ $user->email }}.</p>
-            	<p>Check your inbox and verify your email to receive your Local Discount Club card.</p>
+            	<p>Check your inbox and verify your email to access your member profile.</p>
             </div>
 
             <div class="contact-page-ldc-card" style="opacity: .05;">

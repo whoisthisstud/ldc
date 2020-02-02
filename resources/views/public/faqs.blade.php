@@ -12,7 +12,7 @@
                 <form id="faqSearchForm">
                     <div class="form-group has-search">
                         <span class="fa fa-search form-control-feedback"></span>
-                        <input id="quickSearch" type="text" class="form-control form-control-lg" placeholder="Type any keyword to find answers">
+                        <input id="quickSearch" type="text" class="form-control form-control-lg" placeholder="Type a single keyword to find related questions and answers">
                         <span class="fa fa-close form-control-clear"></span>
                     </div>
                 </form>
@@ -21,31 +21,35 @@
         </div>
     </div>
 </div>
-<div class="container pt-5">
+
+<div id="faqs" class="container pt-5">
     <div class="row justify-content-center">
         <div class="col-10">
             <h4 class="text-center pb-4">Frequently Asked Questions</h4>
             <div class="faqs-row-wrapper">
-                @foreach( $categories as $category )
-                    <h5 class="faq-category-title text-primary {{ $category->type }}">{{ ucwords($category->type) }}</h5>
-                    <div class="grid">
-                        <div class="faq-gutter"></div>
-                        <div class="none-available">NONE AVAILABLE</div>
-                        @foreach( $faqs as $faq )
-                            @if( $faq->type === $category->type && $faq->is_active == true )
-                                <div class="faq-wrapper mb-3" data-category="{{ $faq->type }}">
-                                    <h5 class="faq-question">
-                                        {{ $faq->question }}{{ substr($faq->question,-1) !== '?' ? '?' : '' }}
-                                    </h5>
-                                    <div class="faq-answer pb-3" id="q{{ $faq->id }}">
-                                            {!! $faq->answer !!}
-                                    </div>
+
+                <div class="grid">
+                    <div class="faq-gutter"></div>
+                    <div class="none-available" style="display:none;">NONE FOUND</div>
+                    @foreach( $faqs as $faq )
+                        @if( $faq->is_active == true )
+                            <div class="faq-wrapper mb-3" data-category="{{ $faq->type }}">
+                                <h5 class="faq-question">
+                                    {{ $faq->question }}{{ substr($faq->question,-1) !== '?' ? '?' : '' }}
+                                </h5>
+                                <div class="faq-answer pb-3" id="q{{ $faq->id }}">
+                                        {!! $faq->answer !!}
                                 </div>
-                            @endif
-                        @endforeach
-                    </div>
-                @endforeach
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+
             </div>
+            <div class="text-center">
+                <p class="faqs-last-call pt-3 border-top d-inline-block mt-4">Have more questions? <a href="{{ route('public.contact') }}">Contact us</a>!</p>
+            </div>
+            
         </div>
     </div>
 </div>
@@ -99,6 +103,15 @@ var $quicksearch = $('#quickSearch').keyup( debounce( function() {
 
     $grid.isotope();
 }, 200 ) );
+
+$grid.on( 'arrangeComplete', function( event, filteredItems ) {
+    var resultCount = filteredItems.length;
+    if(resultCount == 0) {
+        $('.none-available').show();
+    } else {
+        $('.none-available').hide();
+    }
+});
 
 // debounce so filtering doesn't happen every millisecond
 function debounce( fn, threshold ) {

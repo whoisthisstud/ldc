@@ -79,35 +79,57 @@
         @include('_partials.icons.divider1')
     </div>
 </section>
-<div class="container pb-5">
-    <div class="row justify-content-center">
-        <div class="col-12 col-sm-10 col-md-8 col-lg-6">
 
-
-
-        </div>
-    </div>
-
-    <div class="row justify-content-center pt-5">
-        <div class="col-6 mt-5">
-            <div class="contact-ldc-logo">
-                @include('_partials.icons.ldc_card_dark')
+<section id="coreValues">
+    <div class="container py-4">
+        <div class="row my-4">
+            <div class="col-12">
+                <h4 id="valueHeader">Our Core Values</h4>
             </div>
         </div>
-        <div class="col-12 col-6 text-center pt-3">
-            <div class="contact-ldc-name">
-                <h3>Local Discount Club</h3>
-                <address>
-                    206 W. Armstrong
-                    <br>
-                    Prairie Grove, Arkansas 72753
-                </address>
-                <address>
-                    <a href="mailto:grow@yourldc.com">grow@yourldc.com</a>
-                </address>
+        <div class="row justify-content-center text-left pb-5">
+            <div class="col-12 col-md-10">
+                <div class="row row-cols-1 row-cols-md-3 justify-content-center pb-3"> 
+                    <div class="col p-4">
+                        <h5 class="value text-primary">Integrity, Honesty, & Consistency</h5>
+                        <p class="core">Honesty and integrity in everything we do. <strong>Our word is our bond</strong>. Be consistent.</p>
+                    </div>
+                    <div class="col p-4">
+                        <h5 class="value text-primary">A Service & Servant's Mentality</h5>
+                        <p class="core">Be humble, compassionate and committed to the growth of our employees, clients, and customers.</p>
+                    </div>
+                    <div class="col p-4">
+                        <h5 class="value text-primary">A Fun & Engaging Team</h5>
+                        <p class="core">Have fun. Care sincerely. Build relationships. Be enjoyable to work with.</p>
+                    </div>
+                </div>
+            </div>
+        </div>                
+    </div>
+</section>
+
+<section id="contactInfo" style="background-color: #e2ebf0 !important;">
+    <div class="container pb-5">
+        <div class="row justify-content-center pt-5">
+            <div class="col-6 mt-5">
+                <div class="contact-ldc-logo">
+                    @include('_partials.icons.ldc_card_front_color')
+                </div>
+            </div>
+            <div class="col-12 col-6 text-center pt-3">
+                <div class="contact-ldc-name">
+                    <h3>Local Discount Club</h3>
+                    <address>
+                        206 W. Armstrong
+                        <br>
+                        Prairie Grove, Arkansas 72753
+                    </address>
+                    <address>
+                        <a href="mailto:grow@yourldc.com">grow@yourldc.com</a>
+                    </address>
+                </div>
             </div>
         </div>
     </div>
-
-</div>
+</section>
 @endsection

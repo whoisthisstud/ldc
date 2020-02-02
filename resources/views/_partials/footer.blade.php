@@ -1,4 +1,4 @@
-<footer class="text-muted bg-dark">
+<footer class="text-muted ">  <!-- bg-dark -->
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-12 col-md-3">
@@ -14,15 +14,15 @@
                 <ul class="pl-0 footer-submenu" style="list-style: none;">
                     <li><a href="{{ route('public.about') }}">About Us</a></li>
                     <li><a href="{{ route('public.contact') }}">Contact Us</a></li>
-                    <li><a href="#" data-toggle="tooltip" data-placement="top" title="Coming Soon!">Add Your Business</a></li>
+                    <li class="disabled" style="opacity:.6;"><a data-toggle="tooltip" data-placement="top" title="Coming Soon!">Grow Your Business</a></li>
                     
                 </ul>
             </div>
             <div class="col-12 col-md-3 pt-2">
                 <h4 class="footer-section-header">Resources</h4>
                 <ul class="pl-0 footer-submenu" style="list-style: none;">
-                    <li><a href="#" data-toggle="modal" data-target=".cityRequestFormModal">Request a City</a></li>
-                    <li><a href="#" data-toggle="modal" data-target=".businessRequestFormModal">Request a Business</a></li>
+                    <li><a href="" data-toggle="modal" data-target=".cityRequestFormModal">Request a City</a></li>
+                    <li><a href="" data-toggle="modal" data-target=".businessRequestFormModal">Request a Business</a></li>
                     <li><a href="{{ route('public.faqs') }}">Frequently Asked Questions</a></li>
                 </ul>
             </div>

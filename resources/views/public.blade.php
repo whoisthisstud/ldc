@@ -79,7 +79,7 @@
 						<div class="icon-btn-svg">
 							@include('_partials.icons.request-card_multi')
 						</div>
-						<h4 class="">Register for the card</h4>
+						<h4 class="">Register for membership</h4>
                         <p>From any city, click the registration button to fill out a simple form. This will create an account with LDC and send a verification email to you.</p>
 					</div>
 					<div class="col verify-email-col">
@@ -91,30 +91,30 @@
 					</div>
 					<div class="col download-card-col">
 						<div class="icon-btn-svg">
-							@include('_partials.icons.download-card_multi')
+							@include('_partials.icons.select-discount_multi')
 						</div>
-						<h4 class="">Download your card</h4>
-                        <p>Once you confirm your email, we automatically email you a Club Card. You can also download it at any time from your profile page.</p>
+						<h4 class="">Select a discount</h4>
+                        <p>Once verified, login to your member profile to access your city's discounts. Select desired discount.</p>
 					</div>
 					<div class="col redeem-col">
 						<div class="icon-btn-svg">
-							@include('_partials.icons.business-card_multi')
+							@include('_partials.icons.show-discount_multi')
 						</div>
-						<h4 class="">Show card to redeem</h4>
-                        <p>Show the discount on the back of the card, or from our website, to redeem a participating discount.</p>
+						<h4 class="">Show discount to redeem</h4>
+                        <p>Show the discount to participating business to redeem.</p>
 					</div>
 
 				</div>
 			</div>
 
 			<h4 class="easy-subtext">Easy peasy, lemon squeezy!</h4>
-			<a href="#popular" class="btn btn-lg btn-primary text-white easy-btn">Select your city</a>
+			<a href="#popular" class="btn btn-lg btn-primary text-white easy-btn px-5">Select your city</a>
 			<p class="easy-last-call">Want to learn more?  Check out our <a href="{{ route('public.faqs') }}">Frequently Asked Questions</a>.</p>
 		</div>
 	</div>
 </div>
 
-<div id="popular" class="album pt-5">
+<div id="popular" class="album">
 	<div class="container">
 		<div class="row justify-content-center pb-5">
 			<div class="col-12 text-center">
@@ -147,7 +147,7 @@
 
 			@if( $cities->count() > 8 )
 				<div class="col-12 mt-3 text-center all-cities-btn">
-					<a href="{{ route('public.cities.list') }}" class="btn btn-lg btn-primary text-light text-center">View All Cities</a>
+					<a href="{{ route('public.cities.list') }}" class="btn btn-lg btn-primary text-light text-center px-5">View all cities</a>
 				</div>
 			@endif
 			@if( $cities->count() > 0 && $cities->count() < 8 )
@@ -159,6 +159,51 @@
 		</div> <!-- end: row -->
 	</div>
 </div>
+<section id="markets" class="">
+    <div class="divider-top-container">
+        @include('_partials.icons.divider1')
+    </div>
+	<div class="container">
+		<div class="row">
+			
+			<div class="col-12 market-content">
+				<h2>Savings</h2>
+				<p class="header-smaller">where you need it</p>
+				<p class="sub-header">We work hard every day to bring you exclusive savings from establishments near you, such as:</p>
+				<div id="segments" class="row row-cols-1 row-cols-md-3">
+					<ul class="col">
+						<li>Restaurants</li>
+						<li>Coffee Shops</li>
+						<li>Hair & Nail Salons</li>
+						<li>Chiropractors</li>
+					</ul>
+					<ul class="col">
+						<li>Masseuses & Spas</li>
+						<li>Car Washes</li>
+						<li>Oil Changes</li>
+						<li>Bakeries</li>
+					</ul>
+					<ul class="col">
+						<li>Meat Markets</li>
+						<li>Entertainment Venues </li>
+						<li>Dog Groomers</li>
+						<li>Photography Studios</li>
+					</ul>
+				</div>
+				<div class="section-background" style="">
+	                @include('_partials.icons.corn-dogs_multi')
+	            </div>
+	            <div class="col-12 mt-5 text-center">
+					<a href="{{ route('public.cities.list') }}" class="btn btn-primary text-light text-center mt-3 px-5">Sign up for free!</a>
+				</div>
+				<div class="col-12 mt-5 text-center noted">
+					<span class="text-muted">*Each city's <em>Club Card Partners</em>, and their associated discounts, may vary from city to city.<br>The business types, listed above, may or may not participate in your city's <strong>Club Card</strong> program.</span>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</section>
 @endsection
 
 @section('scripts')

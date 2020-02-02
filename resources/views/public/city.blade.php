@@ -152,26 +152,38 @@
     @endif
 
     @if( $faqs->count() > 0 )
-    <div id="city-faq" class="col-12 py-5 text-center">
-        <h3 class="text-center pb-3 mb-5 border-bottom d-inline-block">Frequently Asked Questions</h3>
-        <div class="faq">
-            <div class="container">
-                <div class="row">
-                    @foreach($faqs as $faq)
-                        <div class="col-12 col-sm-6 col-md-4 text-left py-2 px-4">
-                            <h5><strong>{{ $faq->question }}{{ substr($faq->question,-1) !== '?' ? '?' : '' }}</strong></h5>
-                            <p class="">{!! $faq->answer !!}</p>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
+    <section id="allCityFaq" style="background-color: #e2ebf0 !important;">
+        <div class="divider-top-container">
+            @include('_partials.icons.divider1')
         </div>
-        <p class="easy-last-call pt-3 border-top d-inline-block mt-4">Still curious?  Check out our <a href="{{ route('public.faqs') }}">Frequently Asked Questions</a>.</p>
-    </div>
+        <div class="row">
+            <div id="city-faq" class="col-12 py-4 text-center">
+                <h3 class="text-center pb-3 mb-5 border-bottom d-inline-block">Frequently Asked Questions</h3>
+                <div class="faq">
+                    <div class="container">
+                        <div class="row">
+                            @foreach($faqs as $faq)
+                                <div class="col-12 col-sm-6 col-md-4 text-left py-2 px-4">
+                                    <h5><strong>{{ $faq->question }}{{ substr($faq->question,-1) !== '?' ? '?' : '' }}</strong></h5>
+                                    <p class="">{!! $faq->answer !!}</p>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+                <p class="easy-last-call pt-3 border-top d-inline-block mt-4">Want to learn more?  Check out our <a href="{{ route('public.faqs') }}">FAQ's</a>.</p>
+            </div>
+        </div> 
+        <div class="divider-bottom-container">
+            @include('_partials.icons.divider1')
+        </div>
+    </section>    
     @endif
 
     @if( $city->is_active == true )
-        @include('_partials.buttons.signup-button')
+        <div class="mb-3">
+            @include('_partials.buttons.signup-button')
+        </div>
     @endif
 
 @endsection
