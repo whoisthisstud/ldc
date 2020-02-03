@@ -68,12 +68,14 @@
             <div class="contact-ldc-name">
                 <h3>Local Discount Club</h3>
                 <address>
-                    206 W. Armstrong
+                    1590 East Joyce Blvd
                     <br>
-                    Prairie Grove, Arkansas 72753
+                    Box 10531
+                    <br>
+                    Fayetteville, Arkansas 72703
                 </address>
                 <address>
-                    <a href="mailto:contact@yourldc.com">contact@yourldc.com</a>
+                    <a href="mailto:grow@yourldc.com">grow@yourldc.com</a>
                 </address>
             </div>
         </div>

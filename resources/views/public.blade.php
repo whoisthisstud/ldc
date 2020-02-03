@@ -128,11 +128,11 @@
 			@forelse($cities as $city)
 				<div class="col-12 col-sm-4 col-md-4">
 					<div class="card popular-city-card mb-4 pb-4 p-2 shadow-sm" style="">
-						<img class="card-bg-img" src="{{ !empty($city->media->first()) ? Storage::url($city->media->first()->getUrl('thumb')) : Storage::url('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg') }}">
+						<img class="card-bg-img" src="{{ !empty($city->media->first()) ? Storage::url($city->media->first()->getUrl('thumb')) : Storage::url('/images/city/israel-sundseth-BYu8ITUWMfc-unsplash.jpg') }}" alt="Select {{ $city->name }}, {{ $city->state->abbreviation }} as your city.">
 						<a href="{{ route('public.city', [ 'state' => $city->state->name, 'city' => $city->name ]) }}">
 							<div class="card-body">
 								<div class="center-within">
-									<h1 class="city-name text-center">{{ $city->name }}</h1>
+									<h2 class="city-name text-center">{{ $city->name }}</h2>
 									<p class="city-state-name text-center">{{ $city->state->name }}</p>
 								</div>
 							</div>
@@ -165,7 +165,7 @@
     </div>
 	<div class="container">
 		<div class="row">
-			
+
 			<div class="col-12 market-content">
 				<h2>Savings</h2>
 				<p class="header-smaller">where you need it</p>

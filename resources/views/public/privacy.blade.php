@@ -93,7 +93,7 @@
                         </ol>
                     </div>
                     <!-- end: TOC -->
-                    
+
                     <!-- start: Info Collected -->
                     <div id="infocollect" class="">
                         <h4>
@@ -132,7 +132,7 @@
                         <p>All personal information that you provide us must be true, complete, and accurate, and you must notify us of any changes to such personal information.</p>
                     </div>
                     <!-- end: Info Collected -->
-                    
+
                     <!-- start: Info Use -->
                     <div id="infouse" class="">
                         <h4>
@@ -240,7 +240,7 @@
                         </ul>
                     </div>
                     <!-- end: Info Use -->
-                    
+
                     <!-- start: Info Share -->
                     <div id="infoshare" class="">
                         <h4>
@@ -482,15 +482,19 @@
                         <p>If you have questions or comments about this policy, you may email us at privacy@yourldc.com, or by snail mail to:</p>
                         <address>
                             <strong>One Community Marketing, LLC</strong><br>
-                            206 Armstrong <br>
-                            Prairie Grove, AR 72753 <br>
+                            1590 East Joyce Blvd
+                            <br>
+                            Box 10531
+                            <br>
+                            Fayetteville, Arkansas 72703
+                            <br>
                             United States
                         </address>
                     </div>
                     <!-- end: Policy Updates -->
                 </div>
             </div>
-        </div>          
+        </div>
         <style>
             ul {
             list-style-type: square;

@@ -89,7 +89,7 @@
         </div>
         <div class="row justify-content-center text-left pb-5">
             <div class="col-12 col-md-10">
-                <div class="row row-cols-1 row-cols-md-3 justify-content-center pb-3"> 
+                <div class="row row-cols-1 row-cols-md-3 justify-content-center pb-3">
                     <div class="col p-4">
                         <h5 class="value text-primary">Integrity, Honesty, & Consistency</h5>
                         <p class="core">Honesty and integrity in everything we do. <strong>Our word is our bond</strong>. Be consistent.</p>
@@ -104,7 +104,7 @@
                     </div>
                 </div>
             </div>
-        </div>                
+        </div>
     </div>
 </section>
 
@@ -120,9 +120,11 @@
                 <div class="contact-ldc-name">
                     <h3>Local Discount Club</h3>
                     <address>
-                        206 W. Armstrong
+                        1590 East Joyce Blvd
                         <br>
-                        Prairie Grove, Arkansas 72753
+                        Box 10531
+                        <br>
+                        Fayetteville, Arkansas 72703
                     </address>
                     <address>
                         <a href="mailto:grow@yourldc.com">grow@yourldc.com</a>

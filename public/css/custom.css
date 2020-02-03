@@ -804,8 +804,7 @@ body.nav-open .open-nav-cover {
   padding-top: 8vh;
 }
 
-#easyPeasy h2,
-#popular h2 {
+#easyPeasy h2 {
   font-size: 2.125rem;
   text-align: center;
   margin: .5rem 0 2.75rem;
@@ -2601,7 +2600,7 @@ border-top-color: #343a40;
   #popular .card.popular-city-card .card-body {
     min-height: 100px;
   }
-  .popular-city-card h1.city-name {
+  .popular-city-card .city-name {
     font-size: 1.75rem;
   }
   #aboutHeader {
