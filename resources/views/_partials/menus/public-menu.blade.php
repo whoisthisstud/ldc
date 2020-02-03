@@ -75,7 +75,7 @@
 						@if (Route::has('login'))
 		                    @auth
 			                    <li class="">
-									<a href="{{ route('view.profile',['user' => Auth::id()]) }}" class="icon-btn text-white">
+									<a href="{{ route('view.profile') }}" class="icon-btn text-white">
 										<span class="icon-btn-svg-icon">
 											@include('_partials.icons.user-profile_multi')
 										</span>

@@ -491,10 +491,10 @@ body.nav-open .open-nav-cover {
 .divider-top-container {margin-bottom: 2rem;}
 .divider-bottom-container {margin-top: 2rem;}
 .divider-top-container > .icon-btn-svg {
-  margin: -1px;
+  margin: -2px;
 }
 .divider-bottom-container > .icon-btn-svg {
-  margin: -1px;
+  margin: -2px;
   transform: rotate(180deg);
 }
 

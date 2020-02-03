@@ -15,7 +15,7 @@ Route::get('/terms-of-use', 'PagesController@terms')->name('public.terms');
 
 Route::post('/city-petition', 'CityRequestController@store')->name('petition.city')->middleware('throttle:3|20,1440');
 Route::post('/business-petition', 'BusinessRequestController@store')->name('petition.business')->middleware('throttle:3|20,1440');
-Route::post('/submit-contact', 'ContactController@store')->name('submit.contact'); //->middleware('throttle:3:20,1440');
+Route::post('/submit-contact', 'ContactController@store')->name('submit.contact')->middleware('throttle:3:20,1440');
 
 Auth::routes(['verify' => true, 'register' => false]);
 
@@ -78,15 +78,14 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
 Route::prefix('clubs')->group(function () {
     Route::get('/{state}/{city}', 'PagesController@city')->name('public.city');
-    Route::post('/{state}/{city}/city-notify-request', 'MailchimpNotifyCityController')->name('mc.notify.city')->middleware('throttle:2|10,1440'); //;
+    Route::post('/{state}/{city}/city-notify-request', 'MailchimpNotifyCityController')->name('mc.notify.city')->middleware('throttle:2|10,1440');
     Route::get('/{state}/{city}/request-card', 'PagesController@signup')->name('public.signup');
-    Route::post('/{state}/{city}/register', 'ClubSignupController@signupUser')->name('signup.user')->middleware('throttle:2|5,1440'); //
+    Route::post('/{state}/{city}/register', 'ClubSignupController@signupUser')->name('signup.user')->middleware('throttle:2|5,1440');
     Route::get('/{state}/{city}/thank-you', 'ClubSignupController@thanks')->name('signup.complete');
     Route::get('/{state}/{city}/{business}/{discount}', 'PagesController@discount')->name('public.discount');
     Route::get('/all-cities', 'PagesController@allCities')->name('public.cities.list');
 });
 
 Route::prefix('user')->group(function () {
-    Route::get('/{user}/profile', 'UserController@show')
-    ->name('view.profile'); //->middleware('can:view-profile');
+    Route::get('/profile', 'UserController@profile')->name('view.profile');
 });
