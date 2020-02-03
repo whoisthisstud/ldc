@@ -44,6 +44,7 @@ class GenerateSitemap extends Command
                 // All pages will be crawled, except the following pages.
                 return strpos($url->getPath(), 'admin/') === false;
                 return strpos($url->getPath(), 'business-manager/') === false;
+                return strpos($url->getPath(), 'password/') === false;
 
             })
             ->writeToFile(public_path('sitemap.xml'));
