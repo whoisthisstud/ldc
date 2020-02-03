@@ -68,7 +68,7 @@
 			<div class="jumbotron easy-jumbotron">
 				<div class="row row-cols-1 row-cols-sm-3 row-cols-md-5">
 
-					<div class="col pick-city-col">
+					<div class="col pick-city-col pb-5">
 						<div class="icon-btn-svg">
 							@include('_partials.icons.city-skyline_multi')
 						</div>
