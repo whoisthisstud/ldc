@@ -42,9 +42,10 @@ class GenerateSitemap extends Command
         SitemapGenerator::create(config('app.url'))
             ->shouldCrawl(function (UriInterface $url) {
                 // All pages will be crawled, except the following pages.
-                return strpos($url->getPath(), 'admin/') === false;
-                return strpos($url->getPath(), 'business-manager/') === false;
-                return strpos($url->getPath(), 'password/') === false;
+                return strpos($url->getPath(), '/admin/') === false;
+                return strpos($url->getPath(), '/business-manager/') === false;
+                return strpos($url->getPath(), '/password/reset') === false;
+                return strpos($url->getPath(), '/login') === false;
 
             })
             ->writeToFile(public_path('sitemap.xml'));
