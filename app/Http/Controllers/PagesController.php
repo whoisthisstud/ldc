@@ -75,7 +75,10 @@ class PagesController extends Controller
     public function allCities()
     {
         $states = State::with('cities')->get();
-        $faqs = Faq::where('is_active',true)->get()->random(3);
+        $faqs = Faq::where('is_active',true)
+            ->where('type','!=','business')
+            ->get()
+            ->random(3);
 
         $keywords = [
             'discounts',
@@ -207,7 +210,10 @@ class PagesController extends Controller
     {
         $state = State::where('name', $state)->first();
         $city = City::where('state_id', $state->id)->where('name', $city)->first();
-        $faqs = Faq::where('is_active',true)->get()->random(3);
+        $faqs = Faq::where('is_active',true)
+            ->where('type','!=','business')
+            ->get()
+            ->random(3);
 
         // SEO Details
         SEOTools::setTitle($city->name . ', ' . $state->abbreviation . ' club card request form');
@@ -281,7 +287,7 @@ class PagesController extends Controller
         $categories = DB::table('faqs')
             ->select('type', 'is_general')
             ->where('is_active', true)
-            ->where('type','!=','business')
+            ->where('type','<>','business')
             ->orderBy('is_general', 'DESC')
             ->groupBy('type', 'is_general')
             ->get();
@@ -294,6 +300,6 @@ class PagesController extends Controller
         SEOTools::setCanonical(route('public.faqs'));
         SEOMeta::setRobots('index,nofollow');
 
-        return view('public.faqs', compact('faqs', 'categories'));
+        return view('public.faqs', compact('faqs'));
     }
 }
